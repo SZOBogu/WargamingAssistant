@@ -4,31 +4,26 @@ import java.util.ArrayList;
 import static org.junit.Assert.assertEquals;
 
 public class testWeapon {
+    Statistic str = new Statistic("Strength", "User");
+    Statistic ap = new Statistic("Armour Piercing", "-");
+    ArrayList<Statistic> stats = new ArrayList<>();
+    Weapon weapon = new Weapon("CCW", "-", stats);
+
     @Test
-    void testGetName(){
-        Statistic str = new Statistic("Strength", "User");
-        Statistic ap = new Statistic("Armour Piercing", "-");
-        ArrayList<Statistic> stats = new ArrayList<>();
+    public void testGetName(){
         stats.add(str);
         stats.add(ap);
-        Weapon weapon = new Weapon("CCW", "-", stats);
         assertEquals("CCW", weapon.getName());
     }
     @Test
-    void testGetDescription(){
-        Statistic str = new Statistic("Strength", "User");
-        Statistic ap = new Statistic("Armour Piercing", "-");
-        ArrayList<Statistic> stats = new ArrayList<>();
+    public void testGetDescription(){
         stats.add(str);
         stats.add(ap);
         Weapon weapon = new Weapon("CCW", "-", stats);
         assertEquals("-", weapon.getDescription());
     }
     @Test
-    void testGetStatisticsArray(){
-        Statistic str = new Statistic("Strength", "User");
-        Statistic ap = new Statistic("Armour Piercing", "-");
-        ArrayList<Statistic> stats = new ArrayList<>();
+    public void testGetStatisticsArray(){
         stats.add(str);
         stats.add(ap);
         Weapon weapon = new Weapon("CCW", "-", stats);
