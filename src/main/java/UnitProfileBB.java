@@ -1,12 +1,15 @@
 import java.util.ArrayList;
 //TODO: refactor
 
-public class BB_UnitProfile extends UnitProfile{
+public class UnitProfileBB extends ModelProfile {
     private StatsBB statline;
+    private ArrayList<SpecialRule> specialrules;
 
-    public BB_UnitProfile(Entity entity, StatsBB stat, ArrayList<SpecialRule> srs){
-        super(entity, srs);
+    public UnitProfileBB(Entity entity, StatsBB stat, ArrayList<SpecialRule> srs){
+        super(entity);
         this.statline = stat;
+        this.specialrules = srs;
+
     }
 
     public Entity getEntity() {
@@ -18,6 +21,6 @@ public class BB_UnitProfile extends UnitProfile{
     }
 
     public ArrayList<SpecialRule> getSpecialRules() {
-        return super.getSpecialRules();
+        return specialrules;
     }
 }

@@ -2,11 +2,11 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 import java.util.ArrayList;
 
-public class testBB_UnitProfile {
+public class testUnitProfileBB {
     Entity entbb = new Entity("Runner", "A guy who runs");
     StatsBB statsbb = new StatsBB("6","3","3","8");
     ArrayList<SpecialRule> srbb = new ArrayList<SpecialRule>();
-    BB_UnitProfile BBprofile = new BB_UnitProfile(entbb, statsbb, srbb);
+    UnitProfileBB BBprofile = new UnitProfileBB(entbb, statsbb, srbb);
 
 
     //TODO: before all method that sets up objects above
@@ -28,6 +28,11 @@ public class testBB_UnitProfile {
         bb.add(dodge);
         bb.add(block);
         bb.add(tackle);
+
+        srbb.add(dodge);
+        srbb.add(block);
+        srbb.add(tackle);
+
         assertEquals(bb, BBprofile.getSpecialRules());
     }
 
