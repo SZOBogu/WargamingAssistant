@@ -1,0 +1,24 @@
+package rosterBuilder.rules;
+
+import rosterBuilder.Entity;
+import rosterBuilder.RuleViolationLog;
+import rosterBuilder.Unit;
+
+import java.util.ArrayList;
+
+public class MustHaveTogether extends UnitBuildingRule{
+    public MustHaveTogether(Entity entity1, Entity entity2){
+        super(entity1, entity2);
+    }
+
+    @Override
+    public void check(Unit unit){
+        ArrayList<Entity> all = new ArrayList<>();
+        all.addAll(unit.getBaseEquipmentAndRules());
+        all.addAll(unit.getNonBaseEquipment());
+
+        if(all.contains(entity1) && !all.contains(entity2))
+            RuleViolationLog.appendUnitRuleViolationLog("Unit must have " + entity1.getName() +
+                    " and " + entity2.getName() + " together.");
+    }
+}
