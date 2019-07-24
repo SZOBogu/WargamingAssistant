@@ -114,7 +114,8 @@ public class UnitProfilePanel extends JPanel implements ActionListener {
             for(int i = 0; i < rules.size(); i++){
                 rules.get(i).check(unit);
             }
-            if(RuleViolationLog.getUnitRuleViolationLog().isEmpty()) {
+            RuleViolationLog ruleViolationLog = RuleViolationLog.getInstance();
+            if(ruleViolationLog.getUnitRuleViolationLog().isEmpty()) {
                 roster.getDetachments().get(detNumber).addUnit(unit, categoryNumber);
                 this.detachmentPanel.refresh();
                 RosterBuilderWindow rosterBuilderWindow = new RosterBuilderWindow(this.wargamingSystem, this.roster);
@@ -122,9 +123,9 @@ public class UnitProfilePanel extends JPanel implements ActionListener {
                 topFrame.dispose();
             }
             else{
-                JOptionPane.showMessageDialog(new JFrame(), RuleViolationLog.getUnitRuleViolationLog(), "Dialog",
+                JOptionPane.showMessageDialog(new JFrame(), ruleViolationLog.getUnitRuleViolationLog(), "Dialog",
                         JOptionPane.ERROR_MESSAGE);
-                RuleViolationLog.clear();
+                ruleViolationLog.clear();
             }
 
         }

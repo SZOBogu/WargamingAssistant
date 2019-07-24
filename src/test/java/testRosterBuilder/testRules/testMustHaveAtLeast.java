@@ -20,7 +20,6 @@ public class testMustHaveAtLeast {
     ArmySubcategory armySubcategory1 = new ArmySubcategory("TROOPS", new ArrayList<UnitProfile>(Arrays.asList(up2, up3)));
     Army army = new Army("Kingdom of costam", new ArrayList<>(Arrays.asList(armySubcategory0, armySubcategory1)));
 
-
     Roster roster  = new Roster();
 
     ArrayList<Integer> min0 = new ArrayList<>(Arrays.asList(1, 2, 0));
@@ -39,6 +38,8 @@ public class testMustHaveAtLeast {
     ArrayList<Entity> eq3 = new ArrayList<>(Arrays.asList(new SpecialRule("Cannon", ""), new Entity("3 Crew", "")));
     Unit unit3 = new Unit("Cannon", 1, eq3, new ArrayList<>(),350);
 
+    RuleViolationLog ruleViolationLog = RuleViolationLog.getInstance();
+
     MustHaveAtLeast ruleOK = new MustHaveAtLeast(new SpecialRule("Wizard Master", ""), 1);
     MustHaveAtLeast ruleNotOK = new MustHaveAtLeast(new SpecialRule("Any", ""), 100);
 
@@ -55,9 +56,9 @@ public class testMustHaveAtLeast {
 
 
         ruleOK.check(roster);
-        assertEquals("", RuleViolationLog.getRosterRuleViolationLog());
+        assertEquals("", ruleViolationLog.getRosterRuleViolationLog());
         ruleNotOK.check(roster);
-        assertEquals("Roster must contain at least 100 units with Any.\n", RuleViolationLog.getRosterRuleViolationLog());
-        RuleViolationLog.clear();
+        assertEquals("Roster must contain at least 100 units with Any.\n", ruleViolationLog.getRosterRuleViolationLog());
+        ruleViolationLog.clear();
     }
 }

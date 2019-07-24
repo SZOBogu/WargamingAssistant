@@ -14,15 +14,17 @@ public class testCannotBeTakenWithLessModelsThan {
     ArrayList<Entity> eq0 = new ArrayList<>(Arrays.asList(new SpecialRule("Wizard Master", ""), new Entity("Talisman", ""), new SpecialRule("Any", "")));
     Unit unit0 = new Unit("Wizard", 10, eq0, new ArrayList<>(),350);
 
+    RuleViolationLog ruleViolationLog = RuleViolationLog.getInstance();
+
     CannotBeTakenWithLessThanModels ruleOK = new CannotBeTakenWithLessThanModels(new SpecialRule("Any", ""), 1);
     CannotBeTakenWithLessThanModels ruleNotOK = new CannotBeTakenWithLessThanModels(new SpecialRule("Any", ""), 11);
 
     @Test
     void testCheck(){
         ruleOK.check(unit0);
-        assertEquals("", RuleViolationLog.getUnitRuleViolationLog());
+        assertEquals("", ruleViolationLog.getUnitRuleViolationLog());
         ruleNotOK.check(unit0);
-        assertEquals("Any cannot be taken on units with less than 11 models.\n", RuleViolationLog.getUnitRuleViolationLog());
-        RuleViolationLog.clear();
+        assertEquals("Any cannot be taken on units with less than 11 models.\n", ruleViolationLog.getUnitRuleViolationLog());
+        ruleViolationLog.clear();
     }
 }

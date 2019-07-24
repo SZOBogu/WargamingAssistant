@@ -33,7 +33,7 @@ public class OptionPanelsPanel extends JPanel {
     public ArrayList<Entity> getChosenEquipment(){
         ArrayList<Entity> chosenEquipment = new ArrayList<>();
         for(int i = 0; i < this.optionPanels.size(); i++){
-            chosenEquipment.addAll(this.optionPanels.get(i).getChosenEntites());
+            chosenEquipment.addAll(this.optionPanels.get(i).getChosenEntities());
         }
         return chosenEquipment;
     }

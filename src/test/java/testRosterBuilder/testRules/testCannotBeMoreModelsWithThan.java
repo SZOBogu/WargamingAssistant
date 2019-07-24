@@ -19,7 +19,6 @@ public class testCannotBeMoreModelsWithThan {
     ArmySubcategory armySubcategory1 = new ArmySubcategory("TROOPS", new ArrayList<UnitProfile>(Arrays.asList(up2, up3)));
     Army army = new Army("Kingdom of costam", new ArrayList<>(Arrays.asList(armySubcategory0, armySubcategory1)));
 
-
     Roster roster  = new Roster();
 
     ArrayList<Integer> min0 = new ArrayList<>(Arrays.asList(1, 2, 0));
@@ -38,6 +37,8 @@ public class testCannotBeMoreModelsWithThan {
     ArrayList<Entity> eq3 = new ArrayList<>(Arrays.asList(new SpecialRule("Cannon", ""), new Entity("3 Crew", "")));
     Unit unit3 = new Unit("Cannon", 1, eq3, new ArrayList<>(),350);
 
+    RuleViolationLog ruleViolationLog = RuleViolationLog.getInstance();
+
     CannotBeMoreUnitsWithThan ruleOK = new CannotBeMoreUnitsWithThan(new SpecialRule("Any", ""), 100);
     CannotBeMoreUnitsWithThan ruleNotOK = new CannotBeMoreUnitsWithThan(new SpecialRule("Any", ""), 1);
     @Test
@@ -53,9 +54,9 @@ public class testCannotBeMoreModelsWithThan {
 
 
         ruleOK.check(roster);
-        assertEquals("", RuleViolationLog.getRosterRuleViolationLog());
+        assertEquals("", ruleViolationLog.getRosterRuleViolationLog());
         ruleNotOK.check(roster);
-        assertEquals("Roster cannot have more than 1 units with Any.\n", RuleViolationLog.getRosterRuleViolationLog());
-        RuleViolationLog.clear();
+        assertEquals("Roster cannot have more than 1 units with Any.\n", ruleViolationLog.getRosterRuleViolationLog());
+        ruleViolationLog.clear();
     }
 }

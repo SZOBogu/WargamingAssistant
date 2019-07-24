@@ -34,17 +34,17 @@ public class testReportGenerator {
                 results3.add(results3RR);
 
                 generator.addDiceRoll(results1, 1, 14, 3, false);
-                assertEquals("common.Dice Roll 1: 14 successes (3+). Results:\n4 1 4 3 6 3 4 2 2 5 4 3 2 5 1 4 3 3 5 2 \n", generator.getReport());
+                assertEquals("Dice Roll 1: 14 successes (3+). Results:\n4 1 4 3 6 3 4 2 2 5 4 3 2 5 1 4 3 3 5 2 \n", generator.getReport());
                 generator.addDiceRoll(results2, 2, 5, 5, false, 1);
-                assertEquals("common.Dice Roll 1: 14 successes (3+). Results:\n4 1 4 3 6 3 4 2 2 5 4 3 2 5 1 4 3 3 5 2 \n" +
-                        "common.Dice Roll 2: 5 successes (5+ with 1s rerolled). Results non rerolled:\n1 4 1 2 3 4 6 1 1 5 1 2 6 6 \n"+
-                        "common.Dice Roll 2: 5 successes (5+ with 1s rerolled). Results rerolled:\n6 4 4 2 3 4 6 5 5 5 2 2 6 6 \n", generator.getReport());
+                assertEquals("Dice Roll 1: 14 successes (3+). Results:\n4 1 4 3 6 3 4 2 2 5 4 3 2 5 1 4 3 3 5 2 \n" +
+                        "Dice Roll 2: 5 successes (5+ with 1s rerolled). Results non rerolled:\n1 4 1 2 3 4 6 1 1 5 1 2 6 6 \n"+
+                        "Dice Roll 2: 5 successes (5+ with 1s rerolled). Results rerolled:\n6 4 4 2 3 4 6 5 5 5 2 2 6 6 \n", generator.getReport());
                 generator.addDiceRoll(results3, 3, 0, 3, false, -1);
-                assertEquals("common.Dice Roll 1: 14 successes (3+). Results:\n4 1 4 3 6 3 4 2 2 5 4 3 2 5 1 4 3 3 5 2 \n" +
-                        "common.Dice Roll 2: 5 successes (5+ with 1s rerolled). Results non rerolled:\n1 4 1 2 3 4 6 1 1 5 1 2 6 6 \n"+
-                        "common.Dice Roll 2: 5 successes (5+ with 1s rerolled). Results rerolled:\n6 4 4 2 3 4 6 5 5 5 2 2 6 6 \n" +
-                        "common.Dice Roll 3: 0 successes (3+ rerolled). Results non rerolled:\n5 2 4 3 1 5 6 \n" +
-                        "common.Dice Roll 3: 0 successes (3+ rerolled). Results rerolled:\n5 6 4 3 5 5 6 \n", generator.getReport()
+                assertEquals("Dice Roll 1: 14 successes (3+). Results:\n4 1 4 3 6 3 4 2 2 5 4 3 2 5 1 4 3 3 5 2 \n" +
+                        "Dice Roll 2: 5 successes (5+ with 1s rerolled). Results non rerolled:\n1 4 1 2 3 4 6 1 1 5 1 2 6 6 \n"+
+                        "Dice Roll 2: 5 successes (5+ with 1s rerolled). Results rerolled:\n6 4 4 2 3 4 6 5 5 5 2 2 6 6 \n" +
+                        "Dice Roll 3: 0 successes (3+ rerolled). Results non rerolled:\n5 2 4 3 1 5 6 \n" +
+                        "Dice Roll 3: 0 successes (3+ rerolled). Results rerolled:\n5 6 4 3 5 5 6 \n", generator.getReport()
                 );
         }
         @Test

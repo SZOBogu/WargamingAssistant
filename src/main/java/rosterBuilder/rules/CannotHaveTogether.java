@@ -13,12 +13,13 @@ public class CannotHaveTogether extends UnitBuildingRule{
 
     @Override
     public void check(Unit unit) {
+        RuleViolationLog ruleViolationLog = RuleViolationLog.getInstance();
         ArrayList<Entity> allEntities = new ArrayList<>();
         allEntities.addAll(unit.getNonBaseEquipment());
         allEntities.addAll(unit.getBaseEquipmentAndRules());
 
         if(allEntities.contains(entity1) && allEntities.contains(entity2))
-            RuleViolationLog.appendUnitRuleViolationLog("Unit cannot have " + entity1.getName() +
+            ruleViolationLog.appendUnitRuleViolationLog("Unit cannot have " + entity1.getName() +
                     " and " + entity2.getName() + " together.");
     }
 }

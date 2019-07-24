@@ -20,7 +20,7 @@ public class testRuleViolationLog {
 //        assertEquals("test\n", RuleViolationLog.getRosterRuleViolationLog());
 //        RuleViolationLog.clear();
 //    }
-    RuleViolationLog ruleViolationLog = new RuleViolationLog();
+    RuleViolationLog ruleViolationLog = RuleViolationLog.getInstance();
 
     @Test
     public void testGetUnitRuleViolationLog() {

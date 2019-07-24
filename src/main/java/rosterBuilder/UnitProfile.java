@@ -162,16 +162,16 @@ public class UnitProfile {
                 for (int j = 0; j < temp.get(i).getOptions().size(); j++) {
                     if (this.pool.getAvailable().contains(temp.get(i).getOptions().get(j).getEntity()) || !this.pool.contains(temp.get(i).getOptions().get(j).getEntity())) {
                         filteredOptions.add(temp.get(i).getOptions().get(j));
-                        if(this.getName() == "Soothsayer") {
-                            System.out.println(this.getName());
-                            System.out.println(temp.get(i).getOptions().get(j));
-                            System.out.println("-------------------------");
-                        }
+//                        if(this.getName() == "Soothsayer") {
+//                            System.out.println(this.getName());
+//                            System.out.println(temp.get(i).getOptions().get(j));
+//                            System.out.println("-------------------------");
+//                        }
                     }
                 }
                 temp.get(i).setOptions(filteredOptions);
             }
-            System.out.println("########################################3");
+            //System.out.println("########################################3");
             this.options = temp;
         }
     }

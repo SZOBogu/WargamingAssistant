@@ -20,15 +20,17 @@ public class testMustHaveTogether {
     ArrayList<Entity> eq3 = new ArrayList<>(Arrays.asList(new SpecialRule("Cannon", ""), new Entity("3 Crew", "")));
     Unit unit3 = new Unit("Cannon", 1, eq3, new ArrayList<>(),350);
 
+    RuleViolationLog ruleViolationLog = RuleViolationLog.getInstance();
+
     MustHaveTogether ruleOK = new MustHaveTogether(new SpecialRule("Any", ""), new SpecialRule("Wizard Master", ""));
     MustHaveTogether ruleNotOK = new MustHaveTogether(new SpecialRule("Any", ""), new SpecialRule("Pass", ""));
 
     @Test
     void testCheck(){
         ruleOK.check(unit0);
-        assertEquals("", RuleViolationLog.getUnitRuleViolationLog());
+        assertEquals("", ruleViolationLog.getUnitRuleViolationLog());
         ruleNotOK.check(unit0);
-        assertEquals("Unit must have Any and Pass together.\n", RuleViolationLog.getUnitRuleViolationLog());
-        RuleViolationLog.clear();
+        assertEquals("Unit must have Any and Pass together.\n", ruleViolationLog.getUnitRuleViolationLog());
+        ruleViolationLog.clear();
     }
 }

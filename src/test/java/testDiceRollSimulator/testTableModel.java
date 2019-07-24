@@ -29,8 +29,8 @@ public class testTableModel {
         assertEquals(tableModel.getColumnName(2), "Success Value");
         assertEquals(tableModel.getColumnName(3), "Rerolling");
         assertEquals(tableModel.getColumnName(4), "Failures");
-        assertEquals(tableModel.getColumnName(5), "common.Dice Sides");
-        assertEquals(tableModel.getColumnName(6), "Value to Re-roll");
+        assertEquals(tableModel.getColumnName(5), "Dice Sides");
+        assertEquals(tableModel.getColumnName(6), "Value to Reroll");
     }
 
     @Test

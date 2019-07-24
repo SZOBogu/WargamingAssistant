@@ -54,14 +54,18 @@ public class OptionPanel extends JPanel {
         return chosenEntitiesIndex;
     }
 
-    public ArrayList<Entity> getChosenEntites(){
-        ArrayList<Entity> chosenEntites =new ArrayList<>();
+    public ArrayList<Entity> getChosenEntities(){
+        ArrayList<Entity> chosenEntities =new ArrayList<>();
         ArrayList<Integer> chosenEquipmentIndexes = this.getCheckedIndexes();
 
         for(int i = 0; i < chosenEquipmentIndexes.size(); i++){
-            chosenEntites.add(optionSet.getAllEntities().get(chosenEquipmentIndexes.get(i)));
+            chosenEntities.add(optionSet.getAllEntities().get(chosenEquipmentIndexes.get(i)));
         }
-        return chosenEntites;
+        if(chosenEntities.isEmpty() && this.optionSet.isMandatory){
+            RuleViolationLog ruleViolationLog = RuleViolationLog.getInstance();
+            ruleViolationLog.appendUnitRuleViolationLog("Mandatory option not taken.");
+        }
+        return chosenEntities;
     }
 
     public int getTotalCost() {

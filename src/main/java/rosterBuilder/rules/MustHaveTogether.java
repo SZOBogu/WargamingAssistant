@@ -13,12 +13,13 @@ public class MustHaveTogether extends UnitBuildingRule{
 
     @Override
     public void check(Unit unit){
+        RuleViolationLog ruleViolationLog = RuleViolationLog.getInstance();
         ArrayList<Entity> all = new ArrayList<>();
         all.addAll(unit.getBaseEquipmentAndRules());
         all.addAll(unit.getNonBaseEquipment());
 
         if(all.contains(entity1) && !all.contains(entity2))
-            RuleViolationLog.appendUnitRuleViolationLog("Unit must have " + entity1.getName() +
+            ruleViolationLog.appendUnitRuleViolationLog("Unit must have " + entity1.getName() +
                     " and " + entity2.getName() + " together.");
     }
 }

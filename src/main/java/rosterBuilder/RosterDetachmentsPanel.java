@@ -87,7 +87,8 @@ public class RosterDetachmentsPanel extends JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent actionEvent) {
         JButton clicked = (JButton)actionEvent.getSource();
-        RuleViolationLog.clear();
+        RuleViolationLog ruleViolationLog = RuleViolationLog.getInstance();
+        ruleViolationLog.clear();
         if(clicked == addDetachmentButton){
             if(this.wargamingSystem.getMaxDetachments() >= this.roster.size()) {
                 DetachmentInfoDialog detachmentInfoDialog = new DetachmentInfoDialog(this.wargamingSystem, this.roster, this);
@@ -100,17 +101,17 @@ public class RosterDetachmentsPanel extends JPanel implements ActionListener {
         else if(clicked == readyButton){
             ArrayList<RosterBuildingRule> rules = this.wargamingSystem.getRules();
             if(roster.getTotalCost() > roster.getPointCap())
-                RuleViolationLog.appendRosterRuleViolationLog("Point Limit Exceeded");
+                ruleViolationLog.appendRosterRuleViolationLog("Point Limit Exceeded");
             for(int i = 0; i < rules.size(); i++){
                 rules.get(i).check(roster);
             }
-            if(RuleViolationLog.getRosterRuleViolationLog().isEmpty()) {
+            if(ruleViolationLog.getRosterRuleViolationLog().isEmpty()) {
                 RosterDisplayMenu rosterDisplayMenu = new RosterDisplayMenu(this.roster);
             }
             else {
-                JOptionPane.showMessageDialog(new JFrame(), RuleViolationLog.getRosterRuleViolationLog(), "Dialog",
+                JOptionPane.showMessageDialog(new JFrame(), ruleViolationLog.getRosterRuleViolationLog(), "Dialog",
                         JOptionPane.ERROR_MESSAGE);
-                RuleViolationLog.clear();
+                ruleViolationLog.clear();
             }
         }
         else if(clicked == backButton){

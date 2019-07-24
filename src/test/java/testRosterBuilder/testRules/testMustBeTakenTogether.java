@@ -23,12 +23,14 @@ public class testMustBeTakenTogether {
     MustBeTakenTogether ruleOK = new MustBeTakenTogether(new SpecialRule("Wizard Master", ""), new SpecialRule("Any", ""));
     MustBeTakenTogether ruleNotOK = new MustBeTakenTogether(new SpecialRule("Any", ""), new SpecialRule("Not pass", ""));
 
+    RuleViolationLog ruleViolationLog = RuleViolationLog.getInstance();
+
     @Test
     void testCheck(){
         ruleOK.check(unit0);
-        assertEquals("", RuleViolationLog.getUnitRuleViolationLog());
+        assertEquals("", ruleViolationLog.getUnitRuleViolationLog());
         ruleNotOK.check(unit0);
-        assertEquals("Any cannot be taken without Not pass.\n", RuleViolationLog.getUnitRuleViolationLog());
-        RuleViolationLog.clear();
+        assertEquals("Any cannot be taken without Not pass.\n", ruleViolationLog.getUnitRuleViolationLog());
+        ruleViolationLog.clear();
     }
 }
