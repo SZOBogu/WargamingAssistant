@@ -35,8 +35,14 @@ public class DiceRollMenu extends JFrame{
                 tablePanel.refresh();
             }
         });
-        ClearListener cl = new ClearListener(this.controller, this.tablePanel);
-        form.setClearListener(cl);
+        //ClearListener cl = new ClearListener(this.controller, this.tablePanel);
+        form.setClearListener(new ClearListener() {
+            @Override
+            public void clearButtonPressed() {
+                controller.clear();
+                tablePanel.refresh();
+            }
+        });
 
         setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();

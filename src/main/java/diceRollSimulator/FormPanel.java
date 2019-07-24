@@ -196,8 +196,7 @@ public class FormPanel extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent actionEvent){
         JButton clicked = (JButton)actionEvent.getSource();
         if(clicked == clearButton){
-            clearListener.getController().clear();
-            clearListener.getTablePanel().refresh();
+            clearListener.clearButtonPressed();
         }
         if(clicked == helpButton){
             JFrame helpFrame = new JFrame("HELP");
