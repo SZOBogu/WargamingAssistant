@@ -1,12 +1,5 @@
-package diceRollSimulator;//import java.awt.event.ActionEvent;
+package diceRollSimulator;
 
-public class RunListener {
-    public Controller controller;
-
-//    public void actionPerformed(ActionEvent actionEvent){
-//
-//    }
-    public Controller getController() {
-        return controller;
-    }
+public interface RunListener {
+    public void run();
 }

@@ -32,8 +32,10 @@ public class FormPanel extends JPanel implements ActionListener {
     private JButton nonRandomButton;
 
     private FormListener formListener;
-    private StringListener stringListener;
+   // private StringListener stringListener;
     private ClearListener clearListener;
+    private RunListener runListener;
+    private NonRandomRunListener nonRandomRunListener;
 
     public FormPanel(){
         this.titleLabel = new JLabel(" common.Dice Roll Simulator Menu");
@@ -186,11 +188,19 @@ public class FormPanel extends JPanel implements ActionListener {
         this.formListener = formListener;
     }
 
-    public void setStringListener(StringListener stringListener) {
-        this.stringListener = stringListener;
-    }
+//    public void setStringListener(StringListener stringListener) {
+//        this.stringListener = stringListener;
+//    }
 
     public void setClearListener(ClearListener clearListener){this.clearListener = clearListener;}
+
+    public void setRunListener(RunListener runListener) {
+        this.runListener = runListener;
+    }
+
+    public void setNonRandomRunListener(NonRandomRunListener nonRandomRunListener) {
+        this.nonRandomRunListener = nonRandomRunListener;
+    }
 
     @Override
     public void actionPerformed(ActionEvent actionEvent){
@@ -202,10 +212,12 @@ public class FormPanel extends JPanel implements ActionListener {
             JFrame helpFrame = new JFrame("HELP");
         }
         if(clicked == randomButton){
-            this.stringListener.textEmitted(this.stringListener.getController().run());
+            //this.stringListener.textEmitted(this.stringListener.getController().run());
+            this.runListener.run();
         }
         if(clicked == nonRandomButton){
-            this.stringListener.textEmitted(this.stringListener.getController().runNonRandom());
+            //this.stringListener.textEmitted(this.stringListener.getController().runNonRandom());
+            this.nonRandomRunListener.runNonRandom();
         }
         if(clicked == backButton){
             MainMenu mainMenu = new MainMenu();
