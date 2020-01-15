@@ -107,8 +107,8 @@ public class testUnitProfile {
 
     @Test
     void testGetAdditionalModel(){
-        assertEquals(20000, unitProfile0.getAdditionalModelCost());
-        assertEquals(20000, unitProfile1.getAdditionalModelCost());
+        assertEquals(0, unitProfile0.getAdditionalModelCost());
+        assertEquals(0, unitProfile1.getAdditionalModelCost());
         assertEquals(30, unitProfile2.getAdditionalModelCost());
         assertEquals(55, unitProfile3.getAdditionalModelCost());
     }
