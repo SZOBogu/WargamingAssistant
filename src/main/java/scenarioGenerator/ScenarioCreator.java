@@ -7,18 +7,6 @@ import java.util.ArrayList;
 
 public class ScenarioCreator extends JFrame {
     private ScenarioCreatorPanel panel;
-//
-//    public ScenarioCreator(ArrayList<Deployment> deployments, ArrayList<ScenarioList> scenarios){
-//        this.panel = new ScenarioCreatorPanel(deployments, scenarios);
-//        setLayout(new BorderLayout());
-//        add(new JScrollPane(this.panel, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED), BorderLayout.CENTER);
-//        setMinimumSize(new Dimension(1000, 600));
-//        setSize(1000, 1800);
-//        setMaximumSize(new Dimension(1000, 1800));
-//        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-//        setVisible(true);
-//
-//    }
 
     public ScenarioCreator(ArrayList<Deployment> deployments, ArrayList<ScenarioList> scenarios, String systemName){
         this.panel = new ScenarioCreatorPanel(deployments, scenarios, systemName);

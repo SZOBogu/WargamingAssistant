@@ -15,12 +15,7 @@ public class DiceRoll {
 
 
     public DiceRoll(int quantity, int successValue, boolean reroll, boolean failures, int diceSides){
-        this.quantity = quantity;
-        this.successValue = successValue;
-        this.reroll = reroll;
-        this.valueToReRoll = -1;
-        this.failures = failures;
-        this.diceSides = diceSides;
+        this(quantity, successValue, reroll, failures, diceSides, -1);
     }
 
     public DiceRoll(int quantity, int successValue, boolean reroll, boolean failures, int diceSides, int valueToReRoll){

@@ -9,8 +9,6 @@ public class OneOrZeroButtonGroup extends ButtonGroup implements Serializable {
     protected Vector<AbstractButton> buttons = new Vector();
     ButtonModel selection = null;
 
-    public OneOrZeroButtonGroup(){}
-
     @Override
     public void setSelected(ButtonModel m, boolean b) {
         if (b && m != null && m != this.selection) {

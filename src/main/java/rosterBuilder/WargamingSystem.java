@@ -19,16 +19,7 @@ public class WargamingSystem {
     private UniqueEntitiesPool pool;
 
     public WargamingSystem(String name){
-        this.name = name;
-        this.armies = new ArrayList<>();
-        this.allInGameEntities = new EntityContainer();
-        this.deployments = new ArrayList<>();
-        this.scenarios = new ArrayList<>();
-        this.detachments = new ArrayList<>();
-        this.maxDetachments = 1;
-        this.isAllowingAlliances = false;
-        this.rules = new ArrayList<>();
-        this.pool = new UniqueEntitiesPool(new ArrayList<>());
+        this(name, new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), 1, false);
     }
 
     public WargamingSystem(String name, ArrayList<Army> armies, ArrayList<Entity> allEqAndSR, ArrayList<Deployment> deployments, ArrayList<ScenarioList> scenarios, ArrayList<Detachment> detachmnets, int maxDetachments, boolean isAllowingAlliances){

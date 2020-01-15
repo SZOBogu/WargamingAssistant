@@ -5,13 +5,11 @@ public class Objective {
     private int victoryPoints;
 
     public Objective(){
-        this.name = "Objective";
-        this.victoryPoints = 1;
+        this("Objective", 1);
     }
 
     public Objective(String name){
-        this.name = name;
-        this.victoryPoints = 1;
+        this(name, 1);
     }
 
     public Objective(String name, int vp){

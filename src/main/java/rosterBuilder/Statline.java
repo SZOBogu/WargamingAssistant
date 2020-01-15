@@ -6,12 +6,11 @@ import java.util.Objects;
 public class Statline {
     private ArrayList<Statistic> statline;
 
-    public Statline(){
-        this.statline = new ArrayList<Statistic>();
-    }
+    public Statline(){ this(new ArrayList<Statistic>()); }
     public Statline(ArrayList<Statistic> statistics){
         this.statline = statistics;
     }
+
     public ArrayList<Statistic> getStatline(){
         return statline;
     }

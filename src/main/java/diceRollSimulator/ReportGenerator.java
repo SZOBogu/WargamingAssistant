@@ -16,6 +16,7 @@ public class ReportGenerator {
         this.report = report;
     }
 
+    //TODO: DRY
     public void addDiceRoll(ArrayList<ArrayList<Integer>> results, int number, int successes, int successValue, boolean failures){
         for (int i = 0; i<results.size(); i++) {
             this.report += "Dice Roll " + number + ": " + successes + " successes (" + successValue;

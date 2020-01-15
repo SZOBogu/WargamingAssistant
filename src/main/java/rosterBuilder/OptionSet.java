@@ -9,28 +9,15 @@ public abstract class OptionSet {
     protected boolean isMandatory;
 
     public OptionSet(ArrayList<Option> options){
-        ArrayList<Option> temp = new ArrayList<>();
-//        for(int i = 0; i < options.size(); i++){
-//            if()
-//        }
-        this.options = options;
-        this.keyVerb = "take";
-        this.itemListName = "";
-        this.isMandatory = false;
+        this(options, "", "take", false);
     }
 
     public OptionSet(ArrayList<Option> options, boolean isMandatory){
-        this.options = options;
-        this.keyVerb = "take";
-        this.itemListName = "";
-        this.isMandatory = isMandatory;
+        this(options, "", "take", isMandatory);
     }
 
     public OptionSet(ArrayList<Option> options, String itemListName, String keyVerb){
-        this.options = options;
-        this.itemListName = itemListName;
-        this.keyVerb = keyVerb;
-        this.isMandatory = false;
+        this(options, itemListName, keyVerb, false);
     }
 
     public OptionSet(ArrayList<Option> options, String itemListName, String keyVerb, boolean isMandatory){

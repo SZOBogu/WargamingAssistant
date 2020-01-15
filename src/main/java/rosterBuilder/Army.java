@@ -11,10 +11,7 @@ public class Army {
     private ArrayList<Integer> alliableArmyIndexes;
 
     public Army(String name, ArrayList<ArmySubcategory> armySubcategories){
-        this.name = name;
-        this.armySubcategories = armySubcategories;
-        this.img = new ImageIcon();
-        this.alliableArmyIndexes = new ArrayList<>();
+        this(name, armySubcategories, new ImageIcon());
     }
 
     public Army(String name, ArrayList<ArmySubcategory> armySubcategories, ImageIcon img ){

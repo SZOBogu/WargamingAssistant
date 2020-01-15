@@ -15,45 +15,18 @@ public class UnitProfile {
     private int additionalModelCost;
     private int unitsPerArmy;
     private ArrayList<UnitBuildingRule> rules;
-    private UniqueEntitiesPool pool;
+    private UniqueEntitiesPool pool;            //?????? TODO: look it up
 
     public UnitProfile(String name, ArrayList<ModelPart> modelParts, ArrayList<OptionSet> options, int initialCost){
-        this.name = name;
-        this.modelsParts = modelParts;
-        this.options = options;
-        this.minModels = 1;
-        this.maxModels = 1;
-        this.initialCost = initialCost;
-        this.additionalModelCost = 20000;
-        this.unitsPerArmy = 100;
-        this.rules = new ArrayList<>();
-        this.pool = null;
+        this(name, modelParts, options, initialCost, 1, 1,0,100);
     }
 
     public UnitProfile(String name, ArrayList<ModelPart> modelParts, ArrayList<OptionSet> options, int initialCost, int unitsPerArmy){
-        this.name = name;
-        this.modelsParts = modelParts;
-        this.options = options;
-        this.minModels = 1;
-        this.maxModels = 1;
-        this.initialCost = initialCost;
-        this.additionalModelCost = 20000;
-        this.unitsPerArmy = unitsPerArmy;
-        this.rules = new ArrayList<>();
-        this.pool = null;
+        this(name, modelParts, options, initialCost, 1, 1,0,unitsPerArmy);
     }
 
     public UnitProfile(String name, ArrayList<ModelPart> modelParts, ArrayList<OptionSet> options, int initialCost, int minModels, int maxModels, int additionalModelCost){
-        this.name = name;
-        this.modelsParts = modelParts;
-        this.options = options;
-        this.minModels = minModels;
-        this.maxModels = maxModels;
-        this.initialCost = initialCost;
-        this.additionalModelCost = additionalModelCost;
-        this.unitsPerArmy = 100;
-        this.rules = new ArrayList<>();
-        this.pool = null;
+        this(name, modelParts, options, initialCost, minModels, maxModels,additionalModelCost, 100);
     }
 
     public UnitProfile(String name, ArrayList<ModelPart> modelParts, ArrayList<OptionSet> options, int initialCost, int minModels, int maxModels, int additionalModelCost, int unitsPerArmy){

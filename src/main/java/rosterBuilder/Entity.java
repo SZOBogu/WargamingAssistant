@@ -8,9 +8,7 @@ public class Entity {
     private String parameter;
 
     public Entity(String name, String description){
-        this.name = name;
-        this.description = description;
-        this.parameter = new String();
+        this(name, description, "");
     }
 
     public Entity(String name, String description, String parameter){

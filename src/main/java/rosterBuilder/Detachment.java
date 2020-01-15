@@ -14,10 +14,7 @@ public class Detachment {
     private UniqueEntitiesPool pool;
 
     public Detachment(String name, int numberOfCategories, int detachmentNumber){
-        this.name = name;
-        this.totalDetachmentCost = 0;
-        this.detachmentNumber = detachmentNumber;
-        this.boughtUnitsCategorized = new ArrayList<>(Arrays.asList());
+        this(name, new ArrayList<>(), detachmentNumber);
         this.arrayOfMandatoryChoicesInCategories = new ArrayList<>();
         this.arrayOfMaxChoicesPerCategory = new ArrayList<>();
 
@@ -29,8 +26,6 @@ public class Detachment {
         for(int i = 0;i < numberOfCategories; i++){
             this.arrayOfMaxChoicesPerCategory.add(100);
         }
-        this.pool = null;
-        this.army = null;
     }
 
 
@@ -38,7 +33,7 @@ public class Detachment {
         this.name = name;
         this.totalDetachmentCost = 0;
         this.detachmentNumber = detachmentNumber;
-        this.boughtUnitsCategorized = new ArrayList<>();
+        this.boughtUnitsCategorized = new ArrayList<>(Arrays.asList(new ArrayList<>()));
         this.setCapacity(arrayOfMandatoryChoicesInCategories.size());
         this.arrayOfMandatoryChoicesInCategories = arrayOfMandatoryChoicesInCategories;
         ArrayList<Integer> arrayOfMaxChoicesInCategories = new ArrayList<>();
@@ -52,15 +47,8 @@ public class Detachment {
 
 
     public Detachment(String name, ArrayList<Integer> arrayOfMandatoryChoicesInCategories, ArrayList<Integer> arrayOfMaxChoicesInCategories, int detachmentNumber){
-        this.name = name;
-        this.totalDetachmentCost = 0;
-        this.detachmentNumber = detachmentNumber;
-        this.boughtUnitsCategorized = new ArrayList<>(Arrays.asList(new ArrayList<>()));
-        this.setCapacity(arrayOfMandatoryChoicesInCategories.size());
-        this.arrayOfMandatoryChoicesInCategories = arrayOfMandatoryChoicesInCategories;
+        this(name, arrayOfMandatoryChoicesInCategories, detachmentNumber);
         this.arrayOfMaxChoicesPerCategory = arrayOfMaxChoicesInCategories;
-        this.army = null;
-        this.pool = null;
     }
 
     public String getName() {
@@ -85,15 +73,12 @@ public class Detachment {
         return totalCost;
     }
 
-
     public ArrayList<ArrayList<Unit>> getBoughtUnitsCategorized() {
         return boughtUnitsCategorized;
     }
-
     public ArrayList<Integer> getArrayOfMandatoryChoicesInCategories() {
         return arrayOfMandatoryChoicesInCategories;
     }
-
     public ArrayList<Integer> getArrayOfMaxChoicesPerCategory() {
         return arrayOfMaxChoicesPerCategory;
     }

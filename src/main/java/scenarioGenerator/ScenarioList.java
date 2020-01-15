@@ -7,8 +7,7 @@ public class ScenarioList{
     private String name;
 
     public ScenarioList(String name){
-        this.name = name;
-        this.scenarios = new ArrayList<>();
+        this(name, new ArrayList<>());
     }
 
     public ScenarioList(String name, ArrayList<Scenario> scenarios){

@@ -9,6 +9,4 @@ public class ScenarioWithDeployment extends Scenario{
         super(name, objectives);
         this.deployment = deployment;
     }
-
-
 }

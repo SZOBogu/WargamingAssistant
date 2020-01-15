@@ -10,30 +10,19 @@ public class Scenario {
     private String description;
 
     public Scenario(){
-        this.name = "Scenario";
-        this.objectives = new ArrayList<>();
-        this.deployment = null;
+        this("Scenario", new ArrayList<>(), null, "");
     }
 
     public Scenario(String name, ArrayList<Objective> objectives){
-        this.name = name;
-        this.objectives = objectives;
-        this.deployment = null;
-        this.description = "";
+        this(name, objectives, null, "");
     }
 
     public Scenario(String name, ArrayList<Objective> objectives, String description){
-        this.name = name;
-        this.objectives = objectives;
-        this.deployment = null;
-        this.description = description;
+        this(name, objectives, null, description);
     }
 
     public Scenario(String name, ArrayList<Objective> objectives, Deployment deployment){
-        this.name = name;
-        this.objectives = objectives;
-        this.deployment = deployment;
-        this.description = "";
+        this(name, objectives, deployment, "");
     }
 
     public Scenario(String name, ArrayList<Objective> objectives, Deployment deployment, String description){
