@@ -23,12 +23,6 @@ public class DiceRollMenu extends JFrame{
                 controller.removeDiceRoll(row);
             }
         });
-//        form.setStringListener(new StringListener() {
-//            @Override
-//            public void textEmitted(String text) {
-//                textPanel.appendText(text);
-//            }
-//        });
         form.setFormListener(new FormListener(){
             public void formEventOccurred(FormEvent event){
                 controller.addDiceRoll(event);

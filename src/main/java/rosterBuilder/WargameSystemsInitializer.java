@@ -3,7 +3,7 @@ package rosterBuilder;
 import java.util.ArrayList;
 
 public class WargameSystemsInitializer {
-    private ArrayList<WargameInitializer> initializers;
+    private ArrayList<IWargameInitializer> initializers;
 
     public WargameSystemsInitializer(){
         this.initializers = new ArrayList<>();

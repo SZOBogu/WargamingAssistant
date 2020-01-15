@@ -1,4 +1,4 @@
-package rosterBuilder;
-
-public abstract class WargameInitializer implements IWargameInitializer{
-}
+//package rosterBuilder;
+//
+//public abstract class WargameInitializer implements IWargameInitializer{
+//}

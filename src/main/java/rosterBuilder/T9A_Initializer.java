@@ -11,15 +11,15 @@ import javax.swing.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class T9A_Initializer extends WargameInitializer implements IWargameInitializer {
+public class T9A_Initializer implements IWargameInitializer {
 
     @Override
     public WargamingSystem initWargame() {
         WargamingSystem T9A = new WargamingSystem("The 9th Age");
 
         Detachment looseDetachment = new Detachment("Loose Detachment", 6, 0);
-        Detachment rigidDetachment = new Detachment("Rigid Detachment", new ArrayList<Integer>(Arrays.asList(1,1,0,0,0)), new ArrayList<Integer>(Arrays.asList(2,3,3,3,3)), 0);
-        Detachment bigRigidDetachment = new Detachment("Rigid with too many slots available Detachment", new ArrayList<Integer>(Arrays.asList(1,1,0,0,0)), new ArrayList<Integer>(Arrays.asList(20,30,30,30,30)), 0);
+        Detachment rigidDetachment = new Detachment("Rigid Detachment", new ArrayList<>(Arrays.asList(1,1,0,0,0)), new ArrayList<>(Arrays.asList(2,3,3,3,3)), 0);
+        Detachment bigRigidDetachment = new Detachment("Rigid with too many slots available Detachment", new ArrayList<>(Arrays.asList(1,1,0,0,0)), new ArrayList<>(Arrays.asList(20,30,30,30,30)), 0);
 
         T9A.setDetachments(new ArrayList<>(Arrays.asList(looseDetachment, rigidDetachment, bigRigidDetachment)));
 
@@ -34,6 +34,7 @@ public class T9A_Initializer extends WargameInitializer implements IWargameIniti
 
         for(int i=0; i<6; i++) {
             ImageIcon icon = new ImageIcon("/home/bogu/IdeaProjects/GUI//src/main/img/T9A/deployments/" + i + ".png");
+            //TODO: look further on it
             if(icon != null) {
                 deployments.add(new Deployment(depNames[i], icon));
                 scenarios0.add(new Scenario(scenNames0[i], new ArrayList<>()));
@@ -358,8 +359,8 @@ public class T9A_Initializer extends WargameInitializer implements IWargameIniti
         ModelPart BH_MHStatGlobal = new ModelPart("Global", BH_MHStatG, BH_MHStatSrG, new ArrayList<>());
 
         Statline BH_MHStatStatD = new Statline(new ArrayList<>(Arrays.asList(new Statistic("HP", "1"), new Statistic("Def", "3"), new Statistic("Res", "3"), new Statistic("Arm", "0"))));
-        ArrayList<SpecialRule>BH_MHSrD = new ArrayList<>(Arrays.asList());
-        ModelPart BH_MHStatDefensive = new ModelPart("Defensive", BH_MHStatStatD, BH_MHSrD, new ArrayList<Entity>(Arrays.asList(shield)));
+        ArrayList<SpecialRule>BH_MHSrD = new ArrayList<>();
+        ModelPart BH_MHStatDefensive = new ModelPart("Defensive", BH_MHStatStatD, BH_MHSrD, new ArrayList<>(Arrays.asList(shield)));
 
         Statline BH_MHStatStatO = new Statline(new ArrayList<>(Arrays.asList(new Statistic("Att", "1"), new Statistic("Off", "3"), new Statistic("Str", "3"), new Statistic("AP", "0"), new Statistic("Agi", "3"))));
         ArrayList<SpecialRule> BH_MHStatSrO = new ArrayList<>(Arrays.asList(primalInstinct));
@@ -510,10 +511,10 @@ public class T9A_Initializer extends WargameInitializer implements IWargameIniti
 
         Statline DL_HarbingerOfFatherChaosStatStatD = new Statline(new ArrayList<>(Arrays.asList(new Statistic("HP", "3"), new Statistic("Def", "5"), new Statistic("Res", "4"), new Statistic("Arm", "0"), new Statistic("Aeg", "4+"))));
         ArrayList<SpecialRule>DL_HarbingerOfFatherChaosSrD = new ArrayList<>();
-        ModelPart DL_HarbingerOfFatherChaosStatDefensive = new ModelPart("Defensive", DL_HarbingerOfFatherChaosStatStatD, DL_HarbingerOfFatherChaosSrD, new ArrayList<>(Arrays.asList()));
+        ModelPart DL_HarbingerOfFatherChaosStatDefensive = new ModelPart("Defensive", DL_HarbingerOfFatherChaosStatStatD, DL_HarbingerOfFatherChaosSrD, new ArrayList<>());
 
         Statline DL_HarbingerOfFatherChaosStatStatO = new Statline(new ArrayList<>(Arrays.asList(new Statistic("Att", "3"), new Statistic("Off", "5"), new Statistic("Str", "5"), new Statistic("AP", "2"), new Statistic("Agi", "5"))));
-        ArrayList<SpecialRule> DL_HarbingerOfFatherChaosStatSrO = new ArrayList<>(Arrays.asList());
+        ArrayList<SpecialRule> DL_HarbingerOfFatherChaosStatSrO = new ArrayList<>();
         ModelPart DL_HarbingerOfFatherChaosStatOffensive = new ModelPart("Offensive", DL_HarbingerOfFatherChaosStatStatO, DL_HarbingerOfFatherChaosStatSrO, new ArrayList<>());
 
         Statline DL_HarbingerOfFatherChaosStatStatOther = new Statline(new ArrayList<>(Arrays.asList(new Statistic("Size", "Standard"), new Statistic("Type", "Beast"), new Statistic("Base", "25x25mm"))));
@@ -543,7 +544,7 @@ public class T9A_Initializer extends WargameInitializer implements IWargameIniti
         ModelPart DL_OmenOfSavarStatDefensive = new ModelPart("Defensive", DL_OmenOfSavarStatStatD, DL_OmenOfSavarSrD, new ArrayList<>());
 
         Statline DL_OmenOfSavarStatStatO = new Statline(new ArrayList<>(Arrays.asList(new Statistic("Att", "D6+2"), new Statistic("Off", "D6+5"), new Statistic("Str", "6"), new Statistic("AP", "3"), new Statistic("Agi", "6"))));
-        ArrayList<SpecialRule> DL_OmenOfSavarStatSrO = new ArrayList<>(Arrays.asList());
+        ArrayList<SpecialRule> DL_OmenOfSavarStatSrO = new ArrayList<>();
         ModelPart DL_OmenOfSavarStatOffensive = new ModelPart("Offensive", DL_OmenOfSavarStatStatO, DL_OmenOfSavarStatSrO, new ArrayList<>());
 
         Statline DL_OmenOfSavarStatStatOther = new Statline(new ArrayList<>(Arrays.asList(new Statistic("Size", "Standard"), new Statistic("Type", "Beast"), new Statistic("Base", "50x50mm"))));
@@ -631,7 +632,7 @@ public class T9A_Initializer extends WargameInitializer implements IWargameIniti
         ModelPart DL_ClawedFiendsStatDefensive = new ModelPart("Defensive", DL_ClawedFiendsStatStatD, DL_ClawedFiendsSrD, new ArrayList<>());
 
         Statline DL_ClawedFiendsStatStatO = new Statline(new ArrayList<>(Arrays.asList(new Statistic("Att", "3"), new Statistic("Off", "4"), new Statistic("Str", "4"), new Statistic("AP", "2"), new Statistic("Agi", "4"))));
-        ArrayList<SpecialRule> DL_ClawedFiendsStatSrO = new ArrayList<SpecialRule>(Arrays.asList(smother));
+        ArrayList<SpecialRule> DL_ClawedFiendsStatSrO = new ArrayList<>(Arrays.asList(smother));
         ModelPart DL_ClawedFiendsStatOffensive = new ModelPart("Offensive", DL_ClawedFiendsStatStatO, DL_ClawedFiendsStatSrO, new ArrayList<>(Arrays.asList(energyBolts)));
 
         Statline DL_ClawedFiendsStatStatOther = new Statline(new ArrayList<>(Arrays.asList(new Statistic("Size", "Large"), new Statistic("Type", "Beast"), new Statistic("Base", "40x40mm"))));
@@ -658,7 +659,7 @@ public class T9A_Initializer extends WargameInitializer implements IWargameIniti
         ModelPart DL_HoardersStatDefensive = new ModelPart("Defensive", DL_HoardersStatStatD, DL_HoardersSrD, new ArrayList<>());
 
         Statline DL_HoardersStatStatO = new Statline(new ArrayList<>(Arrays.asList(new Statistic("Att", "3"), new Statistic("Off", "3"), new Statistic("Str", "4"), new Statistic("AP", "1"), new Statistic("Agi", "2"))));
-        ArrayList<SpecialRule> DL_HoardersStatSrO = new ArrayList<SpecialRule>(Arrays.asList(tighteningGrasp));
+        ArrayList<SpecialRule> DL_HoardersStatSrO = new ArrayList<>(Arrays.asList(tighteningGrasp));
         ModelPart DL_HoardersStatOffensive = new ModelPart("Offensive", DL_HoardersStatStatO, DL_HoardersStatSrO, new ArrayList<>(Arrays.asList(energyBolts)));
 
         Statline DL_HoardersStatStatOther = new Statline(new ArrayList<>(Arrays.asList(new Statistic("Size", "Large"), new Statistic("Type", "Beast"), new Statistic("Base", "40x40mm"))));
@@ -685,7 +686,7 @@ public class T9A_Initializer extends WargameInitializer implements IWargameIniti
         ModelPart DL_HellhoundsStatDefensive = new ModelPart("Defensive", DL_HellhoundsStatStatD, DL_HellhoundsSrD, new ArrayList<>());
 
         Statline DL_HellhoundsStatStatO = new Statline(new ArrayList<>(Arrays.asList(new Statistic("Att", "3"), new Statistic("Off", "5"), new Statistic("Str", "3"), new Statistic("AP", "0"), new Statistic("Agi", "4"))));
-        ArrayList<SpecialRule> DL_HellhoundsStatSrO = new ArrayList<SpecialRule>(Arrays.asList(smother));
+        ArrayList<SpecialRule> DL_HellhoundsStatSrO = new ArrayList<>(Arrays.asList(smother));
         ModelPart DL_HellhoundsStatOffensive = new ModelPart("Offensive", DL_HellhoundsStatStatO, DL_HellhoundsStatSrO, new ArrayList<>(Arrays.asList(energyBolts)));
 
         Statline DL_HellhoundsStatStatOther = new Statline(new ArrayList<>(Arrays.asList(new Statistic("Size", "Large"), new Statistic("Type", "Beast"), new Statistic("Base", "25x50mm"))));
@@ -714,7 +715,7 @@ public class T9A_Initializer extends WargameInitializer implements IWargameIniti
 
         Statline DL_FuriesStatStatO = new Statline(new ArrayList<>(Arrays.asList(new Statistic("Att", "1"), new Statistic("Off", "3"), new Statistic("Str", "4"), new Statistic("AP", "1"), new Statistic("Agi", "4"))));
         devastatingCharge.setParameter("+1 Str");
-        ArrayList<SpecialRule> DL_FuriesStatSrO = new ArrayList<SpecialRule>(Arrays.asList(devastatingCharge));
+        ArrayList<SpecialRule> DL_FuriesStatSrO = new ArrayList<>(Arrays.asList(devastatingCharge));
         ModelPart DL_FuriesStatOffensive = new ModelPart("Offensive", DL_FuriesStatStatO, DL_FuriesStatSrO, new ArrayList<>(Arrays.asList(energyBolts)));
 
         Statline DL_FuriesStatStatOther = new Statline(new ArrayList<>(Arrays.asList(new Statistic("Size", "Large"), new Statistic("Type", "Beast"), new Statistic("Base", "40x40mm"))));
