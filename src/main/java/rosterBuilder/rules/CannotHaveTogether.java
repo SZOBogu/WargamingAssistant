@@ -6,7 +6,7 @@ import rosterBuilder.Unit;
 
 import java.util.ArrayList;
 
-public class CannotHaveTogether extends UnitBuildingRule{
+public class CannotHaveTogether extends UnitBuildingRule implements Rule {
     public CannotHaveTogether(Entity entity1, Entity entity2){
         super(entity1, entity2);
     }

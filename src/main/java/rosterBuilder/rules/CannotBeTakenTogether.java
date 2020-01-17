@@ -4,7 +4,7 @@ import rosterBuilder.Entity;
 import rosterBuilder.RuleViolationLog;
 import rosterBuilder.Unit;
 
-public class CannotBeTakenTogether extends UnitBuildingRule {
+public class CannotBeTakenTogether extends UnitBuildingRule implements Rule {
     public CannotBeTakenTogether(Entity entity1, Entity entity2){
         super(entity1, entity2);
     }

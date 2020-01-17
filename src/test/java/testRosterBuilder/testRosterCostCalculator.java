@@ -38,6 +38,11 @@ public class testRosterCostCalculator {
     RosterCostCalculator rosterCostCalculator = new RosterCostCalculator();
 
     @Test
+    void testCalculateCategoryCost(){
+
+    }
+
+    @Test
     void testCalculateRosterCost(){
         roster.setPrimaryArmy(army);
         roster.setPointCap(4500);

@@ -1,14 +1,20 @@
 package rosterBuilder;
 
+import common.Rounder;
+
 import java.util.ArrayList;
 
 public class ArmySubcategory {
     private String name;
     private ArrayList<UnitProfile> unitProfiles;
+    private double categoryPointCapPercentage;
+    private int categoryPointCap;
 
     public ArmySubcategory(String name, ArrayList<UnitProfile> unitProfiles){
         this.name = name;
         this.unitProfiles = unitProfiles;
+        this.categoryPointCapPercentage = 1.0;
+        this.categoryPointCap = Integer.MAX_VALUE;
     }
 
     public String getName() {
@@ -23,4 +29,32 @@ public class ArmySubcategory {
         return this.unitProfiles.size();
     }
 
+    //TODO:test
+    public void setCategoryPointCapPercentage(double categoryPointCapPercentage){
+        this.categoryPointCapPercentage = categoryPointCapPercentage;
+    }
+
+    public double getCategoryPointCapPercentage() {
+        return categoryPointCapPercentage;
+    }
+
+    //TODO:test
+    public void setCategoryPointCap(int categoryPointCap){
+        this.categoryPointCap = categoryPointCap;
+    }
+
+    //TODO:test
+    public void setCategoryPointCap(Roster roster){
+        this.categoryPointCap = roster.getPointCap();
+    }
+
+    //TODO:test
+    public int getCategoryPointCap() {
+        return categoryPointCap;
+    }
+
+    //TODO:test
+    public void recalculateCategoryPointCap() {
+        this.categoryPointCap = (int)Rounder.round(this.categoryPointCapPercentage * this.categoryPointCap);
+    }
 }

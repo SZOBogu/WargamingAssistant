@@ -2,8 +2,8 @@ package rosterBuilder.rules;
 
 import rosterBuilder.Entity;
 import rosterBuilder.Unit;
-
-public abstract class UnitBuildingRule{
+//TODO: look up if I should implement Rule here and subclasses
+public abstract class UnitBuildingRule implements Rule {
     protected Entity entity1;
     protected Entity entity2;
     protected int modelQuantity;

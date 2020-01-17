@@ -5,7 +5,7 @@ import rosterBuilder.Roster;
 import rosterBuilder.RuleViolationLog;
 import rosterBuilder.UnitCounter;
 
-public class MustHaveExactly extends RosterBuildingRule {
+public class MustHaveExactly extends RosterBuildingRule implements Rule {
     public MustHaveExactly(Entity entity, int quantity){
         super(entity, quantity);
     }

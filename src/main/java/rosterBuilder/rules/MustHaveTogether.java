@@ -6,7 +6,7 @@ import rosterBuilder.Unit;
 
 import java.util.ArrayList;
 
-public class MustHaveTogether extends UnitBuildingRule{
+public class MustHaveTogether extends UnitBuildingRule implements Rule {
     public MustHaveTogether(Entity entity1, Entity entity2){
         super(entity1, entity2);
     }

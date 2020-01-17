@@ -3,7 +3,7 @@ package rosterBuilder.rules;
 import rosterBuilder.Entity;
 import rosterBuilder.Roster;
 
-public abstract class RosterBuildingRule {
+public abstract class RosterBuildingRule implements Rule {
     protected Entity entity;
 //    protected Entity entity2;
     protected int quantity;

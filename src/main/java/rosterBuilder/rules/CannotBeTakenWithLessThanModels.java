@@ -4,7 +4,7 @@ import rosterBuilder.Entity;
 import rosterBuilder.RuleViolationLog;
 import rosterBuilder.Unit;
 
-public class CannotBeTakenWithLessThanModels extends UnitBuildingRule{
+public class CannotBeTakenWithLessThanModels extends UnitBuildingRule implements Rule {
     public CannotBeTakenWithLessThanModels(Entity entity, int quantity){
         super(entity, quantity);
     }

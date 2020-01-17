@@ -5,7 +5,7 @@ import rosterBuilder.Roster;
 import rosterBuilder.RuleViolationLog;
 import rosterBuilder.UnitCounter;
 
-public class CannotBeMoreUnitsWithThan extends RosterBuildingRule {
+public class CannotBeMoreUnitsWithThan extends RosterBuildingRule implements Rule {
     public CannotBeMoreUnitsWithThan(Entity entity, int quantity){
         super(entity, quantity);
     }

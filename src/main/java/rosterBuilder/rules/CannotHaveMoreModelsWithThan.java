@@ -5,7 +5,7 @@ import rosterBuilder.ModelCounter;
 import rosterBuilder.Roster;
 import rosterBuilder.RuleViolationLog;
 
-public class CannotHaveMoreModelsWithThan extends RosterBuildingRule {
+public class CannotHaveMoreModelsWithThan extends RosterBuildingRule implements Rule {
     public CannotHaveMoreModelsWithThan(Entity entity, int quantity){
         super(entity, quantity);
     }

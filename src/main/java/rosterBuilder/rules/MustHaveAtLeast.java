@@ -5,7 +5,7 @@ import rosterBuilder.Roster;
 import rosterBuilder.RuleViolationLog;
 import rosterBuilder.UnitCounter;
 
-public class MustHaveAtLeast extends RosterBuildingRule {
+public class MustHaveAtLeast extends RosterBuildingRule implements Rule {
     public MustHaveAtLeast(Entity entity, int quantity){
         super(entity, quantity);
     }
