@@ -24,8 +24,6 @@ public class testMustBeTakenTogether {
     MustBeTakenTogether ruleOK = new MustBeTakenTogether(new SpecialRule("Wizard Master", ""), new SpecialRule("Any", ""));
     MustBeTakenTogether ruleNotOK = new MustBeTakenTogether(new SpecialRule("Any", ""), new SpecialRule("Not pass", ""));
 
-    RuleViolationLog ruleViolationLog = RuleViolationLog.getInstance();
-
     @BeforeAll
     static void init(){
         RuleViolationLog.clear();

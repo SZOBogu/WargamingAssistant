@@ -20,7 +20,6 @@ public class testCategoryPointCapExceedRule {
     ArmySubcategory armySubcategory1 = new ArmySubcategory("TROOPS", new ArrayList<UnitProfile>(Arrays.asList(up2, up3)));
     Army army = new Army("Kingdom of costam", new ArrayList<>(Arrays.asList(armySubcategory0, armySubcategory1)));
 
-
     Roster roster  = new Roster();
 
     ArrayList<Integer> min0 = new ArrayList<>(Arrays.asList(1, 2, 0));
@@ -38,8 +37,6 @@ public class testCategoryPointCapExceedRule {
     Unit unit2 = new Unit("General", 1, eq2, new ArrayList<>(),350);
     ArrayList<Entity> eq3 = new ArrayList<>(Arrays.asList(new SpecialRule("Cannon", ""), new Entity("3 Crew", "")));
     Unit unit3 = new Unit("Cannon", 1, eq3, new ArrayList<>(),350);
-
-    RuleViolationLog ruleViolationLog = RuleViolationLog.getInstance();
 
     CategoryPointCapExceedRule ruleOK = new CategoryPointCapExceedRule();
 

@@ -40,8 +40,6 @@ public class testCannotBeMoreUnitsWithThan {
     ArrayList<Entity> eq3 = new ArrayList<>(Arrays.asList(new SpecialRule("Cannon", ""), new Entity("3 Crew", "")));
     Unit unit3 = new Unit("Cannon", 1, eq3, new ArrayList<>(),350);
 
-    RuleViolationLog ruleViolationLog = RuleViolationLog.getInstance();
-
     CannotBeMoreUnitsWithThan ruleOK = new CannotBeMoreUnitsWithThan(new SpecialRule("Any", ""), 100);
     CannotBeMoreUnitsWithThan ruleNotOK = new CannotBeMoreUnitsWithThan(new SpecialRule("Any", ""), 1);
 
@@ -63,9 +61,9 @@ public class testCannotBeMoreUnitsWithThan {
 
 
         ruleOK.check(roster);
-        assertEquals("", ruleViolationLog.getRosterRuleViolationLog());
+        assertEquals("", RuleViolationLog.getRosterRuleViolationLog());
         ruleNotOK.check(roster);
-        assertEquals("Roster cannot have more than 1 units with Any.\n", ruleViolationLog.getRosterRuleViolationLog());
-        ruleViolationLog.clear();
+        assertEquals("Roster cannot have more than 1 units with Any.\n", RuleViolationLog.getRosterRuleViolationLog());
+        RuleViolationLog.clear();
     }
 }

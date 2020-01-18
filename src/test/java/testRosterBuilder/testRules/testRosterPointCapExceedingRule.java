@@ -57,8 +57,11 @@ public class testRosterPointCapExceedingRule {
         roster.getDetachments().get(1).addUnit(unit3, 1);
 
         ruleOK.check(roster);
+
+        assertEquals(10000, roster.getPointCap());
         assertEquals("", RuleViolationLog.getRosterRuleViolationLog());
-        roster.setPointCap(1);
+        roster.setPointCap(-1);
+        assertEquals(-1, roster.getPointCap());
         RuleViolationLog.clear();
         ruleOK.check(roster);
         assertEquals("Roster Point Limit Exceeded.\n", RuleViolationLog.getRosterRuleViolationLog());

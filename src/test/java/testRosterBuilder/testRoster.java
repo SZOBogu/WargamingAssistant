@@ -69,6 +69,7 @@ public class testRoster {
 
     @Test
     void testSetPointCap(){
+        assertEquals(0, roster.getPointCap());
         roster.setPointCap(4500);
         assertEquals(4500, roster.getPointCap());
     }
@@ -83,7 +84,6 @@ public class testRoster {
         roster.setPrimaryArmy(army);
         assertEquals(army, roster.getPrimaryArmy());
     }
-
 
     @Test
     void testToString(){

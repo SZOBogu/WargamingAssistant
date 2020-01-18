@@ -39,8 +39,6 @@ public class testMustHaveAtLeast {
     ArrayList<Entity> eq3 = new ArrayList<>(Arrays.asList(new SpecialRule("Cannon", ""), new Entity("3 Crew", "")));
     Unit unit3 = new Unit("Cannon", 1, eq3, new ArrayList<>(),350);
 
-    RuleViolationLog ruleViolationLog = RuleViolationLog.getInstance();
-
     MustHaveAtLeast ruleOK = new MustHaveAtLeast(new SpecialRule("Wizard Master", ""), 1);
     MustHaveAtLeast ruleNotOK = new MustHaveAtLeast(new SpecialRule("Any", ""), 100);
 
@@ -62,9 +60,9 @@ public class testMustHaveAtLeast {
 
 
         ruleOK.check(roster);
-        assertEquals("", ruleViolationLog.getRosterRuleViolationLog());
+        assertEquals("", RuleViolationLog.getRosterRuleViolationLog());
         ruleNotOK.check(roster);
-        assertEquals("Roster must contain at least 100 units with Any.\n", ruleViolationLog.getRosterRuleViolationLog());
-        ruleViolationLog.clear();
+        assertEquals("Roster must contain at least 100 units with Any.\n", RuleViolationLog.getRosterRuleViolationLog());
+        RuleViolationLog.clear();
     }
 }
