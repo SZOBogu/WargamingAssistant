@@ -17,6 +17,7 @@ public class testRoster {
     UnitProfile up3 = new UnitProfile("SLinger", new ArrayList<>(), new ArrayList<>(), 400);
     ArmySubcategory armySubcategory1 = new ArmySubcategory("TROOPS", new ArrayList<UnitProfile>(Arrays.asList(up2, up3)));
     Army army = new Army("Kingdom of costam", new ArrayList<>(Arrays.asList(armySubcategory0, armySubcategory1)));
+    Army army1 = new Army("Republic of costam", new ArrayList<>(Arrays.asList(armySubcategory0, armySubcategory1)));
 
 
     Roster roster  = new Roster();
@@ -122,5 +123,18 @@ public class testRoster {
         detachment0.addUnit(testUnit1, 1);
 
         assertEquals(80, roster.getTotalCost());
+    }
+
+    @Test
+    void testGetArmy(){
+        roster.setPointCap(4500);
+        roster.setPrimaryArmy(army);
+        roster.addDetachment(detachment0);
+        detachment0.setArmy(army);
+        roster.addDetachment(detachment1);
+        detachment1.setArmy(army1);
+
+        assertEquals(army, roster.getArmy(0));
+        assertEquals(army1, roster.getArmy(1));
     }
 }

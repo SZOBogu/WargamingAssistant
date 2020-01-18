@@ -1,5 +1,6 @@
 package testRosterBuilder.testRules;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import rosterBuilder.*;
 import rosterBuilder.rules.CannotBeTakenTogether;
@@ -16,6 +17,11 @@ public class testCannotBeTakenWithMoreModelsThan {
     RuleViolationLog ruleViolationLog = RuleViolationLog.getInstance();
     CannotBeTakenWithMoreThanModels ruleOK = new CannotBeTakenWithMoreThanModels(new SpecialRule("Any", ""), 100);
     CannotBeTakenWithMoreThanModels ruleNotOK = new CannotBeTakenWithMoreThanModels(new SpecialRule("Any", ""), 1);
+
+    @BeforeAll
+    static void init(){
+        RuleViolationLog.clear();
+    }
 
     @Test
     void testCheck(){

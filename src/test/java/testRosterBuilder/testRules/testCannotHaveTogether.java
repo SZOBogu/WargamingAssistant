@@ -1,5 +1,6 @@
 package testRosterBuilder.testRules;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import rosterBuilder.*;
 import rosterBuilder.rules.CannotBeTakenTogether;
@@ -25,12 +26,17 @@ public class testCannotHaveTogether {
     CannotHaveTogether ruleOK = new CannotHaveTogether(new SpecialRule("Any", ""), new SpecialRule("Non Pass", ""));
     CannotHaveTogether ruleNotOK = new CannotHaveTogether(new SpecialRule("Any", ""), new SpecialRule("Wizard Master", ""));
 
+    @BeforeAll
+    static void init(){
+        RuleViolationLog.clear();
+    }
+
     @Test
     void testCheck(){
         ruleOK.check(unit0);
-        assertEquals("", ruleViolationLog.getUnitRuleViolationLog());
+        assertEquals("", RuleViolationLog.getUnitRuleViolationLog());
         ruleNotOK.check(unit0);
-        assertEquals("Unit cannot have Any and Wizard Master together.\n", ruleViolationLog.getUnitRuleViolationLog());
-        ruleViolationLog.clear();
+        assertEquals("Unit cannot have Any and Wizard Master together.\n", RuleViolationLog.getUnitRuleViolationLog());
+        RuleViolationLog.clear();
     }
 }

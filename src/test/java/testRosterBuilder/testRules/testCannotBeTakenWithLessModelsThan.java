@@ -1,5 +1,6 @@
 package testRosterBuilder.testRules;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import rosterBuilder.*;
 import rosterBuilder.rules.CannotBeTakenWithLessThanModels;
@@ -19,12 +20,17 @@ public class testCannotBeTakenWithLessModelsThan {
     CannotBeTakenWithLessThanModels ruleOK = new CannotBeTakenWithLessThanModels(new SpecialRule("Any", ""), 1);
     CannotBeTakenWithLessThanModels ruleNotOK = new CannotBeTakenWithLessThanModels(new SpecialRule("Any", ""), 11);
 
+    @BeforeAll
+    static void init(){
+        RuleViolationLog.clear();
+    }
+
     @Test
     void testCheck(){
         ruleOK.check(unit0);
-        assertEquals("", ruleViolationLog.getUnitRuleViolationLog());
+        assertEquals("", RuleViolationLog.getUnitRuleViolationLog());
         ruleNotOK.check(unit0);
-        assertEquals("Any cannot be taken on units with less than 11 models.\n", ruleViolationLog.getUnitRuleViolationLog());
-        ruleViolationLog.clear();
+        assertEquals("Any cannot be taken on units with less than 11 models.\n", RuleViolationLog.getUnitRuleViolationLog());
+        RuleViolationLog.clear();
     }
 }

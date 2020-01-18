@@ -39,7 +39,21 @@ public class testRosterCostCalculator {
 
     @Test
     void testCalculateCategoryCost(){
+        roster.setPrimaryArmy(army);
+        roster.setPointCap(4500);
+        roster.addDetachment(detachment0);
+        detachment0.setArmy(army);
+        roster.addDetachment(detachment1);
+        detachment1.setArmy(army);
+        roster.getDetachments().get(0).addUnit(unit0, 0);
+        roster.getDetachments().get(0).addUnit(unit1, 1);
+        roster.getDetachments().get(1).addUnit(unit2, 0);
+        roster.getDetachments().get(1).addUnit(unit3, 1);
 
+        assertEquals(350, rosterCostCalculator.calculateCategoryCost(roster, 0,0));
+        assertEquals(100, rosterCostCalculator.calculateCategoryCost(roster, 0,1));
+        assertEquals(50, rosterCostCalculator.calculateCategoryCost(roster, 1,0));
+        assertEquals(500, rosterCostCalculator.calculateCategoryCost(roster, 1,1));
     }
 
     @Test

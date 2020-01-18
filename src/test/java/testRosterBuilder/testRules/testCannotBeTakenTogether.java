@@ -1,5 +1,6 @@
 package testRosterBuilder.testRules;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import rosterBuilder.*;
 import rosterBuilder.rules.CannotBeTakenTogether;
@@ -19,6 +20,11 @@ public class testCannotBeTakenTogether {
 
     CannotBeTakenTogether ruleOK = new CannotBeTakenTogether(new SpecialRule("Any", ""), new SpecialRule("Pass", ""));
     CannotBeTakenTogether ruleNotOK = new CannotBeTakenTogether(new SpecialRule("Any", ""), new SpecialRule("Wizard Master", ""));
+
+    @BeforeAll
+    static void init(){
+        RuleViolationLog.clear();
+    }
 
     @Test
     void testCheck(){

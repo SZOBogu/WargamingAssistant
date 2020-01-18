@@ -1,5 +1,6 @@
 package testRosterBuilder.testRules;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import rosterBuilder.*;
 import rosterBuilder.rules.MustHaveAtLeast;
@@ -42,6 +43,11 @@ public class testMustHaveAtLeast {
 
     MustHaveAtLeast ruleOK = new MustHaveAtLeast(new SpecialRule("Wizard Master", ""), 1);
     MustHaveAtLeast ruleNotOK = new MustHaveAtLeast(new SpecialRule("Any", ""), 100);
+
+    @BeforeAll
+    static void init(){
+        RuleViolationLog.clear();
+    }
 
     @Test
     void testCheck(){

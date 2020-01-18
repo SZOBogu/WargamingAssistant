@@ -1,5 +1,6 @@
 package testRosterBuilder.testRules;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import rosterBuilder.*;
 import rosterBuilder.rules.CannotBeMoreUnitsWithThan;
@@ -43,6 +44,11 @@ public class testMustHaveExactly {
 
     MustHaveExactly ruleOK = new MustHaveExactly(new SpecialRule("Wizard Master", ""), 1);
     MustHaveExactly ruleNotOK = new MustHaveExactly(new SpecialRule("Any", ""), 1);
+
+    @BeforeAll
+    static void init(){
+        RuleViolationLog.clear();
+    }
 
     @Test
     void testCheck(){

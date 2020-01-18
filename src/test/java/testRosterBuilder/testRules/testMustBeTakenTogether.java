@@ -1,5 +1,6 @@
 package testRosterBuilder.testRules;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import rosterBuilder.*;
 import rosterBuilder.rules.MustBeTakenTogether;
@@ -25,12 +26,17 @@ public class testMustBeTakenTogether {
 
     RuleViolationLog ruleViolationLog = RuleViolationLog.getInstance();
 
+    @BeforeAll
+    static void init(){
+        RuleViolationLog.clear();
+    }
+
     @Test
     void testCheck(){
         ruleOK.check(unit0);
-        assertEquals("", ruleViolationLog.getUnitRuleViolationLog());
+        assertEquals("", RuleViolationLog.getUnitRuleViolationLog());
         ruleNotOK.check(unit0);
-        assertEquals("Any cannot be taken without Not pass.\n", ruleViolationLog.getUnitRuleViolationLog());
-        ruleViolationLog.clear();
+        assertEquals("Any cannot be taken without Not pass.\n", RuleViolationLog.getUnitRuleViolationLog());
+        RuleViolationLog.clear();
     }
 }

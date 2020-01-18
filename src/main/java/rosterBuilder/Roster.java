@@ -53,6 +53,10 @@ public class Roster {
         this.primaryArmy = primaryArmy;
     }
 
+    public Army getArmy(int index){
+        return this.detachments.get(index).getArmy();
+    }
+
     @Override
     public String toString(){
         String string = "";

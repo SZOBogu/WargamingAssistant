@@ -1,5 +1,6 @@
 package testRosterBuilder.testRules;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import rosterBuilder.*;
 import rosterBuilder.rules.CannotBeMoreUnitsWithThan;
@@ -41,6 +42,13 @@ public class testCannotBeMoreModelsWithThan {
 
     CannotBeMoreUnitsWithThan ruleOK = new CannotBeMoreUnitsWithThan(new SpecialRule("Any", ""), 100);
     CannotBeMoreUnitsWithThan ruleNotOK = new CannotBeMoreUnitsWithThan(new SpecialRule("Any", ""), 1);
+
+    @BeforeAll
+    static void init(){
+        RuleViolationLog.clear();
+    }
+
+
     @Test
     void testCheck(){
         roster.setPrimaryArmy(army);
