@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class testCategoryPointCapExceedRule {
     UnitProfile up0 = new UnitProfile("Spearmen", new ArrayList<>(), new ArrayList<>(), 100);
@@ -55,6 +56,16 @@ public class testCategoryPointCapExceedRule {
         roster.getDetachments().get(0).addUnit(unit1, 1);
         roster.getDetachments().get(1).addUnit(unit2, 0);
         roster.getDetachments().get(1).addUnit(unit3, 1);
+        roster.getDetachments().get(0).setArmy(army);
+        roster.getDetachments().get(1).setArmy(army);
+
+        assertNotNull(roster.getArmy(0));
+        assertNotNull(roster.getArmy(1));
+
+        assertNotNull(roster.getArmy(0).getArmySubcategory(0));
+        assertNotNull(roster.getArmy(0).getArmySubcategory(1));
+        assertNotNull(roster.getArmy(1).getArmySubcategory(0));
+        assertNotNull(roster.getArmy(1).getArmySubcategory(1));
 
         ArmySubcategory armySubcategory00 = roster.getArmy(0).getArmySubcategory(0);
         ArmySubcategory armySubcategory01 = roster.getArmy(0).getArmySubcategory(1);
@@ -71,7 +82,6 @@ public class testCategoryPointCapExceedRule {
         ruleOK.check(roster, 1, 0);
         ruleOK.check(roster, 1, 1);
         assertEquals("", RuleViolationLog.getRosterRuleViolationLog());
-        RuleViolationLog.clear();
         armySubcategory00.setCategoryPointCap(1);
         armySubcategory01.setCategoryPointCap(1);
         armySubcategory10.setCategoryPointCap(1);
@@ -81,7 +91,11 @@ public class testCategoryPointCapExceedRule {
         ruleOK.check(roster, 0, 1);
         ruleOK.check(roster, 1, 0);
         ruleOK.check(roster, 1, 1);
-        assertEquals("HQ Category Point Limit Exceeded.\n", RuleViolationLog.getRosterRuleViolationLog());
+        assertEquals("HQ Category Point Limit Exceeded.\n" +
+                "TROOPS Category Point Limit Exceeded.\n" +
+                "HQ Category Point Limit Exceeded.\n" +
+                "TROOPS Category Point Limit Exceeded.\n", RuleViolationLog.getRosterRuleViolationLog());
+
         RuleViolationLog.clear();
     }
 }

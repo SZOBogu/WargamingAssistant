@@ -29,6 +29,10 @@ public class Army {
         return armySubcategories.get(index);
     }
 
+    public void setArmySubcategories(ArmySubcategory armySubcategory, int index) {
+        this.armySubcategories.set(index, armySubcategory);
+    }
+
     public ImageIcon getImg() {
         return img;
     }

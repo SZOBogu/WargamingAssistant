@@ -188,9 +188,14 @@ public class testArmy {
     }
 
     @Test
-    void getArmySubcategory(){
+    void testGetArmySubcategory(){
         assertEquals(armySubcategory0, army.getArmySubcategory(0));
         assertEquals(armySubcategory1, army.getArmySubcategory(1));
+    }
+
+    @Test
+    void testSetArmySubcategory(){
+
     }
 
     @Test
