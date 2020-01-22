@@ -83,7 +83,6 @@ public class Detachment {
         return arrayOfMaxChoicesPerCategory;
     }
 
-    //TODO: test
     public void addUnit(Unit unit, int categoryIndex){
         if(this.pool != null){
             ArrayList<Entity> allEntities = new ArrayList<>();
@@ -99,7 +98,6 @@ public class Detachment {
         this.totalDetachmentCost += unit.getPointCost();
     }
 
-    //TODO: test
     public void deleteUnit(int categoryIndex, int index){
         if(this.pool != null) {
             Unit unit = this.boughtUnitsCategorized.get(categoryIndex).get(index);
@@ -148,7 +146,7 @@ public class Detachment {
     }
 
     public void setArmy(Army army) {
-        this.setCapacity(army.getRelevantSlotCount());
+       // this.setCapacity(army.getRelevantSlotCount()); //?
         this.army = army;
     }
 
@@ -162,17 +160,17 @@ public class Detachment {
 
 
     public void setCapacity(int capacity){
-        if(this.boughtUnitsCategorized.size() < capacity){
-            for(int i = this.boughtUnitsCategorized.size(); i < capacity; i++) {
-                this.boughtUnitsCategorized.add(new ArrayList<>());
-            }
-        }
-        //TODO:test zmniejszania capacity
-        else if(this.boughtUnitsCategorized.size() < capacity){
-            for(;;) {
-                this.boughtUnitsCategorized.remove(this.boughtUnitsCategorized.size()-1);
-                if(this.boughtUnitsCategorized.size() == capacity)
-                    break;
+        if(capacity >= 0) {
+            if (this.boughtUnitsCategorized.size() < capacity) {
+                for (int i = this.boughtUnitsCategorized.size(); i < capacity; i++) {
+                    this.boughtUnitsCategorized.add(new ArrayList<>());
+                }
+            } else if (this.boughtUnitsCategorized.size() > capacity) {
+                for (; ; ) {
+                    this.boughtUnitsCategorized.remove(this.boughtUnitsCategorized.size() - 1);
+                    if (this.boughtUnitsCategorized.size() == capacity)
+                        break;
+                }
             }
         }
     }

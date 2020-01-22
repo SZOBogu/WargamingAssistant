@@ -96,6 +96,10 @@ public class testDetachment {
         assertEquals(3, detachment0.getBoughtUnitsCategorized().size());
         detachment0.setCapacity(5);
         assertEquals(5, detachment0.getBoughtUnitsCategorized().size());
+        detachment0.setCapacity(0);
+        assertEquals(0, detachment0.getBoughtUnitsCategorized().size());
+        detachment0.setCapacity(-2);
+        assertEquals(0, detachment0.getBoughtUnitsCategorized().size());
     }
 
     @Test
@@ -157,7 +161,7 @@ public class testDetachment {
     void testSetAndGetArmy(){
         assertEquals(3, detachment0.getBoughtUnitsCategorized().size());
         detachment0.setArmy(army);
-        assertEquals(3, detachment0.getBoughtUnitsCategorized().size());
+        assertEquals(3, detachment0.getBoughtUnitsCategorized().size()); //???????????
         assertEquals(army, detachment0.getArmy());
     }
 
