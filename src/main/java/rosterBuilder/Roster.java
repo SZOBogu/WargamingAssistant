@@ -16,9 +16,15 @@ public class Roster {
     public void addDetachment(Detachment detachment){
         this.detachments.add(detachment);
     }
-//TODO: przechodzenie po wszystkich unitach wpierw i ich usuwanie zeby pool sie uzupelnil
+
     public void removeDetachment(int index){
-        this.detachments.remove(index);
+       Detachment detachment = this.detachments.get(index);
+       for(int i = 0; i < detachment.getBoughtUnitsCategorized().size(); i++){      //po detkach
+           for (int j = 0; j < detachment.getBoughtUnitsCategorized().get(i).size(); j++) {  //po kategoriach
+               detachment.deleteUnit(i, j);
+           }
+       }
+       this.detachments.remove(index);
     }
 
     public int size(){
