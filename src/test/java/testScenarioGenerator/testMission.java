@@ -2,9 +2,8 @@ package testScenarioGenerator;
 
 import org.junit.jupiter.api.Test;
 import scenarioGenerator.Deployment;
+import scenarioGenerator.Mission;
 import scenarioGenerator.Objective;
-import scenarioGenerator.Scenario;
-import scenarioGenerator.ScenarioWithDeployment;
 
 import javax.swing.*;
 import java.util.ArrayList;
@@ -13,16 +12,16 @@ import java.util.Arrays;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
-public class testScenario {
-    Scenario scen0 = new Scenario();
+public class testMission {
+    Mission scen0 = new Mission();
     Deployment deployment = new Deployment("test Deployment", new ImageIcon());
     ArrayList<Objective> objectives = new ArrayList<>(Arrays.asList(
             new Objective("W ogóle"),
             new Objective("Centralnie", 2),
             new Objective("Kamieniem go bez kitu", 3)
             ));
-    Scenario scen1 = new Scenario("Zrobić porządek", objectives, deployment);
-    Scenario scen2 = new Scenario("scen 2", new ArrayList<>(), "opis scen 2");
+    Mission scen1 = new Mission("Zrobić porządek", objectives, deployment);
+    Mission scen2 = new Mission("scen 2", new ArrayList<>(), "opis scen 2");
 
     @Test
     void testGetName(){

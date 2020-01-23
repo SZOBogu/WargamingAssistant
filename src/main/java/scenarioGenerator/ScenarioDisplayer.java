@@ -13,7 +13,7 @@ public class ScenarioDisplayer extends JFrame implements ActionListener {
     private ArrayList<JLabel> scenarioDescriptionsLabel;
     private JButton disposeButton;
 
-    public ScenarioDisplayer(Deployment deployment, ArrayList<Scenario> scenarios){
+    public ScenarioDisplayer(Deployment deployment, ArrayList<Mission> missions){
         super();
         this.titleLabel = new JLabel("Scenario Generator");
         this.deploymentNameLabel = new JLabel(deployment.getName());
@@ -23,9 +23,9 @@ public class ScenarioDisplayer extends JFrame implements ActionListener {
         this.disposeButton = new JButton("Go Back");
         this.disposeButton.addActionListener(this);
 
-        for(int i=0;i<scenarios.size();i++){
-            this.scenarioNamesLabel.add(new JLabel(scenarios.get(i).getName()));
-            this.scenarioDescriptionsLabel.add(new JLabel(scenarios.get(i).getDescription()));
+        for(int i = 0; i< missions.size(); i++){
+            this.scenarioNamesLabel.add(new JLabel(missions.get(i).getName()));
+            this.scenarioDescriptionsLabel.add(new JLabel(missions.get(i).getDescription()));
         }
 
         setMinimumSize(new Dimension(1000, 800));

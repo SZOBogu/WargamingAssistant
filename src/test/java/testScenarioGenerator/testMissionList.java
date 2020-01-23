@@ -1,20 +1,20 @@
 package testScenarioGenerator;
 
 import org.junit.jupiter.api.Test;
-import scenarioGenerator.Scenario;
-import scenarioGenerator.ScenarioList;
+import scenarioGenerator.Mission;
+import scenarioGenerator.MissionList;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class testScenarioList {
-    Scenario scen0 = new Scenario();
-    Scenario scen1 =  new Scenario("test1", new ArrayList<>());
-    ArrayList<Scenario> scenarios = new ArrayList<>(Arrays.asList(scen0, scen1));
-    ScenarioList scenList = new ScenarioList("Type");
-    ScenarioList scenList1 = new ScenarioList("Type", scenarios);
+public class testMissionList {
+    Mission scen0 = new Mission();
+    Mission scen1 =  new Mission("test1", new ArrayList<>());
+    ArrayList<Mission> missions = new ArrayList<>(Arrays.asList(scen0, scen1));
+    MissionList scenList = new MissionList("Type");
+    MissionList scenList1 = new MissionList("Type", missions);
 
     @Test
     void testGetName(){

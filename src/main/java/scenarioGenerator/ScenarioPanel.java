@@ -7,13 +7,13 @@ public class ScenarioPanel extends JPanel {
     private JLabel label;
     private ArrayList<JRadioButton> radioButtons;
 
-    public ScenarioPanel(ScenarioList scenarios){
+    public ScenarioPanel(MissionList scenarios){
         super();
         this.label = new JLabel(scenarios.getName() + ":");
         this.radioButtons = new ArrayList<>();
         for(int i=0; i<scenarios.size(); i++) {
-            Scenario scenario = scenarios.get(i);
-            JRadioButton radioButton = new JRadioButton(scenario.getName());
+            Mission mission = scenarios.get(i);
+            JRadioButton radioButton = new JRadioButton(mission.getName());
             this.radioButtons.add(radioButton);
             radioButton.setSelected(true);
         }

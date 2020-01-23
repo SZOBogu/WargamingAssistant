@@ -4,8 +4,8 @@ import rosterBuilder.rules.CannotBeTakenWithMoreThanModels;
 import rosterBuilder.rules.MustBeTakenTogether;
 import rosterBuilder.rules.MustHaveExactly;
 import scenarioGenerator.Deployment;
-import scenarioGenerator.Scenario;
-import scenarioGenerator.ScenarioList;
+import scenarioGenerator.Mission;
+import scenarioGenerator.MissionList;
 
 import javax.swing.*;
 import java.util.ArrayList;
@@ -24,9 +24,9 @@ public class T9A_Initializer implements IWargameInitializer {
         T9A.setDetachments(new ArrayList<>(Arrays.asList(looseDetachment, rigidDetachment, bigRigidDetachment)));
 
         ArrayList<Deployment> deployments = new ArrayList<>();
-        ArrayList<ScenarioList> scenPack = new ArrayList<>();
-        ScenarioList scenarios0 = new ScenarioList("Scenario Pack 0");
-        ScenarioList scenarios1 = new ScenarioList("Scenario Pack 1");
+        ArrayList<MissionList> scenPack = new ArrayList<>();
+        MissionList scenarios0 = new MissionList("Scenario Pack 0");
+        MissionList scenarios1 = new MissionList("Scenario Pack 1");
 
         String[] depNames = {"Deployment 0", "Deployment 1", "Deployment 2", "Deployment 3", "Deployment 4", "Deployment 5"};
         String[] scenNames0 = {"Scenario 00", "Scenario 01", "Scenario 02", "Scenario 03", "Scenario 04", "Scenario 05"};
@@ -37,8 +37,8 @@ public class T9A_Initializer implements IWargameInitializer {
             //TODO: look further on it
             if(icon != null) {
                 deployments.add(new Deployment(depNames[i], icon));
-                scenarios0.add(new Scenario(scenNames0[i], new ArrayList<>()));
-                scenarios1.add(new Scenario(scenNames1[i], new ArrayList<>()));
+                scenarios0.add(new Mission(scenNames0[i], new ArrayList<>()));
+                scenarios1.add(new Mission(scenNames1[i], new ArrayList<>()));
             }
         }
         scenPack.add(scenarios0);

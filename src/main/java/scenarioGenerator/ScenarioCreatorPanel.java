@@ -16,25 +16,25 @@ public class ScenarioCreatorPanel extends JPanel implements ActionListener {
     private JLabel titleLabel;
     private JLabel scenLabel;
     private JLabel deploymentLabel;
+    private ScenarioOptionsPanel scenarioOptionsPanel;
     private DeploymentPanel deploymentPanel;
-    private ScenarioPanelsPanel scenarioPanel;
+    private MissionPanelsPanel scenarioPanel;
     private JButton backButton;
     private JButton runButton;
 
     private ArrayList<Deployment> deployments;
-    private ArrayList<ScenarioList> scenarios;
+    private ArrayList<MissionList> scenarios;
 
-
-
-    public ScenarioCreatorPanel(ArrayList<Deployment> deployments, ArrayList<ScenarioList> scenarios, String systemName){
+    public ScenarioCreatorPanel(ArrayList<Deployment> deployments, ArrayList<MissionList> scenarios, String systemName){
         this.deployments = deployments;
         this.scenarios = scenarios;
 
         this.titleLabel = new JLabel("Scenario Generator for " + systemName);
         this.scenLabel = new JLabel("Choose Scenarios that generator should randomly choose from:");
         this.deploymentLabel = new JLabel("Choose Deployments that generator should randomly choose from:");
+        this.scenarioOptionsPanel = new ScenarioOptionsPanel();
         this.deploymentPanel = new DeploymentPanel(deployments);
-        this.scenarioPanel = new ScenarioPanelsPanel(scenarios);
+        this.scenarioPanel = new MissionPanelsPanel(scenarios);
         this.runButton = new JButton("Generate Scenario");
         this.backButton = new JButton("Go Back");
         this.runButton.addActionListener(this);
@@ -53,8 +53,10 @@ public class ScenarioCreatorPanel extends JPanel implements ActionListener {
 
         add(this.titleLabel,gbc);
         gbc.gridy++;
+        add(this.scenarioOptionsPanel, gbc);
+        gbc.gridy++;
         add(this.deploymentLabel, gbc);
-        gbc.gridy++;;
+        gbc.gridy++;
         add(this.deploymentPanel, gbc);
         gbc.gridy++;
         add(this.scenLabel, gbc);
@@ -75,7 +77,7 @@ public class ScenarioCreatorPanel extends JPanel implements ActionListener {
 
             boolean isDeploymentsChosen = false;
             for(int i = 0; i < this.deploymentPanel.getChosenData().size(); i++){
-                if(this.deploymentPanel.getChosenData().get(i) == true){
+                if(this.deploymentPanel.getChosenData().get(i)){
                     isDeploymentsChosen = true;
                     break;
                 }
@@ -83,7 +85,7 @@ public class ScenarioCreatorPanel extends JPanel implements ActionListener {
             boolean isScenariosChosen = false;
             for(int i = 0; i < this.scenarioPanel.getChosenData().size(); i++){
                 for(int j = 0; j < this.scenarioPanel.getChosenData().get(i).size(); j++){
-                    if(this.scenarioPanel.getChosenData().get(i).get(j) == true) {
+                    if(this.scenarioPanel.getChosenData().get(i).get(j)) {
                         isScenariosChosen = true;
                         break;
                     }
@@ -98,7 +100,7 @@ public class ScenarioCreatorPanel extends JPanel implements ActionListener {
                 JOptionPane.showMessageDialog(new JFrame(), "You haven't picked scenario", "Dialog",
                         JOptionPane.ERROR_MESSAGE);
             }
-            else if(!isDeploymentsChosen && isScenariosChosen){
+            else if(!isDeploymentsChosen){
                 JOptionPane.showMessageDialog(new JFrame(), "You haven't picked deployment", "Dialog",
                         JOptionPane.ERROR_MESSAGE);
             }
@@ -121,14 +123,14 @@ public class ScenarioCreatorPanel extends JPanel implements ActionListener {
                     scenarioBooleans.remove((int)allFalseArraysIndexes.get(i));
                 }
                 Deployment randomDeployment = deploymentGetter.getDeployment(this.deployments , this.deploymentPanel.getChosenData());
-                ArrayList<Scenario> randomScenarios = scenariosGetter.getScenarios(this.scenarios, scenarioBooleans);
+                ArrayList<Mission> randomMissions = scenariosGetter.getScenarios(this.scenarios, scenarioBooleans);
 
-                if (!randomScenarios.isEmpty() && randomScenarios.get(0).getDeployment() != null) {
-                    for (int i = 0; i < randomScenarios.size(); i++) {
-                        randomDeployment = randomScenarios.get(i).getDeployment();
+                if (!randomMissions.isEmpty() && randomMissions.get(0).getDeployment() != null) {
+                    for (int i = 0; i < randomMissions.size(); i++) {
+                        randomDeployment = randomMissions.get(i).getDeployment();
                     }
                 }
-                ScenarioDisplayer scenarioDisplayer = new ScenarioDisplayer(randomDeployment, randomScenarios);
+                ScenarioDisplayer scenarioDisplayer = new ScenarioDisplayer(randomDeployment, randomMissions);
             }
         }
         else if(clicked == backButton){

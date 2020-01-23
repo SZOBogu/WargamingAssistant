@@ -1,14 +1,12 @@
 package scenarioGenerator;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 public class ScenarioCreator extends JFrame {
     private ScenarioCreatorPanel panel;
 
-    public ScenarioCreator(ArrayList<Deployment> deployments, ArrayList<ScenarioList> scenarios, String systemName){
+    public ScenarioCreator(ArrayList<Deployment> deployments, ArrayList<MissionList> scenarios, String systemName){
         this.panel = new ScenarioCreatorPanel(deployments, scenarios, systemName);
         setLayout(new BorderLayout());
         add(new JScrollPane(this.panel, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED), BorderLayout.CENTER);

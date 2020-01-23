@@ -1,10 +1,8 @@
 package common;
 
 import rosterBuilder.Roster;
-import rosterBuilder.RosterBuilderWindow;
 import rosterBuilder.RosterInfoDialog;
 import rosterBuilder.WargamingSystem;
-import scenarioGenerator.Scenario;
 import scenarioGenerator.ScenarioCreator;
 
 import javax.swing.*;

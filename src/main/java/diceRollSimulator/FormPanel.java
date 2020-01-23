@@ -32,7 +32,6 @@ public class FormPanel extends JPanel implements ActionListener {
     private JButton nonRandomButton;
 
     private FormListener formListener;
-   // private StringListener stringListener;
     private ClearListener clearListener;
     private RunListener runListener;
     private NonRandomRunListener nonRandomRunListener;
@@ -188,9 +187,6 @@ public class FormPanel extends JPanel implements ActionListener {
         this.formListener = formListener;
     }
 
-//    public void setStringListener(StringListener stringListener) {
-//        this.stringListener = stringListener;
-//    }
 
     public void setClearListener(ClearListener clearListener){this.clearListener = clearListener;}
 
@@ -212,11 +208,9 @@ public class FormPanel extends JPanel implements ActionListener {
             JFrame helpFrame = new JFrame("HELP");
         }
         if(clicked == randomButton){
-            //this.stringListener.textEmitted(this.stringListener.getController().run());
             this.runListener.run();
         }
         if(clicked == nonRandomButton){
-            //this.stringListener.textEmitted(this.stringListener.getController().runNonRandom());
             this.nonRandomRunListener.runNonRandom();
         }
         if(clicked == backButton){

@@ -4,10 +4,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
-public class ScenarioPanelsPanel extends JPanel {
+public class MissionPanelsPanel extends JPanel {
     private ArrayList<ScenarioPanel> panels;
 
-    public ScenarioPanelsPanel(ArrayList<ScenarioList> scenarios){
+    public MissionPanelsPanel(ArrayList<MissionList> scenarios){
         this.panels = new ArrayList<>();
         for(int i=0;i<scenarios.size();i++){
             panels.add(new ScenarioPanel(scenarios.get(i)));

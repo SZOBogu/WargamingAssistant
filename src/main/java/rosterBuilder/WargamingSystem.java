@@ -2,7 +2,7 @@ package rosterBuilder;
 
 import rosterBuilder.rules.RosterBuildingRule;
 import scenarioGenerator.Deployment;
-import scenarioGenerator.ScenarioList;
+import scenarioGenerator.MissionList;
 
 import java.util.ArrayList;
 
@@ -11,7 +11,7 @@ public class WargamingSystem {
     private ArrayList<Army> armies;
     private EntityContainer allInGameEntities;
     private ArrayList<Deployment> deployments;
-    private ArrayList<ScenarioList> scenarios;
+    private ArrayList<MissionList> scenarios;
     private ArrayList<Detachment> detachments;
     private int maxDetachments;
     private boolean isAllowingAlliances;
@@ -22,7 +22,7 @@ public class WargamingSystem {
         this(name, new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), 1, false);
     }
 
-    public WargamingSystem(String name, ArrayList<Army> armies, ArrayList<Entity> allEqAndSR, ArrayList<Deployment> deployments, ArrayList<ScenarioList> scenarios, ArrayList<Detachment> detachmnets, int maxDetachments, boolean isAllowingAlliances){
+    public WargamingSystem(String name, ArrayList<Army> armies, ArrayList<Entity> allEqAndSR, ArrayList<Deployment> deployments, ArrayList<MissionList> scenarios, ArrayList<Detachment> detachmnets, int maxDetachments, boolean isAllowingAlliances){
         this.name = name;
         this.armies = armies;
         this.allInGameEntities = new EntityContainer();
@@ -64,15 +64,15 @@ public class WargamingSystem {
         this.deployments = deployments;
     }
 
-    public ArrayList<ScenarioList> getAllScenarios() {
+    public ArrayList<MissionList> getAllScenarios() {
         return scenarios;
     }
 
-    public ScenarioList getScenarioList(int index) {
+    public MissionList getScenarioList(int index) {
         return scenarios.get(index);
     }
 
-    public void setScenarios(ArrayList<ScenarioList> scenarios) {
+    public void setScenarios(ArrayList<MissionList> scenarios) {
         this.scenarios = scenarios;
     }
 

@@ -20,14 +20,6 @@ public class Controller {
         DiceRoll roll = new DiceRoll(quantity, successValue, reroll, failures, diceSides, valueToReRoll);
         db.addDiceRoll(roll);
     }
-//
-//    public void saveToFile(File file) throws IOException {
-//        db.saveToFile(file);
-//    }
-//
-//    public void loadFromFile(File file) throws IOException{
-//        db.loadFromFile(file);
-//    }
 
     public void removeDiceRoll(int row) {
         db.removeDiceRoll(row);

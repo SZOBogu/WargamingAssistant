@@ -3,8 +3,8 @@ package testRosterBuilder;
 import org.junit.jupiter.api.Test;
 import rosterBuilder.*;
 import scenarioGenerator.Deployment;
-import scenarioGenerator.Scenario;
-import scenarioGenerator.ScenarioList;
+import scenarioGenerator.Mission;
+import scenarioGenerator.MissionList;
 
 import javax.swing.*;
 import java.util.ArrayList;
@@ -201,17 +201,17 @@ public class testWargamingSystem {
     Deployment deployment1 = new Deployment("Deployment", img1);
     ArrayList<Deployment> deployments = new ArrayList<>(Arrays.asList(deployment0, deployment1));
     //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@2222
-    Scenario scen00 = new Scenario();
-    Scenario scen01 =  new Scenario("test1", new ArrayList<>());
-    ArrayList<Scenario> scenarios0 = new ArrayList<>(Arrays.asList(scen00, scen01));
-    ScenarioList scenList01 = new ScenarioList("Type", scenarios0);
+    Mission scen00 = new Mission();
+    Mission scen01 =  new Mission("test1", new ArrayList<>());
+    ArrayList<Mission> scenarios0 = new ArrayList<>(Arrays.asList(scen00, scen01));
+    MissionList scenList01 = new MissionList("Type", scenarios0);
 
-    Scenario scen10 = new Scenario();
-    Scenario scen11 =  new Scenario("test1", new ArrayList<>());
-    ArrayList<Scenario> scenarios1 = new ArrayList<>(Arrays.asList(scen10, scen11));
-    ScenarioList scenList11 = new ScenarioList("Type", scenarios1);
+    Mission scen10 = new Mission();
+    Mission scen11 =  new Mission("test1", new ArrayList<>());
+    ArrayList<Mission> scenarios1 = new ArrayList<>(Arrays.asList(scen10, scen11));
+    MissionList scenList11 = new MissionList("Type", scenarios1);
 
-    ArrayList<ScenarioList> scens = new ArrayList<>(Arrays.asList(scenList01, scenList11));
+    ArrayList<MissionList> scens = new ArrayList<>(Arrays.asList(scenList01, scenList11));
 
     Detachment det0 = new Detachment("Patrol", new ArrayList<Integer>(Arrays.asList(1,1,0)), new ArrayList<Integer>(Arrays.asList(1,4,2)), 0);
     Detachment det1 = new Detachment("CAD", new ArrayList<Integer>(Arrays.asList(1,2,0)), new ArrayList<Integer>(Arrays.asList(2,6,3)), 1);
