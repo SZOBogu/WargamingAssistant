@@ -8,10 +8,10 @@ import java.util.ArrayList;
 
 public class DetachmentPanel extends JPanel implements ActionListener {
     private JLabel detachmentInfoLabel;
-   // private JButton deleteDetachmentButton;
     private ArrayList<JLabel> categoryLabels;
     private ArrayList<ArrayList<JLabel>> unitLabels;
     private ArrayList<ArrayList<JButton>> addUnitButtons;
+    private ArrayList<ArrayList<JButton>> editUnitButtons;
     private ArrayList<ArrayList<JButton>> removeUnitButtons;
     private boolean isLooseDetachment;
     private Detachment detachment;
@@ -28,12 +28,14 @@ public class DetachmentPanel extends JPanel implements ActionListener {
         this.categoryLabels = new ArrayList<>();
         this.unitLabels = new ArrayList<>();
         this.addUnitButtons = new ArrayList<>();
+        this.editUnitButtons = new ArrayList<>();
         this.removeUnitButtons = new ArrayList<>();
 
          for(int i = 0; i < detachment.getArmy().getRelevantSlotCount();i++){
                 this.categoryLabels.add(new JLabel(detachment.getArmy().getArmySubcategory(i).getName(), SwingConstants.CENTER));
                 this.unitLabels.add(new ArrayList<>());
                 this.addUnitButtons.add(new ArrayList<>());
+                this.editUnitButtons.add(new ArrayList<>());
                 this.removeUnitButtons.add(new ArrayList<>());
         }
         ArrayList<Integer> arrayOfMandatoryChoicesInCategories = detachment.getArrayOfMandatoryChoicesInCategories();
@@ -44,9 +46,12 @@ public class DetachmentPanel extends JPanel implements ActionListener {
                  for (int j = 0; j < arrayOfMaxChoicesPerCategory.get(i); j++) {
                      JButton addButton = new JButton("Add new Unit");
                      JButton removeButton = new JButton("Remove Unit");
+                     JButton editButton = new JButton("Edit Button");
                      addButton.addActionListener(this);
                      removeButton.addActionListener(this);
+                     editButton.addActionListener(this);
                      this.addUnitButtons.get(i).add(addButton);
+                     this.editUnitButtons.get(i).add(editButton);
                      this.removeUnitButtons.get(i).add(removeButton);
                      this.unitLabels.get(i).add(new JLabel());
                  }
@@ -57,12 +62,14 @@ public class DetachmentPanel extends JPanel implements ActionListener {
                  JButton addButton = new JButton("Add new Unit");
                  addButton.addActionListener(this);
                  this.addUnitButtons.get(i).add(addButton);
-                 //UnitCounter counter = new UnitCounter();
                  for(int j = 0; j < detachment.getBoughtUnitsCategorized().get(i).size(); j++) {
                      this.unitLabels.get(i).add(new JLabel());
                      JButton removeButton = new JButton("Remove Unit");
+                     JButton editButton = new JButton("Edit Button");
                      removeButton.addActionListener(this);
+                     editButton.addActionListener(this);
                      this.removeUnitButtons.get(i).add(removeButton);
+                     this.editUnitButtons.get(i).add(editButton);
                  }
              }
          }
@@ -79,22 +86,10 @@ public class DetachmentPanel extends JPanel implements ActionListener {
             sumOfMaxes += arrayOfMaxChoicesPerCategory.get(i);
         }
 
-        if(sumOfMin  <= 0 || sumOfMaxes > 5 * detachment.getArmy().getRelevantSlotCount() ){
-            return true;
-        }
-        else  return false;
+        return sumOfMin <= 0 || sumOfMaxes > 5 * detachment.getArmy().getRelevantSlotCount();
     }
 
     public void layoutComponents(){
-        if(this.isLooseDetachment){
-            this.layoutComponentsLooseDetachmentStyle();
-        }
-        else{
-            this.layoutComponentsRigidDetachmentStyle();
-        }
-    }
-
-    private void layoutComponentsLooseDetachmentStyle(){
         setLayout(new GridBagLayout());
 
         GridBagConstraints gbc = new GridBagConstraints();
@@ -103,6 +98,15 @@ public class DetachmentPanel extends JPanel implements ActionListener {
         gbc.gridy = 0;
         gbc.gridx = 0;
 
+        if(this.isLooseDetachment){
+            this.layoutComponentsLooseDetachmentStyle(gbc);
+        }
+        else{
+            this.layoutComponentsRigidDetachmentStyle(gbc);
+        }
+    }
+
+    private void layoutComponentsLooseDetachmentStyle(GridBagConstraints gbc){
         add(this.detachmentInfoLabel, gbc);
         gbc.gridy++;
         for(int i = 0; i < roster.getPrimaryArmy().getRelevantSlotCount(); i++){
@@ -112,6 +116,8 @@ public class DetachmentPanel extends JPanel implements ActionListener {
                 if(this.detachment.getBoughtUnitsCategorized().get(i).size() > j) {
                     this.unitLabels.get(i).get(j).setText(this.detachment.getBoughtUnitsCategorized().get(i).get(j).toString());
                     add(this.unitLabels.get(i).get(j), gbc);
+                    gbc.gridx++;
+                    add(this.editUnitButtons.get(i).get(j), gbc);
                     gbc.gridx++;
                     add(this.removeUnitButtons.get(i).get(j), gbc);
                     gbc.gridx = 0;
@@ -123,15 +129,7 @@ public class DetachmentPanel extends JPanel implements ActionListener {
         }
     }
 
-    private void layoutComponentsRigidDetachmentStyle(){
-        setLayout(new GridBagLayout());
-
-        GridBagConstraints gbc = new GridBagConstraints();
-        gbc.fill = GridBagConstraints.HORIZONTAL;
-        gbc.anchor = GridBagConstraints.CENTER;
-        gbc.gridy = 0;
-        gbc.gridx = 0;
-
+    private void layoutComponentsRigidDetachmentStyle(GridBagConstraints gbc){
         add(this.detachmentInfoLabel, gbc);
         gbc.gridy++;
         for(int i = 0; i < roster.getPrimaryArmy().getRelevantSlotCount(); i++){
@@ -141,6 +139,8 @@ public class DetachmentPanel extends JPanel implements ActionListener {
                 if(this.detachment.getBoughtUnitsCategorized().get(i).size() > j){
                     this.unitLabels.get(i).get(j).setText(this.detachment.getBoughtUnitsCategorized().get(i).get(j).toString());
                     add(this.unitLabels.get(i).get(j), gbc);
+                    gbc.gridx++;
+                    add(this.editUnitButtons.get(i).get(j), gbc);
                     gbc.gridx++;
                     add(this.removeUnitButtons.get(i).get(j), gbc);
                     gbc.gridx = 0;
@@ -160,12 +160,14 @@ public class DetachmentPanel extends JPanel implements ActionListener {
         this.unitLabels.clear();
         this.addUnitButtons.clear();
         this.removeUnitButtons.clear();
+        this.editUnitButtons.clear();
 
         for(int i = 0; i < detachment.getArmy().getRelevantSlotCount();i++){
             this.categoryLabels.add(new JLabel(detachment.getArmy().getArmySubcategory(i).getName()));
             this.unitLabels.add(new ArrayList<>());
             this.addUnitButtons.add(new ArrayList<>());
             this.removeUnitButtons.add(new ArrayList<>());
+            this.editUnitButtons.add(new ArrayList<>());
         }
         ArrayList<Integer> arrayOfMandatoryChoicesInCategories = detachment.getArrayOfMandatoryChoicesInCategories();
         ArrayList<Integer> arrayOfMaxChoicesPerCategory = detachment.getArrayOfMaxChoicesPerCategory();
@@ -175,10 +177,13 @@ public class DetachmentPanel extends JPanel implements ActionListener {
                 for (int j = 0; j < arrayOfMaxChoicesPerCategory.get(i); j++) {
                     JButton addButton = new JButton("Add new Unit");
                     JButton removeButton = new JButton("Remove Unit");
+                    JButton editButton = new JButton("Edit Button");
                     addButton.addActionListener(this);
                     removeButton.addActionListener(this);
+                    editButton.addActionListener(this);
                     this.addUnitButtons.get(i).add(addButton);
                     this.removeUnitButtons.get(i).add(removeButton);
+                    this.editUnitButtons.get(i).add(editButton);
                     this.unitLabels.get(i).add(new JLabel());
                 }
             }
@@ -188,12 +193,14 @@ public class DetachmentPanel extends JPanel implements ActionListener {
                 JButton addButton = new JButton("Add new Unit");
                 addButton.addActionListener(this);
                 this.addUnitButtons.get(i).add(addButton);
-                //UnitCounter counter = new UnitCounter();
                 for(int j = 0; j < detachment.getBoughtUnitsCategorized().get(i).size(); j++) {
                     this.unitLabels.get(i).add(new JLabel());
                     JButton removeButton = new JButton("Remove Unit");
+                    JButton editButton = new JButton("Edit Button");
                     removeButton.addActionListener(this);
+                    editButton.addActionListener(this);
                     this.removeUnitButtons.get(i).add(removeButton);
+                    this.editUnitButtons.get(i).add(editButton);
                 }
             }
         }
@@ -207,7 +214,8 @@ public class DetachmentPanel extends JPanel implements ActionListener {
         JButton clicked = (JButton)actionEvent.getSource();
         ArmySubcategory armySubcategory = null;
         boolean addUnit = false;
-        boolean removeUnit = true;
+        boolean removeUnit = false;
+        boolean editUnit = false;
         int tempi = 0;
         int tempj = 0;
 
@@ -216,15 +224,22 @@ public class DetachmentPanel extends JPanel implements ActionListener {
                 if(this.addUnitButtons.get(i).get(j) == clicked){
                     armySubcategory = this.roster.getDetachments().get(this.detachment.getDetachmentNumber()).getArmy().getArmySubcategory(i);
                     addUnit = true;
-                    removeUnit = false;
                 }
             }
         }
         for(int i = 0; i < this.removeUnitButtons.size(); i++){
             for(int j = 0; j < this.removeUnitButtons.get(i).size(); j++) {
                 if(this.removeUnitButtons.get(i).get(j) == clicked) {
-                    addUnit = false;
                     removeUnit = true;
+                    tempi = i;
+                    tempj = j;
+                }
+            }
+        }
+        for(int i = 0; i < this.editUnitButtons.size(); i++){
+            for(int j = 0; j < this.editUnitButtons.get(i).size(); j++) {
+                if(this.editUnitButtons.get(i).get(j) == clicked) {
+                    editUnit = true;
                     tempi = i;
                     tempj = j;
                 }
@@ -244,6 +259,9 @@ public class DetachmentPanel extends JPanel implements ActionListener {
         else if(removeUnit){
             this.detachment.deleteUnit(tempi, tempj);
             this.refresh();
+        }
+        else if(editUnit){
+            System.out.println("sooon");
         }
     }
 }
