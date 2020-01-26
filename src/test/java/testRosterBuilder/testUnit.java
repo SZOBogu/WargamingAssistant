@@ -9,8 +9,7 @@ import rosterBuilder.Weapon;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class testUnit {
     Entity eq0 = new Entity("Miecz", "+1S");
@@ -37,9 +36,9 @@ public class testUnit {
 
     @Test
     void testGetNonBaseEquipment(){
-        assertTrue(unit.getNonBaseEquipment().get(0).equals(new Entity("Miecz", "+1S", "lvl1")));
-        assertTrue(unit.getNonBaseEquipment().get(1).equals(new SpecialRule("Cieknace wiadro", "+1 do przeciekania")));
-        assertTrue(unit.getNonBaseEquipment().get(2).equals(new Weapon("Tarcza", "+Def")));
+        assertEquals(unit.getNonBaseEquipment().get(0), new Entity("Miecz", "+1S", "lvl1"));
+        assertEquals(unit.getNonBaseEquipment().get(1), new SpecialRule("Cieknace wiadro", "+1 do przeciekania"));
+        assertEquals(unit.getNonBaseEquipment().get(2), new Weapon("Tarcza", "+Def"));
     }
 
     @Test
@@ -72,6 +71,19 @@ public class testUnit {
         assertEquals(20, unit.getModelsInUnit());
         unit.setModelsInUnit(30);
         assertEquals(30, unit.getModelsInUnit());
+    }
+
+    @Test
+    void testSetNonBaseEquipment(){
+        assertEquals(3, unit.getNonBaseEquipment().size());
+        ArrayList<Entity> boughtEquipment = new ArrayList<>(Arrays.asList(eq0, eq2, eq1, eq3, eq4));
+        unit.setNonBaseEquipment(boughtEquipment);
+        assertEquals(5, unit.getNonBaseEquipment().size());
+        assertEquals(eq0, unit.getNonBaseEquipment().get(0));
+        assertEquals(eq2, unit.getNonBaseEquipment().get(1));
+        assertEquals(eq1, unit.getNonBaseEquipment().get(2));
+        assertEquals(eq3, unit.getNonBaseEquipment().get(3));
+        assertEquals(eq4, unit.getNonBaseEquipment().get(4));
     }
 
     @Test

@@ -47,10 +47,10 @@ public class UnitProfilePanel extends JPanel implements ActionListener {
         this.modelQuantitySpinner.addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent changeEvent) {
-                for(int i = 0; i < unitProfile.getOptions().size(); i++){
-                    for(int j = 0; j < unitProfile.getOptions().get(i).getOptions().size(); j++){
-                        if(unitProfile.getOptions().get(i).getOptions().get(j) instanceof QuantityDependentOption)
-                            ((QuantityDependentOption) unitProfile.getOptions().get(i).getOptions().get(j)).setModelQuantity(unitProfile.getMinModels () + (int)modelQuantitySpinner.getValue());
+                for(int i = 0; i < unitProfile.getOptionSets().size(); i++){
+                    for(int j = 0; j < unitProfile.getOptionSets().get(i).getOptions().size(); j++){
+                        if(unitProfile.getOptionSets().get(i).getOptions().get(j) instanceof QuantityDependentOption)
+                            ((QuantityDependentOption) unitProfile.getOptionSets().get(i).getOptions().get(j)).setModelQuantity(unitProfile.getMinModels () + (int)modelQuantitySpinner.getValue());
                     }
                 }
             }
@@ -63,7 +63,7 @@ public class UnitProfilePanel extends JPanel implements ActionListener {
         }
         this.modelPartTextArea = new TextArea(20, 70);
         this.modelPartTextArea.append(unitProfile.toString());
-        this.optionPanelsPanel = new OptionPanelsPanel(unitProfile.getOptions());
+        this.optionPanelsPanel = new OptionPanelsPanel(unitProfile.getOptionSets());
 
         this.detachmentPanel = detachmentPanel;
 
@@ -73,6 +73,10 @@ public class UnitProfilePanel extends JPanel implements ActionListener {
         this.cancelButton.addActionListener(this);
 
         this.layoutComponents();
+    }
+
+    public UnitProfilePanel(UnitProfile unitProfile, Roster roster, DetachmentPanel detachmentPanel, int detNumber, int categoryNumber, WargamingSystem wargamingSystem, ArrayList<ArrayList<Integer>> indexesToSelect){
+        this(unitProfile, roster, detachmentPanel, detNumber, categoryNumber, wargamingSystem);
     }
 
     private void layoutComponents(){
@@ -108,6 +112,7 @@ public class UnitProfilePanel extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent actionEvent) {
         JButton clicked = (JButton)actionEvent.getSource();
         if(clicked == this.addUnitButton){
+            //TODO:moze jakis builder?
             Unit unit = new Unit(this.unitProfile.getName(), this.unitProfile.getMinModels() + (int)this.modelQuantitySpinner.getValue(),
                     this.optionPanelsPanel.getChosenEquipment(), this.unitProfile.getBaseEquipmentAndRules(), this.unitProfile.getInitialCost() + this.optionPanelsPanel.getChosenEquipmentCost() + ((int)this.modelQuantitySpinner.getValue() * this.unitProfile.getAdditionalModelCost()));
             ArrayList<UnitBuildingRule> rules = this.unitProfile.getRules();

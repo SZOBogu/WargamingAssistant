@@ -4,7 +4,6 @@ import org.junit.jupiter.api.Test;
 import rosterBuilder.*;
 import rosterBuilder.rules.*;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -76,8 +75,8 @@ public class testUnitProfile {
 
     @Test
     void testGetOptionSet(){
-        assertTrue(optionSet0.equals(unitProfile0.getOptions().get(0)));
-        assertTrue(optionSet1.equals(unitProfile0.getOptions().get(1)));
+        assertTrue(optionSet0.equals(unitProfile0.getOptionSets().get(0)));
+        assertTrue(optionSet1.equals(unitProfile0.getOptionSets().get(1)));
     }
 
     @Test

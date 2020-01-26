@@ -50,7 +50,7 @@ public class UnitProfile {
         return modelsParts;
     }
 
-    public ArrayList<OptionSet> getOptions() {
+    public ArrayList<OptionSet> getOptionSets() {
         return options;
     }
 
@@ -108,9 +108,9 @@ public class UnitProfile {
 
     public ArrayList<Entity> getBaseEquipmentAndRules() {
         ArrayList<Entity> entities = new ArrayList<>();
-        for(int i = 0; i < this.modelsParts.size(); i++){
-            entities.addAll(this.modelsParts.get(i).getEquipment());
-            entities.addAll(this.modelsParts.get(i).getSpecialRules());
+        for (ModelPart modelsPart : this.modelsParts) {
+            entities.addAll(modelsPart.getEquipment());
+            entities.addAll(modelsPart.getSpecialRules());
         }
         return entities;
     }
@@ -144,7 +144,6 @@ public class UnitProfile {
                 }
                 temp.get(i).setOptions(filteredOptions);
             }
-            //System.out.println("########################################3");
             this.options = temp;
         }
     }

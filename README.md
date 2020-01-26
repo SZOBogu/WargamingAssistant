@@ -15,5 +15,5 @@ App contains 3 modules:
  To do:
   - Swing -> Spring
   - Introduce Database (mongoDB)
-  - Rework of ScenarioGenerator: allowing to generate scenarios for whole tournament on one click with or without duplication.
+  - Rework of ScenarioGenerator: allowing to generate missions for whole tournament on one click with or without duplication.
   - BattleScore Calculator

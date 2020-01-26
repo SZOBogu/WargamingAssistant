@@ -48,6 +48,10 @@ public class Unit {
         this.pointCost = pointCost;
     }
 
+    public void setNonBaseEquipment(ArrayList<Entity> nonBaseEquipment) {
+         this.nonBaseEquipment = nonBaseEquipment;
+    }
+
     @Override
     public String toString(){
         String unitInfo = "";
