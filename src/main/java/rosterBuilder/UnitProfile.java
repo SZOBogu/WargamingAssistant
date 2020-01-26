@@ -17,6 +17,9 @@ public class UnitProfile {
     private ArrayList<UnitBuildingRule> rules;
     private UniqueEntitiesPool pool;            //?????? TODO: look it up
 
+    public UnitProfile(){
+        this("", new ArrayList<>(), new ArrayList<>(), 0, 1, 1,0,100);
+    }
     public UnitProfile(String name, ArrayList<ModelPart> modelParts, ArrayList<OptionSet> options, int initialCost){
         this(name, modelParts, options, initialCost, 1, 1,0,100);
     }

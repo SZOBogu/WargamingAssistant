@@ -45,4 +45,8 @@ public class OptionPanelsPanel extends JPanel {
         }
         return chosenEquipmentCost;
     }
+
+    public ArrayList<OptionPanel> getOptionPanels() {
+        return optionPanels;
+    }
 }

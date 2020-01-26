@@ -51,32 +51,36 @@ public class testUnitProfile {
     UnitProfile unitProfile1 = new UnitProfile("Profile 1", modelParts, optionSets, 200, 5);
     UnitProfile unitProfile2 = new UnitProfile("Profile 2", modelParts, optionSets, 300, 10, 50, 30);
     UnitProfile unitProfile3 = new UnitProfile("Profile 3", modelParts, optionSets, 400, 5, 15, 55, 2);
-
+    UnitProfile unitProfile4 = new UnitProfile();
     @Test
     void testGetName(){
         assertEquals("Profile", unitProfile0.getName());
         assertEquals("Profile 1", unitProfile1.getName());
         assertEquals("Profile 2", unitProfile2.getName());
         assertEquals("Profile 3", unitProfile3.getName());
+        assertEquals("", unitProfile4.getName());
     }
 
     @Test
     void testGetModelParts(){
         assertEquals(modelPart0.getName(), unitProfile0.getModelParts().get(0).getName());
-        assertTrue(modelPart0.getStatline().equals(unitProfile0.getModelParts().get(0).getStatline()));
+        assertEquals(modelPart0.getStatline(), unitProfile0.getModelParts().get(0).getStatline());
         assertEquals(modelPart0.getSpecialRules(), unitProfile0.getModelParts().get(0).getSpecialRules());       //sprawdz dokumentacje
         assertEquals(modelPart0.getEquipment(), unitProfile0.getModelParts().get(0).getEquipment());       //sprawdz dokumentacje
 
         assertEquals(modelPart1.getName(), unitProfile0.getModelParts().get(1).getName());
-        assertTrue(modelPart1.getStatline().equals(unitProfile0.getModelParts().get(1).getStatline()));
+        assertEquals(modelPart1.getStatline(), unitProfile0.getModelParts().get(1).getStatline());
         assertEquals(modelPart1.getSpecialRules(), unitProfile0.getModelParts().get(1).getSpecialRules());       //sprawdz dokumentacje
         assertEquals(modelPart1.getEquipment(), unitProfile0.getModelParts().get(1).getEquipment());       //sprawdz dokumentacje
+
+        assertEquals(new ArrayList<>(), unitProfile4.getModelParts());
     }
 
     @Test
     void testGetOptionSet(){
         assertTrue(optionSet0.equals(unitProfile0.getOptionSets().get(0)));
         assertTrue(optionSet1.equals(unitProfile0.getOptionSets().get(1)));
+        assertEquals(new ArrayList<>(), unitProfile4.getOptionSets());
     }
 
     @Test
@@ -85,6 +89,7 @@ public class testUnitProfile {
         assertEquals(1, unitProfile1.getMinModels());
         assertEquals(10, unitProfile2.getMinModels());
         assertEquals(5, unitProfile3.getMinModels());
+        assertEquals(1, unitProfile4.getMinModels());
     }
 
     @Test
@@ -93,7 +98,7 @@ public class testUnitProfile {
         assertEquals(1, unitProfile1.getMaxModels());
         assertEquals(50, unitProfile2.getMaxModels());
         assertEquals(15, unitProfile3.getMaxModels());
-
+        assertEquals(1, unitProfile4.getMaxModels());
     }
 
     @Test
@@ -102,6 +107,7 @@ public class testUnitProfile {
         assertEquals(200, unitProfile1.getInitialCost());
         assertEquals(300, unitProfile2.getInitialCost());
         assertEquals(400, unitProfile3.getInitialCost());
+        assertEquals(0, unitProfile4.getInitialCost());
     }
 
     @Test
@@ -110,6 +116,7 @@ public class testUnitProfile {
         assertEquals(0, unitProfile1.getAdditionalModelCost());
         assertEquals(30, unitProfile2.getAdditionalModelCost());
         assertEquals(55, unitProfile3.getAdditionalModelCost());
+        assertEquals(0, unitProfile4.getAdditionalModelCost());
     }
 
     @Test
@@ -130,6 +137,7 @@ public class testUnitProfile {
         assertEquals(5, unitProfile1.getUnitsPerArmy());
         assertEquals(100, unitProfile2.getUnitsPerArmy());
         assertEquals(2, unitProfile3.getUnitsPerArmy());
+        assertEquals(100, unitProfile4.getUnitsPerArmy());
     }
 
     @Test
@@ -162,11 +170,14 @@ public class testUnitProfile {
                 "5-15 models\n" +
                 "\tModel\tS: 1 D: -1 toHit: 3+ \tskrmish0, swift0, Pala0, plaszcz0\n" +
                 "\tModel\tS: 1 D: -1 toHit: 3+ \tskrmish1, swift1, Pala1, plaszcz1\n";
+        String expected4 = "\t0p\n" +
+                "Single model\n";
 
         assertEquals(expected0, unitProfile0.toString());
         assertEquals(expected1, unitProfile1.toString());
         assertEquals(expected2, unitProfile2.toString());
         assertEquals(expected3, unitProfile3.toString());
+        assertEquals(expected4, unitProfile4.toString());
     }
 
     @Test

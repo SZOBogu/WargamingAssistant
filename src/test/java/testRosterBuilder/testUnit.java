@@ -23,15 +23,18 @@ public class testUnit {
     ArrayList<Entity> standard = new ArrayList<>(Arrays.asList(eq3, eq4, eq5));
 
     Unit unit = new Unit("Unit", 20, equipment, standard, 1000);
+    Unit unit0 = new Unit();
 
     @Test
     void testGetName(){
         assertEquals("Unit", unit.getName());
+        assertEquals("", unit0.getName());
     }
 
     @Test
     void testGetModelsInUnit(){
         assertEquals(20, unit.getModelsInUnit());
+        assertEquals(1, unit0.getModelsInUnit());
     }
 
     @Test
@@ -39,16 +42,21 @@ public class testUnit {
         assertEquals(unit.getNonBaseEquipment().get(0), new Entity("Miecz", "+1S", "lvl1"));
         assertEquals(unit.getNonBaseEquipment().get(1), new SpecialRule("Cieknace wiadro", "+1 do przeciekania"));
         assertEquals(unit.getNonBaseEquipment().get(2), new Weapon("Tarcza", "+Def"));
+
+        assertEquals(new ArrayList<>(), unit0.getNonBaseEquipment());
     }
 
     @Test
     void testGetBaseEquipmentAndRules(){
+
         assertEquals(unit.getBaseEquipmentAndRules(), standard);
+        assertEquals(new ArrayList<>(), unit0.getBaseEquipmentAndRules());
     }
 
     @Test
     void testGetPointCost(){
         assertEquals(1000, unit.getPointCost());
+        assertEquals(0, unit0.getPointCost());
     }
 
     @Test
@@ -91,5 +99,6 @@ public class testUnit {
         String expected = "20 Unit, " + unit.getNonBaseEquipment().get(0).toString() +
                 ", " + unit.getNonBaseEquipment().get(1).toString() + ", " +  unit.getNonBaseEquipment().get(2).toString() +  "\t[1000]";
         assertEquals(expected, unit.toString());
+        assertEquals("\t[0]", unit0.toString());
     }
 }

@@ -8,6 +8,10 @@ public class Unit {
     private ArrayList<Entity> baseEquipmentAndRules;
     private int pointCost;
 
+    public Unit(){
+        this("",1,new ArrayList<>(), new ArrayList<>(), 0);
+    }
+
     public Unit(String name, int modelsInUnit, ArrayList<Entity> nonBaseEquipment, ArrayList<Entity> baseEquipmentAndRules, int pointCost){
         this.name = name;
         this.modelsInUnit = modelsInUnit;

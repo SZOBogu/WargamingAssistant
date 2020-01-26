@@ -77,6 +77,9 @@ public class UnitProfilePanel extends JPanel implements ActionListener {
 
     public UnitProfilePanel(UnitProfile unitProfile, Roster roster, DetachmentPanel detachmentPanel, int detNumber, int categoryNumber, WargamingSystem wargamingSystem, ArrayList<ArrayList<Integer>> indexesToSelect){
         this(unitProfile, roster, detachmentPanel, detNumber, categoryNumber, wargamingSystem);
+        for(int i = 0; i < indexesToSelect.size(); i++){
+            this.optionPanelsPanel.getOptionPanels().get(indexesToSelect.get(i).get(0)).selectPreviouslyTaken(indexesToSelect.get(i).get(1));
+        }
     }
 
     private void layoutComponents(){
@@ -116,11 +119,10 @@ public class UnitProfilePanel extends JPanel implements ActionListener {
             Unit unit = new Unit(this.unitProfile.getName(), this.unitProfile.getMinModels() + (int)this.modelQuantitySpinner.getValue(),
                     this.optionPanelsPanel.getChosenEquipment(), this.unitProfile.getBaseEquipmentAndRules(), this.unitProfile.getInitialCost() + this.optionPanelsPanel.getChosenEquipmentCost() + ((int)this.modelQuantitySpinner.getValue() * this.unitProfile.getAdditionalModelCost()));
             ArrayList<UnitBuildingRule> rules = this.unitProfile.getRules();
-            for(int i = 0; i < rules.size(); i++){
-                rules.get(i).check(unit);
+            for (UnitBuildingRule rule : rules) {
+                rule.check(unit);
             }
-            RuleViolationLog ruleViolationLog = RuleViolationLog.getInstance();
-            if(ruleViolationLog.getUnitRuleViolationLog().isEmpty()) {
+            if(RuleViolationLog.getUnitRuleViolationLog().isEmpty()) {
                 roster.getDetachments().get(detNumber).addUnit(unit, categoryNumber);
                 this.detachmentPanel.refresh();
                 RosterBuilderWindow rosterBuilderWindow = new RosterBuilderWindow(this.wargamingSystem, this.roster);
@@ -128,9 +130,9 @@ public class UnitProfilePanel extends JPanel implements ActionListener {
                 topFrame.dispose();
             }
             else{
-                JOptionPane.showMessageDialog(new JFrame(), ruleViolationLog.getUnitRuleViolationLog(), "Dialog",
+                JOptionPane.showMessageDialog(new JFrame(), RuleViolationLog.getUnitRuleViolationLog(), "Dialog",
                         JOptionPane.ERROR_MESSAGE);
-                ruleViolationLog.clear();
+                RuleViolationLog.clear();
             }
 
         }

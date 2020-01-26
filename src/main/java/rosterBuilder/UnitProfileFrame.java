@@ -2,6 +2,7 @@ package rosterBuilder;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 public class UnitProfileFrame extends JFrame{
     private UnitProfilePanel unitProfilePanel;
@@ -15,5 +16,9 @@ public class UnitProfileFrame extends JFrame{
         setSize(1000, 800);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
+    }
+    public UnitProfileFrame(UnitProfile unitProfile, Roster roster, DetachmentPanel detachmentPanel, int detNumber, int categoryNumber, WargamingSystem wargamingSystem, ArrayList<ArrayList<Integer>> indexesToSelect){
+        this(unitProfile, roster, detachmentPanel, detNumber, categoryNumber, wargamingSystem);
+        this.unitProfilePanel = new UnitProfilePanel(unitProfile, roster, detachmentPanel, detNumber, categoryNumber, wargamingSystem, indexesToSelect);
     }
 }

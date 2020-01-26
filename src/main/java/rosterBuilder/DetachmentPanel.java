@@ -261,7 +261,18 @@ public class DetachmentPanel extends JPanel implements ActionListener {
             this.refresh();
         }
         else if(editUnit){
-            System.out.println("sooon");
+            //znajdz profil jednostki
+            //wez jednostke
+            //wrzuc w nowo napisana klase
+            int categoryIndex = 0;
+            for (int i = 0; i < this.detachment.getArmy().size(); i++) {
+                if (this.roster.getDetachments().get(this.detachment.getDetachmentNumber()).getArmy().getArmySubcategory(i) == armySubcategory) {
+                    categoryIndex = i;
+                }
+            }
+//            UnitProfileFrame unitProfile = UnitProfileFrame(unitProfile, roster, this, this.detachment.getDetachmentNumber(), categoryIndex, wargamingSystem, indexesToSelect);
+//            JFrame topFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
+//            topFrame.dispose();
         }
     }
 }

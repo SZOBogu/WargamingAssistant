@@ -77,4 +77,8 @@ public class OptionPanel extends JPanel {
         }
         return totalCost;
     }
+
+    public void selectPreviouslyTaken(int index){
+        this.buttonGroup.buttons.get(index).setSelected(true);
+    }
 }
