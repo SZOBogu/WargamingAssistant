@@ -1,5 +1,5 @@
 package diceRollSimulator;
 
 public interface FormListener {
-    public void formEventOccurred(FormEvent event);
+    void formEventOccurred(FormEvent event);
 }

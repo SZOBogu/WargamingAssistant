@@ -12,10 +12,9 @@ public class CannotHaveMoreModelsWithThan extends RosterBuildingRule implements 
 
     @Override
     public void check(Roster roster) {
-        RuleViolationLog ruleViolationLog = RuleViolationLog.getInstance();
         ModelCounter counter = new ModelCounter();
         if(counter.countModelsWith(roster, entity) > quantity){
-            ruleViolationLog.appendRosterRuleViolationLog("Roster cannot contain more than " +
+            RuleViolationLog.appendRosterRuleViolationLog("Roster cannot contain more than " +
                     quantity + " models with " + entity.getName() + ".");
         }
     }

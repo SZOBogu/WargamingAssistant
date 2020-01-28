@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class NonRandomReportGenerator {
     public String generateReport(ArrayList<DiceRoll> diceRolls){
-        String report = new String();
+        String report = "";
         ArrayList<Double> probabilities = new ArrayList<>();
         ProbabilityCalculator calculator = new ProbabilityCalculator();
         double totalSuccessProbability = 1.0;

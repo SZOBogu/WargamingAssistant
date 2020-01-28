@@ -13,9 +13,8 @@ public class MustHaveAtLeast extends RosterBuildingRule implements Rule {
     @Override
     public void check(Roster roster) {
         UnitCounter counter = new UnitCounter();
-        RuleViolationLog ruleViolationLog = RuleViolationLog.getInstance();
         if(counter.countUnitsWith(roster, entity) < quantity)
-            ruleViolationLog.appendRosterRuleViolationLog("Roster must contain at least " + quantity +
+            RuleViolationLog.appendRosterRuleViolationLog("Roster must contain at least " + quantity +
                     " units with " + entity.getName() + ".");
     }
 }

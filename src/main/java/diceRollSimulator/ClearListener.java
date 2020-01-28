@@ -23,5 +23,5 @@ package diceRollSimulator;
 //}
 
 public interface ClearListener{
-    public void clearButtonPressed();
+    void clearButtonPressed();
 }

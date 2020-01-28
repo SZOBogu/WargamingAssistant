@@ -11,8 +11,7 @@ public class CannotBeTakenTogether extends UnitBuildingRule implements Rule {
     @Override
     public void check(Unit unit) {
         if(unit.getNonBaseEquipment().contains(entity1) && unit.getNonBaseEquipment().contains(entity2)){
-            RuleViolationLog ruleViolationLog = RuleViolationLog.getInstance();
-            ruleViolationLog.appendUnitRuleViolationLog(entity1.getName() + " and " + entity2.getName() + " cannot be taken together");
+            RuleViolationLog.appendUnitRuleViolationLog(entity1.getName() + " and " + entity2.getName() + " cannot be taken together");
         }
     }
 }

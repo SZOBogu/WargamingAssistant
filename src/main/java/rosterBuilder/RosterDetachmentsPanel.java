@@ -41,7 +41,7 @@ public class RosterDetachmentsPanel extends JPanel implements ActionListener {
         }
         this.deleteDetachmentButtons.get(0).setVisible(false);
         if (this.wargamingSystem.getMaxDetachments() == 1){
-            this.addDetachmentButton.setVisible(false);;
+            this.addDetachmentButton.setVisible(false);
         }
         this.layoutComponents();
     }
@@ -88,7 +88,7 @@ public class RosterDetachmentsPanel extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent actionEvent) {
         JButton clicked = (JButton)actionEvent.getSource();
         RuleViolationLog ruleViolationLog = RuleViolationLog.getInstance();
-        ruleViolationLog.clear();
+        RuleViolationLog.clear();
         if(clicked == addDetachmentButton){
             if(this.wargamingSystem.getMaxDetachments() >= this.roster.size()) {
                 DetachmentInfoDialog detachmentInfoDialog = new DetachmentInfoDialog(this.wargamingSystem, this.roster, this);
@@ -101,23 +101,22 @@ public class RosterDetachmentsPanel extends JPanel implements ActionListener {
         else if(clicked == readyButton){
             ArrayList<RosterBuildingRule> rules = this.wargamingSystem.getRules();
             if(roster.getTotalCost() > roster.getPointCap())
-                ruleViolationLog.appendRosterRuleViolationLog("Point Limit Exceeded");
-            for(int i = 0; i < rules.size(); i++){
-                rules.get(i).check(roster);
+                RuleViolationLog.appendRosterRuleViolationLog("Point Limit Exceeded");
+            for (RosterBuildingRule rule : rules) {
+                rule.check(roster);
             }
-            if(ruleViolationLog.getRosterRuleViolationLog().isEmpty()) {
+            if(RuleViolationLog.getRosterRuleViolationLog().isEmpty()) {
                 RosterDisplayMenu rosterDisplayMenu = new RosterDisplayMenu(this.roster);
             }
             else {
-                JOptionPane.showMessageDialog(new JFrame(), ruleViolationLog.getRosterRuleViolationLog(), "Dialog",
+                JOptionPane.showMessageDialog(new JFrame(), RuleViolationLog.getRosterRuleViolationLog(), "Dialog",
                         JOptionPane.ERROR_MESSAGE);
-                ruleViolationLog.clear();
+                RuleViolationLog.clear();
             }
         }
         else if(clicked == backButton){
-            ArrayList<WargamingSystem> wargamingSystems = new ArrayList<>();
             WargameSystemsInitializer initializer = new WargameSystemsInitializer();
-            wargamingSystems.addAll(initializer.initialize());
+            ArrayList<WargamingSystem> wargamingSystems = new ArrayList<>(initializer.initialize());
             SystemSelectionMenu systemSelectionMenu = new SystemSelectionMenu(wargamingSystems, ModulesEnum.ROSTER_BUILDER);
             JFrame topFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
             topFrame.dispose();

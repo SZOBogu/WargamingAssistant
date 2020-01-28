@@ -24,22 +24,22 @@ public class testRuleViolationLog {
 
     @Test
     public void testGetUnitRuleViolationLog() {
-        assertEquals("", ruleViolationLog.getUnitRuleViolationLog());
+        assertEquals("", RuleViolationLog.getUnitRuleViolationLog());
     }
 
     @Test
     public void testGetRosterRuleViolationLog() {
-        assertEquals("", ruleViolationLog.getRosterRuleViolationLog());
+        assertEquals("", RuleViolationLog.getRosterRuleViolationLog());
     }
 
     @Test
     public void testClear() {
-        ruleViolationLog.appendUnitRuleViolationLog("test");
-        ruleViolationLog.appendRosterRuleViolationLog("test");
+        RuleViolationLog.appendUnitRuleViolationLog("test");
+        RuleViolationLog.appendRosterRuleViolationLog("test");
 
-        ruleViolationLog.clear();
+        RuleViolationLog.clear();
 
-        assertEquals("", ruleViolationLog.getUnitRuleViolationLog());
-        assertEquals("", ruleViolationLog.getRosterRuleViolationLog());
+        assertEquals("", RuleViolationLog.getUnitRuleViolationLog());
+        assertEquals("", RuleViolationLog.getRosterRuleViolationLog());
     }
 }

@@ -14,8 +14,7 @@ public class CannotBeMoreUnitsWithThan extends RosterBuildingRule implements Rul
     public void check(Roster roster) {
         UnitCounter counter = new UnitCounter();
         if(counter.countUnitsWith(roster, entity) > quantity){
-            RuleViolationLog ruleViolationLog = RuleViolationLog.getInstance();
-            ruleViolationLog.appendRosterRuleViolationLog("Roster cannot have more than " + quantity + " units with " + entity.getName() + ".");
+            RuleViolationLog.appendRosterRuleViolationLog("Roster cannot have more than " + quantity + " units with " + entity.getName() + ".");
         }
     }
 }

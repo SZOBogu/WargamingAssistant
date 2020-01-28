@@ -12,8 +12,7 @@ public class CannotBeTakenWithMoreThanModels extends UnitBuildingRule implements
     @Override
     public void check(Unit unit){
         if(unit.getNonBaseEquipment().contains(entity1) && unit.getModelsInUnit() > modelQuantity){
-            RuleViolationLog ruleViolationLog = RuleViolationLog.getInstance();
-            ruleViolationLog.appendUnitRuleViolationLog(entity1.getName() + " cannot be taken on units with more than " + modelQuantity + " models.");
+            RuleViolationLog.appendUnitRuleViolationLog(entity1.getName() + " cannot be taken on units with more than " + modelQuantity + " models.");
         }
     }
 }

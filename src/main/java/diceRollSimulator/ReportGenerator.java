@@ -6,7 +6,7 @@ public class ReportGenerator {
     private String report;
 
     public ReportGenerator(){
-        this.report = new String();
+        this.report = "";
     }
 
     public String getReport() {

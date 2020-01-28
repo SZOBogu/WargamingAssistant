@@ -29,7 +29,7 @@ public class UniqueEntitiesPool {
 
     public void release(Entity entity){
         for(int i = 0; i < locked.size(); i++){
-            if(this.locked.get(i).getName() == entity.getName()){
+            if(this.locked.get(i).getName().equals(entity.getName())){
                 this.available.add(entity);
                 this.locked.remove(i);
             }
@@ -37,9 +37,6 @@ public class UniqueEntitiesPool {
     }
 
     public boolean contains(Entity entity){
-        if(this.available.contains(entity) || this.locked.contains(entity))
-            return true;
-        else
-            return false;
+        return this.available.contains(entity) || this.locked.contains(entity);
     }
 }

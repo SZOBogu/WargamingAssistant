@@ -11,8 +11,7 @@ public class MustBeTakenTogether extends UnitBuildingRule implements Rule {
 
     @Override
     public void check(Unit unit) {
-        RuleViolationLog ruleViolationLog = RuleViolationLog.getInstance();
         if(unit.getNonBaseEquipment().contains(entity1) && !unit.getNonBaseEquipment().contains(entity2))
-            ruleViolationLog.appendUnitRuleViolationLog(entity1 + " cannot be taken without " + entity2.getName() + ".");
+            RuleViolationLog.appendUnitRuleViolationLog(entity1 + " cannot be taken without " + entity2.getName() + ".");
     }
 }

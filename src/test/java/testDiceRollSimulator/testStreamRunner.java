@@ -23,7 +23,7 @@ public class testStreamRunner {
 
     @Test
     public void testRunDiceRoll(){
-        String tempReport = new String();
+        String tempReport = "";
         int successes = runner.runDiceRoll(toHit, 1);
 
         assertThat(runner.getReport().length(), greaterThan(tempReport.length()));

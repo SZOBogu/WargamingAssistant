@@ -48,9 +48,9 @@ public class testPointCapOptionSet {
     @Test
     void testGetEntities(){
         assertNotNull(optionSet.getEntities(chosenOptions));
-        assertEquals("", ruleViolationLog.getUnitRuleViolationLog());
+        assertEquals("", RuleViolationLog.getUnitRuleViolationLog());
         assertNotNull(optionSet.getEntities(new ArrayList<Integer>(Arrays.asList(0, 1, 2, 3, 4))));
-        assertEquals("Point cap on option set exceeded\n", ruleViolationLog.getUnitRuleViolationLog());
+        assertEquals("Point cap on option set exceeded\n", RuleViolationLog.getUnitRuleViolationLog());
         RuleViolationLog.clear();
     }
 
