@@ -29,7 +29,6 @@ public class ArmySubcategory {
         return this.unitProfiles.size();
     }
 
-    //TODO:test
     public void setCategoryPointCapPercentage(double categoryPointCapPercentage){
         this.categoryPointCapPercentage = categoryPointCapPercentage;
     }
@@ -38,22 +37,18 @@ public class ArmySubcategory {
         return categoryPointCapPercentage;
     }
 
-    //TODO:test
     public void setCategoryPointCap(int categoryPointCap){
         this.categoryPointCap = categoryPointCap;
     }
 
-    //TODO:test
     public void setCategoryPointCap(Roster roster){
         this.categoryPointCap = roster.getPointCap();
     }
 
-    //TODO:test
     public int getCategoryPointCap() {
         return categoryPointCap;
     }
 
-    //TODO:test
     public void recalculateCategoryPointCap() {
         this.categoryPointCap = (int)Rounder.round(this.categoryPointCapPercentage * this.categoryPointCap);
     }

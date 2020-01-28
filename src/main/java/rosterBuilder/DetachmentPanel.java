@@ -196,7 +196,7 @@ public class DetachmentPanel extends JPanel implements ActionListener {
                 for(int j = 0; j < detachment.getBoughtUnitsCategorized().get(i).size(); j++) {
                     this.unitLabels.get(i).add(new JLabel());
                     JButton removeButton = new JButton("Remove Unit");
-                    JButton editButton = new JButton("Edit Button");
+                    JButton editButton = new JButton("Edit Unit");
                     removeButton.addActionListener(this);
                     editButton.addActionListener(this);
                     this.removeUnitButtons.get(i).add(removeButton);
@@ -261,18 +261,25 @@ public class DetachmentPanel extends JPanel implements ActionListener {
             this.refresh();
         }
         else if(editUnit){
-            //znajdz profil jednostki
-            //wez jednostke
-            //wrzuc w nowo napisana klase
+            UnitAndProfileFinder finder = new UnitAndProfileFinder();
+            UnitTakenOptionsIndexGetter getter = new UnitTakenOptionsIndexGetter();
+
+            UnitProfile unitProfile =  finder.getProfile(this.detachment.getArmy(), this.detachment.getUnit(tempi, tempj).getName());
+
+            Unit unit = this.detachment.getUnit(tempi, tempj);
+            ArrayList<ArrayList<Integer>> optionsIndexes = getter.getTakenOptionsIndexes(unit, unitProfile);
+
             int categoryIndex = 0;
             for (int i = 0; i < this.detachment.getArmy().size(); i++) {
                 if (this.roster.getDetachments().get(this.detachment.getDetachmentNumber()).getArmy().getArmySubcategory(i) == armySubcategory) {
                     categoryIndex = i;
                 }
             }
-//            UnitProfileFrame unitProfile = UnitProfileFrame(unitProfile, roster, this, this.detachment.getDetachmentNumber(), categoryIndex, wargamingSystem, indexesToSelect);
-//            JFrame topFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
-//            topFrame.dispose();
+
+            this.detachment.deleteUnit(tempi, tempj);
+            UnitProfileFrame unitProfileFrame = new UnitProfileFrame(unitProfile, roster, this, this.detachment.getDetachmentNumber(), tempi, wargamingSystem, optionsIndexes);
+            JFrame topFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
+            topFrame.dispose();
         }
     }
 }

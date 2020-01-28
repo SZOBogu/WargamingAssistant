@@ -1,10 +1,10 @@
-package rosterBuilder.rules;
+package rosterBuilder;
 
 import rosterBuilder.*;
 
 import java.util.ArrayList;
 
-public class UnitAndProfileSeeker {
+public class UnitAndProfileFinder {
 
     public UnitProfile getProfile(Army army, String name){
         UnitProfile unitProfile = new UnitProfile();
