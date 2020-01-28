@@ -36,15 +36,28 @@ public class UnitAndProfileSeeker {
         return this.getProfile(armySubcategory, unit.getName());
     }
 
-//    public Unit getUnit(Roster roster, String name){
-//        Unit targetUnit = new Unit();
-//        return targetUnit;
-//    }
-//
-//    public Unit getUnit(Detachment detachment, String name){
-//        Unit targetUnit = new Unit();
-//        return targetUnit;
-//    }
+    public Unit getUnit(Roster roster, String name){
+        Unit targetUnit = new Unit();
+
+        for(int i = 0; i < roster.getDetachments().size(); i++) {
+            if(this.getUnit(roster.getDetachments().get(i), name).getName() != ""){
+                targetUnit = this.getUnit(roster.getDetachments().get(i), name);
+                break;
+            }
+        }
+        return targetUnit;
+    }
+
+    public Unit getUnit(Detachment detachment, String name){
+        Unit targetUnit = new Unit();
+        for(int i = 0; i < detachment.getBoughtUnitsCategorized().size(); i++) {
+            if(this.getUnit(detachment.getBoughtUnitsCategorized().get(i), name).getName() != ""){
+                targetUnit = this.getUnit(detachment.getBoughtUnitsCategorized().get(i), name);
+                break;
+            }
+        }
+        return targetUnit;
+    }
 
     public Unit getUnit(ArrayList<Unit> units, String name){
         Unit targetUnit = new Unit();
@@ -57,13 +70,13 @@ public class UnitAndProfileSeeker {
         return targetUnit;
     }
 
-//    public Unit getUnit(Roster roster, UnitProfile unitProfile){
-//        return this.getUnit(roster, unitProfile.getName());
-//    }
-//
-//    public Unit getUnit(Detachment detachment, UnitProfile unitProfile){
-//        return this.getUnit(detachment, unitProfile.getName());
-//    }
+    public Unit getUnit(Roster roster, UnitProfile unitProfile){
+        return this.getUnit(roster, unitProfile.getName());
+    }
+
+    public Unit getUnit(Detachment detachment, UnitProfile unitProfile){
+        return this.getUnit(detachment, unitProfile.getName());
+    }
 
     public Unit getUnit(ArrayList<Unit> units, UnitProfile unitProfile) {
         return this.getUnit(units, unitProfile.getName());

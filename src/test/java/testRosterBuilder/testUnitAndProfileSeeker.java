@@ -57,15 +57,17 @@ public class testUnitAndProfileSeeker {
         assertEquals(new UnitProfile(), unitAndProfileSeeker.getProfile(armySubcategory1, "Unit30"));
     }
 
-//    @Test
-//    void testGetProfileArmyUnit() {
-//        assertEquals(profile0, unitAndProfileSeeker.getProfile(army, unit0));
-//        assertEquals(profile1, unitAndProfileSeeker.getProfile(army, unit1));
-//        assertEquals(new UnitProfile(), unitAndProfileSeeker.getProfile(army, unit2));
-//        assertEquals(profile2, unitAndProfileSeeker.getProfile(army, unit2));
-//        assertEquals(profile3, unitAndProfileSeeker.getProfile(army, unit3));
-//        assertEquals(new UnitProfile(), unitAndProfileSeeker.getProfile(army, unit0));
-//    }
+    @Test
+    void testGetProfileArmyUnit() {
+        assertEquals(profile0, unitAndProfileSeeker.getProfile(army, unit0));
+        assertEquals(profile1, unitAndProfileSeeker.getProfile(army, unit1));
+        assertEquals(profile2, unitAndProfileSeeker.getProfile(army, unit2));
+        assertEquals(profile3, unitAndProfileSeeker.getProfile(army, unit3));
+
+        Unit unit4 = new Unit("Unit4", 20, new ArrayList<>(), new ArrayList<>(), 1000);
+
+        assertEquals(new UnitProfile(), unitAndProfileSeeker.getProfile(army, unit4));
+    }
 
     @Test
     void testGetProfileArmysubcategoryUnit(){
@@ -77,36 +79,36 @@ public class testUnitAndProfileSeeker {
         assertEquals(new UnitProfile(), unitAndProfileSeeker.getProfile(armySubcategory1, unit0));
     }
 
-//    @Test
-//    void testGetUnitRosterName(){
-//        roster.setPrimaryArmy(army);
-//        roster.addDetachment(detachment0);
-//        roster.addDetachment(detachment1);
-//        detachment0.addUnit(unit0, 0);
-//        detachment1.addUnit(unit1, 1);
-//
-//        assertEquals(unit0, unitAndProfileSeeker.getUnit(roster, "Unit0"));
-//        assertEquals(unit1, unitAndProfileSeeker.getUnit(roster, "Unit1"));
-//        assertEquals(new Unit(), unitAndProfileSeeker.getUnit(roster, "Unit2"));
-//        assertEquals(unit2, unitAndProfileSeeker.getUnit(roster, "Unit2"));
-//        assertEquals(unit3, unitAndProfileSeeker.getUnit(roster, "Unit3"));
-//        assertEquals(new Unit(), unitAndProfileSeeker.getUnit(roster, "Unit0"));
-//    }
+    @Test
+    void testGetUnitRosterName(){
+        roster.setPrimaryArmy(army);
+        roster.addDetachment(detachment0);
+        roster.addDetachment(detachment1);
+        detachment0.addUnit(unit0, 0);
+        detachment1.addUnit(unit1, 1);
+        detachment0.addUnit(unit2, 0);
+        detachment1.addUnit(unit3, 1);
 
-//    @Test
-//    void testGetUnitDetachmentName(){
-//        detachment0.addUnit(unit0, 0);
-//        detachment0.addUnit(unit1, 0);
-//        detachment0.addUnit(unit2, 1);
-//        detachment0.addUnit(unit3, 1);
-//
-//        assertEquals(unit0, unitAndProfileSeeker.getUnit(detachment0, "Unit0"));
-//        assertEquals(unit1, unitAndProfileSeeker.getUnit(detachment0, "Unit1"));
-//        assertEquals(new Unit(), unitAndProfileSeeker.getUnit(detachment0, "Unit2"));
-//        assertEquals(unit2, unitAndProfileSeeker.getUnit(detachment0, "Unit2"));
-//        assertEquals(unit3, unitAndProfileSeeker.getUnit(detachment0, "Unit3"));
-//        assertEquals(new Unit(), unitAndProfileSeeker.getUnit(detachment0, "Unit0"));
-//    }
+        assertEquals(unit0, unitAndProfileSeeker.getUnit(roster, "Unit0"));
+        assertEquals(unit1, unitAndProfileSeeker.getUnit(roster, "Unit1"));
+        assertEquals(unit2, unitAndProfileSeeker.getUnit(roster, "Unit2"));
+        assertEquals(unit3, unitAndProfileSeeker.getUnit(roster, "Unit3"));
+        assertEquals(new Unit(), unitAndProfileSeeker.getUnit(roster, "Unit10"));
+    }
+
+    @Test
+    void testGetUnitDetachmentName(){
+        detachment0.addUnit(unit0, 0);
+        detachment0.addUnit(unit1, 0);
+        detachment0.addUnit(unit2, 1);
+        detachment0.addUnit(unit3, 1);
+
+        assertEquals(unit0, unitAndProfileSeeker.getUnit(detachment0, "Unit0"));
+        assertEquals(unit1, unitAndProfileSeeker.getUnit(detachment0, "Unit1"));
+        assertEquals(unit2, unitAndProfileSeeker.getUnit(detachment0, "Unit2"));
+        assertEquals(unit3, unitAndProfileSeeker.getUnit(detachment0, "Unit3"));
+        assertEquals(new Unit(), unitAndProfileSeeker.getUnit(detachment0, "Unit10"));
+    }
 
     @Test
     void testGetUnitArraylistName(){
@@ -124,36 +126,39 @@ public class testUnitAndProfileSeeker {
         assertEquals(new Unit(), unitAndProfileSeeker.getUnit(unitArrayList, "Unit5"));
     }
 
-//    @Test
-//    void testGetUnitRosterUnitProfile(){
-//        roster.setPrimaryArmy(army);
-//        roster.addDetachment(detachment0);
-//        roster.addDetachment(detachment1);
-//        detachment0.addUnit(unit0, 0);
-//        detachment1.addUnit(unit1, 1);
-//
-//        assertEquals(unit0, unitAndProfileSeeker.getUnit(roster, profile0));
-//        assertEquals(unit1, unitAndProfileSeeker.getUnit(roster, profile1));
-//        assertEquals(new Unit(), unitAndProfileSeeker.getUnit(roster, profile2));
-//        assertEquals(unit2, unitAndProfileSeeker.getUnit(roster, profile2));
-//        assertEquals(unit3, unitAndProfileSeeker.getUnit(roster, profile3));
-//        assertEquals(new Unit(), unitAndProfileSeeker.getUnit(roster, profile0));
-//    }
-//
-//    @Test
-//    void testGetUnitDetachmentUnitProfile(){
-//        detachment0.addUnit(unit0, 0);
-//        detachment0.addUnit(unit1, 0);
-//        detachment0.addUnit(unit2, 1);
-//        detachment0.addUnit(unit3, 1);
-//
-//        assertEquals(unit0, unitAndProfileSeeker.getUnit(detachment0, profile0));
-//        assertEquals(unit1, unitAndProfileSeeker.getUnit(detachment0, profile1));
-//        assertEquals(new Unit(), unitAndProfileSeeker.getUnit(detachment0, profile2));
-//        assertEquals(unit2, unitAndProfileSeeker.getUnit(detachment0, profile2));
-//        assertEquals(unit3, unitAndProfileSeeker.getUnit(detachment0, profile3));
-//        assertEquals(new Unit(), unitAndProfileSeeker.getUnit(detachment0, profile0));
-//    }
+    @Test
+    void testGetUnitRosterUnitProfile(){
+        roster.setPrimaryArmy(army);
+        roster.addDetachment(detachment0);
+        roster.addDetachment(detachment1);
+        detachment0.addUnit(unit0, 0);
+        detachment1.addUnit(unit1, 1);
+        detachment0.addUnit(unit2, 0);
+        detachment1.addUnit(unit3, 1);
+
+        UnitProfile profile4 =  new UnitProfile("Unit4", new ArrayList<>(), new ArrayList<>(), 100);
+
+        assertEquals(unit0, unitAndProfileSeeker.getUnit(roster, profile0));
+        assertEquals(unit1, unitAndProfileSeeker.getUnit(roster, profile1));
+        assertEquals(unit2, unitAndProfileSeeker.getUnit(roster, profile2));
+        assertEquals(unit3, unitAndProfileSeeker.getUnit(roster, profile3));
+        assertEquals(new Unit(), unitAndProfileSeeker.getUnit(roster, profile4));
+    }
+
+    @Test
+    void testGetUnitDetachmentUnitProfile(){
+        detachment0.addUnit(unit0, 0);
+        detachment0.addUnit(unit1, 0);
+        detachment0.addUnit(unit2, 1);
+        detachment0.addUnit(unit3, 1);
+        UnitProfile profile4 =  new UnitProfile("Unit4", new ArrayList<>(), new ArrayList<>(), 100);
+
+        assertEquals(unit0, unitAndProfileSeeker.getUnit(detachment0, profile0));
+        assertEquals(unit1, unitAndProfileSeeker.getUnit(detachment0, profile1));
+        assertEquals(unit2, unitAndProfileSeeker.getUnit(detachment0, profile2));
+        assertEquals(unit3, unitAndProfileSeeker.getUnit(detachment0, profile3));
+        assertEquals(new Unit(), unitAndProfileSeeker.getUnit(detachment0, profile4));
+    }
 
     @Test
     void testGetUnitArrayListUnitProfile(){
