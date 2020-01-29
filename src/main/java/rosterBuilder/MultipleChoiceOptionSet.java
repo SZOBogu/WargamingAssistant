@@ -18,16 +18,16 @@ public class MultipleChoiceOptionSet extends OptionSet{
 
     public ArrayList<Entity> getEntities(ArrayList<Integer> indexes){
         ArrayList<Entity> entities = new ArrayList<>();
-        for(int i =0; i < indexes.size(); i++){
-            entities.add(this.options.get(indexes.get(i)).getEntity());
+        for (Integer index : indexes) {
+            entities.add(this.options.get(index).getEntity());
         }
         return entities;
     }
 
     public int getCost(ArrayList<Integer> indexes){
         int totalCost = 0;
-        for(int i =0; i < indexes.size(); i++){
-            totalCost += this.options.get(indexes.get(i)).getCost();
+        for (Integer index : indexes) {
+            totalCost += this.options.get(index).getCost();
         }
         return totalCost;
     }

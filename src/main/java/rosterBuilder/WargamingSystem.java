@@ -113,7 +113,6 @@ public class WargamingSystem {
         isAllowingAlliances = allowingAlliances;
     }
 
-    //TODO: testy
     public ArrayList<RosterBuildingRule> getRules() {
         return rules;
     }

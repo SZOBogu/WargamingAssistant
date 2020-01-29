@@ -33,11 +33,9 @@ public class testPointCapOptionSet {
     PointCapOptionSet optionSet2 = new PointCapOptionSet(options, "Special Equipment", "get", 40);
     PointCapOptionSet optionSet3 = new PointCapOptionSet(options, "Wizard", "become",true,  40);
 
-    RuleViolationLog ruleViolationLog = RuleViolationLog.getInstance();
-
     @Test
     void testGetAllEntities(){
-        assertEquals(new ArrayList<Entity>(Arrays.asList(ambush, lightArmour, pairedWeapons, wizardAdept, wizardMaster)), optionSet.getAllEntities());
+        assertEquals(new ArrayList<>(Arrays.asList(ambush, lightArmour, pairedWeapons, wizardAdept, wizardMaster)), optionSet.getAllEntities());
     }
 
     @Test
@@ -49,7 +47,7 @@ public class testPointCapOptionSet {
     void testGetEntities(){
         assertNotNull(optionSet.getEntities(chosenOptions));
         assertEquals("", RuleViolationLog.getUnitRuleViolationLog());
-        assertNotNull(optionSet.getEntities(new ArrayList<Integer>(Arrays.asList(0, 1, 2, 3, 4))));
+        assertNotNull(optionSet.getEntities(new ArrayList<>(Arrays.asList(0, 1, 2, 3, 4))));
         assertEquals("Point cap on option set exceeded\n", RuleViolationLog.getUnitRuleViolationLog());
         RuleViolationLog.clear();
     }

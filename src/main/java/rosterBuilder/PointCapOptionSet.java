@@ -27,9 +27,6 @@ public class PointCapOptionSet extends MultipleChoiceOptionSet{
         if(getCost(indexes) > this.pointCap){
             RuleViolationLog.appendUnitRuleViolationLog("Point cap on option set exceeded");
         }
-//        //TODO: test
-//        else if(indexes.isEmpty() && this.isMandatory)
-//            ruleViolationLog.appendUnitRuleViolationLog("Mandatory upgrade not taken");
         return super.getEntities(indexes);
     }
 
