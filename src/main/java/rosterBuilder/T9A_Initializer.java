@@ -34,7 +34,6 @@ public class T9A_Initializer implements IWargameInitializer {
 
         for(int i=0; i<6; i++) {
             ImageIcon icon = new ImageIcon("/home/bogu/IdeaProjects/GUI//src/main/img/T9A/deployments/" + i + ".png");
-            //TODO: look further on it
             if(icon != null) {
                 deployments.add(new Deployment(depNames[i], icon));
                 scenarios0.add(new Mission(scenNames0[i], new ArrayList<>()));

@@ -2,6 +2,7 @@ package testRosterBuilder;
 
 import org.junit.jupiter.api.Test;
 import rosterBuilder.*;
+import rosterBuilder.rules.*;
 import scenarioGenerator.Deployment;
 import scenarioGenerator.Mission;
 import scenarioGenerator.MissionList;
@@ -323,28 +324,42 @@ public class testWargamingSystem {
 
     @Test
     void testIsAllowingAlliances() {
-        assertEquals(true, system1.isAllowingAlliances());
-        assertEquals(false, system2.isAllowingAlliances());
+        assertTrue(system1.isAllowingAlliances());
+        assertFalse(system2.isAllowingAlliances());
     }
-
-//    @Test
-//    void testGetAllianceMatrix(){
-//        assertEquals(allianceMatrix, system1.getAllianceMatrix());
-//        assertTrue(system2.getAllianceMatrix().isEmpty());
-//    }
-//
-//    @Test
-//    void testSetAllianceMatrix(){
-//        assertTrue(system2.getAllianceMatrix().isEmpty());
-//        assertEquals(allianceMatrix, system1.getAllianceMatrix());
-//
-//        system2.setAllianceMatrix(allianceMatrix);
-//        assertEquals(allianceMatrix, system2.getAllianceMatrix());
-//    }
 
     @Test
     void testSetIsAllowingAlliances(){
         system2.setAllowingAlliances(true);
         assertTrue(system2.isAllowingAlliances());
+    }
+
+    @Test
+    void testGetRules() {
+        assertEquals(new ArrayList<>(), system1.getRules());
+    }
+
+    @Test
+    void testSetRules() {
+        RosterBuildingRule rule0 = new CannotHaveMoreModelsWithThan(new Entity("f", ""), 1);
+        RosterBuildingRule rule1 = new CannotBeMoreUnitsWithThan(new Entity("f", ""), 1);
+        ArrayList<RosterBuildingRule> ruleArray = new ArrayList<>();
+        ruleArray.add(rule0);
+        ruleArray.add(rule1);
+        system1.setRules(ruleArray);
+        assertEquals(ruleArray, system1.getRules());
+    }
+
+    @Test
+    void testGetPool() {
+        assertEquals(new ArrayList<>(), system1.getPool().getAvailable());
+    }
+
+    @Test
+    void testSetPool() {
+        ArrayList<Entity> initArray = new ArrayList<>(Arrays.asList(eq000, eq0000,eq0110));
+        UniqueEntitiesPool pool = new UniqueEntitiesPool(initArray);
+        system1.setPool(pool);
+        assertEquals(pool, system1.getPool());
     }
 }

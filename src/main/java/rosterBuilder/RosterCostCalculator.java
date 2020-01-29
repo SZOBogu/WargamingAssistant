@@ -9,7 +9,6 @@ public class RosterCostCalculator {
         return cost;
     }
 
-    //TODO: null pointer exception
     public int calculateRosterCost(Roster roster){
         int cost = 0;
         for(int i = 0; i < roster.getDetachments().size(); i++){
