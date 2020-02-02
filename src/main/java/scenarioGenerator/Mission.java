@@ -1,6 +1,7 @@
 package scenarioGenerator;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Mission {
     private String name;
@@ -50,5 +51,22 @@ public class Mission {
 
     public String getDescription() {
         return description;
+    }
+
+    //TODO: testy
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Mission mission = (Mission) o;
+        return Objects.equals(name, mission.name) &&
+                Objects.equals(objectives, mission.objectives) &&
+                Objects.equals(deployment, mission.deployment) &&
+                Objects.equals(description, mission.description);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, objectives, deployment, description);
     }
 }
