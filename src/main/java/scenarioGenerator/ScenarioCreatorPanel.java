@@ -74,6 +74,7 @@ public class ScenarioCreatorPanel extends JPanel implements ActionListener {
         if(clicked == runButton) {
             RandomDeploymentGetter deploymentGetter = new RandomDeploymentGetter();
             RandomScenariosGetter scenariosGetter = new RandomScenariosGetter();
+            MissionAndDeploymentCloner cloner = new MissionAndDeploymentCloner();
 
             boolean isDeploymentsChosen = false;
             for(int i = 0; i < this.deploymentPanel.getChosenData().size(); i++){
@@ -122,6 +123,23 @@ public class ScenarioCreatorPanel extends JPanel implements ActionListener {
                 for(int i = 0; i < allFalseArraysIndexes.size(); i++) {
                     scenarioBooleans.remove((int)allFalseArraysIndexes.get(i));
                 }
+
+                int repsM = scenarioOptionsPanel.getDuplicateMissionsQuantity();
+                boolean anyRepsM = scenarioOptionsPanel.getAnyNumberOfDuplicateMissions();
+                boolean canRepM = scenarioOptionsPanel.getCanDuplicateMissions();
+
+                int repsD = scenarioOptionsPanel.getDuplicateDeploymentsQuantity();
+                boolean anyRepsD = scenarioOptionsPanel.getAnyNumberOfDuplicateDeployments();
+                boolean canRepD = scenarioOptionsPanel.getCanDuplicateDeployments();
+
+//                if(canRepM){
+//
+//                }
+//
+//                if(canRepD){
+//
+//                }
+
                 Deployment randomDeployment = deploymentGetter.getDeployment(this.deployments , this.deploymentPanel.getChosenData());
                 ArrayList<Mission> randomMissions = scenariosGetter.getScenarios(this.scenarios, scenarioBooleans);
 
