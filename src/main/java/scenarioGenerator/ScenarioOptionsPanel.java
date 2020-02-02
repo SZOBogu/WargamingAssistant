@@ -2,6 +2,8 @@ package scenarioGenerator;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 
 public class ScenarioOptionsPanel extends JPanel{
     JLabel titleLabel;
@@ -24,12 +26,70 @@ public class ScenarioOptionsPanel extends JPanel{
         SpinnerNumberModel universalModel = new SpinnerNumberModel(5, 1, 1000, 1);
 
         this.scenariosToGenerateSpinner = new JSpinner(universalModel);
-        this.deploymentDuplicationCheckbox = new JCheckBox("Duplicate Deployments?");
         this.deploymentDuplicationQuantitySpinner = new JSpinner(universalModel);
-        this.missionDuplicationCheckbox = new JCheckBox("Duplicate missions?");
+        deploymentDuplicationQuantitySpinner.setEnabled(false);
         this.missionDuplicationQuantitySpinner = new JSpinner(universalModel);
+        missionDuplicationQuantitySpinner.setEnabled(false);
+
+        this.deploymentDuplicationCheckbox = new JCheckBox("Duplicate Deployments?");
+        this.deploymentDuplicationCheckbox.addItemListener(new ItemListener() {
+            @Override
+            public void itemStateChanged(ItemEvent itemEvent) {
+                if(itemEvent.getStateChange() == ItemEvent.SELECTED){
+                    deploymentDuplicationQuantitySpinner.setEnabled(true);
+                }
+                else if(itemEvent.getStateChange() == ItemEvent.DESELECTED){
+                    deploymentDuplicationQuantitySpinner.setEnabled(false);
+                }
+                validate();
+                repaint();
+            }
+        });
+
+        this.missionDuplicationCheckbox = new JCheckBox("Duplicate missions?");
+        this.missionDuplicationCheckbox.addItemListener(new ItemListener() {
+            @Override
+            public void itemStateChanged(ItemEvent itemEvent) {
+                if(itemEvent.getStateChange() == ItemEvent.SELECTED){
+                    missionDuplicationQuantitySpinner.setEnabled(true);
+                }
+                else if(itemEvent.getStateChange() == ItemEvent.DESELECTED){
+                    missionDuplicationQuantitySpinner.setEnabled(false);
+                }
+                validate();
+                repaint();
+            }
+        });
+
         this.anyNumberOfDeploymentDuplicationCheckbox = new JCheckBox("Any Number");
+        this.anyNumberOfDeploymentDuplicationCheckbox.addItemListener(new ItemListener() {
+            @Override
+            public void itemStateChanged(ItemEvent itemEvent) {
+                if(itemEvent.getStateChange() == ItemEvent.SELECTED){
+                    deploymentDuplicationQuantitySpinner.setEnabled(false);
+                }
+                else if(itemEvent.getStateChange() == ItemEvent.DESELECTED  && deploymentDuplicationCheckbox.isSelected()){
+                    deploymentDuplicationQuantitySpinner.setEnabled(true);
+                }
+                validate();
+                repaint();
+            }
+        });
+
         this.anyNumberOfMissionDuplicationCheckbox = new JCheckBox("Any Number");
+        this.anyNumberOfMissionDuplicationCheckbox.addItemListener(new ItemListener() {
+            @Override
+            public void itemStateChanged(ItemEvent itemEvent) {
+                if(itemEvent.getStateChange() == ItemEvent.SELECTED){
+                    missionDuplicationQuantitySpinner.setEnabled(false);
+                }
+                else if(itemEvent.getStateChange() == ItemEvent.DESELECTED  && missionDuplicationCheckbox.isSelected()){
+                    missionDuplicationQuantitySpinner.setEnabled(true);
+                }
+                validate();
+                repaint();
+            }
+        });
         this.layoutComponents();
     }
 

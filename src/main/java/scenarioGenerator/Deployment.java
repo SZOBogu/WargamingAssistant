@@ -12,6 +12,10 @@ public class Deployment {
         this.img  = img;
     }
 
+    public Deployment(Deployment deployment){
+        this(deployment.getName(), deployment.getImg());
+    }
+
     public String getName() {
         return name;
     }

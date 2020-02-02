@@ -115,7 +115,6 @@ public class FormPanel extends JPanel implements ActionListener {
         //nastepny rzad
         gbc.gridy++;
         gbc.gridx = 0;
-        gbc.anchor = GridBagConstraints.CENTER;
         add(diceQuantityLabel, gbc);
         gbc.gridx = 1;
         add(diceQuantitySpinner, gbc);
@@ -123,7 +122,6 @@ public class FormPanel extends JPanel implements ActionListener {
         //nastepny rzad
         gbc.gridx = 0;
         gbc.gridy++;
-        gbc.anchor = GridBagConstraints.CENTER;
         add(diceRollSuccessfulResultLabel, gbc);
         gbc.gridx = 1;
         add(diceRollSuccessfulResultSpinner, gbc);
@@ -131,7 +129,6 @@ public class FormPanel extends JPanel implements ActionListener {
         //nastepny rzad
         gbc.gridx = 0;
         gbc.gridy++;
-        gbc.anchor = GridBagConstraints.CENTER;
         add(rerollLabel, gbc);
         gbc.gridx = 1;
         add(rerollCheckBox, gbc);
@@ -139,7 +136,6 @@ public class FormPanel extends JPanel implements ActionListener {
         //nastepny rzad
         gbc.gridx = 0;
         gbc.gridy++;
-        gbc.anchor = GridBagConstraints.CENTER;
         add(specificResultRerollLabel, gbc);
         gbc.gridx = 1;
         add(specificResultRerollSpinner, gbc);
@@ -147,7 +143,6 @@ public class FormPanel extends JPanel implements ActionListener {
         //nastepny rzad
         gbc.gridx = 0;
         gbc.gridy++;
-        gbc.anchor = GridBagConstraints.CENTER;
         add(diceSidesLabel, gbc);
         gbc.gridx = 1;
         add(diceSidesSpinner, gbc);
@@ -155,7 +150,6 @@ public class FormPanel extends JPanel implements ActionListener {
         //nastepny rzad
         gbc.gridx = 0;
         gbc.gridy++;
-        gbc.anchor = GridBagConstraints.CENTER;
         add(countFailuresLabel, gbc);
         gbc.gridx = 1;
         add(countFailuresCheckbox, gbc);
@@ -164,7 +158,6 @@ public class FormPanel extends JPanel implements ActionListener {
         gbc.gridx = 0;
         gbc.gridy++;
         add(clearButton, gbc);
-        gbc.anchor = GridBagConstraints.CENTER;
         gbc.gridx++;
         add(addDiceRollButton, gbc);
 
@@ -186,7 +179,6 @@ public class FormPanel extends JPanel implements ActionListener {
     public void setFormListener(FormListener formListener) {
         this.formListener = formListener;
     }
-
 
     public void setClearListener(ClearListener clearListener){this.clearListener = clearListener;}
 

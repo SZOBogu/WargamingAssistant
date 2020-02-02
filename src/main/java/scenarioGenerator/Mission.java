@@ -8,6 +8,11 @@ public class Mission {
     private Deployment deployment;
     private String description;
 
+    //TODO: test
+    public Mission(Mission mission){
+        this(mission.getName(), mission.getObjectives(), mission.getDeployment(), mission.getDescription());
+    }
+
     public Mission(){
         this("Scenario", new ArrayList<>(), null, "");
     }
