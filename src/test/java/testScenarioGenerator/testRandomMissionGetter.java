@@ -3,7 +3,7 @@ package testScenarioGenerator;
 import org.junit.jupiter.api.Test;
 import scenarioGenerator.Mission;
 import scenarioGenerator.Objective;
-import scenarioGenerator.RandomMissionsGetter;
+import scenarioGenerator.RandomMissionGetter;
 import scenarioGenerator.MissionList;
 
 import java.util.ArrayList;
@@ -12,8 +12,8 @@ import java.util.Collections;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class testRandomMissionsGetter {
-    RandomMissionsGetter getter = new RandomMissionsGetter();
+public class testRandomMissionGetter {
+    RandomMissionGetter getter = new RandomMissionGetter();
 
     ArrayList<Boolean> chosenMiss0 = new ArrayList<>(Arrays.asList(true, false, true));
     ArrayList<Boolean> chosenMiss1 = new ArrayList<>(Arrays.asList(false, true, true));
@@ -40,12 +40,26 @@ public class testRandomMissionsGetter {
     MissionList missList2 = new MissionList("2", missPack2);
     ArrayList<MissionList> missionListArrayList = new ArrayList<>(Arrays.asList(missList0, missList1, missList2));
     @Test
-    void testGetMissarios(){
+    void testGetMissions(){
         for(int i = 0; i < 1000; i++) {
             ArrayList<Mission> generatedMissions = getter.getMissions(missionListArrayList, chosenMissList0);
             assertTrue(generatedMissions.get(0) == miss00 || generatedMissions.get(0) == miss02);
             assertTrue(generatedMissions.get(1) == miss11 || generatedMissions.get(1) == miss12);
             assertTrue(generatedMissions.get(2) == miss20 || generatedMissions.get(2) == miss21);
         }
+    }
+
+    @Test
+    void testGetMissionWithMissionPack(){
+        assertTrue(missPack0.contains(getter.getMission(missList0)));
+        assertTrue(missPack1.contains(getter.getMission(missList1)));
+        assertTrue(missPack2.contains(getter.getMission(missList2)));
+    }
+
+    @Test
+    void testGetMissionWithArrayList(){
+        assertTrue(missPack0.contains(getter.getMission(missPack0)));
+        assertTrue(missPack1.contains(getter.getMission(missPack1)));
+        assertTrue(missPack2.contains(getter.getMission(missPack2)));
     }
 }

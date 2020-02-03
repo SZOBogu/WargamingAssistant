@@ -52,7 +52,6 @@ public class Mission {
         return description;
     }
 
-    //TODO: testy
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

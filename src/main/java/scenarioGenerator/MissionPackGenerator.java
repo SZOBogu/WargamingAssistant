@@ -12,9 +12,8 @@ public class MissionPackGenerator {
     public ArrayList<Mission> generateWithAnyReps(ArrayList<Mission> missions, int quantity){
         ArrayList<Mission> generatedMissions = new ArrayList<>();
         Dice dice = new Dice(missions.size());
-        RandomDeploymentGetter getter = new RandomDeploymentGetter();
+        RandomMissionGetter getter = new RandomMissionGetter();
         for(int i = 0; i < quantity; i++){
-
             generatedMissions.add(missions.get(dice.roll()-1));
         }
         return generatedMissions;
