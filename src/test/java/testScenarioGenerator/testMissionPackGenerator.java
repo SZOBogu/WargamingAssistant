@@ -1,12 +1,15 @@
 package testScenarioGenerator;
 
 import org.junit.jupiter.api.Test;
+import scenarioGenerator.Deployment;
 import scenarioGenerator.DeploymentPackGenerator;
 import scenarioGenerator.Mission;
 import scenarioGenerator.MissionPackGenerator;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 import static org.junit.jupiter.api.Assertions.fail;
 
@@ -21,11 +24,17 @@ public class testMissionPackGenerator {
 
     @Test
     void testGenerate(){
-        fail();
+        ArrayList<Mission> generatedMissions = generator.generate(missions, 2);
+        assertEquals(2, generatedMissions.size());
+        assertTrue(missions.contains(generatedMissions.get(0)));
+        assertTrue(missions.contains(generatedMissions.get(1)));
     }
 
     @Test
     void testGenerateWithReps(){
-        fail();
+        ArrayList<Mission> generatedMissions = generator.generateWithAnyReps(missions, 2);
+        assertEquals(2, generatedMissions.size());
+        assertTrue(missions.contains(generatedMissions.get(0)));
+        assertTrue(missions.contains(generatedMissions.get(1)));
     }
 }

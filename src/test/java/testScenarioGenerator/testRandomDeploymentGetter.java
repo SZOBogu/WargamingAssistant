@@ -28,4 +28,13 @@ public class testRandomDeploymentGetter {
             assertTrue(generatedDeployment == deployment0 || generatedDeployment == deployment3);
         }
     }
+
+
+    @Test
+    void testGetDeploymentWithoutBoolArray(){
+        for(int i = 0; i < 100; i++){
+            Deployment generatedDeployment = getter.getDeployment(deploymentPack);
+            assertTrue(deploymentPack.contains(generatedDeployment));
+        }
+    }
 }

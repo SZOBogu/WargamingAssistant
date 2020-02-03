@@ -8,7 +8,7 @@ import javax.swing.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import static org.junit.jupiter.api.Assertions.fail;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class testDeploymentPackGenerator {
     Deployment deployment0 = new Deployment("Deployment 0", new ImageIcon());
@@ -21,11 +21,17 @@ public class testDeploymentPackGenerator {
 
     @Test
     void testGenerate(){
-        fail();
+        ArrayList<Deployment> generatedDeployments = generator.generate(deployments, 2);
+        assertEquals(2, generatedDeployments.size());
+        assertTrue(deployments.contains(generatedDeployments.get(0)));
+        assertTrue(deployments.contains(generatedDeployments.get(1)));
     }
 
     @Test
     void testGenerateWithReps(){
-        fail();
+        ArrayList<Deployment> generatedDeployments = generator.generateWithAnyReps(deployments, 3);
+        assertEquals(3, generatedDeployments.size());
+        assertTrue(deployments.contains(generatedDeployments.get(0)));
+        assertTrue(deployments.contains(generatedDeployments.get(1)));
     }
 }

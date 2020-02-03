@@ -2,8 +2,8 @@ package scenarioGenerator;
 
 import java.util.ArrayList;
 
-public class RandomScenariosGetter {
-    public ArrayList<Mission> getScenarios(ArrayList<MissionList> missionLists, ArrayList<ArrayList<Boolean>> chosenScenarios){
+public class RandomMissionsGetter {
+    public ArrayList<Mission> getMissions(ArrayList<MissionList> missionLists, ArrayList<ArrayList<Boolean>> chosenScenarios){
         BoolToListIndexConverter converter = new BoolToListIndexConverter();
         RandomIndexGenerator generator = new RandomIndexGenerator();
         ArrayList<ArrayList<Integer>> chosenScenarioIndexes = converter.convertList(chosenScenarios);

@@ -73,7 +73,7 @@ public class ScenarioCreatorPanel extends JPanel implements ActionListener {
         JButton clicked = (JButton)actionEvent.getSource();
         if(clicked == runButton) {
             RandomDeploymentGetter deploymentGetter = new RandomDeploymentGetter();
-            RandomScenariosGetter scenariosGetter = new RandomScenariosGetter();
+            RandomMissionsGetter scenariosGetter = new RandomMissionsGetter();
             MissionAndDeploymentCloner cloner = new MissionAndDeploymentCloner();
 
             boolean isDeploymentsChosen = false;
@@ -141,7 +141,7 @@ public class ScenarioCreatorPanel extends JPanel implements ActionListener {
 //                }
 
                 Deployment randomDeployment = deploymentGetter.getDeployment(this.deployments , this.deploymentPanel.getChosenData());
-                ArrayList<Mission> randomMissions = scenariosGetter.getScenarios(this.scenarios, scenarioBooleans);
+                ArrayList<Mission> randomMissions = scenariosGetter.getMissions(this.scenarios, scenarioBooleans);
 
                 if (!randomMissions.isEmpty() && randomMissions.get(0).getDeployment() != null) {
                     for (int i = 0; i < randomMissions.size(); i++) {
