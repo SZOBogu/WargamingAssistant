@@ -15,8 +15,8 @@ public class RandomIndexGenerator {
 
     public ArrayList<Integer> getIndexes(ArrayList<ArrayList<Integer>> indexList){
         ArrayList<Integer> indexes = new ArrayList<>();
-        for(int i = 0; i < indexList.size() ; i++){
-            indexes.add(getIndex(indexList.get(i)));
+        for (ArrayList<Integer> integers : indexList) {
+            indexes.add(getIndex(integers));
         }
         return indexes;
     }

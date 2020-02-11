@@ -11,14 +11,14 @@ public class testDice {
     Dice du = new Dice(-28);
 
     @Test
-    public void getMaxTest(){
+    void getMaxTest(){
         assertEquals(d6.getMax(), 6);
         assertEquals(d8.getMax(), 8);
         assertEquals(du.getMax(), 6);
     }
 
     @Test
-    public void rollTest(){
+    void rollTest(){
         for(int i=0; i<1000; i++) {
             int result6 = d6.roll();
             int result8 = d8.roll();
