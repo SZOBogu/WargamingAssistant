@@ -2,7 +2,9 @@ package testCommon;
 
 import common.RandomElementsOutOfArrayGetter;
 import org.junit.jupiter.api.Test;
+import scenarioGenerator.Deployment;
 
+import javax.swing.*;
 import java.util.Arrays;
 import java.util.List;
 
@@ -12,6 +14,10 @@ public class testRandomElementsOutOfArrayGetter {
     RandomElementsOutOfArrayGetter getter = new RandomElementsOutOfArrayGetter();
     List<Object> dummyList = Arrays.asList(1,2,3);
 
+    Deployment deployment0 = new Deployment("Deployment 0", new ImageIcon("/home/bogu/IdeaProjects/GUI//src/main/img/T9A/deployments/0.png"));
+    Deployment deployment1 = new Deployment("Deployment 1", new ImageIcon("/home/bogu/IdeaProjects/GUI//src/main/img/T9A/deployments/1.png"));
+    Deployment deployment2 = new Deployment("Deployment 2", new ImageIcon("/home/bogu/IdeaProjects/GUI//src/main/img/T9A/deployments/2.png"));
+    List<Object> deploymentList = Arrays.asList(deployment0, deployment1, deployment2);
     @Test
     void testRandomArrayWithoutReps() {
         List<Object> resultList = getter.randomArrayWithoutReps(dummyList, 2);
@@ -59,8 +65,6 @@ public class testRandomElementsOutOfArrayGetter {
             }
             if(reps > 2)
                 fail();
-            else
-                reps = 0;
         }
     }
 
@@ -70,5 +74,16 @@ public class testRandomElementsOutOfArrayGetter {
         assertEquals(resultList.size(), 2);
         assertTrue((Integer)resultList.get(0) > 0 && (Integer)resultList.get(0) < 4);
         assertTrue((Integer)resultList.get(1) > 0 && (Integer)resultList.get(1) < 4);
+    }
+
+    @Test
+    void testOnDeployments(){
+        List<Object> deploymentResultList = getter.randomArrayWithoutReps(deploymentList, 2);
+        assertTrue(deploymentResultList.get(0).equals(deployment0) ||
+                deploymentResultList.get(0).equals(deployment1) ||
+                deploymentResultList.get(0).equals(deployment2));
+        assertTrue(deploymentResultList.get(1).equals(deployment0) ||
+                deploymentResultList.get(1).equals(deployment1) ||
+                deploymentResultList.get(1).equals(deployment2));
     }
 }
