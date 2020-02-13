@@ -27,9 +27,5 @@ public class testArrayOrderMixer {
         assertTrue(resultList.contains("10"));
         assertFalse(resultList.contains(""));
         assertEquals(10, resultList.size());
-
-        for(Object s: resultList) {
-            System.out.println(s);
-        }
     }
 }

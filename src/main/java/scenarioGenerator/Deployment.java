@@ -25,7 +25,6 @@ public class Deployment {
         return img;
     }
 
-    //TODO: testy
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

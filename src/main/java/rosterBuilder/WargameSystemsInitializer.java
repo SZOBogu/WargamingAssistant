@@ -12,8 +12,8 @@ public class WargameSystemsInitializer {
 
     public ArrayList<WargamingSystem> initialize(){
         ArrayList<WargamingSystem> wargamingSystems = new ArrayList<>();
-        for(int i = 0; i < this.initializers.size(); i++){
-            wargamingSystems.add(this.initializers.get(i).initWargame());
+        for (IWargameInitializer initializer : this.initializers) {
+            wargamingSystems.add(initializer.initWargame());
         }
         return wargamingSystems;
     }
