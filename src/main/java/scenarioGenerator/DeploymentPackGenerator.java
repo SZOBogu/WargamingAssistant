@@ -1,20 +1,19 @@
 package scenarioGenerator;
 
-import common.Dice;
+import common.RandomArrayIndexesGetter;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class DeploymentPackGenerator {
     public ArrayList<Deployment> generate(ArrayList<Deployment> deployments, int quantity){
+        RandomArrayIndexesGetter getter = new RandomArrayIndexesGetter();
+        List<Object> tempList = Arrays.asList(deployments);
+        List<Integer> generatedDeploymentIndexes = getter.randomArrayIndexesWithoutReps(tempList, quantity);
         ArrayList<Deployment> generatedDeployments = new ArrayList<>();
-        if(deployments.size() > quantity){
-            //gieneruj normalnie
-        }
-        if(deployments.size() == quantity){
-            //pomieszaj
-        }
-        else{
-            //zworc gownoliste
+        for(int i = 0; i < generatedDeploymentIndexes.size(); i++){
+            generatedDeployments.add(deployments.get(generatedDeploymentIndexes.get(i)));
         }
         return generatedDeployments;
     }

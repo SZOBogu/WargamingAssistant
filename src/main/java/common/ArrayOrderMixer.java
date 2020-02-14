@@ -4,17 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ArrayOrderMixer {
-    public List<Object> getArrayInRandomOrder(List<Object> objectList){
-        ArrayList<Object> elementList = new ArrayList<>(objectList);
-        ArrayList<Object> resultList = new ArrayList<>();
+    public List<Integer> getArrayIndexesInRandomOrder(List<Object> objectList){
+        List<Integer> indexList = new ArrayList<>();
+        List<Integer> tempList = new ArrayList<>();
 
-        while(!elementList.isEmpty()){
-            Dice dice = new Dice(elementList.size());
-            int roll = dice.roll() - 1;
-            resultList.add(elementList.get(roll));
-            elementList.remove(roll);
+        for(int i = 0; i < objectList.size(); i++) {
+            tempList.add(i);
         }
-
-        return resultList;
+        while(!tempList.isEmpty()){
+            Dice dice = new Dice(tempList.size());
+            int roll = dice.roll() - 1;
+            indexList.add(tempList.get(roll));
+            tempList.remove(roll);
+        }
+        return indexList;
     }
 }

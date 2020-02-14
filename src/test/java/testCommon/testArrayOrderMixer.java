@@ -14,18 +14,19 @@ public class testArrayOrderMixer {
 
     @Test
     void testGetArrayInRandomOrder(){
-        List<Object> resultList = arrayOrderMixer.getArrayInRandomOrder(dummyList);
-        assertTrue(resultList.contains("1"));
-        assertTrue(resultList.contains("2"));
-        assertTrue(resultList.contains("3"));
-        assertTrue(resultList.contains("4"));
-        assertTrue(resultList.contains("5"));
-        assertTrue(resultList.contains("6"));
-        assertTrue(resultList.contains("7"));
-        assertTrue(resultList.contains("8"));
-        assertTrue(resultList.contains("9"));
-        assertTrue(resultList.contains("10"));
-        assertFalse(resultList.contains(""));
-        assertEquals(10, resultList.size());
+        List<Integer> indexList = arrayOrderMixer.getArrayIndexesInRandomOrder(dummyList);
+        assertTrue(indexList.contains(0));
+        assertTrue(indexList.contains(1));
+        assertTrue(indexList.contains(2));
+        assertTrue(indexList.contains(3));
+        assertTrue(indexList.contains(4));
+        assertTrue(indexList.contains(5));
+        assertTrue(indexList.contains(6));
+        assertTrue(indexList.contains(7));
+        assertTrue(indexList.contains(8));
+        assertTrue(indexList.contains(9));
+        assertFalse(indexList.contains(-1));
+        assertFalse(indexList.contains(10));
+        assertEquals(10, indexList.size());
     }
 }

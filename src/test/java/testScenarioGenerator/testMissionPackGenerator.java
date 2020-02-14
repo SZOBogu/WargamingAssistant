@@ -11,8 +11,6 @@ import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import static org.junit.jupiter.api.Assertions.fail;
-
 public class testMissionPackGenerator {
     Mission mission0 = new Mission("Mission 0", new ArrayList<>());
     Mission mission1 = new Mission("Mission 1", new ArrayList<>());
