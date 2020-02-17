@@ -18,21 +18,13 @@ public class RandomArrayIndexesGetter {
             }
         }                                               //stara metoda konczy sie tutaj
 
-//        List<Integer> dedubbedList = new ArrayList<>();
-//        for(int i = 0; i < indexArrayList.size(); i++){
-//            dedubbedList.add(tempList.get(indexArrayList.get(i)));
-//        }
-//        List<Integer> resultList = new ArrayList<>();
-//
-//        for(int i = 0; i < indexArrayList.size(); i++){
-//            resultList.add(dedubbedList.get(i));
-//        }
         return tempList;
     }
 
     public List<Integer> randomArrayIndexesWithoutReps(List<Object> list, int howManyElements){
         List<Integer> indexList = new ArrayList<>();
         ArrayList<Object> elementList = new ArrayList<>(list);
+
         if(elementList.size() < howManyElements)
             return indexList;
         else if(elementList.size() == howManyElements){
@@ -55,33 +47,38 @@ public class RandomArrayIndexesGetter {
     }
 
     public List<Integer> randomArrayIndexesWithReps(List<Object> list, List<Integer> repList, int howManyElements){
-        List<Object> objectList = new ArrayList<>(list);
-        List<Integer> repCountList = new ArrayList<>(repList);
+        ArrayList<Object> objectList = new ArrayList<>(list);
+        ArrayList<Integer> repCountList = new ArrayList<>(repList);
 
         for(int i = 0; i < repCountList.size(); i++) {
-            if (repCountList.get(i) < 1) {
+            if (repCountList.get(i) == 0) {
                 objectList.remove(i);
                 repCountList.remove(i);
             }
         }
 
-        if(list.size() > repCountList.size()){
-            for(int i = 0; i < list.size() - repCountList.size(); i++){
+        if(objectList.size() > repCountList.size()){
+            for(int i = 0; i < objectList.size() - repCountList.size(); i++){
                 repCountList.add(1);
             }
         }
-        else if(list.size() < repCountList.size()){
-            for(int i = 0; i < repCountList.size() - list.size(); i++){
-                repCountList.remove(repCountList.size() - 1);
-            }
+        else if(objectList.size() < repCountList.size()){
+            repCountList = new ArrayList<>(repCountList.subList(0, objectList.size()));
         }
 
         List<Integer> indexList = new ArrayList<>();
         for(int i = 0; i < objectList.size(); i++){
             indexList.add(i);
         }
+        List<Integer> dedubbedIndexList = this.getIndexesThatWereDuplicated(objectList, indexList, repCountList, objectList.size());
+
+        for(int i = 0; i < repCountList.size(); i++){
+            for(int j = 1; j < repCountList.get(i); j++){
+                objectList.add(objectList.get(i));
+            }
+        }
+
         List<Integer> randomsList = this.randomArrayIndexesWithoutReps(objectList, howManyElements);
-        List<Integer> dedubbedIndexList = this.getIndexesThatWereDuplicated(list, indexList, repCountList, objectList.size());
         List<Integer> resultList = new ArrayList<>();
         for(int i = 0; i < randomsList.size(); i++){
             resultList.add(dedubbedIndexList.get(randomsList.get(i)));
