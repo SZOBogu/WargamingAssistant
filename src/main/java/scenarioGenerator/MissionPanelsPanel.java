@@ -5,12 +5,12 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class MissionPanelsPanel extends JPanel {
-    private ArrayList<ScenarioPanel> panels;
+    private ArrayList<MissionPanel> panels;
 
     public MissionPanelsPanel(ArrayList<MissionList> scenarios){
         this.panels = new ArrayList<>();
         for(int i=0;i<scenarios.size();i++){
-            panels.add(new ScenarioPanel(scenarios.get(i)));
+            panels.add(new MissionPanel(scenarios.get(i)));
         }
         this.layoutComponents();
     }

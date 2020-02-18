@@ -1,6 +1,7 @@
 package scenarioGenerator;
 
 import common.ModulesEnum;
+import common.RandomArrayElementsGetter;
 import common.SystemSelectionMenu;
 import rosterBuilder.WargameSystemsInitializer;
 import rosterBuilder.WargamingSystem;
@@ -23,18 +24,18 @@ public class ScenarioCreatorPanel extends JPanel implements ActionListener {
     private JButton runButton;
 
     private ArrayList<Deployment> deployments;
-    private ArrayList<MissionList> scenarios;
+    private ArrayList<MissionList> missionLists;
 
-    public ScenarioCreatorPanel(ArrayList<Deployment> deployments, ArrayList<MissionList> scenarios, String systemName){
+    public ScenarioCreatorPanel(ArrayList<Deployment> deployments, ArrayList<MissionList> missionLists, String systemName){
         this.deployments = deployments;
-        this.scenarios = scenarios;
+        this.missionLists = missionLists;
 
         this.titleLabel = new JLabel("Scenario Generator for " + systemName);
         this.scenLabel = new JLabel("Choose Scenarios that generator should randomly choose from:");
         this.deploymentLabel = new JLabel("Choose Deployments that generator should randomly choose from:");
         this.scenarioOptionsPanel = new ScenarioOptionsPanel();
         this.deploymentPanel = new DeploymentPanel(deployments);
-        this.scenarioPanel = new MissionPanelsPanel(scenarios);
+        this.scenarioPanel = new MissionPanelsPanel(missionLists);
         this.runButton = new JButton("Generate Scenario");
         this.backButton = new JButton("Go Back");
         this.runButton.addActionListener(this);
@@ -72,9 +73,12 @@ public class ScenarioCreatorPanel extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent actionEvent){
         JButton clicked = (JButton)actionEvent.getSource();
         if(clicked == runButton) {
-            RandomDeploymentGetter deploymentGetter = new RandomDeploymentGetter();
-            RandomMissionGetter scenariosGetter = new RandomMissionGetter();
-            MissionAndDeploymentCloner cloner = new MissionAndDeploymentCloner();
+            RandomArrayElementsGetter getter = new RandomArrayElementsGetter();
+            BoolToListIndexConverter converter = new BoolToListIndexConverter();
+
+//            RandomDeploymentGetter deploymentGetter = new RandomDeploymentGetter();
+//            RandomMissionGetter scenariosGetter = new RandomMissionGetter();
+//            MissionAndDeploymentCloner cloner = new MissionAndDeploymentCloner();
 
             boolean isDeploymentsChosen = false;
             for(int i = 0; i < this.deploymentPanel.getChosenData().size(); i++){
@@ -132,23 +136,47 @@ public class ScenarioCreatorPanel extends JPanel implements ActionListener {
                 boolean anyRepsD = scenarioOptionsPanel.getAnyNumberOfDuplicateDeployments();
                 boolean canRepD = scenarioOptionsPanel.getCanDuplicateDeployments();
 
-//                if(canRepM){
-//
-//                }
-//
-//                if(canRepD){
-//
-//                }
+                ArrayList<Deployment> randomDeployments = new ArrayList<>();
+                ArrayList<ArrayList<Mission>> randomMissionsPack = new ArrayList<>();
 
-                Deployment randomDeployment = deploymentGetter.getDeployment(this.deployments , this.deploymentPanel.getChosenData());
-                ArrayList<Mission> randomMissions = scenariosGetter.getMissions(this.scenarios, scenarioBooleans);
-
-                if (!randomMissions.isEmpty() && randomMissions.get(0).getDeployment() != null) {
-                    for (int i = 0; i < randomMissions.size(); i++) {
-                        randomDeployment = randomMissions.get(i).getDeployment();
+                if(canRepD){
+                    ArrayList<Integer> chosenDeploymentIndexes = converter.convert(this.deploymentPanel.getChosenData());
+                    ArrayList<Deployment> chosenDeploymentPool = new ArrayList<>();
+                    for(int i = 0; i < chosenDeploymentIndexes.size(); i++){
+                        chosenDeploymentPool.add(this.deployments.get(chosenDeploymentIndexes.get(i)));
+                    }
+                    if(anyRepsD){
+                        randomDeployments = getter.randomArrayElementsWithAnyReps(chosenDeploymentPool, this.scenarioOptionsPanel.getScenarioToGenerateCount());
+                    }
+                    else{
+                        randomDeployments = getter.randomArrayElementsWithReps(chosenDeploymentPool, this.scenarioOptionsPanel.getDuplicateDeploymentsQuantity(),
+                                this.scenarioOptionsPanel.getScenarioToGenerateCount());
                     }
                 }
-                ScenarioDisplayer scenarioDisplayer = new ScenarioDisplayer(randomDeployment, randomMissions);
+                if(canRepM){
+                    ArrayList<ArrayList<Integer>> chosenMissionsIndexes = converter.convertList(this.scenarioPanel.getChosenData());
+                    ArrayList<ArrayList<Mission>> chosenMissions = new ArrayList<>();
+                    for(int i = 0; i < chosenMissionsIndexes.size(); i++){
+                        chosenMissions.add(new ArrayList<>());
+                        for(int j = 0; j < chosenMissionsIndexes.get(i).size(); j++){
+                            chosenMissions.get(i).add(this.missionLists.get(i).get(j));
+                        }
+                    }
+                    if(anyRepsM){
+                        for(int i = 0; i < chosenMissionsIndexes.size(); i++){
+                            randomMissionsPack.add(getter.randomArrayElementsWithAnyReps(chosenMissions.get(i),
+                                    this.scenarioOptionsPanel.getScenarioToGenerateCount()));
+                        }
+                    }
+                    else{
+                        for(int i = 0; i < chosenMissionsIndexes.size(); i++){
+                            randomMissionsPack.add(getter.randomArrayElementsWithReps(chosenMissions.get(i),
+                                    this.scenarioOptionsPanel.getDuplicateMissionsQuantity(),
+                                    this.scenarioOptionsPanel.getScenarioToGenerateCount()));
+                        }
+                    }
+                }
+                ScenarioDisplayer scenarioDisplayer = new ScenarioDisplayer(randomDeployments, randomMissionsPack);
             }
         }
         else if(clicked == backButton){

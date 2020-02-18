@@ -4,7 +4,7 @@ import java.util.List;
 
 public class RandomArrayElementsGetter {
 
-    public <T> List<T> randomArrayElementsWithoutReps(List<T> list, int howManyElements){
+    public <T> ArrayList<T> randomArrayElementsWithoutReps(List<T> list, int howManyElements){
         ArrayList<T> elementList = new ArrayList<>(list);
         ArrayList<T> resultList = new ArrayList<>();
 
@@ -30,7 +30,7 @@ public class RandomArrayElementsGetter {
         return resultList;
     }
 
-    public <T> List<T> randomArrayElementsWithReps(List<T> list, List<Integer> repList, int howManyElements){
+    public <T> ArrayList<T> randomArrayElementsWithReps(List<T> list, List<Integer> repList, int howManyElements){
         ArrayList<T> objectList = new ArrayList<>(list);
         ArrayList<Integer> repCountList = new ArrayList<>(repList);
 
@@ -50,11 +50,6 @@ public class RandomArrayElementsGetter {
             repCountList = new ArrayList<>(repCountList.subList(0, objectList.size()));
         }
 
-        List<Integer> indexList = new ArrayList<>();
-        for(int i = 0; i < objectList.size(); i++){
-            indexList.add(i);
-        }
-
         for(int i = 0; i < repCountList.size(); i++){
             for(int j = 1; j < repCountList.get(i); j++){
                 objectList.add(objectList.get(i));
@@ -62,15 +57,10 @@ public class RandomArrayElementsGetter {
         }
 
         List<T> randomsList = this.randomArrayElementsWithoutReps(objectList, howManyElements);
-        List<T> resultList = new ArrayList<>();
-        for(int i = 0; i < randomsList.size(); i++){
-            resultList.add(randomsList.get(i));
-
-        }
-        return resultList;
+        return new ArrayList<>(randomsList);
     }
 
-    public <T> List<T> randomArrayElementsWithReps(List<T> list, int reps, int howManyElements){
+    public <T> ArrayList<T> randomArrayElementsWithReps(List<T> list, int reps, int howManyElements){
         List<Integer> repList = new ArrayList<>();
         for(int i = 0; i < list.size(); i++){
             repList.add(reps);
@@ -78,8 +68,8 @@ public class RandomArrayElementsGetter {
         return this.randomArrayElementsWithReps(list, repList, howManyElements);
     }
 
-    public <T> List<T> randomArrayElementsWithAnyReps(List<T> list, int howManyElements){
-        List<T> elementList = new ArrayList<>();
+    public <T> ArrayList<T> randomArrayElementsWithAnyReps(List<T> list, int howManyElements){
+        ArrayList<T> elementList = new ArrayList<>();
         Dice dice = new Dice(list.size());
         for(int i = 0; i < howManyElements; i++){
             elementList.add(list.get(dice.roll() - 1));

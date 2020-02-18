@@ -3,11 +3,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
-public class ScenarioPanel extends JPanel {
+public class MissionPanel extends JPanel {
     private JLabel label;
     private ArrayList<JRadioButton> radioButtons;
 
-    public ScenarioPanel(MissionList scenarios){
+    public MissionPanel(MissionList scenarios){
         super();
         this.label = new JLabel(scenarios.getName() + ":");
         this.radioButtons = new ArrayList<>();

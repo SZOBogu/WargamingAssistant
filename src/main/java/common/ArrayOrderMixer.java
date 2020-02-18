@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ArrayOrderMixer {
-    public <T> List<T> getArrayInRandomOrder(List<T> objectList){
-        List<T> elementList = new ArrayList<>();
-        List<T> tempList = new ArrayList<>();
+    public <T> ArrayList<T> getArrayInRandomOrder(List<T> objectList){
+        ArrayList<T> elementList = new ArrayList<>();
+        ArrayList<T> tempList = new ArrayList<>();
 
         for(int i = 0; i < objectList.size(); i++) {
             tempList.add(objectList.get(i));

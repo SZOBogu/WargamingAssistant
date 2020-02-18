@@ -6,23 +6,24 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 
 public class ScenarioOptionsPanel extends JPanel{
-    JLabel titleLabel;
+    private JLabel titleLabel;
 
-    JSpinner scenariosToGenerateSpinner;
+    private JSpinner scenariosToGenerateSpinner;
+    private JLabel scenariosToGenerateLabel;
 
-    JCheckBox deploymentDuplicationCheckbox;
-    JSpinner deploymentDuplicationQuantitySpinner;
+    private JCheckBox deploymentDuplicationCheckbox;
+    private JSpinner deploymentDuplicationQuantitySpinner;
 
-    JCheckBox missionDuplicationCheckbox;
-    JSpinner missionDuplicationQuantitySpinner;
+    private JCheckBox missionDuplicationCheckbox;
+    private JSpinner missionDuplicationQuantitySpinner;
 
-    JCheckBox anyNumberOfDeploymentDuplicationCheckbox;
-    JCheckBox anyNumberOfMissionDuplicationCheckbox;
+    private JCheckBox anyNumberOfDeploymentDuplicationCheckbox;
+    private JCheckBox anyNumberOfMissionDuplicationCheckbox;
 
     public ScenarioOptionsPanel(){
         super();
         this.titleLabel = new JLabel("Options");
-
+        this.scenariosToGenerateLabel = new JLabel("How many Scearios would you like to generate?");
         SpinnerNumberModel universalModel = new SpinnerNumberModel(5, 1, 1000, 1);
 
         this.scenariosToGenerateSpinner = new JSpinner(universalModel);
@@ -106,6 +107,11 @@ public class ScenarioOptionsPanel extends JPanel{
         add(titleLabel, gbc);
         titleLabel.setHorizontalAlignment(JLabel.CENTER);
         gbc.gridy++;
+        add(scenariosToGenerateLabel, gbc);
+        gbc.gridx++;
+        add(scenariosToGenerateSpinner, gbc);
+        gbc.gridy++;
+        gbc.gridx = 0;
 
         add(this.deploymentDuplicationCheckbox, gbc);
         gbc.gridx++;
@@ -125,6 +131,7 @@ public class ScenarioOptionsPanel extends JPanel{
 
         gbc.gridx = 0;
     }
+    public int getScenarioToGenerateCount(){return (int)this.scenariosToGenerateSpinner.getValue();}
 
     public boolean getCanDuplicateDeployments(){
         return this.deploymentDuplicationCheckbox.isSelected();

@@ -7,25 +7,18 @@ import java.util.ArrayList;
 
 public class ScenarioDisplayer extends JFrame implements ActionListener {
     private JLabel titleLabel;
-    private JLabel deploymentNameLabel;
-    private JLabel deploymentImageLabel;
-    private ArrayList<JLabel> scenarioNamesLabel;
-    private ArrayList<JLabel> scenarioDescriptionsLabel;
+    private ArrayList<GeneratedScenarioPanel> scenarioPanels;
     private JButton disposeButton;
 
-    public ScenarioDisplayer(Deployment deployment, ArrayList<Mission> missions){
+    public ScenarioDisplayer(ArrayList<Deployment> deployments, ArrayList<ArrayList<Mission>> missions){
         super();
         this.titleLabel = new JLabel("Scenario Generator");
-        this.deploymentNameLabel = new JLabel(deployment.getName());
-        this.deploymentImageLabel = new JLabel(deployment.getImg());
-        this.scenarioNamesLabel = new ArrayList<>();
-        this.scenarioDescriptionsLabel = new ArrayList<>();
         this.disposeButton = new JButton("Go Back");
         this.disposeButton.addActionListener(this);
+        this.scenarioPanels = new ArrayList<>();
 
-        for(int i = 0; i< missions.size(); i++){
-            this.scenarioNamesLabel.add(new JLabel(missions.get(i).getName()));
-            this.scenarioDescriptionsLabel.add(new JLabel(missions.get(i).getDescription()));
+        for(int i = 0; i < deployments.size(); i++){
+            scenarioPanels.add(new GeneratedScenarioPanel(deployments.get(i), missions.get(i)));
         }
 
         setMinimumSize(new Dimension(1000, 800));
@@ -47,16 +40,12 @@ public class ScenarioDisplayer extends JFrame implements ActionListener {
 
         add(this.titleLabel, gbc);
         gbc.gridy++;
-        add(this.deploymentNameLabel, gbc);
-        gbc.gridy++;
-        add(this.deploymentImageLabel, gbc);
-        gbc.gridy++;
-        for(int i=0;i<this.scenarioNamesLabel.size();i++){
-            add(this.scenarioNamesLabel.get(i), gbc);
-            gbc.gridy++;
-            add(this.scenarioDescriptionsLabel.get(i), gbc);
+
+        for(int i=0;i<this.scenarioPanels.size();i++){
+            add(this.scenarioPanels.get(i), gbc);
             gbc.gridy++;
         }
+
         add(this.disposeButton, gbc);
     }
 
