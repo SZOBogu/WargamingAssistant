@@ -2,8 +2,8 @@ package common;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RandomArrayIndexesGetter {
-    public List<Integer> getIndexesThatWereDuplicated(List<Object> list, List<Integer> indexList, List<Integer> repList, int originalSize){
+public class RandomArrayElementsGetter {
+    public <T> List<Integer> getIndexesThatWereDuplicated(List<T> list, List<Integer> indexList, List<Integer> repList, int originalSize){
         ArrayList<Integer> indexArrayList = new ArrayList<>(indexList);
         ArrayList<Integer> originalList = new ArrayList<>(indexArrayList.subList(0, originalSize));
         ArrayList<Integer> indexes = new ArrayList<>();
@@ -16,38 +16,37 @@ public class RandomArrayIndexesGetter {
             for(int j = 1; j < repList.get(i); j++){
                 tempList.add(indexes.get(i));
             }
-        }                                               //stara metoda konczy sie tutaj
+        }
 
         return tempList;
     }
 
-    public List<Integer> randomArrayIndexesWithoutReps(List<Object> list, int howManyElements){
-        List<Integer> indexList = new ArrayList<>();
-        ArrayList<Object> elementList = new ArrayList<>(list);
+    public <T> List<T> randomArrayElementsWithoutReps(List<T> list, int howManyElements){
+        List<T> elementList = new ArrayList<>();
 
         if(elementList.size() < howManyElements)
-            return indexList;
+            return elementList;
         else if(elementList.size() == howManyElements){
             ArrayOrderMixer mixer = new ArrayOrderMixer();
-            return mixer.getArrayIndexesInRandomOrder(list);
+            return mixer.getArrayInRandomOrder(list);
         }
         else {
-            ArrayList<Integer> tempList = new ArrayList<>(); //list of subsequent indexes
+            ArrayList<Integer> indexList = new ArrayList<>(); //list of subsequent indexes
             for(int i = 0; i < elementList.size(); i++) {
-                tempList.add(i);
+                indexList.add(i);
             }
             for(int i = 0; i < howManyElements; i++){
-                Dice dice  = new Dice(tempList.size());
+                Dice dice  = new Dice(indexList.size());
                 int roll = dice.roll() - 1;
-                indexList.add(tempList.get(roll));
-                tempList.remove(roll);
+                elementList.add(list.get(roll));
+                indexList.remove(roll);
             }
         }
-        return indexList;
+        return elementList;
     }
 
-    public List<Integer> randomArrayIndexesWithReps(List<Object> list, List<Integer> repList, int howManyElements){
-        ArrayList<Object> objectList = new ArrayList<>(list);
+    public <T> List<T> randomArrayElementsWithReps(List<T> list, List<Integer> repList, int howManyElements){
+        ArrayList<T> objectList = new ArrayList<>(list);
         ArrayList<Integer> repCountList = new ArrayList<>(repList);
 
         for(int i = 0; i < repCountList.size(); i++) {
@@ -78,28 +77,28 @@ public class RandomArrayIndexesGetter {
             }
         }
 
-        List<Integer> randomsList = this.randomArrayIndexesWithoutReps(objectList, howManyElements);
-        List<Integer> resultList = new ArrayList<>();
+        List<T> randomsList = this.randomArrayElementsWithoutReps(objectList, howManyElements);
+        List<T> resultList = new ArrayList<>();
         for(int i = 0; i < randomsList.size(); i++){
-            resultList.add(dedubbedIndexList.get(randomsList.get(i)));
+            resultList.add(randomsList.get(dedubbedIndexList.get(i)));
         }
         return resultList;
     }
 
-    public List<Integer> randomArrayIndexesWithReps(List<Object> list, int reps, int howManyElements){
+    public <T> List<T> randomArrayElementsWithReps(List<T> list, int reps, int howManyElements){
         List<Integer> repList = new ArrayList<>();
         for(int i = 0; i < list.size(); i++){
             repList.add(reps);
         }
-        return this.randomArrayIndexesWithReps(list, repList, howManyElements);
+        return this.randomArrayElementsWithReps(list, repList, howManyElements);
     }
 
-    public List<Integer> randomArrayIndexesWithAnyReps(List<Object> list, int howManyElements){
-        List<Object> objectList = new ArrayList<>();
+    public <T> List<T> randomArrayElementsWithAnyReps(List<T> list, int howManyElements){
+        List<T> elementList = new ArrayList<>();
         Dice dice = new Dice(list.size());
         for(int i = 0; i < howManyElements; i++){
-            objectList.add(list.get(dice.roll() - 1));
+            elementList.add(list.get(dice.roll() - 1));
         }
-        return this.randomArrayIndexesWithoutReps(objectList, howManyElements);
+        return this.randomArrayElementsWithoutReps(elementList, howManyElements);
     }
 }
