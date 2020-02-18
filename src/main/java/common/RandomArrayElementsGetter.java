@@ -3,26 +3,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RandomArrayElementsGetter {
-    public <T> List<Integer> getIndexesThatWereDuplicated(List<T> list, List<Integer> indexList, List<Integer> repList, int originalSize){
-        ArrayList<Integer> indexArrayList = new ArrayList<>(indexList);
-        ArrayList<Integer> originalList = new ArrayList<>(indexArrayList.subList(0, originalSize));
-        ArrayList<Integer> indexes = new ArrayList<>();
-        for(int i = 0; i < list.size(); i++){
-            indexes.add(i);
-        }
-
-        List<Integer> tempList = new ArrayList<>(originalList);
-        for(int i = 0; i < repList.size(); i++){
-            for(int j = 1; j < repList.get(i); j++){
-                tempList.add(indexes.get(i));
-            }
-        }
-
-        return tempList;
-    }
 
     public <T> List<T> randomArrayElementsWithoutReps(List<T> list, int howManyElements){
-        List<T> elementList = new ArrayList<>();
+        ArrayList<T> elementList = new ArrayList<>(list);
+        ArrayList<T> resultList = new ArrayList<>();
 
         if(elementList.size() < howManyElements)
             return elementList;
@@ -31,18 +15,19 @@ public class RandomArrayElementsGetter {
             return mixer.getArrayInRandomOrder(list);
         }
         else {
-            ArrayList<Integer> indexList = new ArrayList<>(); //list of subsequent indexes
+            ArrayList<Integer> indexList = new ArrayList<>();
             for(int i = 0; i < elementList.size(); i++) {
                 indexList.add(i);
             }
             for(int i = 0; i < howManyElements; i++){
                 Dice dice  = new Dice(indexList.size());
                 int roll = dice.roll() - 1;
-                elementList.add(list.get(roll));
+                resultList.add(elementList.get(roll));
                 indexList.remove(roll);
+                elementList.remove(roll);
             }
         }
-        return elementList;
+        return resultList;
     }
 
     public <T> List<T> randomArrayElementsWithReps(List<T> list, List<Integer> repList, int howManyElements){
@@ -69,7 +54,6 @@ public class RandomArrayElementsGetter {
         for(int i = 0; i < objectList.size(); i++){
             indexList.add(i);
         }
-        List<Integer> dedubbedIndexList = this.getIndexesThatWereDuplicated(objectList, indexList, repCountList, objectList.size());
 
         for(int i = 0; i < repCountList.size(); i++){
             for(int j = 1; j < repCountList.get(i); j++){
@@ -80,7 +64,8 @@ public class RandomArrayElementsGetter {
         List<T> randomsList = this.randomArrayElementsWithoutReps(objectList, howManyElements);
         List<T> resultList = new ArrayList<>();
         for(int i = 0; i < randomsList.size(); i++){
-            resultList.add(randomsList.get(dedubbedIndexList.get(i)));
+            resultList.add(randomsList.get(i));
+
         }
         return resultList;
     }
@@ -99,6 +84,6 @@ public class RandomArrayElementsGetter {
         for(int i = 0; i < howManyElements; i++){
             elementList.add(list.get(dice.roll() - 1));
         }
-        return this.randomArrayElementsWithoutReps(elementList, howManyElements);
+        return elementList;
     }
 }

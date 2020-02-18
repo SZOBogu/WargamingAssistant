@@ -17,15 +17,6 @@ public class testRandomArrayElementsGetter {
     List<Entity> dummyList = Arrays.asList(entity1, entity2, entity3);
 
     @Test
-    void testGetIndexesThatWereDuplicated(){
-        List<Integer> repList0 = Arrays.asList(5,2,1);
-        List<Integer> elementList = Arrays.asList(0, 1, 2, 3, 4, 5, 6, 7);
-        List<Integer> resultList0 = getter.getIndexesThatWereDuplicated(dummyList, elementList, repList0, 3);
-
-        assertEquals(Arrays.asList(0,1,2,0,0,0,0,1), resultList0);
-    }
-
-    @Test
     void testRandomArrayWithoutReps() {
         List<Entity> elementList = getter.randomArrayElementsWithoutReps(dummyList, 2);
 
@@ -69,12 +60,13 @@ public class testRandomArrayElementsGetter {
             }
         }
         if(reps0 > 5){
+            for (Entity e : elementList0)
+                System.out.print(e + " ");
             fail();
         }
         if(reps1 > 2){
-            fail();
-        }
-        if(reps2 > 0){
+            for (Entity e : elementList0)
+                System.out.print(e + " ");
             fail();
         }
 
@@ -82,15 +74,12 @@ public class testRandomArrayElementsGetter {
         assertEquals(elementList1.size(), 3);
         assertEquals(elementList1.size(), 3);
         assertTrue(elementList1.get(0) == entity1 || elementList1.get(0) == entity2 || elementList1.get(0) == entity3);
-        assertTrue(elementList1.get(1) == entity1 || elementList1.get(1) == entity2 || elementList1.get(0) == entity3);
-        assertTrue(elementList1.get(2) == entity1 || elementList1.get(2) == entity2 || elementList1.get(0) == entity3);
-        assertNotSame(elementList1.get(0), dummyList.get(2));
-        assertNotSame(elementList1.get(1), dummyList.get(2));
-        assertNotSame(elementList1.get(2), dummyList.get(2));
+        assertTrue(elementList1.get(1) == entity1 || elementList1.get(1) == entity2 || elementList1.get(1) == entity3);
+        assertTrue(elementList1.get(2) == entity1 || elementList1.get(2) == entity2 || elementList1.get(2) == entity3);
         reps0 = 0;
         reps1 = 0;
         reps2 = 0;
-        for (Entity e : elementList0) {
+        for (Entity e : elementList1) {
             if (e == entity1) {
                 reps0++;
             }
@@ -102,29 +91,31 @@ public class testRandomArrayElementsGetter {
             }
         }
         if(reps0 > 2){
+            for (Entity e : elementList1)
+                System.out.print(e + " ");
             fail();
         }
         if(reps1 > 1){
+            for (Entity e : elementList1)
+                System.out.print(e + " ");
             fail();
         }
         if(reps2 > 1){
+            for (Entity e : elementList1)
+                System.out.print(e + " ");
             fail();
         }
-
 
         assertEquals(elementList2.size(), 3);
         assertEquals(elementList2.size(), 3);
         assertEquals(elementList2.size(), 3);
         assertTrue(elementList2.get(0) == entity1 || elementList2.get(0) == entity2 || elementList2.get(0) == entity3);
-        assertTrue(elementList2.get(1) == entity1 || elementList2.get(1) == entity2 || elementList2.get(0) == entity3);
-        assertTrue(elementList2.get(2) == entity1 || elementList2.get(2) == entity2 || elementList2.get(0) == entity3);
-        assertNotSame(elementList2.get(0), dummyList.get(2));
-        assertNotSame(elementList2.get(1), dummyList.get(2));
-        assertNotSame(elementList2.get(2), dummyList.get(2));
+        assertTrue(elementList2.get(1) == entity1 || elementList2.get(1) == entity2 || elementList2.get(1) == entity3);
+        assertTrue(elementList2.get(2) == entity1 || elementList2.get(2) == entity2 || elementList2.get(2) == entity3);
         reps0 = 0;
         reps1 = 0;
         reps2 = 0;
-        for (Entity e : elementList0) {
+        for (Entity e : elementList2) {
             if (e == entity1) {
                 reps0++;
             }
@@ -136,12 +127,18 @@ public class testRandomArrayElementsGetter {
             }
         }
         if(reps0 > 2){
+            for (Entity e : elementList2)
+                System.out.print(e + " ");
             fail();
         }
         if(reps1 > 1){
+            for (Entity e : elementList2)
+                System.out.print(e + " ");
             fail();
         }
         if(reps2 > 7){
+            for (Entity e : elementList2)
+                System.out.print(e + " ");
             fail();
         }
     }
@@ -152,8 +149,8 @@ public class testRandomArrayElementsGetter {
         assertEquals(elementList.size(), 3);
 
         assertTrue(elementList.get(0) == entity1 || elementList.get(0) == entity2 || elementList.get(0) == entity3);
-        assertTrue(elementList.get(1) == entity1 || elementList.get(1) == entity2 || elementList.get(0) == entity3);
-        assertTrue(elementList.get(2) == entity1 || elementList.get(2) == entity2 || elementList.get(0) == entity3);
+        assertTrue(elementList.get(1) == entity1 || elementList.get(1) == entity2 || elementList.get(1) == entity3);
+        assertTrue(elementList.get(2) == entity1 || elementList.get(2) == entity2 || elementList.get(2) == entity3);
 
         for (Entity o : dummyList) {
             int reps = 0;
@@ -171,6 +168,6 @@ public class testRandomArrayElementsGetter {
         List<Entity> elementList = getter.randomArrayElementsWithAnyReps(dummyList, 2);
         assertEquals(elementList.size(), 2);
         assertTrue(elementList.get(0) == entity1 || elementList.get(0) == entity2 || elementList.get(0) == entity3);
-        assertTrue(elementList.get(1) == entity1 || elementList.get(1) == entity2 || elementList.get(0) == entity3);
+        assertTrue(elementList.get(1) == entity1 || elementList.get(1) == entity2 || elementList.get(1) == entity3);
     }
 }
