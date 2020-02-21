@@ -7,6 +7,7 @@ App contains 3 modules:
  Known issues:
   RosterBuilder:
   - Unique Items are not available after deleting unit despite releasing properly to Pool.
+  - Updated initializer, that actually works as advertised.
   - Pool of points on option sets is not working properly.
   - No point pools for unit categories.
   - No visual clue on currently spent points during roster creation.
@@ -15,5 +16,4 @@ App contains 3 modules:
  To do:
   - Swing -> Spring
   - Introduce Database (mongoDB)
-  - Rework of ScenarioGenerator: allowing to generate missions for whole tournament on one click with or without duplication.
   - BattleScore Calculator
