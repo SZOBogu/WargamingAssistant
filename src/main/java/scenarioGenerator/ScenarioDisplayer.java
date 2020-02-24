@@ -17,7 +17,13 @@ public class ScenarioDisplayer extends JFrame implements ActionListener {
         this.disposeButton.addActionListener(this);
         this.scenarioPanels = new ArrayList<>();
 
-        for(int i = 0; i < missions.size(); i++){
+        int size = 0;
+        //TODO: look into suspiciously disappearing missions
+        if (missions.size() > deployments.size())
+            size = deployments.size();
+        else
+            size = missions.size();
+        for(int i = 0; i < size; i++){
             scenarioPanels.add(new GeneratedScenarioPanel(deployments.get(i), missions.get(i)));
         }
 
