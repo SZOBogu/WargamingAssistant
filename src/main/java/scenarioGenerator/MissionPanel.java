@@ -7,12 +7,12 @@ public class MissionPanel extends JPanel {
     private JLabel label;
     private ArrayList<JRadioButton> radioButtons;
 
-    public MissionPanel(MissionList scenarios){
+    public MissionPanel(MissionList missions){
         super();
-        this.label = new JLabel(scenarios.getName() + ":");
+        this.label = new JLabel(missions.getName() + ":");
         this.radioButtons = new ArrayList<>();
-        for(int i=0; i<scenarios.size(); i++) {
-            Mission mission = scenarios.get(i);
+        for(int i=0; i<missions.size(); i++) {
+            Mission mission = missions.get(i);
             JRadioButton radioButton = new JRadioButton(mission.getName());
             this.radioButtons.add(radioButton);
             radioButton.setSelected(true);
@@ -49,8 +49,8 @@ public class MissionPanel extends JPanel {
 
     public ArrayList<Boolean> getChosenData(){
         ArrayList<Boolean> data = new ArrayList<>();
-        for(int i=0; i < this.radioButtons.size(); i++){
-            boolean isChosen = this.radioButtons.get(i).isSelected();
+        for (JRadioButton radioButton : this.radioButtons) {
+            boolean isChosen = radioButton.isSelected();
             data.add(isChosen);
         }
         return data;

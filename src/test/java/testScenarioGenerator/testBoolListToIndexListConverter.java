@@ -1,15 +1,15 @@
 package testScenarioGenerator;
 
 import org.junit.jupiter.api.Test;
-import scenarioGenerator.BoolToListIndexConverter;
+import scenarioGenerator.BoolListToIndexListConverter;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class testBoolToListIndexConverter {
-    BoolToListIndexConverter converter = new BoolToListIndexConverter();
+public class testBoolListToIndexListConverter {
+    BoolListToIndexListConverter converter = new BoolListToIndexListConverter();
     ArrayList<Boolean> test0 = new ArrayList<>(Arrays.asList(true, true, true, true, true, true));
     ArrayList<Boolean> test1 = new ArrayList<>(Arrays.asList(true, true, true, false, false, true));
     ArrayList<Boolean> test2 = new ArrayList<>(Arrays.asList(false, false, false, false, false, false));

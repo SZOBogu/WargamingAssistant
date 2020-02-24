@@ -2,7 +2,7 @@ package scenarioGenerator;
 
 import java.util.ArrayList;
 
-public class BoolToListIndexConverter {
+public class BoolListToIndexListConverter {
     public ArrayList<Integer> convert(ArrayList<Boolean> booleansArray){
         ArrayList<Integer> indexList = new ArrayList<>();
         for(int i = 0; i < booleansArray.size(); i++){

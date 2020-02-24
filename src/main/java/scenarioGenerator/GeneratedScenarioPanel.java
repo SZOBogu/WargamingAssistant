@@ -17,9 +17,9 @@ public class GeneratedScenarioPanel extends JPanel {
         this.scenarioNamesLabel = new ArrayList<>();
         this.scenarioDescriptionsLabel = new ArrayList<>();
 
-        for(int i = 0; i< missions.size(); i++){
-            this.scenarioNamesLabel.add(new JLabel(missions.get(i).getName()));
-            this.scenarioDescriptionsLabel.add(new JLabel(missions.get(i).getDescription()));
+        for (Mission mission : missions) {
+            this.scenarioNamesLabel.add(new JLabel(mission.getName()));
+            this.scenarioDescriptionsLabel.add(new JLabel(mission.getDescription()));
         }
         this.layoutComponents();
     }

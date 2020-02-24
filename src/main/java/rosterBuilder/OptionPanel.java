@@ -1,6 +1,6 @@
 package rosterBuilder;
 
-import scenarioGenerator.BoolToListIndexConverter;
+import scenarioGenerator.BoolListToIndexListConverter;
 
 import javax.swing.*;
 import java.awt.*;
@@ -48,7 +48,7 @@ public class OptionPanel extends JPanel {
         for (JRadioButton optionButton : this.optionButtons) {
             areButtonsChosen.add(optionButton.isSelected());
         }
-        BoolToListIndexConverter converter =  new BoolToListIndexConverter();
+        BoolListToIndexListConverter converter =  new BoolListToIndexListConverter();
 
         return converter.convert(areButtonsChosen);
     }

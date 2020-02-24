@@ -15,11 +15,11 @@ import java.util.Collections;
 
 public class ScenarioCreatorPanel extends JPanel implements ActionListener {
     private JLabel titleLabel;
-    private JLabel scenLabel;
+    private JLabel missionLabel;
     private JLabel deploymentLabel;
     private ScenarioOptionsPanel scenarioOptionsPanel;
     private DeploymentPanel deploymentPanel;
-    private MissionPanelsPanel scenarioPanel;
+    private MissionPanelsPanel missionPanel;
     private JButton backButton;
     private JButton runButton;
 
@@ -31,11 +31,11 @@ public class ScenarioCreatorPanel extends JPanel implements ActionListener {
         this.missionLists = missionLists;
 
         this.titleLabel = new JLabel("Scenario Generator for " + systemName);
-        this.scenLabel = new JLabel("Choose Scenarios that generator should randomly choose from:");
+        this.missionLabel = new JLabel("Choose Scenarios that generator should randomly choose from:");
         this.deploymentLabel = new JLabel("Choose Deployments that generator should randomly choose from:");
         this.scenarioOptionsPanel = new ScenarioOptionsPanel();
         this.deploymentPanel = new DeploymentPanel(deployments);
-        this.scenarioPanel = new MissionPanelsPanel(missionLists);
+        this.missionPanel = new MissionPanelsPanel(missionLists);
         this.runButton = new JButton("Generate Scenario");
         this.backButton = new JButton("Go Back");
         this.runButton.addActionListener(this);
@@ -60,9 +60,9 @@ public class ScenarioCreatorPanel extends JPanel implements ActionListener {
         gbc.gridy++;
         add(this.deploymentPanel, gbc);
         gbc.gridy++;
-        add(this.scenLabel, gbc);
+        add(this.missionLabel, gbc);
         gbc.gridy++;
-        add(this.scenarioPanel, gbc);
+        add(this.missionPanel, gbc);
         gbc.gridy++;
         add(backButton, gbc);
         gbc.gridy++;
@@ -74,7 +74,7 @@ public class ScenarioCreatorPanel extends JPanel implements ActionListener {
         JButton clicked = (JButton)actionEvent.getSource();
         if(clicked == runButton) {
             RandomArrayElementsGetter getter = new RandomArrayElementsGetter();
-            BoolToListIndexConverter converter = new BoolToListIndexConverter();
+            BoolListToIndexListConverter converter = new BoolListToIndexListConverter();
 
 //            RandomDeploymentGetter deploymentGetter = new RandomDeploymentGetter();
 //            RandomMissionGetter scenariosGetter = new RandomMissionGetter();
@@ -88,9 +88,9 @@ public class ScenarioCreatorPanel extends JPanel implements ActionListener {
                 }
             }
             boolean isScenariosChosen = false;
-            for(int i = 0; i < this.scenarioPanel.getChosenData().size(); i++){
-                for(int j = 0; j < this.scenarioPanel.getChosenData().get(i).size(); j++){
-                    if(this.scenarioPanel.getChosenData().get(i).get(j)) {
+            for(int i = 0; i < this.missionPanel.getChosenData().size(); i++){
+                for(int j = 0; j < this.missionPanel.getChosenData().get(i).size(); j++){
+                    if(this.missionPanel.getChosenData().get(i).get(j)) {
                         isScenariosChosen = true;
                         break;
                     }
@@ -110,7 +110,7 @@ public class ScenarioCreatorPanel extends JPanel implements ActionListener {
                         JOptionPane.ERROR_MESSAGE);
             }
             else{
-                ArrayList<ArrayList<Boolean>> scenarioBooleans = this.scenarioPanel.getChosenData();
+                ArrayList<ArrayList<Boolean>> scenarioBooleans = this.missionPanel.getChosenData();
                 ArrayList<Integer> allFalseArraysIndexes = new ArrayList<>();
                 //TODO: do osobnego obiektu
                 for(int i = 0; i < scenarioBooleans.size(); i++) {
@@ -155,7 +155,7 @@ public class ScenarioCreatorPanel extends JPanel implements ActionListener {
                 }
                 else randomDeployments = getter.randomArrayElementsWithoutReps(chosenDeploymentPool, this.scenarioOptionsPanel.getScenarioToGenerateCount());
 
-                ArrayList<ArrayList<Integer>> chosenMissionsIndexes = converter.convertList(this.scenarioPanel.getChosenData());
+                ArrayList<ArrayList<Integer>> chosenMissionsIndexes = converter.convertList(this.missionPanel.getChosenData());
                 ArrayList<ArrayList<Mission>> chosenMissions = new ArrayList<>();
                 for(int i = 0; i < chosenMissionsIndexes.size(); i++){
                     chosenMissions.add(new ArrayList<>());
