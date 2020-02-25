@@ -21,7 +21,7 @@ public class testRuleViolationLog {
 //        RuleViolationLog.clear();
 //    }
     RuleViolationLog ruleViolationLog = RuleViolationLog.getInstance();
-
+//TODO: co to maja byc za testy?
     @Test
     public void testGetUnitRuleViolationLog() {
         assertEquals("", RuleViolationLog.getUnitRuleViolationLog());

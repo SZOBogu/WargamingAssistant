@@ -81,7 +81,7 @@ public class testProbabilityCalculator {
     }
 
     @Test
-    void testCaluculateProbaility(){
+    void testCalculateProbability(){
         assertEquals(1./6, calculator.calculateProbability(testRoll0));                                     //6+
         assertEquals(1./3 + (1 - 1./3) * 1./3, calculator.calculateProbability(testRoll1));                 //5+ z re rollem
         assertEquals((1./2) + ((1 - 1./2) * 1./6) * 1./2, calculator.calculateProbability(testRoll2));       //4+ z re rollem gał

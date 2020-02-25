@@ -30,11 +30,10 @@ public class testStreamRunner {
         assertThat(successes, lessThanOrEqualTo(toHit.getQuantity()));
     }
 
+    //TODO:fix
     @Test
     public void testRunAll(){
         String report = runner.runAll(testArray);
-//        Pattern regex = Pattern.compile("TOTAL RESULT: " + "\\d+" + " SUCCESSES\n" + "\\d+" + " dices\n1.D6 roll on 5\\+\n2.D8 roll on 5- with reroll\n3.D8 roll on 5- with reroll of 1s\\." + "[\\s\\S]*");
-//        assertThat(report, matchesPattern("TOTAL RESULT: " + "\\d+" + " SUCCESSES\n" + "\\d+" + " dices\n1.D6 roll on 5\\+\n2.D8 roll on 5- with reroll\n3.D8 roll on 5- with reroll of 1s\\." + "[\\s\\S]*"));
         assertThat(report, not(isEmptyString()));
     }
 }

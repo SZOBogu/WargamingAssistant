@@ -3,6 +3,7 @@ package testDiceRollSimulator;
 import diceRollSimulator.FormEvent;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 public class testFormEvent {
     Object source = new Object();
@@ -13,9 +14,9 @@ public class testFormEvent {
         assertEquals(formEvent.getSource(), source);
         assertEquals(formEvent.getQuantity(), 10);
         assertEquals(formEvent.getSuccessValue(), 2);
-        assertEquals(formEvent.isReroll(), false);
+        assertFalse(formEvent.isReroll());
         assertEquals(formEvent.getValueToReRoll(), -1);
-        assertEquals(formEvent.isFailures(), false);
+        assertFalse(formEvent.isFailures());
         assertEquals(formEvent.getDiceSides(), 6);
     }
 }

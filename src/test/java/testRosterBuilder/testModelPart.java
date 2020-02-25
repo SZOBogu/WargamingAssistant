@@ -11,14 +11,6 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class testModelPart {
-    Option option00 = new Option(new Weapon("op00", "bum bum"), 20);
-    Option option01 = new Option(new SpecialRule("op01", "asdas"), 50);
-    OptionSet optionSet0 = new SingleChoiceOptionSet(new ArrayList<Option>(Arrays.asList(option00, option01)));
-
-    Option option10 = new Option(new Weapon("op10", "bam bam"), 200);
-    Option option11 = new Option(new SpecialRule("op11", "asdasa"), 500);
-    OptionSet optionSet1 = new MultipleChoiceOptionSet(new ArrayList<Option>(Arrays.asList(option10, option11)));
-
     Weapon eq00 = new Weapon("en0", "bum bum");
     Entity eq01 =    new Entity("en1", "asd");
     SpecialRule sr00 = new SpecialRule("sr0", "asdas");
@@ -31,14 +23,6 @@ public class testModelPart {
     Statline statline0 = new Statline(new ArrayList<>(Arrays.asList(statistic00, statistic01, statistic02)));
 
     ModelPart modelPart0 = new ModelPart("Model", statline0, specialRules0, equipment0);
-    @Test
-    void testAutism(){
-        assertEquals(2, equipment0.size());
-        assertEquals(2, specialRules0.size());
-
-        assertEquals(2, modelPart0.getEquipment().size());
-        assertEquals(2, modelPart0.getSpecialRules().size());
-    }
 
     @Test
     void testGetName(){
@@ -47,9 +31,9 @@ public class testModelPart {
 
     @Test
     void testGetStatline(){
-        assertTrue(statistic00.equals(modelPart0.getStatline().getStatistic(0)));
-        assertTrue(statistic01.equals(modelPart0.getStatline().getStatistic(1)));
-        assertTrue(statistic02.equals(modelPart0.getStatline().getStatistic(2)));
+        assertEquals(statistic00, modelPart0.getStatline().getStatistic(0));
+        assertEquals(statistic01, modelPart0.getStatline().getStatistic(1));
+        assertEquals(statistic02, modelPart0.getStatline().getStatistic(2));
     }
 
     @Test
@@ -69,13 +53,4 @@ public class testModelPart {
         String expected = "Model\tS: 1 D: -1 toHit: 3+ \tsr0, sr1, en0, en1";
         assertEquals(expected, modelPart0.toString());
     }
-
-//    @Test
-//    void testGetBaseEquipmentAndRules(){
-//        ArrayList<Entity> tempEnts = modelPart0.getEquipment();
-//        assertEquals(2 ,tempEnts.size());
-//        assertTrue(tempEnts.addAll(specialRules0));
-//        assertEquals(4 ,tempEnts.size());
-//        assertEquals(tempEnts, modelPart0.getBaseEquipmentAndRules());
-//    }
 }

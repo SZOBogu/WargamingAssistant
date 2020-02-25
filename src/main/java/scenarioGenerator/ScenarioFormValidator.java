@@ -8,7 +8,7 @@ public class ScenarioFormValidator {
        return false;
     }
     public boolean canBeGenerated(ArrayList<Deployment> deployments, ArrayList<ArrayList<Mission>> missions,
-                                  ArrayList<Integer> deploymentReps, ArrayList<Integer> missionReps,
+                                  ArrayList<Integer> deploymentReps, ArrayList<ArrayList<Integer>> missionReps,
                                   int scensToGenerate){
         return false;
     }

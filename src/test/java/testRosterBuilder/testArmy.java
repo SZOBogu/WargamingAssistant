@@ -6,6 +6,7 @@ import rosterBuilder.*;
 import javax.swing.*;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -177,7 +178,7 @@ public class testArmy {
     ArmySubcategory armySubcategory1 = new ArmySubcategory("TROOPS", unitProfiles1);
 
     //$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-    ArrayList<Integer> allyArray = new ArrayList<>(Arrays.asList(0));
+    ArrayList<Integer> allyArray = new ArrayList<>(Collections.singletonList(0));
     ArrayList<ArmySubcategory> armySubcategories = new ArrayList<>(Arrays.asList(armySubcategory0, armySubcategory1));
     ImageIcon img = new ImageIcon();
     Army army = new Army("Cosmosailors", armySubcategories, img);

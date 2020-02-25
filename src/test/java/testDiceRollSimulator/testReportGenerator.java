@@ -14,11 +14,11 @@ public class testReportGenerator {
         ArrayList<ArrayList<Integer>> results1 = new ArrayList<ArrayList<Integer>>();
         ArrayList<Integer> results11 = new ArrayList<>(Arrays.asList(4,1,4,3,6,3,4,2,2,5,4,3,2,5,1,4,3,3,5,2));   //3+
         ArrayList<ArrayList<Integer>> results2 = new ArrayList<ArrayList<Integer>>();
-        ArrayList results2notRR = new ArrayList(Arrays.asList(1,4,1,2,3,4,6,1,1,5,1,2,6,6));                  //5+ rr 1
-        ArrayList results2RR = new ArrayList(Arrays.asList(6,4,4,2,3,4,6,5,5,5,2,2,6,6));                  //5+ rr 1
+        ArrayList<Integer> results2notRR = new ArrayList(Arrays.asList(1,4,1,2,3,4,6,1,1,5,1,2,6,6));                  //5+ rr 1
+        ArrayList<Integer> results2RR = new ArrayList(Arrays.asList(6,4,4,2,3,4,6,5,5,5,2,2,6,6));                  //5+ rr 1
         ArrayList<ArrayList<Integer>> results3 = new ArrayList<ArrayList<Integer>>();
-        ArrayList results3notRR = new ArrayList(Arrays.asList(5,2,4,3,1,5,6));                  //3- rr
-        ArrayList results3RR = new ArrayList(Arrays.asList(5,6,4,3,5,5,6));                  //3- rr
+        ArrayList<Integer> results3notRR = new ArrayList(Arrays.asList(5,2,4,3,1,5,6));                  //3- rr
+        ArrayList<Integer> results3RR = new ArrayList(Arrays.asList(5,6,4,3,5,5,6));                  //3- rr
 
         ArrayList<DiceRoll> diceRolls = new ArrayList<>();
         DiceRoll diceRoll1 = new DiceRoll(20, 3, false, false, 6);
