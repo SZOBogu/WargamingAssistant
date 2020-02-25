@@ -76,10 +76,6 @@ public class ScenarioCreatorPanel extends JPanel implements ActionListener {
             RandomArrayElementsGetter getter = new RandomArrayElementsGetter();
             BoolListToIndexListConverter converter = new BoolListToIndexListConverter();
 
-//            RandomDeploymentGetter deploymentGetter = new RandomDeploymentGetter();
-//            RandomMissionGetter scenariosGetter = new RandomMissionGetter();
-//            MissionAndDeploymentCloner cloner = new MissionAndDeploymentCloner();
-
             boolean isDeploymentsChosen = false;
             for(int i = 0; i < this.deploymentPanel.getChosenData().size(); i++){
                 if(this.deploymentPanel.getChosenData().get(i)){
@@ -127,12 +123,9 @@ public class ScenarioCreatorPanel extends JPanel implements ActionListener {
                 for(int i = 0; i < allFalseArraysIndexes.size(); i++) {
                     scenarioBooleans.remove((int)allFalseArraysIndexes.get(i));
                 }
-
-                int repsM = scenarioOptionsPanel.getDuplicateMissionsQuantity();
                 boolean anyRepsM = scenarioOptionsPanel.getAnyNumberOfDuplicateMissions();
                 boolean canRepM = scenarioOptionsPanel.getCanDuplicateMissions();
 
-                int repsD = scenarioOptionsPanel.getDuplicateDeploymentsQuantity();
                 boolean anyRepsD = scenarioOptionsPanel.getAnyNumberOfDuplicateDeployments();
                 boolean canRepD = scenarioOptionsPanel.getCanDuplicateDeployments();
 
@@ -146,10 +139,12 @@ public class ScenarioCreatorPanel extends JPanel implements ActionListener {
                 }
                 if(canRepD){
                     if(anyRepsD){
-                        randomDeployments = getter.randomArrayElementsWithAnyReps(chosenDeploymentPool, this.scenarioOptionsPanel.getScenarioToGenerateCount());
+                        randomDeployments = getter.randomArrayElementsWithAnyReps(chosenDeploymentPool,
+                                this.scenarioOptionsPanel.getScenarioToGenerateCount());
                     }
                     else{
-                        randomDeployments = getter.randomArrayElementsWithReps(chosenDeploymentPool, this.scenarioOptionsPanel.getDuplicateDeploymentsQuantity(),
+                        randomDeployments = getter.randomArrayElementsWithReps(chosenDeploymentPool,
+                                this.scenarioOptionsPanel.getDuplicateDeploymentsQuantity(),
                                 this.scenarioOptionsPanel.getScenarioToGenerateCount());
                     }
                 }

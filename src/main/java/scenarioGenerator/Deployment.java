@@ -8,6 +8,11 @@ public class Deployment {
     private String name;
     private ImageIcon img;
 
+    public Deployment(String name){
+        this.name = name;
+        this.img = new ImageIcon();
+    }
+
     public Deployment(String name, ImageIcon img){
         this.name = name;
         this.img  = img;
