@@ -32,11 +32,21 @@ public class ArrayElementsWithRepsCounter {
         return count;
     }
 
-    public <T> int count2D(List<List<T>> elements, int reps){
-        return -1;
+    public <T> int count2D(ArrayList<ArrayList<T>> elements, int reps){
+        int count = 0;
+
+        for (ArrayList<T> element : elements) {
+            count += this.count(element, reps);
+        }
+        return count;
     }
 
-    public <T> int count2D(List<List<T>> elements, List<T> repList){
-        return -1;
+    public <T> int count2D(ArrayList<ArrayList<T>> elements, ArrayList<ArrayList<Integer>> repList){
+        int count = 0;
+
+        for(int i = 0; i < elements.size(); i++){
+            count += this.count(elements.get(i), repList.get(i));
+        }
+        return count;
     }
 }
