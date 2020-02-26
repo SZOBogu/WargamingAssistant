@@ -26,21 +26,21 @@ public class testScenarioFormValidator {
     Mission m01 = new Mission("M01", new ArrayList<>());
     Mission m02 = new Mission("M02", new ArrayList<>());
     Mission m03 = new Mission("M03", new ArrayList<>());
-    ArrayList<Mission> missons0 = new ArrayList<>(Arrays.asList(m00,m01,m02,m03));
+    ArrayList<Mission> missions0 = new ArrayList<>(Arrays.asList(m00,m01,m02,m03));
 
     Mission m10 = new Mission("M10", new ArrayList<>());
     Mission m11 = new Mission("M11", new ArrayList<>());
     Mission m12 = new Mission("M12", new ArrayList<>());
     Mission m13 = new Mission("M13", new ArrayList<>());
-    ArrayList<Mission> missons1 = new ArrayList<>(Arrays.asList(m10,m11,m12,m13));
+    ArrayList<Mission> missions1 = new ArrayList<>(Arrays.asList(m10,m11,m12,m13));
 
     ArrayList<ArrayList<Mission>> missions = new ArrayList<>();
 
     @BeforeEach
     void init(){
         missions.clear();
-        missions.add(missons0);
-        missions.add(missons1);
+        missions.add(missions0);
+        missions.add(missions1);
     }
 
     @Test
