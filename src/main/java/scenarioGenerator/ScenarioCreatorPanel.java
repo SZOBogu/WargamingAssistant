@@ -105,23 +105,25 @@ public class ScenarioCreatorPanel extends JPanel implements ActionListener {
                 JOptionPane.showMessageDialog(new JFrame(), "You haven't picked deployment", "Dialog",
                         JOptionPane.ERROR_MESSAGE);
             }
-            else{
+            else {
                 ArrayList<ArrayList<Boolean>> scenarioBooleans = this.missionPanel.getChosenData();
                 ArrayList<Integer> allFalseArraysIndexes = new ArrayList<>();
                 //TODO: do osobnego obiektu
-                for(int i = 0; i < scenarioBooleans.size(); i++) {
+                for (int i = 0; i < scenarioBooleans.size(); i++) {
                     boolean isArrayAllFalse = true;
                     for (int j = 0; j < scenarioBooleans.get(i).size(); j++) {
-                        if(scenarioBooleans.get(i).get(j))
+                        if (scenarioBooleans.get(i).get(j)) {
                             isArrayAllFalse = false;
+                            break;
+                        }
                     }
-                    if(isArrayAllFalse)
+                    if (isArrayAllFalse)
                         allFalseArraysIndexes.add(i);
                 }
                 Collections.reverse(allFalseArraysIndexes);
 
-                for(int i = 0; i < allFalseArraysIndexes.size(); i++) {
-                    scenarioBooleans.remove((int)allFalseArraysIndexes.get(i));
+                for (Integer allFalseArraysIndex : allFalseArraysIndexes) {
+                    scenarioBooleans.remove((int) allFalseArraysIndex);
                 }
                 boolean anyRepsM = scenarioOptionsPanel.getAnyNumberOfDuplicateMissions();
                 boolean canRepM = scenarioOptionsPanel.getCanDuplicateMissions();
@@ -129,58 +131,64 @@ public class ScenarioCreatorPanel extends JPanel implements ActionListener {
                 boolean anyRepsD = scenarioOptionsPanel.getAnyNumberOfDuplicateDeployments();
                 boolean canRepD = scenarioOptionsPanel.getCanDuplicateDeployments();
 
-                ArrayList<Deployment> randomDeployments = new ArrayList<>();
+                ArrayList<Deployment> randomDeployments;
                 ArrayList<ArrayList<Mission>> randomMissionsPack = new ArrayList<>();
 
                 ArrayList<Integer> chosenDeploymentIndexes = converter.convert(this.deploymentPanel.getChosenData());
                 ArrayList<Deployment> chosenDeploymentPool = new ArrayList<>();
-                for(int i = 0; i < chosenDeploymentIndexes.size(); i++){
-                    chosenDeploymentPool.add(this.deployments.get(chosenDeploymentIndexes.get(i)));
+                for (Integer chosenDeploymentIndex : chosenDeploymentIndexes) {
+                    chosenDeploymentPool.add(this.deployments.get(chosenDeploymentIndex));
                 }
-                if(canRepD){
-                    if(anyRepsD){
-                        randomDeployments = getter.randomArrayElementsWithAnyReps(chosenDeploymentPool,
-                                this.scenarioOptionsPanel.getScenarioToGenerateCount());
-                    }
-                    else{
-                        randomDeployments = getter.randomArrayElementsWithReps(chosenDeploymentPool,
-                                this.scenarioOptionsPanel.getDuplicateDeploymentsQuantity(),
-                                this.scenarioOptionsPanel.getScenarioToGenerateCount());
-                    }
-                }
-                else randomDeployments = getter.randomArrayElementsWithoutReps(chosenDeploymentPool, this.scenarioOptionsPanel.getScenarioToGenerateCount());
-
                 ArrayList<ArrayList<Integer>> chosenMissionsIndexes = converter.convertList(this.missionPanel.getChosenData());
                 ArrayList<ArrayList<Mission>> chosenMissions = new ArrayList<>();
-                for(int i = 0; i < chosenMissionsIndexes.size(); i++){
+                for (int i = 0; i < chosenMissionsIndexes.size(); i++) {
                     chosenMissions.add(new ArrayList<>());
-                    for(int j = 0; j < chosenMissionsIndexes.get(i).size(); j++){
+                    for (int j = 0; j < chosenMissionsIndexes.get(i).size(); j++) {
                         chosenMissions.get(i).add(this.missionLists.get(i).get(j));
                     }
                 }
 
-                if(canRepM){
-                    if(anyRepsM){
-                        for(int i = 0; i < chosenMissionsIndexes.size(); i++){
-                            randomMissionsPack.add(getter.randomArrayElementsWithAnyReps(chosenMissions.get(i),
+                ScenarioFormValidator formValidator = new ScenarioFormValidator();
+                if (formValidator.canBeGenerated(chosenDeploymentPool, chosenMissions,
+                        this.scenarioOptionsPanel.getDuplicateDeploymentsQuantity(), this.scenarioOptionsPanel.getDuplicateMissionsQuantity(),
+                        this.scenarioOptionsPanel.getScenarioToGenerateCount())) {
+                    if (canRepD) {
+                        if (anyRepsD) {
+                            randomDeployments = getter.randomArrayElementsWithAnyReps(chosenDeploymentPool,
+                                    this.scenarioOptionsPanel.getScenarioToGenerateCount());
+                        } else {
+                            randomDeployments = getter.randomArrayElementsWithReps(chosenDeploymentPool,
+                                    this.scenarioOptionsPanel.getDuplicateDeploymentsQuantity(),
+                                    this.scenarioOptionsPanel.getScenarioToGenerateCount());
+                        }
+                    }
+                    else
+                        randomDeployments = getter.randomArrayElementsWithoutReps(chosenDeploymentPool, this.scenarioOptionsPanel.getScenarioToGenerateCount());
+
+                    if (canRepM) {
+                        if (anyRepsM) {
+                            for (int i = 0; i < chosenMissionsIndexes.size(); i++) {
+                                randomMissionsPack.add(getter.randomArrayElementsWithAnyReps(chosenMissions.get(i),
+                                        this.scenarioOptionsPanel.getScenarioToGenerateCount()));
+                            }
+                        } else {
+                            for (ArrayList<Mission> chosenMission : chosenMissions) {
+                                randomMissionsPack.add(getter.randomArrayElementsWithReps(chosenMission,
+                                        this.scenarioOptionsPanel.getDuplicateMissionsQuantity(),
+                                        this.scenarioOptionsPanel.getScenarioToGenerateCount()));
+                            }
+                        }
+                    } else {
+                        for (ArrayList<Mission> chosenMission : chosenMissions) {
+                            randomMissionsPack.add(getter.randomArrayElementsWithoutReps(chosenMission,
                                     this.scenarioOptionsPanel.getScenarioToGenerateCount()));
                         }
                     }
-                    else{
-                        for(int i = 0; i < chosenMissions.size(); i++){
-                            randomMissionsPack.add(getter.randomArrayElementsWithReps(chosenMissions.get(i),
-                                    this.scenarioOptionsPanel.getDuplicateMissionsQuantity(),
-                                    this.scenarioOptionsPanel.getScenarioToGenerateCount()));
-                        }
-                    }
-                }
-                else{
-                    for(int i = 0; i < chosenMissions.size(); i++){
-                        randomMissionsPack.add(getter.randomArrayElementsWithoutReps(chosenMissions.get(i),
-                                this.scenarioOptionsPanel.getScenarioToGenerateCount()));
-                    }
-                }
                 ScenarioDisplayer scenarioDisplayer = new ScenarioDisplayer(randomDeployments, randomMissionsPack);
+            }
+            else
+                JOptionPane.showMessageDialog(new JFrame(), "Too few missions and/or deployments chosen to generate that number of scenarios"
+                        , "Dialog", JOptionPane.ERROR_MESSAGE);
             }
         }
         else if(clicked == backButton){
