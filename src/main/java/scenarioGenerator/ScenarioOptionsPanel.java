@@ -24,12 +24,14 @@ public class ScenarioOptionsPanel extends JPanel{
         super();
         this.titleLabel = new JLabel("Options");
         this.scenariosToGenerateLabel = new JLabel("How many Scearios would you like to generate?");
-        SpinnerNumberModel universalModel = new SpinnerNumberModel(5, 1, 1000, 1);
+        SpinnerNumberModel scensToGenerateModel = new SpinnerNumberModel(5, 1, 1000, 1);
+        SpinnerNumberModel deploymentRepsModel = new SpinnerNumberModel(1, 1, 1000, 1);
+        SpinnerNumberModel missionRepsModel = new SpinnerNumberModel(1, 1, 1000, 1);
 
-        this.scenariosToGenerateSpinner = new JSpinner(universalModel);
-        this.deploymentDuplicationQuantitySpinner = new JSpinner(universalModel);
+        this.scenariosToGenerateSpinner = new JSpinner(scensToGenerateModel);
+        this.deploymentDuplicationQuantitySpinner = new JSpinner(deploymentRepsModel);
         deploymentDuplicationQuantitySpinner.setEnabled(false);
-        this.missionDuplicationQuantitySpinner = new JSpinner(universalModel);
+        this.missionDuplicationQuantitySpinner = new JSpinner(missionRepsModel);
         missionDuplicationQuantitySpinner.setEnabled(false);
 
         this.deploymentDuplicationCheckbox = new JCheckBox("Duplicate Deployments?");
