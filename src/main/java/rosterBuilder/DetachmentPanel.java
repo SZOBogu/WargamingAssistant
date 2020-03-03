@@ -1,12 +1,14 @@
 package rosterBuilder;
 
+import common.Refreshable;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-public class DetachmentPanel extends JPanel implements ActionListener {
+public class DetachmentPanel extends JPanel implements ActionListener, Refreshable {
     private JLabel detachmentInfoLabel;
     private ArrayList<JLabel> categoryLabels;
     private ArrayList<ArrayList<JLabel>> unitLabels;

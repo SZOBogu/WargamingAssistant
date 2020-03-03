@@ -1,6 +1,7 @@
 package rosterBuilder;
 
 import common.ModulesEnum;
+import common.Refreshable;
 import common.SystemSelectionMenu;
 import rosterBuilder.rules.RosterBuildingRule;
 import rosterBuilder.rules.UnitBuildingRule;
@@ -11,7 +12,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-public class RosterDetachmentsPanel extends JPanel implements ActionListener {
+public class RosterDetachmentsPanel extends JPanel implements ActionListener, Refreshable {
     private JButton addDetachmentButton;
     private JButton readyButton;
     private JButton backButton;

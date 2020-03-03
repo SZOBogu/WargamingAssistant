@@ -1,23 +1,23 @@
 package rosterBuilder;
 
+import common.Refreshable;
+
 import javax.swing.*;
 import java.awt.*;
 
-public class RosterBuilderWindow extends JFrame{
+public class RosterBuilderWindow extends JFrame implements Refreshable{
     private JLabel titleLabel;
     private RosterDetachmentsPanel rosterDetachmentsPanel;
     private RosterCostLabel rosterCostLabel;
-    private Roster roster;
 
 
     public RosterBuilderWindow(WargamingSystem system, Roster roster){
         int armyIndex = 0;
         for(int i =0; i < system.getArmies().size(); i++){
-            if(system.getArmies().get(i).getName() == roster.getPrimaryArmy().getName()){
+            if(system.getArmies().get(i).getName().equals(roster.getPrimaryArmy().getName())){
                 armyIndex = i;
             }
         }
-        this.roster = roster;
         this.rosterDetachmentsPanel = new RosterDetachmentsPanel(roster, system, armyIndex);
         this.titleLabel = new JLabel("Roster Builder");
         this.rosterCostLabel = new RosterCostLabel(roster);
@@ -44,5 +44,11 @@ public class RosterBuilderWindow extends JFrame{
         add(this.rosterCostLabel, gbc);
         gbc.gridy++;
         add(this.rosterDetachmentsPanel, gbc);
+    }
+
+    @Override
+    public void refresh() {
+        //TODO:implement
+        System.out.println("placeholder");
     }
 }
