@@ -19,14 +19,12 @@ public class DetachmentPanel extends JPanel implements ActionListener, Refreshab
     private Detachment detachment;
     private Roster roster;
     private WargamingSystem wargamingSystem;
-    private int armyIndex;
 
-    public DetachmentPanel(Roster roster, Detachment detachment, WargamingSystem system, int armyIndex, int detachmentIndex){
+    public DetachmentPanel(Roster roster, Detachment detachment, WargamingSystem system, int detachmentIndex){
         this.detachmentInfoLabel = new JLabel("Detachment " + detachmentIndex + ": " + detachment.getName());
         this.detachment = detachment;
         this.roster = roster;
         this.wargamingSystem = system;
-        this.armyIndex = armyIndex;
         this.categoryLabels = new ArrayList<>();
         this.unitLabels = new ArrayList<>();
         this.addUnitButtons = new ArrayList<>();
@@ -206,6 +204,8 @@ public class DetachmentPanel extends JPanel implements ActionListener, Refreshab
                 }
             }
         }
+        RosterBuilderWindow topFrame = (RosterBuilderWindow) SwingUtilities.getWindowAncestor(this);
+        topFrame.refresh();
         this.layoutComponents();
         this.revalidate();
         this.repaint();
@@ -255,11 +255,14 @@ public class DetachmentPanel extends JPanel implements ActionListener, Refreshab
                 }
             }
             UnitSelectionMenu unitSelectionMenu = new UnitSelectionMenu(armySubcategory, roster, this, this.detachment.getDetachmentNumber(), categoryIndex, this.wargamingSystem);
-            JFrame topFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
+            RosterBuilderWindow topFrame = (RosterBuilderWindow) SwingUtilities.getWindowAncestor(this);
+//            topFrame.refresh();
             topFrame.dispose();
         }
         else if(removeUnit){
             this.detachment.deleteUnit(tempi, tempj);
+            RosterBuilderWindow topFrame = (RosterBuilderWindow) SwingUtilities.getWindowAncestor(this);
+            topFrame.refresh();
             this.refresh();
         }
         else if(editUnit){
@@ -280,7 +283,8 @@ public class DetachmentPanel extends JPanel implements ActionListener, Refreshab
 
             this.detachment.deleteUnit(tempi, tempj);
             UnitProfileFrame unitProfileFrame = new UnitProfileFrame(unitProfile, roster, this, this.detachment.getDetachmentNumber(), tempi, wargamingSystem, optionsIndexes);
-            JFrame topFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
+            RosterBuilderWindow topFrame = (RosterBuilderWindow) SwingUtilities.getWindowAncestor(this);
+            topFrame.refresh();
             topFrame.dispose();
         }
     }

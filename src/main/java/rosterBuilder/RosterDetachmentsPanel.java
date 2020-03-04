@@ -20,12 +20,10 @@ public class RosterDetachmentsPanel extends JPanel implements ActionListener, Re
     private ArrayList<JButton> deleteDetachmentButtons;
     private WargamingSystem wargamingSystem;
     private Roster roster;
-    private int armyIndex;
 
     public RosterDetachmentsPanel(Roster roster, WargamingSystem system, int armyIndex) {
         this.roster = roster;
         this.wargamingSystem = system;
-        this.armyIndex = armyIndex;
         this.addDetachmentButton = new JButton("Add Detachment");
         this.addDetachmentButton.addActionListener(this);
         this.readyButton = new JButton("Ready!");
@@ -35,13 +33,13 @@ public class RosterDetachmentsPanel extends JPanel implements ActionListener, Re
         this.detachmentPanels = new ArrayList<>();
         this.deleteDetachmentButtons = new ArrayList<>();
         for (int i = 0; i < roster.getDetachments().size(); i++) {
-            this.detachmentPanels.add(new DetachmentPanel(roster, roster.getDetachments().get(i), wargamingSystem, armyIndex, i));
+            this.detachmentPanels.add(new DetachmentPanel(roster, roster.getDetachments().get(i), wargamingSystem, i));
             JButton button = new JButton("Delete Detachment");
             button.addActionListener(this);
             this.deleteDetachmentButtons.add(button);
         }
         this.deleteDetachmentButtons.get(0).setVisible(false);
-        if (this.wargamingSystem.getMaxDetachments() == 1){
+        if (system.getMaxDetachments() == 1){
             this.addDetachmentButton.setVisible(false);
         }
         this.layoutComponents();
@@ -75,7 +73,7 @@ public class RosterDetachmentsPanel extends JPanel implements ActionListener, Re
         this.removeAll();
         this.detachmentPanels.clear();
         for(int i = 0; i < roster.getDetachments().size(); i++){
-            this.detachmentPanels.add(new DetachmentPanel(roster, roster.getDetachments().get(i), wargamingSystem, armyIndex, i));
+            this.detachmentPanels.add(new DetachmentPanel(roster, roster.getDetachments().get(i), wargamingSystem,  i));
             JButton button = new JButton("Delete Detachment");
             button.addActionListener(this);
             this.deleteDetachmentButtons.add(button);
@@ -89,6 +87,7 @@ public class RosterDetachmentsPanel extends JPanel implements ActionListener, Re
     public void actionPerformed(ActionEvent actionEvent) {
         JButton clicked = (JButton)actionEvent.getSource();
         RuleViolationLog ruleViolationLog = RuleViolationLog.getInstance();
+        RosterBuilderWindow topFrame = (RosterBuilderWindow) SwingUtilities.getWindowAncestor(this);
         RuleViolationLog.clear();
         if(clicked == addDetachmentButton){
             if(this.wargamingSystem.getMaxDetachments() >= this.roster.size()) {
@@ -101,6 +100,7 @@ public class RosterDetachmentsPanel extends JPanel implements ActionListener, Re
         }
         else if(clicked == readyButton){
             ArrayList<RosterBuildingRule> rules = this.wargamingSystem.getRules();
+
             if(roster.getTotalCost() > roster.getPointCap())
                 RuleViolationLog.appendRosterRuleViolationLog("Point Limit Exceeded");
             for (RosterBuildingRule rule : rules) {
@@ -119,14 +119,16 @@ public class RosterDetachmentsPanel extends JPanel implements ActionListener, Re
             WargameSystemsInitializer initializer = new WargameSystemsInitializer();
             ArrayList<WargamingSystem> wargamingSystems = new ArrayList<>(initializer.initialize());
             SystemSelectionMenu systemSelectionMenu = new SystemSelectionMenu(wargamingSystems, ModulesEnum.ROSTER_BUILDER);
-            JFrame topFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
+
+            topFrame.refresh();
             topFrame.dispose();
         }
         else
             for(int i = 0; i < detachmentPanels.size(); i++){
                 if(clicked == deleteDetachmentButtons.get(i)){
                     roster.removeDetachment(i);
-                    refresh();
+                    this.refresh();
+                    topFrame.refresh();
                 }
             }
     }

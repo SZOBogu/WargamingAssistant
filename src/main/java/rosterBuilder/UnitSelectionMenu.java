@@ -59,8 +59,8 @@ public class UnitSelectionMenu extends JFrame implements ActionListener {
 
         add(this.titleLabel, gbc);
         gbc.gridy++;
-        for(int i = 0; i < this.unitButtons.size(); i++){
-            add(this.unitButtons.get(i), gbc);
+        for (JButton unitButton : this.unitButtons) {
+            add(unitButton, gbc);
             gbc.gridy++;
         }
     }
