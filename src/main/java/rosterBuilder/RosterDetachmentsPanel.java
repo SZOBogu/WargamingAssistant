@@ -89,7 +89,6 @@ public class RosterDetachmentsPanel extends JPanel implements ActionListener, Re
     @Override
     public void actionPerformed(ActionEvent actionEvent) {
         JButton clicked = (JButton)actionEvent.getSource();
-        RuleViolationLog ruleViolationLog = RuleViolationLog.getInstance();
         RosterBuilderWindow topFrame = (RosterBuilderWindow) SwingUtilities.getWindowAncestor(this);
         RuleViolationLog.clear();
         if(clicked == addDetachmentButton){
@@ -124,15 +123,12 @@ public class RosterDetachmentsPanel extends JPanel implements ActionListener, Re
             ArrayList<WargamingSystem> wargamingSystems = new ArrayList<>(initializer.initialize());
             SystemSelectionMenu systemSelectionMenu = new SystemSelectionMenu(wargamingSystems, ModulesEnum.ROSTER_BUILDER);
 
-//            topFrame.refresh();
             topFrame.dispose();
         }
         else
             for(int i = 0; i < detachmentPanels.size(); i++){
                 if(clicked == deleteDetachmentButtons.get(i)){
                     roster.getRoster().removeDetachment(i);
-//                    this.refresh();
-//                    topFrame.refresh();
                 }
             }
     }

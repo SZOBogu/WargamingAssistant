@@ -17,7 +17,9 @@ public class UnitSelectionMenu extends JFrame implements ActionListener {
     private int categoryNumber;
     private WargamingSystem wargamingSystem;
 
-    public UnitSelectionMenu(ArmySubcategory armySubcategory, RosterObserverSubject roster, DetachmentPanel detachmentPanel, int detNumber, int categoryNumber, WargamingSystem wargamingSystem){
+    public UnitSelectionMenu(ArmySubcategory armySubcategory, RosterObserverSubject roster,
+                             DetachmentPanel detachmentPanel, int detNumber, int categoryNumber,
+                             WargamingSystem wargamingSystem){
         this.unitButtons = new ArrayList<>();
         this.armySubcategory = armySubcategory;
         this.roster = roster;
@@ -30,14 +32,16 @@ public class UnitSelectionMenu extends JFrame implements ActionListener {
         for(int i = 0; i < armySubcategory.size(); i++){
             String textOnButton = "";
             if(armySubcategory.getUnitProfile(i).getUnitsPerArmy() < 100)
-                textOnButton = armySubcategory.getUnitProfile(i).getName() + " (max " + armySubcategory.getUnitProfile(i).getUnitsPerArmy() + " units)";
+                textOnButton = armySubcategory.getUnitProfile(i).getName() +
+                        " (max " + armySubcategory.getUnitProfile(i).getUnitsPerArmy() + " units)";
             else
                 textOnButton = armySubcategory.getUnitProfile(i).getName();
             JButton button = new JButton(textOnButton);
             button.addActionListener(this);
             this.unitButtons.add(button);
             UnitCounter unitCounter = new UnitCounter();
-            if(unitCounter.countUnitsNamed(roster.getRoster(), armySubcategory.getUnitProfile(i).getName()) >=armySubcategory.getUnitProfile(i).getUnitsPerArmy())
+            if(unitCounter.countUnitsNamed(roster.getRoster(),
+                    armySubcategory.getUnitProfile(i).getName()) >=armySubcategory.getUnitProfile(i).getUnitsPerArmy())
                 button.setVisible(false);       //TODO: cos tu nie gra
         }
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -74,7 +78,8 @@ public class UnitSelectionMenu extends JFrame implements ActionListener {
                 unitProfile = this.armySubcategory.getUnitProfile(i);
             }
         }
-        UnitProfileFrame unitProfileFrame = new UnitProfileFrame(unitProfile, this.roster, this.detachmentPanel, this.detNumber, this.categoryNumber, this.wargamingSystem);
+        UnitProfileFrame unitProfileFrame = new UnitProfileFrame(unitProfile, this.roster,
+                this.detachmentPanel, this.detNumber, this.categoryNumber, this.wargamingSystem);
         this.dispose();
     }
 }

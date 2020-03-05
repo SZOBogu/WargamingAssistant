@@ -45,9 +45,9 @@ public class Roster {
 
     public int getTotalCost() {
        int totalCost = 0;
-       for(int i = 0; i < this.detachments.size(); i++){
-            totalCost += this.detachments.get(i).getCost();
-       }
+        for (Detachment detachment : this.detachments) {
+            totalCost += detachment.getCost();
+        }
        return totalCost;
     }
 
@@ -65,14 +65,14 @@ public class Roster {
 
     @Override
     public String toString(){
-        String string = "";
+        StringBuilder string = new StringBuilder();
         if(this.primaryArmy != null)
-            string = this.primaryArmy.getName() + " " + getPointCap() + "p Army\n";
+            string = new StringBuilder(this.primaryArmy.getName() + " " + getPointCap() + "p Army\n");
         else
-            string = getPointCap() + "p Army";
+            string = new StringBuilder(getPointCap() + "p Army");
         for(int i = 0; i < this.getDetachments().size(); i++){
-            string += this.getDetachments().get(i).toString();
+            string.append(this.getDetachments().get(i).toString());
         }
-        return string;
+        return string.toString();
     }
 }

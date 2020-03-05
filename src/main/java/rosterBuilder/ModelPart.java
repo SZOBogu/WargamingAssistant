@@ -1,7 +1,6 @@
 package rosterBuilder;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class ModelPart {
     private String name;
@@ -34,17 +33,17 @@ public class ModelPart {
 
     @Override
     public String toString() {
-        String info = this.getName() + "\t" + this.getStatline().toString() + "\t";
+        StringBuilder info = new StringBuilder(this.getName() + "\t" + this.getStatline().toString() + "\t");
         for(int i = 0; i < this.specialRules.size(); i++){
-            info += this.specialRules.get(i).toString();
+            info.append(this.specialRules.get(i).toString());
             if(i != this.specialRules.size() - 1 || this.equipment.size() > 0)
-                info += ", ";
+                info.append(", ");
         }
         for(int i = 0; i < this.equipment.size(); i++){
-            info += this.equipment.get(i).toString();
+            info.append(this.equipment.get(i).toString());
             if(i != this.specialRules.size() - 1)
-                info += ", ";
+                info.append(", ");
         }
-        return info;
+        return info.toString();
     }
 }

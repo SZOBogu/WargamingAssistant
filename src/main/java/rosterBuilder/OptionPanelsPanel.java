@@ -9,8 +9,8 @@ public class OptionPanelsPanel extends JPanel {
 
     public OptionPanelsPanel(ArrayList<OptionSet> optionSets){
         this.optionPanels = new ArrayList<>();
-        for(int i = 0; i < optionSets.size(); i++){
-            optionPanels.add(new OptionPanel(optionSets.get(i)));
+        for (OptionSet optionSet : optionSets) {
+            optionPanels.add(new OptionPanel(optionSet));
         }
         this.layoutComponents();
     }
@@ -24,24 +24,24 @@ public class OptionPanelsPanel extends JPanel {
         gbc.gridy = 0;
         gbc.gridx = 0;
 
-        for(int i = 0; i < optionPanels.size(); i++){
-            add(optionPanels.get(i), gbc);
+        for (OptionPanel optionPanel : optionPanels) {
+            add(optionPanel, gbc);
             gbc.gridy++;
         }
     }
 
     public ArrayList<Entity> getChosenEquipment(){
         ArrayList<Entity> chosenEquipment = new ArrayList<>();
-        for(int i = 0; i < this.optionPanels.size(); i++){
-            chosenEquipment.addAll(this.optionPanels.get(i).getChosenEntities());
+        for (OptionPanel optionPanel : this.optionPanels) {
+            chosenEquipment.addAll(optionPanel.getChosenEntities());
         }
         return chosenEquipment;
     }
 
     public int getChosenEquipmentCost(){
         int chosenEquipmentCost = 0;
-        for(int i = 0; i < this.optionPanels.size(); i++){
-             chosenEquipmentCost += this.optionPanels.get(i).getTotalCost();
+        for (OptionPanel optionPanel : this.optionPanels) {
+            chosenEquipmentCost += optionPanel.getTotalCost();
         }
         return chosenEquipmentCost;
     }

@@ -17,7 +17,8 @@ public class PointCapOptionSet extends MultipleChoiceOptionSet{
         super(options, itemListName, keyVerb);
         this.pointCap = pointCap;
     }
-    public PointCapOptionSet(ArrayList<Option> options, String itemListName, String keyVerb, boolean isMandatory, int pointCap){
+    public PointCapOptionSet(ArrayList<Option> options, String itemListName, String keyVerb,
+                             boolean isMandatory, int pointCap){
         super(options, itemListName, keyVerb, isMandatory);
         this.pointCap = pointCap;
     }

@@ -2,7 +2,6 @@ package rosterBuilder;
 
 import javax.swing.*;
 import java.io.Serializable;
-import java.util.Enumeration;
 import java.util.Vector;
 
 public class OneOrZeroButtonGroup extends ButtonGroup implements Serializable {

@@ -51,6 +51,5 @@ public class RosterBuilderWindow extends JFrame implements Refreshable{
     @Override
     public void refresh() {
         this.rosterCostLabel.refresh();
-       // this.rosterDetachmentsPanel.refresh();
     }
 }

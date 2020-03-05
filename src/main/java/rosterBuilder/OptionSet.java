@@ -56,8 +56,8 @@ public abstract class OptionSet {
 
     public ArrayList<Entity> getAllEntities(){
         ArrayList<Entity> entities = new ArrayList<>();
-        for(int i = 0; i < options.size(); i++){
-            entities.add(this.options.get(i).getEntity());
+        for (Option option : options) {
+            entities.add(option.getEntity());
         }
         return entities;
     }

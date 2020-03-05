@@ -54,7 +54,6 @@ public class RosterInfoDialog extends JFrame implements ActionListener {
         setSize(550, 200);
         setMaximumSize(new Dimension(1000, 1800));
         setVisible(true);
-        //this.pack();
         this.layoutComponents();
     }
 

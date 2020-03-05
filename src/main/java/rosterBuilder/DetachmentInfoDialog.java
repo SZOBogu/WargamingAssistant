@@ -85,9 +85,9 @@ public class DetachmentInfoDialog extends JFrame implements ActionListener {
         Detachment detachment = this.wargamingSystem.getEmptyDetachment(this.detachmentComboBox.getSelectedIndex());
         detachment.setPool(this.wargamingSystem.getPool());
         detachment.setDetachmentNumber(this.roster.size());
-        if (wargamingSystem.isAllowingAlliances()){ /*&&
-                (roster.getPrimaryArmy().getAlliableArmyIndexes().isEmpty() || (roster.getPrimaryArmy().getAlliableArmyIndexes() == null) || roster.getPrimaryArmy().getAlliableArmyIndexes().size() == 1))*/
-            detachment.setArmy(wargamingSystem.getArmy(roster.getPrimaryArmy().getAlliableArmyIndexes().get(this.armyComboBox.getSelectedIndex())));
+        if (wargamingSystem.isAllowingAlliances()){
+            detachment.setArmy(wargamingSystem.getArmy(
+                    roster.getPrimaryArmy().getAlliableArmyIndexes().get(this.armyComboBox.getSelectedIndex())));
         }
         else
             detachment.setArmy(roster.getPrimaryArmy());

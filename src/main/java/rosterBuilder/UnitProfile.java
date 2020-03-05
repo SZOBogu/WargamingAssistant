@@ -19,21 +19,26 @@ public class UnitProfile {
     private UniqueEntitiesPool pool;            //?????? TODO: look it up
 
     public UnitProfile(){
-        this("", new ArrayList<>(), new ArrayList<>(), 0, 1, 1,0,100);
+        this("", new ArrayList<>(), new ArrayList<>(),
+                0, 1, 1,0,100);
     }
     public UnitProfile(String name, ArrayList<ModelPart> modelParts, ArrayList<OptionSet> options, int initialCost){
-        this(name, modelParts, options, initialCost, 1, 1,0,100);
+        this(name, modelParts, options, initialCost,
+                1, 1,0,100);
     }
 
-    public UnitProfile(String name, ArrayList<ModelPart> modelParts, ArrayList<OptionSet> options, int initialCost, int unitsPerArmy){
+    public UnitProfile(String name, ArrayList<ModelPart> modelParts, ArrayList<OptionSet> options,
+                       int initialCost, int unitsPerArmy){
         this(name, modelParts, options, initialCost, 1, 1,0,unitsPerArmy);
     }
 
-    public UnitProfile(String name, ArrayList<ModelPart> modelParts, ArrayList<OptionSet> options, int initialCost, int minModels, int maxModels, int additionalModelCost){
+    public UnitProfile(String name, ArrayList<ModelPart> modelParts, ArrayList<OptionSet> options,
+                       int initialCost, int minModels, int maxModels, int additionalModelCost){
         this(name, modelParts, options, initialCost, minModels, maxModels,additionalModelCost, 100);
     }
 
-    public UnitProfile(String name, ArrayList<ModelPart> modelParts, ArrayList<OptionSet> options, int initialCost, int minModels, int maxModels, int additionalModelCost, int unitsPerArmy){
+    public UnitProfile(String name, ArrayList<ModelPart> modelParts, ArrayList<OptionSet> options,
+                       int initialCost, int minModels, int maxModels, int additionalModelCost, int unitsPerArmy){
         this.name = name;
         this.modelsParts = modelParts;
         this.options = options;
@@ -96,18 +101,18 @@ public class UnitProfile {
 
     @Override
     public String toString(){
-        String string = this.getName() + "\t" + this.getInitialCost() + "p\n";
+        StringBuilder string = new StringBuilder(this.getName() + "\t" + this.getInitialCost() + "p\n");
         if(this.getMinModels() == this.getMaxModels() && this.getMinModels() == 1)
-            string += "Single model\n";
+            string.append("Single model\n");
         else if(this.getMinModels() == this.getMaxModels())
-            string += this.getMinModels() + " models\n";
+            string.append(this.getMinModels()).append(" models\n");
         else {
-            string += this.getMinModels() + "-" + this.getMaxModels() + " models\n";
+            string.append(this.getMinModels()).append("-").append(this.getMaxModels()).append(" models\n");
         }
         for(int i = 0; i < this.getModelParts().size(); i++){
-            string += "\t" + this.getModelParts().get(i).toString() + "\n";
+            string.append("\t").append(this.getModelParts().get(i).toString()).append("\n");
         }
-        return string;
+        return string.toString();
     }
 
     public ArrayList<Entity> getBaseEquipmentAndRules() {
@@ -133,20 +138,15 @@ public class UnitProfile {
         else {
             ArrayList<OptionSet> temp = this.options;
             this.options = new ArrayList<>();
-            for (int i = 0; i < temp.size(); i++) {
+            for (OptionSet optionSet : temp) {
                 //TODO: blad jest tutaj
                 ArrayList<Option> filteredOptions = new ArrayList<>();
-                for (int j = 0; j < temp.get(i).getOptions().size(); j++) {
-                    if (this.pool.getAvailable().contains(temp.get(i).getOptions().get(j).getEntity()) || !this.pool.contains(temp.get(i).getOptions().get(j).getEntity())) {
-                        filteredOptions.add(temp.get(i).getOptions().get(j));
-//                        if(this.getName() == "Soothsayer") {
-//                            System.out.println(this.getName());
-//                            System.out.println(temp.get(i).getOptions().get(j));
-//                            System.out.println("-------------------------");
-//                        }
+                for (int j = 0; j < optionSet.getOptions().size(); j++) {
+                    if (this.pool.getAvailable().contains(optionSet.getOptions().get(j).getEntity()) || !this.pool.contains(optionSet.getOptions().get(j).getEntity())) {
+                        filteredOptions.add(optionSet.getOptions().get(j));
                     }
                 }
-                temp.get(i).setOptions(filteredOptions);
+                optionSet.setOptions(filteredOptions);
             }
             this.options = temp;
         }

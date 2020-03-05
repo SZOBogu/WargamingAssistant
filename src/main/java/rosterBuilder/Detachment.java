@@ -46,7 +46,8 @@ public class Detachment {
     }
 
 
-    public Detachment(String name, ArrayList<Integer> arrayOfMandatoryChoicesInCategories, ArrayList<Integer> arrayOfMaxChoicesInCategories, int detachmentNumber){
+    public Detachment(String name, ArrayList<Integer> arrayOfMandatoryChoicesInCategories,
+                      ArrayList<Integer> arrayOfMaxChoicesInCategories, int detachmentNumber){
         this(name, arrayOfMandatoryChoicesInCategories, detachmentNumber);
         this.arrayOfMaxChoicesPerCategory = arrayOfMaxChoicesInCategories;
     }
@@ -119,26 +120,20 @@ public class Detachment {
     }
 
     public boolean contains(Unit unit){
-        for(int i = 0; i < this.boughtUnitsCategorized.size(); i++){
-            if(this.boughtUnitsCategorized.get(i).contains(unit))
+        for (ArrayList<Unit> units : this.boughtUnitsCategorized) {
+            if (units.contains(unit))
                 return true;
         }
         return false;
     }
 
     public Detachment copyEmptyDetachment(){
-        ArrayList<Integer> arrayOfMandatoryChoicesInCategories = new ArrayList<>();
-        ArrayList<Integer> arrayOfMaxChoicesPerCategory = new ArrayList<>();
 
-        for(int i = 0; i < this.arrayOfMandatoryChoicesInCategories.size(); i++){
-            arrayOfMandatoryChoicesInCategories.add(new Integer(this.arrayOfMandatoryChoicesInCategories.get(i)));
-        }
+        ArrayList<Integer> arrayOfMandatoryChoicesInCategories = new ArrayList<>(this.arrayOfMandatoryChoicesInCategories);
+        ArrayList<Integer> arrayOfMaxChoicesPerCategory = new ArrayList<>(this.arrayOfMaxChoicesPerCategory);
 
-        for(int i = 0; i < this.arrayOfMaxChoicesPerCategory.size(); i++){
-            arrayOfMaxChoicesPerCategory.add(new Integer(this.arrayOfMaxChoicesPerCategory.get(i)));
-        }
-        Detachment detachment = new Detachment(this.name, arrayOfMandatoryChoicesInCategories, arrayOfMaxChoicesPerCategory, this.detachmentNumber+1);
-        return detachment;
+        return new Detachment(this.name, arrayOfMandatoryChoicesInCategories, arrayOfMaxChoicesPerCategory,
+                this.detachmentNumber+1);
     }
 
     public Army getArmy() {
@@ -146,14 +141,14 @@ public class Detachment {
     }
 
     public void setArmy(Army army) {
-       // this.setCapacity(army.getRelevantSlotCount()); //?
+        this.setCapacity(army.getRelevantSlotCount());
         this.army = army;
     }
 
     public int getUnitCount(){
         int count = 0;
-        for(int i = 0; i < this.boughtUnitsCategorized.size(); i++){
-            count += this.boughtUnitsCategorized.get(i).size();
+        for (ArrayList<Unit> units : this.boughtUnitsCategorized) {
+            count += units.size();
         }
         return count;
     }
@@ -166,7 +161,7 @@ public class Detachment {
                     this.boughtUnitsCategorized.add(new ArrayList<>());
                 }
             } else if (this.boughtUnitsCategorized.size() > capacity) {
-                for (; ; ) {
+                for (;;) {
                     this.boughtUnitsCategorized.remove(this.boughtUnitsCategorized.size() - 1);
                     if (this.boughtUnitsCategorized.size() == capacity)
                         break;
@@ -178,14 +173,14 @@ public class Detachment {
     @Override
     public String toString(){
         if(this.army != null) {
-            String detachmentInfo = "Detachment No." + this.getDetachmentNumber() + ": " + this.getName() + "\n";
+            StringBuilder detachmentInfo = new StringBuilder("Detachment No." + this.getDetachmentNumber() + ": " + this.getName() + "\n");
             for (int i = 0; i < army.getRelevantSlotCount(); i++) {
-                detachmentInfo += "   " + army.getArmySubcategory(i).getName() + "\n";
+                detachmentInfo.append("   ").append(army.getArmySubcategory(i).getName()).append("\n");
                 for (int j = 0; j < boughtUnitsCategorized.get(i).size(); j++) {
-                    detachmentInfo += "      " + boughtUnitsCategorized.get(i).get(j).toString() + "\n";
+                    detachmentInfo.append("      ").append(boughtUnitsCategorized.get(i).get(j).toString()).append("\n");
                 }
             }
-            return detachmentInfo;
+            return detachmentInfo.toString();
         }
         else return "Army not set in detachment";
     }

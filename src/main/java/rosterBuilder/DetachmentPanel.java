@@ -209,7 +209,6 @@ public class DetachmentPanel extends JPanel implements ActionListener, Refreshab
             }
         }
         RosterBuilderWindow topFrame = (RosterBuilderWindow) SwingUtilities.getWindowAncestor(this);
-//        topFrame.refresh();
         this.layoutComponents();
         this.revalidate();
         this.repaint();
@@ -260,16 +259,13 @@ public class DetachmentPanel extends JPanel implements ActionListener, Refreshab
             }
             UnitSelectionMenu unitSelectionMenu = new UnitSelectionMenu(armySubcategory, roster, this, this.detachment.getDetachmentNumber(), categoryIndex, this.wargamingSystem);
             RosterBuilderWindow topFrame = (RosterBuilderWindow) SwingUtilities.getWindowAncestor(this);
-//            topFrame.refresh();
             roster.refreshComponents();
             topFrame.dispose();
         }
         else if(removeUnit){
             this.detachment.deleteUnit(tempi, tempj);
             RosterBuilderWindow topFrame = (RosterBuilderWindow) SwingUtilities.getWindowAncestor(this);
-//            topFrame.refresh();
             roster.refreshComponents();
-            //this.refresh();
         }
         else if(editUnit){
             UnitAndProfileFinder finder = new UnitAndProfileFinder();
@@ -280,18 +276,10 @@ public class DetachmentPanel extends JPanel implements ActionListener, Refreshab
             Unit unit = this.detachment.getUnit(tempi, tempj);
             ArrayList<ArrayList<Integer>> optionsIndexes = getter.getTakenOptionsIndexes(unit, unitProfile);
 
-            int categoryIndex = 0;
-            for (int i = 0; i < this.detachment.getArmy().size(); i++) {
-                if (this.roster.getRoster().getDetachments().get(this.detachment.getDetachmentNumber()).getArmy().getArmySubcategory(i) == armySubcategory) {
-                    categoryIndex = i;
-                }
-            }
-
             this.detachment.deleteUnit(tempi, tempj);
             UnitProfileFrame unitProfileFrame = new UnitProfileFrame(
                     unitProfile, roster, this, this.detachment.getDetachmentNumber(), tempi, wargamingSystem, optionsIndexes);
             RosterBuilderWindow topFrame = (RosterBuilderWindow) SwingUtilities.getWindowAncestor(this);
-            //topFrame.refresh();
             roster.refreshComponents();
             topFrame.dispose();
         }

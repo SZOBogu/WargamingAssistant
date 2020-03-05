@@ -1,6 +1,5 @@
 package rosterBuilder;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class ModelCounter {
@@ -22,7 +21,7 @@ public class ModelCounter {
             for(int j = 0; j < roster.getDetachments().get(i).getBoughtUnitsCategorized().size(); j++){//po kategoriach
                 for(int k = 0; k < roster.getDetachments().get(i).getBoughtUnitsCategorized().get(j).size(); k++){  //po unitach
                     Unit unit = roster.getDetachments().get(i).getBoughtUnitsCategorized().get(j).get(k);
-                    if(string == unit.getName()) {
+                    if(string.equals(unit.getName())) {
                         count += unit.getModelsInUnit();
                         break;
                     }
@@ -43,8 +42,8 @@ public class ModelCounter {
                     ArrayList<Entity> base = unit.getNonBaseEquipment();
                     temp.addAll(nonBase);
                     temp.addAll(base);
-                    for(int l = 0; l < temp.size();l++){
-                        if(temp.get(l).getName() == entity.getName()) {
+                    for (Entity value : temp) {
+                        if (value.getName().equals(entity.getName())) {
                             count += unit.getModelsInUnit();
                             break;
                         }
@@ -67,8 +66,8 @@ public class ModelCounter {
                         ArrayList<Entity> base = unit.getNonBaseEquipment();
                         temp.addAll(nonBase);
                         temp.addAll(base);
-                        for(int l = 0; l < entities.size(); l++) {
-                            if(temp.contains(entities.get(l))){
+                        for (Entity entity : entities) {
+                            if (temp.contains(entity)) {
                                 matchingEntitiesCounter++;
                             }
                         }
@@ -94,8 +93,8 @@ public class ModelCounter {
                     temp.addAll(nonBase);
                     temp.addAll(base);
                     boolean isContainingAny = false;
-                    for(int l = 0; l < entities.size(); l++) {
-                        if(temp.contains(entities.get(l))){
+                    for (Entity entity : entities) {
+                        if (temp.contains(entity)) {
                             isContainingAny = true;
                             break;
                         }

@@ -26,7 +26,9 @@ public class UnitProfilePanel extends JPanel implements ActionListener {
     private JButton cancelButton;
     private JButton addUnitButton;
 
-    public UnitProfilePanel(UnitProfile unitProfile, RosterObserverSubject roster, DetachmentPanel detachmentPanel, int detNumber, int categoryNumber, WargamingSystem wargamingSystem){
+    public UnitProfilePanel(UnitProfile unitProfile, RosterObserverSubject roster,
+                            DetachmentPanel detachmentPanel, int detNumber, int categoryNumber,
+                            WargamingSystem wargamingSystem){
         this.unitProfile = unitProfile;
         this.roster = roster;
         this.detNumber = detNumber;
@@ -42,7 +44,8 @@ public class UnitProfilePanel extends JPanel implements ActionListener {
             string += unitProfile.getMinModels() + "-" + unitProfile.getMaxModels() + " models\n";
         }
         this.headerLabel = new JLabel(string);
-        SpinnerNumberModel modelQuantityModel = new SpinnerNumberModel(0, 0, unitProfile.getMaxModels() - unitProfile.getMinModels(), 1);
+        SpinnerNumberModel modelQuantityModel = new SpinnerNumberModel(0, 0,
+                unitProfile.getMaxModels() - unitProfile.getMinModels(), 1);
         this.modelQuantitySpinner = new JSpinner(modelQuantityModel);
         this.modelQuantitySpinner.addChangeListener(new ChangeListener() {
             @Override
@@ -50,12 +53,15 @@ public class UnitProfilePanel extends JPanel implements ActionListener {
                 for(int i = 0; i < unitProfile.getOptionSets().size(); i++){
                     for(int j = 0; j < unitProfile.getOptionSets().get(i).getOptions().size(); j++){
                         if(unitProfile.getOptionSets().get(i).getOptions().get(j) instanceof QuantityDependentOption)
-                            ((QuantityDependentOption) unitProfile.getOptionSets().get(i).getOptions().get(j)).setModelQuantity(unitProfile.getMinModels () + (int)modelQuantitySpinner.getValue());
+                            ((QuantityDependentOption) unitProfile.getOptionSets().
+                                    get(i).getOptions().get(j)).
+                                    setModelQuantity(unitProfile.getMinModels () + (int)modelQuantitySpinner.getValue());
                     }
                 }
             }
         });
-        this.addModelsLabel = new JLabel("You can add up to " + (unitProfile.getMaxModels() - unitProfile.getMinModels()) +
+        this.addModelsLabel = new JLabel("You can add up to " + (
+                unitProfile.getMaxModels() - unitProfile.getMinModels()) +
                 "models for " + unitProfile.getAdditionalModelCost() + "p");
         if(unitProfile.getMaxModels() == unitProfile.getMinModels()){
             this.modelQuantitySpinner.setVisible(false);
@@ -75,10 +81,12 @@ public class UnitProfilePanel extends JPanel implements ActionListener {
         this.layoutComponents();
     }
 
-    public UnitProfilePanel(UnitProfile unitProfile, RosterObserverSubject roster, DetachmentPanel detachmentPanel, int detNumber, int categoryNumber, WargamingSystem wargamingSystem, ArrayList<ArrayList<Integer>> indexesToSelect){
+    public UnitProfilePanel(UnitProfile unitProfile, RosterObserverSubject roster, DetachmentPanel detachmentPanel,
+                            int detNumber, int categoryNumber, WargamingSystem wargamingSystem,
+                            ArrayList<ArrayList<Integer>> indexesToSelect){
         this(unitProfile, roster, detachmentPanel, detNumber, categoryNumber, wargamingSystem);
-        for(int i = 0; i < indexesToSelect.size(); i++){
-            this.optionPanelsPanel.getOptionPanels().get(indexesToSelect.get(i).get(0)).selectPreviouslyTaken(indexesToSelect.get(i).get(1));
+        for (ArrayList<Integer> integers : indexesToSelect) {
+            this.optionPanelsPanel.getOptionPanels().get(integers.get(0)).selectPreviouslyTaken(integers.get(1));
         }
     }
 
@@ -116,8 +124,11 @@ public class UnitProfilePanel extends JPanel implements ActionListener {
         JButton clicked = (JButton)actionEvent.getSource();
         if(clicked == this.addUnitButton){
             //TODO:moze jakis builder?
-            Unit unit = new Unit(this.unitProfile.getName(), this.unitProfile.getMinModels() + (int)this.modelQuantitySpinner.getValue(),
-                    this.optionPanelsPanel.getChosenEquipment(), this.unitProfile.getBaseEquipmentAndRules(), this.unitProfile.getInitialCost() + this.optionPanelsPanel.getChosenEquipmentCost() + ((int)this.modelQuantitySpinner.getValue() * this.unitProfile.getAdditionalModelCost()));
+            Unit unit = new Unit(this.unitProfile.getName(), this.unitProfile.getMinModels()
+                    + (int)this.modelQuantitySpinner.getValue(),
+                    this.optionPanelsPanel.getChosenEquipment(), this.unitProfile.getBaseEquipmentAndRules(),
+                    this.unitProfile.getInitialCost() + this.optionPanelsPanel.getChosenEquipmentCost() +
+                            ((int)this.modelQuantitySpinner.getValue() * this.unitProfile.getAdditionalModelCost()));
             ArrayList<UnitBuildingRule> rules = this.unitProfile.getRules();
             for (UnitBuildingRule rule : rules) {
                 rule.check(unit);

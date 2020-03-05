@@ -21,7 +21,7 @@ public class UnitCounter {
             for(int j = 0; j < roster.getDetachments().get(i).getBoughtUnitsCategorized().size(); j++){//po kategoriach
                 for(int k = 0; k < roster.getDetachments().get(i).getBoughtUnitsCategorized().get(j).size(); k++){  //po unitach
                     Unit unit = roster.getDetachments().get(i).getBoughtUnitsCategorized().get(j).get(k);
-                    if(string == unit.getName()) {
+                    if(string.equals(unit.getName())) {
                         count += 1;
                         break;
                     }
@@ -42,8 +42,8 @@ public class UnitCounter {
                     ArrayList<Entity> base = unit.getNonBaseEquipment();
                     temp.addAll(nonBase);
                     temp.addAll(base);
-                    for(int l = 0; l < temp.size();l++){
-                        if(temp.get(l).getName() == entity.getName()) {
+                    for (Entity value : temp) {
+                        if (value.getName() == entity.getName()) {
                             count += 1;
                             break;
                         }
@@ -66,8 +66,8 @@ public class UnitCounter {
                     ArrayList<Entity> base = unit.getNonBaseEquipment();
                     temp.addAll(nonBase);
                     temp.addAll(base);
-                    for(int l = 0; l < entities.size(); l++) {
-                        if(temp.contains(entities.get(l))){
+                    for (Entity entity : entities) {
+                        if (temp.contains(entity)) {
                             matchingEntitiesCounter++;
                         }
                     }
@@ -93,8 +93,8 @@ public class UnitCounter {
                     temp.addAll(nonBase);
                     temp.addAll(base);
                     boolean isContainingAny = false;
-                    for(int l = 0; l < entities.size(); l++) {
-                        if(temp.contains(entities.get(l))){
+                    for (Entity entity : entities) {
+                        if (temp.contains(entity)) {
                             isContainingAny = true;
                             break;
                         }

@@ -70,16 +70,14 @@ public class RosterDisplayMenu extends JFrame implements ActionListener {
                 }
                 FileWriter fw = new FileWriter(f);
                 fw.write(displayedText);
-                JOptionPane.showMessageDialog(new JFrame(), "Roster exported to file: " + f.getName(), "Dialog",
-                        JOptionPane.OK_OPTION);
-                } catch (IOException e) {
-                } finally {
-                    try {
-                        if (writer != null)
-                            writer.close();
-                    } catch (IOException e) {
-                    }
+                JOptionPane.showMessageDialog(new JFrame(), "Roster exported to file: " + f.getName(),
+                        "Roster Export Successful", JOptionPane.OK_OPTION);
+                if(writer != null)
+                    writer.close();
                 }
+                catch (IOException e) {
+                    e.printStackTrace();
+                 }
         }
         else if(this.backButton == clicked){
             this.dispose();

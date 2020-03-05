@@ -14,8 +14,8 @@ public class EntityContainer {
     }
 
     public boolean contains(Entity entity){
-        for(int i = 0; i < this.entities.size(); i++){
-            if(this.entities.get(i) == entity){
+        for (Entity value : this.entities) {
+            if (value == entity) {
                 return true;
             }
         }
@@ -23,8 +23,8 @@ public class EntityContainer {
     }
 
     public boolean contains(String name){
-        for(int i = 0; i < this.entities.size(); i++){
-            if(this.entities.get(i).getName().equals(name)){
+        for (Entity entity : this.entities) {
+            if (entity.getName().equals(name)) {
                 return true;
             }
         }
@@ -49,23 +49,28 @@ public class EntityContainer {
 
     public Entity get(int index){
         if(this.entities.get(index) instanceof Weapon){
-            return new Weapon(this.entities.get(index).getName(), this.entities.get(index).getDescription(), this.entities.get(index).getParameter(), ((Weapon) this.entities.get(index)).getStatline());
+            return new Weapon(this.entities.get(index).getName(),
+                    this.entities.get(index).getDescription(), this.entities.get(index).getParameter(),
+                    ((Weapon) this.entities.get(index)).getStatline());
         }
         else if(this.entities.get(index) instanceof Item){
-            return new Item(this.entities.get(index).getName(), this.entities.get(index).getDescription(), this.entities.get(index).getParameter());
+            return new Item(this.entities.get(index).getName(),
+                    this.entities.get(index).getDescription(), this.entities.get(index).getParameter());
         }
         else if(this.entities.get(index) instanceof SpecialRule){
-            return new SpecialRule(this.entities.get(index).getName(), this.entities.get(index).getDescription(), this.entities.get(index).getParameter());
+            return new SpecialRule(this.entities.get(index).getName(),
+                    this.entities.get(index).getDescription(), this.entities.get(index).getParameter());
         }
         else{
-            return new Entity(this.entities.get(index).getName(), this.entities.get(index).getDescription(), this.entities.get(index).getParameter());
+            return new Entity(this.entities.get(index).getName(),
+                    this.entities.get(index).getDescription(), this.entities.get(index).getParameter());
         }
     }
 
     public Entity get(String name){
-        for(int i = 0; i < this.entities.size(); i++){
-            if(this.entities.get(i).getName().equals(name)){
-                return this.entities.get(i);
+        for (Entity entity : this.entities) {
+            if (entity.getName().equals(name)) {
+                return entity;
             }
         }
         return null;
