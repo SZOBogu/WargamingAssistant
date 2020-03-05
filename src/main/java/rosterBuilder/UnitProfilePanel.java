@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 public class UnitProfilePanel extends JPanel implements ActionListener {
     private UnitProfile unitProfile;
-    private Roster roster;
+    private RosterObserverSubject roster;
     private int detNumber;
     private int categoryNumber;
     private WargamingSystem wargamingSystem;
@@ -26,7 +26,7 @@ public class UnitProfilePanel extends JPanel implements ActionListener {
     private JButton cancelButton;
     private JButton addUnitButton;
 
-    public UnitProfilePanel(UnitProfile unitProfile, Roster roster, DetachmentPanel detachmentPanel, int detNumber, int categoryNumber, WargamingSystem wargamingSystem){
+    public UnitProfilePanel(UnitProfile unitProfile, RosterObserverSubject roster, DetachmentPanel detachmentPanel, int detNumber, int categoryNumber, WargamingSystem wargamingSystem){
         this.unitProfile = unitProfile;
         this.roster = roster;
         this.detNumber = detNumber;
@@ -75,7 +75,7 @@ public class UnitProfilePanel extends JPanel implements ActionListener {
         this.layoutComponents();
     }
 
-    public UnitProfilePanel(UnitProfile unitProfile, Roster roster, DetachmentPanel detachmentPanel, int detNumber, int categoryNumber, WargamingSystem wargamingSystem, ArrayList<ArrayList<Integer>> indexesToSelect){
+    public UnitProfilePanel(UnitProfile unitProfile, RosterObserverSubject roster, DetachmentPanel detachmentPanel, int detNumber, int categoryNumber, WargamingSystem wargamingSystem, ArrayList<ArrayList<Integer>> indexesToSelect){
         this(unitProfile, roster, detachmentPanel, detNumber, categoryNumber, wargamingSystem);
         for(int i = 0; i < indexesToSelect.size(); i++){
             this.optionPanelsPanel.getOptionPanels().get(indexesToSelect.get(i).get(0)).selectPreviouslyTaken(indexesToSelect.get(i).get(1));
@@ -123,9 +123,10 @@ public class UnitProfilePanel extends JPanel implements ActionListener {
                 rule.check(unit);
             }
             if(RuleViolationLog.getUnitRuleViolationLog().isEmpty()) {
-                roster.getDetachments().get(detNumber).addUnit(unit, categoryNumber);
+                roster.getRoster().getDetachments().get(detNumber).addUnit(unit, categoryNumber);
                 this.detachmentPanel.refresh();
                 RosterBuilderWindow rosterBuilderWindow = new RosterBuilderWindow(this.wargamingSystem, this.roster);
+                this.roster.refreshComponents();
                 JFrame topFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
                 topFrame.dispose();
             }

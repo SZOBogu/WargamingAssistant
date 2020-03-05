@@ -17,10 +17,10 @@ public class DetachmentPanel extends JPanel implements ActionListener, Refreshab
     private ArrayList<ArrayList<JButton>> removeUnitButtons;
     private boolean isLooseDetachment;
     private Detachment detachment;
-    private Roster roster;
+    private RosterObserverSubject roster;
     private WargamingSystem wargamingSystem;
 
-    public DetachmentPanel(Roster roster, Detachment detachment, WargamingSystem system, int detachmentIndex){
+    public DetachmentPanel(RosterObserverSubject roster, Detachment detachment, WargamingSystem system, int detachmentIndex){
         this.detachmentInfoLabel = new JLabel("Detachment " + detachmentIndex + ": " + detachment.getName());
         this.detachment = detachment;
         this.roster = roster;
@@ -109,12 +109,13 @@ public class DetachmentPanel extends JPanel implements ActionListener, Refreshab
     private void layoutComponentsLooseDetachmentStyle(GridBagConstraints gbc){
         add(this.detachmentInfoLabel, gbc);
         gbc.gridy++;
-        for(int i = 0; i < roster.getPrimaryArmy().getRelevantSlotCount(); i++){
+        for(int i = 0; i < roster.getRoster().getPrimaryArmy().getRelevantSlotCount(); i++){
             add(this.categoryLabels.get(i), gbc);
             gbc.gridy++;
             for(int j = 0; j < this.unitLabels.get(i).size(); j++){
                 if(this.detachment.getBoughtUnitsCategorized().get(i).size() > j) {
-                    this.unitLabels.get(i).get(j).setText(this.detachment.getBoughtUnitsCategorized().get(i).get(j).toString());
+                    this.unitLabels.get(i).get(j).setText(
+                            this.detachment.getBoughtUnitsCategorized().get(i).get(j).toString());
                     add(this.unitLabels.get(i).get(j), gbc);
                     gbc.gridx++;
                     add(this.editUnitButtons.get(i).get(j), gbc);
@@ -132,12 +133,13 @@ public class DetachmentPanel extends JPanel implements ActionListener, Refreshab
     private void layoutComponentsRigidDetachmentStyle(GridBagConstraints gbc){
         add(this.detachmentInfoLabel, gbc);
         gbc.gridy++;
-        for(int i = 0; i < roster.getPrimaryArmy().getRelevantSlotCount(); i++){
+        for(int i = 0; i < roster.getRoster().getPrimaryArmy().getRelevantSlotCount(); i++){
             add(this.categoryLabels.get(i), gbc);
             gbc.gridy++;
             for(int j = 0; j < this.detachment.getArrayOfMaxChoicesPerCategory().get(i); j++){
                 if(this.detachment.getBoughtUnitsCategorized().get(i).size() > j){
-                    this.unitLabels.get(i).get(j).setText(this.detachment.getBoughtUnitsCategorized().get(i).get(j).toString());
+                    this.unitLabels.get(i).get(j).setText(
+                            this.detachment.getBoughtUnitsCategorized().get(i).get(j).toString());
                     add(this.unitLabels.get(i).get(j), gbc);
                     gbc.gridx++;
                     add(this.editUnitButtons.get(i).get(j), gbc);
@@ -161,6 +163,8 @@ public class DetachmentPanel extends JPanel implements ActionListener, Refreshab
         this.addUnitButtons.clear();
         this.removeUnitButtons.clear();
         this.editUnitButtons.clear();
+
+        //TODO: refresh listenerow
 
         for(int i = 0; i < detachment.getArmy().getRelevantSlotCount();i++){
             this.categoryLabels.add(new JLabel(detachment.getArmy().getArmySubcategory(i).getName()));
@@ -205,7 +209,7 @@ public class DetachmentPanel extends JPanel implements ActionListener, Refreshab
             }
         }
         RosterBuilderWindow topFrame = (RosterBuilderWindow) SwingUtilities.getWindowAncestor(this);
-        topFrame.refresh();
+//        topFrame.refresh();
         this.layoutComponents();
         this.revalidate();
         this.repaint();
@@ -224,7 +228,7 @@ public class DetachmentPanel extends JPanel implements ActionListener, Refreshab
         for(int i = 0; i < this.addUnitButtons.size(); i++){
             for(int j = 0; j < this.addUnitButtons.get(i).size(); j++) {
                 if(this.addUnitButtons.get(i).get(j) == clicked){
-                    armySubcategory = this.roster.getDetachments().get(this.detachment.getDetachmentNumber()).getArmy().getArmySubcategory(i);
+                    armySubcategory = this.roster.getRoster().getDetachments().get(this.detachment.getDetachmentNumber()).getArmy().getArmySubcategory(i);
                     addUnit = true;
                 }
             }
@@ -250,20 +254,22 @@ public class DetachmentPanel extends JPanel implements ActionListener, Refreshab
         if(addUnit) {
             int categoryIndex = 0;
             for (int i = 0; i < this.detachment.getArmy().size(); i++) {
-                if (this.roster.getDetachments().get(this.detachment.getDetachmentNumber()).getArmy().getArmySubcategory(i) == armySubcategory) {
+                if (this.roster.getRoster().getDetachments().get(this.detachment.getDetachmentNumber()).getArmy().getArmySubcategory(i) == armySubcategory) {
                     categoryIndex = i;
                 }
             }
             UnitSelectionMenu unitSelectionMenu = new UnitSelectionMenu(armySubcategory, roster, this, this.detachment.getDetachmentNumber(), categoryIndex, this.wargamingSystem);
             RosterBuilderWindow topFrame = (RosterBuilderWindow) SwingUtilities.getWindowAncestor(this);
 //            topFrame.refresh();
+            roster.refreshComponents();
             topFrame.dispose();
         }
         else if(removeUnit){
             this.detachment.deleteUnit(tempi, tempj);
             RosterBuilderWindow topFrame = (RosterBuilderWindow) SwingUtilities.getWindowAncestor(this);
-            topFrame.refresh();
-            this.refresh();
+//            topFrame.refresh();
+            roster.refreshComponents();
+            //this.refresh();
         }
         else if(editUnit){
             UnitAndProfileFinder finder = new UnitAndProfileFinder();
@@ -276,15 +282,17 @@ public class DetachmentPanel extends JPanel implements ActionListener, Refreshab
 
             int categoryIndex = 0;
             for (int i = 0; i < this.detachment.getArmy().size(); i++) {
-                if (this.roster.getDetachments().get(this.detachment.getDetachmentNumber()).getArmy().getArmySubcategory(i) == armySubcategory) {
+                if (this.roster.getRoster().getDetachments().get(this.detachment.getDetachmentNumber()).getArmy().getArmySubcategory(i) == armySubcategory) {
                     categoryIndex = i;
                 }
             }
 
             this.detachment.deleteUnit(tempi, tempj);
-            UnitProfileFrame unitProfileFrame = new UnitProfileFrame(unitProfile, roster, this, this.detachment.getDetachmentNumber(), tempi, wargamingSystem, optionsIndexes);
+            UnitProfileFrame unitProfileFrame = new UnitProfileFrame(
+                    unitProfile, roster, this, this.detachment.getDetachmentNumber(), tempi, wargamingSystem, optionsIndexes);
             RosterBuilderWindow topFrame = (RosterBuilderWindow) SwingUtilities.getWindowAncestor(this);
-            topFrame.refresh();
+            //topFrame.refresh();
+            roster.refreshComponents();
             topFrame.dispose();
         }
     }

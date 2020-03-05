@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public class UnitProfileFrame extends JFrame{
     private UnitProfilePanel unitProfilePanel;
 
-    public UnitProfileFrame(UnitProfile unitProfile, Roster roster, DetachmentPanel detachmentPanel, int detNumber, int categoryNumber, WargamingSystem wargamingSystem){
+    public UnitProfileFrame(UnitProfile unitProfile, RosterObserverSubject roster, DetachmentPanel detachmentPanel, int detNumber, int categoryNumber, WargamingSystem wargamingSystem){
         super(unitProfile.getName() + " - Unit Creator");
         this.unitProfilePanel = new UnitProfilePanel(unitProfile, roster, detachmentPanel, detNumber, categoryNumber, wargamingSystem);
         setLayout(new BorderLayout());
@@ -17,7 +17,7 @@ public class UnitProfileFrame extends JFrame{
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
     }
-    public UnitProfileFrame(UnitProfile unitProfile, Roster roster, DetachmentPanel detachmentPanel, int detNumber, int categoryNumber, WargamingSystem wargamingSystem, ArrayList<ArrayList<Integer>> indexesToSelect){
+    public UnitProfileFrame(UnitProfile unitProfile, RosterObserverSubject roster, DetachmentPanel detachmentPanel, int detNumber, int categoryNumber, WargamingSystem wargamingSystem, ArrayList<ArrayList<Integer>> indexesToSelect){
         this(unitProfile, roster, detachmentPanel, detNumber, categoryNumber, wargamingSystem);
         this.unitProfilePanel = new UnitProfilePanel(unitProfile, roster, detachmentPanel, detNumber, categoryNumber, wargamingSystem, indexesToSelect);
     }

@@ -11,13 +11,13 @@ public class UnitSelectionMenu extends JFrame implements ActionListener {
     private ArrayList<JButton> unitButtons;
 
     private ArmySubcategory armySubcategory;
-    private Roster roster;
+    private RosterObserverSubject roster;
     private DetachmentPanel detachmentPanel;
     private int detNumber;
     private int categoryNumber;
     private WargamingSystem wargamingSystem;
 
-    public UnitSelectionMenu(ArmySubcategory armySubcategory, Roster roster, DetachmentPanel detachmentPanel, int detNumber, int categoryNumber, WargamingSystem wargamingSystem){
+    public UnitSelectionMenu(ArmySubcategory armySubcategory, RosterObserverSubject roster, DetachmentPanel detachmentPanel, int detNumber, int categoryNumber, WargamingSystem wargamingSystem){
         this.unitButtons = new ArrayList<>();
         this.armySubcategory = armySubcategory;
         this.roster = roster;
@@ -37,7 +37,7 @@ public class UnitSelectionMenu extends JFrame implements ActionListener {
             button.addActionListener(this);
             this.unitButtons.add(button);
             UnitCounter unitCounter = new UnitCounter();
-            if(unitCounter.countUnitsNamed(roster, armySubcategory.getUnitProfile(i).getName()) >=armySubcategory.getUnitProfile(i).getUnitsPerArmy())
+            if(unitCounter.countUnitsNamed(roster.getRoster(), armySubcategory.getUnitProfile(i).getName()) >=armySubcategory.getUnitProfile(i).getUnitsPerArmy())
                 button.setVisible(false);       //TODO: cos tu nie gra
         }
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

@@ -2,6 +2,7 @@ package common;
 
 import rosterBuilder.Roster;
 import rosterBuilder.RosterInfoDialog;
+import rosterBuilder.RosterObserverSubject;
 import rosterBuilder.WargamingSystem;
 import scenarioGenerator.ScenarioCreator;
 
@@ -44,10 +45,9 @@ public class SystemSelectionMenu extends JFrame implements ActionListener {
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.fill = GridBagConstraints.NONE;
-  //      gbc.anchor = GridBagConstraints.CENTER;
 
-        for(int i = 0; i < this.buttons.size(); i++){
-            add(this.buttons.get(i), gbc);
+        for (JButton button : this.buttons) {
+            add(button, gbc);
             gbc.gridy++;
         }
         gbc.gridy++;
@@ -64,7 +64,10 @@ public class SystemSelectionMenu extends JFrame implements ActionListener {
                 this.dispose();
             }
             else if(this.buttons.get(i) == clicked && this.furtherModule == ModulesEnum.ROSTER_BUILDER){
-                RosterInfoDialog rosterInfoDialog = new RosterInfoDialog(this.wargamingSystems.get(i), new Roster());
+                RosterObserverSubject rosterObserverSubject  = new RosterObserverSubject();
+                Roster roster = new Roster();
+                rosterObserverSubject.setRoster(roster);
+                RosterInfoDialog rosterInfoDialog = new RosterInfoDialog(this.wargamingSystems.get(i), rosterObserverSubject);
                 //RosterBuilderWindow rosterBuilderWindow = new RosterBuilderWindow(this.wargamingSystems.get(i));
                 this.dispose();
             }

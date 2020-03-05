@@ -24,9 +24,14 @@ public class RosterObserverSubject {
         this.roster = roster;
     }
 
-    private void refreshComponents(){
+    public void refreshComponents(){
         for(Refreshable refreshable : refreshables){
             refreshable.refresh();
         }
+    }
+
+    //TODO: czysciciel obserwawtorow konkretnej klasy
+    public void removeClassOfRefreshables(){
+
     }
 }

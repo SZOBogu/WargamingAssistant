@@ -1,8 +1,10 @@
 package rosterBuilder;
 
+import common.Refreshable;
+
 import javax.swing.*;
 
-public class RosterCostLabel extends JLabel {
+public class RosterCostLabel extends JLabel implements Refreshable {
     Roster roster;
 
     public RosterCostLabel(Roster roster){

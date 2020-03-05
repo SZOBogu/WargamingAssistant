@@ -22,10 +22,10 @@ public class RosterInfoDialog extends JFrame implements ActionListener {
     private JButton submitButton;
 
     private WargamingSystem wargamingSystem;
-    private Roster roster;
+    private RosterObserverSubject roster;
 
 
-    public RosterInfoDialog(WargamingSystem wargamingSystem, Roster roster){
+    public RosterInfoDialog(WargamingSystem wargamingSystem, RosterObserverSubject roster){
         this.titleLabel = new JLabel("Roster Form");
         this.armyLabel = new JLabel("Choose your Army");
         this.pointsLabel = new JLabel("Choose maximal point cap");
@@ -89,13 +89,13 @@ public class RosterInfoDialog extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent actionEvent) {
-            roster.setPointCap((int)this.pointsSpinner.getValue());
-            roster.setPrimaryArmy(this.wargamingSystem.getArmy(this.armyComboBox.getSelectedIndex()));
+            roster.getRoster().setPointCap((int)this.pointsSpinner.getValue());
+            roster.getRoster().setPrimaryArmy(this.wargamingSystem.getArmy(this.armyComboBox.getSelectedIndex()));
             Detachment detachment = this.wargamingSystem.getEmptyDetachment(this.detachmentComboBox.getSelectedIndex());
             detachment.setPool(this.wargamingSystem.getPool());
-            roster.addDetachment(detachment);
-            roster.getDetachments().get(0).setArmy(roster.getPrimaryArmy());
-            roster.getDetachments().get(0).setDetachmentNumber(0);
+            roster.getRoster().addDetachment(detachment);
+            roster.getRoster().getDetachments().get(0).setArmy(roster.getRoster().getPrimaryArmy());
+            roster.getRoster().getDetachments().get(0).setDetachmentNumber(0);
             RosterBuilderWindow rosterBuilderWindow = new RosterBuilderWindow(wargamingSystem, roster);
             this.dispose();
     }
