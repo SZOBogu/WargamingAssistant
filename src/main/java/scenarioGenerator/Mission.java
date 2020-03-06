@@ -17,7 +17,7 @@ public class Mission {
         this("Mission", new ArrayList<>(), null, "");
     }
 
-    public Mission(String name, ArrayList<Objective> objectives){
+    public Mission(String name, ArrayList<Objective> objectives) {
         this(name, objectives, null, "");
     }
 

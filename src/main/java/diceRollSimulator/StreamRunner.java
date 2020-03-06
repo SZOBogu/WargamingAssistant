@@ -9,19 +9,21 @@ public class StreamRunner {
         ArrayList<ArrayList<Integer>> results = diceRoll.makeDiceRoll();
         SuccessChecker checker = new SuccessChecker();
         int successes;
-        if(results.size() == 1 && diceRoll.isFailures() == false)
+        if(results.size() == 1 && !diceRoll.isFailures())
             successes = checker.countSuccesses(results.get(0), diceRoll.getSuccessValue());
-        else if(results.size() == 1 && diceRoll.isFailures() == true)
+        else if(results.size() == 1 && diceRoll.isFailures())
             successes = checker.countFailures(results.get(0), diceRoll.getSuccessValue());
-        else if(results.size() == 2 && diceRoll.isFailures() == false)
+        else if(results.size() == 2 && !diceRoll.isFailures())
             successes = checker.countSuccesses(results.get(1), diceRoll.getSuccessValue());
         else
             successes = checker.countFailures(results.get(1), diceRoll.getSuccessValue());
 
         if(diceRoll.getValueToReRoll() > 0)
-            reportGenerator.addDiceRoll(results, number, successes, diceRoll.getSuccessValue(), diceRoll.isFailures(), diceRoll.getValueToReRoll());
+            reportGenerator.addDiceRoll(results, number, successes,
+                    diceRoll.getSuccessValue(), diceRoll.isFailures(), diceRoll.getValueToReRoll());
         else
-            reportGenerator.addDiceRoll(results, number, successes, diceRoll.getSuccessValue(), diceRoll.isFailures());
+            reportGenerator.addDiceRoll(results, number, successes,
+                    diceRoll.getSuccessValue(), diceRoll.isFailures());
 
         return successes;
     }

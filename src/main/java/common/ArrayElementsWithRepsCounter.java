@@ -5,7 +5,7 @@ import java.util.List;
 
 public class ArrayElementsWithRepsCounter {
     public <T> int count(List<T> elements, int reps){
-        List<Integer> reppedList = new ArrayList();
+        List<Integer> reppedList = new ArrayList<>();
 
         for(int i = 0; i < elements.size(); i ++){
             reppedList.add(reps);

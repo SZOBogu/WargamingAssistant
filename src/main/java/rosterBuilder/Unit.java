@@ -60,22 +60,22 @@ public class Unit {
 
     @Override
     public String toString(){
-        String unitInfo = "";
+        StringBuilder unitInfo = new StringBuilder();
         if(this.getModelsInUnit() > 1){
-            unitInfo += this.getModelsInUnit() + " ";
+            unitInfo.append(this.getModelsInUnit()).append(" ");
         }
-        unitInfo += this.getName();
+        unitInfo.append(this.getName());
         if(this.nonBaseEquipment.size() > 0){
-            unitInfo += ", ";
+            unitInfo.append(", ");
         }
         for(int i = 0; i < this.nonBaseEquipment.size(); i++){
-            unitInfo += this.nonBaseEquipment.get(i).toString();
+            unitInfo.append(this.nonBaseEquipment.get(i).toString());
             if(i != this.nonBaseEquipment.size() - 1){
-                unitInfo += ", ";
+                unitInfo.append(", ");
             }
         }
-        unitInfo += "\t[" + this.getPointCost() + "]";
-        return unitInfo;
+        unitInfo.append("\t[").append(this.getPointCost()).append("]");
+        return unitInfo.toString();
     }
 
     @Override

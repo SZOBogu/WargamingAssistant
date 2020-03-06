@@ -13,10 +13,6 @@ public class QuantityDependentOption extends Option {
         return this.modelQuantity * this.cost;
     }
 
-    public int getModelQuantity() {
-        return modelQuantity;
-    }
-
     public void setModelQuantity(int modelQuantity) {
         this.modelQuantity = modelQuantity;
     }

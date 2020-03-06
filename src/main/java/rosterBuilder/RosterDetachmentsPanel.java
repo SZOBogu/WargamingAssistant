@@ -76,7 +76,8 @@ public class RosterDetachmentsPanel extends JPanel implements ActionListener, Re
         this.removeAll();
         this.detachmentPanels.clear();
         for(int i = 0; i < roster.getRoster().getDetachments().size(); i++){
-            this.detachmentPanels.add(new DetachmentPanel(roster, roster.getRoster().getDetachments().get(i), wargamingSystem,  i));
+            this.detachmentPanels.add(new DetachmentPanel(roster, roster.getRoster().getDetachments().get(i),
+                    wargamingSystem,  i));
             JButton button = new JButton("Delete Detachment");
             button.addActionListener(this);
             this.deleteDetachmentButtons.add(button);
@@ -93,11 +94,12 @@ public class RosterDetachmentsPanel extends JPanel implements ActionListener, Re
         RuleViolationLog.clear();
         if(clicked == addDetachmentButton){
             if(this.wargamingSystem.getMaxDetachments() >= this.roster.getRoster().size()) {
-                DetachmentInfoDialog detachmentInfoDialog = new DetachmentInfoDialog(this.wargamingSystem,
+                new DetachmentInfoDialog(this.wargamingSystem,
                         this.roster.getRoster(), this);
             }
             else{
-                JOptionPane.showMessageDialog(new JFrame(), "You've reached maximal number of detachments.", "Dialog",
+                JOptionPane.showMessageDialog(new JFrame(),
+                        "You've reached maximal number of detachments.", "Dialog",
                         JOptionPane.ERROR_MESSAGE);
             }
         }
@@ -110,7 +112,7 @@ public class RosterDetachmentsPanel extends JPanel implements ActionListener, Re
                 rule.check(roster.getRoster());
             }
             if(RuleViolationLog.getRosterRuleViolationLog().isEmpty()) {
-                RosterDisplayMenu rosterDisplayMenu = new RosterDisplayMenu(this.roster.getRoster());
+                new RosterDisplayMenu(this.roster.getRoster());
             }
             else {
                 JOptionPane.showMessageDialog(new JFrame(), RuleViolationLog.getRosterRuleViolationLog(), "Dialog",
@@ -121,7 +123,7 @@ public class RosterDetachmentsPanel extends JPanel implements ActionListener, Re
         else if(clicked == backButton){
             WargameSystemsInitializer initializer = new WargameSystemsInitializer();
             ArrayList<WargamingSystem> wargamingSystems = new ArrayList<>(initializer.initialize());
-            SystemSelectionMenu systemSelectionMenu = new SystemSelectionMenu(wargamingSystems, ModulesEnum.ROSTER_BUILDER);
+            new SystemSelectionMenu(wargamingSystems, ModulesEnum.ROSTER_BUILDER);
 
             topFrame.dispose();
         }

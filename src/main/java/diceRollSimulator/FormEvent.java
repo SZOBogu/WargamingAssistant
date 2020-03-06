@@ -20,7 +20,8 @@ public class FormEvent extends EventObject {
         this.diceSides = diceRoll.getDiceSides();
     }
 
-    public FormEvent(Object source, int quantity, int successValue, boolean reroll, boolean failures, int diceSides, int valueToReRoll){
+    public FormEvent(Object source, int quantity, int successValue,
+                     boolean reroll, boolean failures, int diceSides, int valueToReRoll){
         super(source);
         this.quantity = quantity;
         this.successValue = successValue;

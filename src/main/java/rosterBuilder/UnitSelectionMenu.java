@@ -78,7 +78,7 @@ public class UnitSelectionMenu extends JFrame implements ActionListener {
                 unitProfile = this.armySubcategory.getUnitProfile(i);
             }
         }
-        UnitProfileFrame unitProfileFrame = new UnitProfileFrame(unitProfile, this.roster,
+        new UnitProfileFrame(unitProfile, this.roster,
                 this.detachmentPanel, this.detNumber, this.categoryNumber, this.wargamingSystem);
         this.dispose();
     }

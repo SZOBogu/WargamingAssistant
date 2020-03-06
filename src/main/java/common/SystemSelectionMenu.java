@@ -23,8 +23,8 @@ public class SystemSelectionMenu extends JFrame implements ActionListener {
         this.furtherModule = furtherModule;
         this.wargamingSystems = wargamingSystems;
         this.buttons = new ArrayList<>();
-        for(int i = 0; i < wargamingSystems.size(); i++){
-            JButton button = new JButton(wargamingSystems.get(i).getName());
+        for (WargamingSystem wargamingSystem : wargamingSystems) {
+            JButton button = new JButton(wargamingSystem.getName());
             button.addActionListener(this);
             buttons.add(button);
         }
@@ -59,7 +59,7 @@ public class SystemSelectionMenu extends JFrame implements ActionListener {
         JButton clicked = (JButton)actionEvent.getSource();
         for(int i =0; i < this.buttons.size(); i++){
             if(this.buttons.get(i) == clicked && this.furtherModule == ModulesEnum.SCENARIO_CREATOR){
-                ScenarioCreator scenarioCreator = new ScenarioCreator(this.wargamingSystems.get(i).getDeployments(),
+                new ScenarioCreator(this.wargamingSystems.get(i).getDeployments(),
                         this.wargamingSystems.get(i).getAllScenarios(), this.wargamingSystems.get(i).getName());
                 this.dispose();
             }
@@ -67,13 +67,12 @@ public class SystemSelectionMenu extends JFrame implements ActionListener {
                 RosterObserverSubject rosterObserverSubject  = new RosterObserverSubject();
                 Roster roster = new Roster();
                 rosterObserverSubject.setRoster(roster);
-                RosterInfoDialog rosterInfoDialog = new RosterInfoDialog(this.wargamingSystems.get(i), rosterObserverSubject);
-                //RosterBuilderWindow rosterBuilderWindow = new RosterBuilderWindow(this.wargamingSystems.get(i));
+                new RosterInfoDialog(this.wargamingSystems.get(i), rosterObserverSubject);
                 this.dispose();
             }
         }
         if(this.backButton == clicked){
-            MainMenu mainMenu = new MainMenu();
+            new MainMenu();
             this.dispose();
         }
     }

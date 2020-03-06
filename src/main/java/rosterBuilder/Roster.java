@@ -65,7 +65,7 @@ public class Roster {
 
     @Override
     public String toString(){
-        StringBuilder string = new StringBuilder();
+        StringBuilder string;
         if(this.primaryArmy != null)
             string = new StringBuilder(this.primaryArmy.getName() + " " + getPointCap() + "p Army\n");
         else

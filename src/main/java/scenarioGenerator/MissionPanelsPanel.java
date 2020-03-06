@@ -9,8 +9,8 @@ public class MissionPanelsPanel extends JPanel {
 
     public MissionPanelsPanel(ArrayList<MissionList> scenarios){
         this.panels = new ArrayList<>();
-        for(int i=0;i<scenarios.size();i++){
-            panels.add(new MissionPanel(scenarios.get(i)));
+        for (MissionList scenario : scenarios) {
+            panels.add(new MissionPanel(scenario));
         }
         this.layoutComponents();
     }
@@ -22,16 +22,16 @@ public class MissionPanelsPanel extends JPanel {
         gbc.gridy = 0;
         gbc.gridwidth = 0;
         gbc.fill = GridBagConstraints.NONE;
-        for(int i=0; i<this.panels.size();i++){
-            add(this.panels.get(i), gbc);
+        for (MissionPanel panel : this.panels) {
+            add(panel, gbc);
             gbc.gridy++;
         }
     }
 
     public ArrayList<ArrayList<Boolean>> getChosenData(){
         ArrayList<ArrayList<Boolean>> data = new ArrayList<>();
-        for(int i=0; i < this.panels.size(); i++){
-            data.add(this.panels.get(i).getChosenData());
+        for (MissionPanel panel : this.panels) {
+            data.add(panel.getChosenData());
         }
         return data;
     }

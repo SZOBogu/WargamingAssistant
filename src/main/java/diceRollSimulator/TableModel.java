@@ -5,7 +5,8 @@ import java.util.ArrayList;
 
 public class TableModel extends AbstractTableModel {
     private ArrayList<DiceRoll> db = new ArrayList<>();
-    private String[] colNames = {"No.", "Quantity", "Success Value", "Rerolling", "Failures", "Dice Sides", "Value to Reroll"};
+    private String[] colNames = {"No.", "Quantity",
+            "Success Value", "Rerolling", "Failures", "Dice Sides", "Value to Reroll"};
 
     public void setData(ArrayList<DiceRoll> db){
         this.db = db;

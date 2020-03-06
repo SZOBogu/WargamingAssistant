@@ -9,14 +9,12 @@ import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 public class TablePanel extends JPanel {
-   // private JLabel diceQuantityLabel;
     private JTable table;
     private TableModel tableModel;
     private JPopupMenu popupMenu;
     private TableListener tableListener;
 
     public TablePanel(){
-        //this.diceQuantityLabel = new JLabel();
         this.tableModel = new TableModel();
         this.table = new JTable(tableModel);
         this.popupMenu = new JPopupMenu();

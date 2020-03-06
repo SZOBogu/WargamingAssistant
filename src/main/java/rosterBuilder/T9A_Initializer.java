@@ -326,7 +326,8 @@ public class T9A_Initializer implements IWargameInitializer {
                 new Statistic("Dis", "8"))));
         ArrayList<SpecialRule> BH_BSoothSrG = new ArrayList<>(Arrays.asList(
                 bloodOffering, strider, packTactics, wizardApprentice));
-        ModelPart BH_BSooth_Global = new ModelPart("Global", BH_BSoothStatG, BH_BSoothSrG, new ArrayList<>());
+        ModelPart BH_BSooth_Global = new ModelPart(
+                "Global", BH_BSoothStatG, BH_BSoothSrG, new ArrayList<>());
 
         Statline BH_BSoothStatD = new Statline(new ArrayList<>(Arrays.asList(
                 new Statistic("HP", "3"), new Statistic("Def", "4"),
@@ -339,12 +340,14 @@ public class T9A_Initializer implements IWargameInitializer {
                 new Statistic("Str", "3"), new Statistic("AP", "0"),
                 new Statistic("Agi", "3"))));
         ArrayList<SpecialRule> BH_BSoothSrO = new ArrayList<>(Collections.singletonList(primalInstinct));
-        ModelPart BH_BSooth_Offensive = new ModelPart("Offensive", BH_BSoothStatO, BH_BSoothSrO, new ArrayList<>());
+        ModelPart BH_BSooth_Offensive = new ModelPart(
+                "Offensive", BH_BSoothStatO, BH_BSoothSrO, new ArrayList<>());
 
         Statline BH_BSoothStatOther = new Statline(new ArrayList<>(Arrays.asList(
                 new Statistic("Size", "Standard"), new Statistic("Type", "Infantry"),
                 new Statistic("Base", "25x25mm"))));
-        ModelPart BH_BSooth_Other = new ModelPart("Other", BH_BSoothStatOther, new ArrayList<>(), new ArrayList<>());
+        ModelPart BH_BSooth_Other = new ModelPart(
+                "Other", BH_BSoothStatOther, new ArrayList<>(), new ArrayList<>());
 
         ArrayList<ModelPart> BH_BSooth_modelParts = new ArrayList<>(Arrays.asList(
                 BH_BSooth_Global, BH_BSooth_Defensive, BH_BSooth_Offensive, BH_BSooth_Other));
@@ -375,9 +378,11 @@ public class T9A_Initializer implements IWargameInitializer {
         PointCapOptionSet BH_Sooth_OptionSet3 = new PointCapOptionSet(new ArrayList<>(
                 Arrays.asList(BHSooth30, BHSooth31, BHSooth32, BHSooth33, BHSooth34)), 200);
         ArrayList<OptionSet> optionsetBHBSooth = new ArrayList<>(
-                Arrays.asList(BH_BSooth_OptionSet0, BH_BSooth_OptionSet1, BH_BSooth_OptionSet2, BH_Sooth_OptionSet3));
+                Arrays.asList(
+                        BH_BSooth_OptionSet0, BH_BSooth_OptionSet1, BH_BSooth_OptionSet2, BH_Sooth_OptionSet3));
 
-        UnitProfile soothsayer = new UnitProfile("Soothsayer", BH_BSooth_modelParts, optionsetBHBSooth, 155);
+        UnitProfile soothsayer = new UnitProfile(
+                "Soothsayer", BH_BSooth_modelParts, optionsetBHBSooth, 155);
         ambush.setParameter("");
         soothsayer.setPool(pool);
 //WILDHORN HELD
@@ -386,25 +391,29 @@ public class T9A_Initializer implements IWargameInitializer {
                 new Statistic("Dis", "7"))));
         ArrayList<SpecialRule> BH_WHStatSrG = new ArrayList<>(Arrays.asList(
                 strider, packTactics, scoring));
-        ModelPart BH_WHStatGlobal = new ModelPart("Global", BH_WHStatG, BH_WHStatSrG, new ArrayList<>());
+        ModelPart BH_WHStatGlobal = new ModelPart(
+                "Global", BH_WHStatG, BH_WHStatSrG, new ArrayList<>());
 
         Statline BH_WHStatStatD = new Statline(new ArrayList<>(Arrays.asList(
                 new Statistic("HP", "1"), new Statistic("Def", "4"),
                 new Statistic("Res", "4"), new Statistic("Arm", "0"))));
         ArrayList<SpecialRule>BH_WHSrD = new ArrayList<>();
-        ModelPart BH_WHStatDefensive = new ModelPart("Defensive", BH_WHStatStatD, BH_WHSrD, new ArrayList<>());
+        ModelPart BH_WHStatDefensive = new ModelPart(
+                "Defensive", BH_WHStatStatD, BH_WHSrD, new ArrayList<>());
 
         Statline BH_WHStatStatO = new Statline(new ArrayList<>(Arrays.asList(
                 new Statistic("Att", "1"), new Statistic("Off", "4"),
                 new Statistic("Str", "3"), new Statistic("AP", "0"),
                 new Statistic("Agi", "3"))));
         ArrayList<SpecialRule> BH_WHStatSrO = new ArrayList<>(Collections.singletonList(primalInstinct));
-        ModelPart BH_WHStatOffensive = new ModelPart("Offensive", BH_WHStatStatO, BH_WHStatSrO, new ArrayList<>());
+        ModelPart BH_WHStatOffensive = new ModelPart(
+                "Offensive", BH_WHStatStatO, BH_WHStatSrO, new ArrayList<>());
 
         Statline BH_WHStatStatOther = new Statline(new ArrayList<>(Arrays.asList(
                 new Statistic("Size", "Standard"), new Statistic("Type", "Infantry"),
                 new Statistic("Base", "25x25mm"))));
-        ModelPart BH_WHStat_Other = new ModelPart("Other", BH_WHStatStatOther, new ArrayList<>(), new ArrayList<>());
+        ModelPart BH_WHStat_Other = new ModelPart(
+                "Other", BH_WHStatStatOther, new ArrayList<>(), new ArrayList<>());
 
         ArrayList<ModelPart> BH_WHStat_modelParts = new ArrayList<>(Arrays.asList(
                 BH_WHStatGlobal, BH_WHStatDefensive, BH_WHStatOffensive, BH_WHStat_Other));
@@ -489,7 +498,8 @@ public class T9A_Initializer implements IWargameInitializer {
                 new Statistic("Res", "4"), new Statistic("Arm", "0"))));
         ArrayList<SpecialRule>BH_MinoSrD = new ArrayList<>();
         ModelPart BH_MinoStatDefensive = new ModelPart(
-                "Defensive", BH_MinoStatStatD, BH_MinoSrD, new ArrayList<>(Arrays.asList(lightArmour)));
+                "Defensive", BH_MinoStatStatD, BH_MinoSrD, new ArrayList<>(
+                        Collections.singletonList(lightArmour)));
 
         Statline BH_MinoStatStatO = new Statline(new ArrayList<>(Arrays.asList(
                 new Statistic("Att", "3"), new Statistic("Off", "4"),
@@ -612,7 +622,8 @@ public class T9A_Initializer implements IWargameInitializer {
 
         SingleChoiceOptionSet BH_BeastGiant_OptionSet0 = new SingleChoiceOptionSet(
                 new ArrayList<>(Arrays.asList(BH_BeastGiant_Op00, BH_BeastGiant_Op01)));
-        ArrayList<OptionSet> optionsetBH_BeastGiant = new ArrayList<>(Collections.singletonList(BH_BeastGiant_OptionSet0));
+        ArrayList<OptionSet> optionsetBH_BeastGiant = new ArrayList<>(
+                Collections.singletonList(BH_BeastGiant_OptionSet0));
 
         UnitProfile beastGiant = new UnitProfile(
                 "Beast Giant", BH_BeastGiantStat_modelParts, optionsetBH_BeastGiant, 300, 3);
@@ -763,7 +774,8 @@ public class T9A_Initializer implements IWargameInitializer {
                 "Other", DL_OmenOfSavarStatStatOther, new ArrayList<>(), new ArrayList<>());
 
         ArrayList<ModelPart> DL_OmenOfSavarStat_modelParts = new ArrayList<>(Arrays.asList(
-                DL_OmenOfSavarStatGlobal, DL_OmenOfSavarStatDefensive, DL_OmenOfSavarStatOffensive, DL_OmenOfSavarStat_Other));
+                DL_OmenOfSavarStatGlobal, DL_OmenOfSavarStatDefensive,
+                DL_OmenOfSavarStatOffensive, DL_OmenOfSavarStat_Other));
 
         Option DL_OmenOfSavar_Op00 = new Option(general, 0);
         Option DL_OmenOfSavar_Op01 = new Option(dominionOfPride, 50);
@@ -778,8 +790,8 @@ public class T9A_Initializer implements IWargameInitializer {
                 DL_OmenOfSavar_Op00, DL_OmenOfSavar_Op01)));
         SingleChoiceOptionSet DL_OmenOfSavar_OptionSet1 = new SingleChoiceOptionSet(new ArrayList<>(Arrays.asList(
                 DL_OmenOfSavar_Op10, DL_OmenOfSavar_Op11)), "", "become");
-        MultipleChoiceOptionSet DL_OmenOfSavar_OptionSet2 = new MultipleChoiceOptionSet(new ArrayList<>(Arrays.asList(
-                DL_OmenOfSavar_Op20)));
+        MultipleChoiceOptionSet DL_OmenOfSavar_OptionSet2 = new MultipleChoiceOptionSet(new ArrayList<>(
+                Collections.singletonList(DL_OmenOfSavar_Op20)));
         ArrayList<OptionSet> optionsetDL_OmenOfSavar = new ArrayList<>(Arrays.asList(
                 DL_OmenOfSavar_OptionSet0, DL_OmenOfSavar_OptionSet1, DL_OmenOfSavar_OptionSet2));
 
@@ -906,8 +918,8 @@ public class T9A_Initializer implements IWargameInitializer {
                 new Statistic("Agi", "4"))));
         ArrayList<SpecialRule> DL_ClawedFiendsStatSrO = new ArrayList<>(Collections.singletonList(smother));
         ModelPart DL_ClawedFiendsStatOffensive = new ModelPart(
-                "Offensive", DL_ClawedFiendsStatStatO, DL_ClawedFiendsStatSrO, new ArrayList<>(Arrays.asList(
-                        energyBolts)));
+                "Offensive", DL_ClawedFiendsStatStatO, DL_ClawedFiendsStatSrO, new ArrayList<>(Collections.singletonList(
+                energyBolts)));
 
         Statline DL_ClawedFiendsStatStatOther = new Statline(new ArrayList<>(Arrays.asList(
                 new Statistic("Size", "Large"), new Statistic("Type", "Beast"),

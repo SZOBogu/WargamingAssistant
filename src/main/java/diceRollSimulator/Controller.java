@@ -29,8 +29,7 @@ public class Controller {
 
     public String run(){
         StreamRunner runner = new StreamRunner();
-        String report = runner.runAll(this.getDiceRolls());
-        return report;
+        return runner.runAll(this.getDiceRolls());
     }
 
     public String runNonRandom(){

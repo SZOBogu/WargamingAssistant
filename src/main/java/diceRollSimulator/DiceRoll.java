@@ -25,7 +25,7 @@ public class DiceRoll {
         this.valueToReRoll = valueToReRoll;
         this.failures = failures;
         this.diceSides = diceSides;
-        if(this.valueToReRoll > 0 && this.isReroll() == true){
+        if(this.valueToReRoll > 0 && this.isReroll()){
             this.reroll = false;
         }
     }
@@ -41,17 +41,16 @@ public class DiceRoll {
     }
 
     public ArrayList<ArrayList<Integer>> makeDiceRoll(){
-        ArrayList<ArrayList<Integer>> bothResults = new ArrayList();
-        ArrayList<Integer> result = new ArrayList();
-        ArrayList<Integer> resultRerolled = new ArrayList();
+        ArrayList<ArrayList<Integer>> bothResults = new ArrayList<>();
+        ArrayList<Integer> result = new ArrayList<>();
+        ArrayList<Integer> resultRerolled = new ArrayList<>();
         result = this.rollDices();
         bothResults.add(result);
 
-        for (int i= 0; i<result.size(); i++){
-            resultRerolled.add(new Integer(result.get(i)));      //deep copy substitute, fuck the police
-        }
+        //deep copy substitute, fuck the police
+        resultRerolled.addAll(result);
 
-        if(this.reroll == true){
+        if(this.reroll){
             //regular reroll of non passed dices
             for (int i= 0; i<result.size(); i++){
                 if(resultRerolled.get(i) <= this.successValue) {
@@ -59,11 +58,6 @@ public class DiceRoll {
                     resultRerolled.remove(i);
                     resultRerolled.add(i, dice.roll());
                 }
-//                else if(resultRerolled.get(i) >= this.successValue && this.failures == true){
-//                    common.Dice dice = new common.Dice(this.diceSides);
-//                    resultRerolled.remove(i);
-//                    resultRerolled.add(i, dice.roll());
-//                }
             }
             bothResults.add(resultRerolled);
         }
@@ -79,7 +73,6 @@ public class DiceRoll {
             }
             bothResults.add(resultRerolled);
         }
-
         return bothResults;
     }
 
@@ -95,41 +88,22 @@ public class DiceRoll {
         return successValue;
     }
 
-    public void setSuccessValue(int successValue) {
-        this.successValue = successValue;
-    }
-
     public boolean isReroll() {
         return reroll;
-    }
-
-    public void setReroll(boolean reroll) {
-        this.reroll = reroll;
     }
 
     public int getValueToReRoll() {
         return valueToReRoll;
     }
 
-    public void setValueToReRoll(int valueToReRoll) {
-        this.valueToReRoll = valueToReRoll;
-    }
-
     public boolean isFailures() {
         return failures;
-    }
-
-    public void setFailures(boolean failures) {
-        this.failures = failures;
     }
 
     public int getDiceSides() {
         return diceSides;
     }
 
-    public void setDiceSides(int diceSides) {
-        this.diceSides = diceSides;
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -155,7 +129,7 @@ public class DiceRoll {
         if(this.isFailures()) description += "-";
         else description +="+";
 
-        if(this.reroll == true) description += " with reroll";
+        if(this.reroll) description += " with reroll";
         if(this.valueToReRoll > 0) description += " with reroll of " + valueToReRoll + "s";
 
         return description;

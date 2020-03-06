@@ -6,8 +6,8 @@ public class SuccessChecker {
 
     public int countSuccesses(ArrayList<Integer> results, int successValue){
         int successes = 0;
-        for(int i =0; i<results.size(); i++){
-            if(results.get(i) >= successValue){
+        for (Integer result : results) {
+            if (result >= successValue) {
                 successes += 1;
             }
         }
@@ -15,7 +15,6 @@ public class SuccessChecker {
     }
 
     public int countFailures(ArrayList<Integer> results, int successValue){
-        int failures = results.size() - this.countSuccesses(results, successValue);
-        return failures;
+        return results.size() - this.countSuccesses(results, successValue);
     }
 }

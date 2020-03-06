@@ -187,14 +187,16 @@ public class ScenarioCreatorPanel extends JPanel implements ActionListener {
                 ScenarioDisplayer scenarioDisplayer = new ScenarioDisplayer(randomDeployments, randomMissionsPack);
             }
             else
-                JOptionPane.showMessageDialog(new JFrame(), "Too few missions and/or deployments chosen to generate that number of scenarios"
+                JOptionPane.showMessageDialog(new JFrame(),
+                        "Too few missions and/or deployments chosen to generate that number of scenarios"
                         , "Dialog", JOptionPane.ERROR_MESSAGE);
             }
         }
         else if(clicked == backButton){
             WargameSystemsInitializer init = new WargameSystemsInitializer();
             ArrayList<WargamingSystem> wargamingSystems = init.initialize();
-            SystemSelectionMenu systemSelectionMenu = new SystemSelectionMenu(wargamingSystems, ModulesEnum.SCENARIO_CREATOR);
+            SystemSelectionMenu systemSelectionMenu = new SystemSelectionMenu(
+                    wargamingSystems, ModulesEnum.SCENARIO_CREATOR);
             JFrame topFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
             topFrame.dispose();
         }

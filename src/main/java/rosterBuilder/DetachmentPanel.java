@@ -32,7 +32,8 @@ public class DetachmentPanel extends JPanel implements ActionListener, Refreshab
         this.removeUnitButtons = new ArrayList<>();
 
          for(int i = 0; i < detachment.getArmy().getRelevantSlotCount();i++){
-                this.categoryLabels.add(new JLabel(detachment.getArmy().getArmySubcategory(i).getName(), SwingConstants.CENTER));
+                this.categoryLabels.add(new JLabel(detachment.getArmy().getArmySubcategory(i).getName(),
+                        SwingConstants.CENTER));
                 this.unitLabels.add(new ArrayList<>());
                 this.addUnitButtons.add(new ArrayList<>());
                 this.editUnitButtons.add(new ArrayList<>());
@@ -40,7 +41,8 @@ public class DetachmentPanel extends JPanel implements ActionListener, Refreshab
         }
         ArrayList<Integer> arrayOfMandatoryChoicesInCategories = detachment.getArrayOfMandatoryChoicesInCategories();
         ArrayList<Integer> arrayOfMaxChoicesPerCategory = detachment.getArrayOfMaxChoicesPerCategory();
-        this.isLooseDetachment = this.determineLayoutStyle(arrayOfMandatoryChoicesInCategories, arrayOfMaxChoicesPerCategory);
+        this.isLooseDetachment = this.determineLayoutStyle(arrayOfMandatoryChoicesInCategories,
+                arrayOfMaxChoicesPerCategory);
          if(!this.isLooseDetachment) {
              for (int i = 0; i < detachment.getArmy().getRelevantSlotCount(); i++) {
                  for (int j = 0; j < arrayOfMaxChoicesPerCategory.get(i); j++) {
@@ -208,7 +210,7 @@ public class DetachmentPanel extends JPanel implements ActionListener, Refreshab
                 }
             }
         }
-        RosterBuilderWindow topFrame = (RosterBuilderWindow) SwingUtilities.getWindowAncestor(this);
+        SwingUtilities.getWindowAncestor(this); //?
         this.layoutComponents();
         this.revalidate();
         this.repaint();
@@ -227,7 +229,8 @@ public class DetachmentPanel extends JPanel implements ActionListener, Refreshab
         for(int i = 0; i < this.addUnitButtons.size(); i++){
             for(int j = 0; j < this.addUnitButtons.get(i).size(); j++) {
                 if(this.addUnitButtons.get(i).get(j) == clicked){
-                    armySubcategory = this.roster.getRoster().getDetachments().get(this.detachment.getDetachmentNumber()).getArmy().getArmySubcategory(i);
+                    armySubcategory = this.roster.getRoster().getDetachments().get(
+                            this.detachment.getDetachmentNumber()).getArmy().getArmySubcategory(i);
                     addUnit = true;
                 }
             }
@@ -253,32 +256,36 @@ public class DetachmentPanel extends JPanel implements ActionListener, Refreshab
         if(addUnit) {
             int categoryIndex = 0;
             for (int i = 0; i < this.detachment.getArmy().size(); i++) {
-                if (this.roster.getRoster().getDetachments().get(this.detachment.getDetachmentNumber()).getArmy().getArmySubcategory(i) == armySubcategory) {
+                if (this.roster.getRoster().getDetachments().get(
+                        this.detachment.getDetachmentNumber()).getArmy().getArmySubcategory(i) == armySubcategory) {
                     categoryIndex = i;
                 }
             }
-            UnitSelectionMenu unitSelectionMenu = new UnitSelectionMenu(armySubcategory, roster, this, this.detachment.getDetachmentNumber(), categoryIndex, this.wargamingSystem);
+            new UnitSelectionMenu(armySubcategory, roster,
+                    this, this.detachment.getDetachmentNumber(), categoryIndex, this.wargamingSystem);
             RosterBuilderWindow topFrame = (RosterBuilderWindow) SwingUtilities.getWindowAncestor(this);
             roster.refreshComponents();
             topFrame.dispose();
         }
         else if(removeUnit){
             this.detachment.deleteUnit(tempi, tempj);
-            RosterBuilderWindow topFrame = (RosterBuilderWindow) SwingUtilities.getWindowAncestor(this);
+            SwingUtilities.getWindowAncestor(this);
             roster.refreshComponents();
         }
         else if(editUnit){
             UnitAndProfileFinder finder = new UnitAndProfileFinder();
             UnitTakenOptionsIndexGetter getter = new UnitTakenOptionsIndexGetter();
 
-            UnitProfile unitProfile =  finder.getProfile(this.detachment.getArmy(), this.detachment.getUnit(tempi, tempj).getName());
+            UnitProfile unitProfile =  finder.getProfile(this.detachment.getArmy(),
+                    this.detachment.getUnit(tempi, tempj).getName());
 
             Unit unit = this.detachment.getUnit(tempi, tempj);
             ArrayList<ArrayList<Integer>> optionsIndexes = getter.getTakenOptionsIndexes(unit, unitProfile);
 
             this.detachment.deleteUnit(tempi, tempj);
-            UnitProfileFrame unitProfileFrame = new UnitProfileFrame(
-                    unitProfile, roster, this, this.detachment.getDetachmentNumber(), tempi, wargamingSystem, optionsIndexes);
+           new UnitProfileFrame(
+                    unitProfile, roster, this, this.detachment.getDetachmentNumber(),
+                    tempi, wargamingSystem, optionsIndexes);
             RosterBuilderWindow topFrame = (RosterBuilderWindow) SwingUtilities.getWindowAncestor(this);
             roster.refreshComponents();
             topFrame.dispose();

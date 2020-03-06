@@ -38,7 +38,7 @@ public class UnitAndProfileFinder {
         Unit targetUnit = new Unit();
 
         for(int i = 0; i < roster.getDetachments().size(); i++) {
-            if(this.getUnit(roster.getDetachments().get(i), name).getName() != ""){
+            if(!this.getUnit(roster.getDetachments().get(i), name).getName().equals("")){
                 targetUnit = this.getUnit(roster.getDetachments().get(i), name);
                 break;
             }
@@ -49,7 +49,7 @@ public class UnitAndProfileFinder {
     public Unit getUnit(Detachment detachment, String name){
         Unit targetUnit = new Unit();
         for(int i = 0; i < detachment.getBoughtUnitsCategorized().size(); i++) {
-            if(this.getUnit(detachment.getBoughtUnitsCategorized().get(i), name).getName() != ""){
+            if(!this.getUnit(detachment.getBoughtUnitsCategorized().get(i), name).getName().equals("")){
                 targetUnit = this.getUnit(detachment.getBoughtUnitsCategorized().get(i), name);
                 break;
             }

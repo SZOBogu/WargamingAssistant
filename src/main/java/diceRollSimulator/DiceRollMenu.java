@@ -5,15 +5,14 @@ import java.awt.*;
 
 public class DiceRollMenu extends JFrame{
     private TextPanel textPanel;
-    private FormPanel form;
     private Controller controller;
     private TablePanel tablePanel;
 
     public DiceRollMenu(){
-        super("main frame");
+        super("Dice Roll Menu");
         setLayout(new BorderLayout());
         this.textPanel = new TextPanel();
-        this.form = new FormPanel();
+        FormPanel form = new FormPanel();
         this.tablePanel = new TablePanel();
         this.controller = new Controller();
 
@@ -29,25 +28,12 @@ public class DiceRollMenu extends JFrame{
                 tablePanel.refresh();
             }
         });
-        form.setClearListener(new ClearListener() {
-            @Override
-            public void clearButtonPressed() {
-                controller.clear();
-                tablePanel.refresh();
-            }
+        form.setClearListener(() -> {
+            controller.clear();
+            tablePanel.refresh();
         });
-        form.setRunListener(new RunListener() {
-            @Override
-            public void run() {
-                textPanel.appendText(controller.run() + "\n---------------------");
-            }
-        });
-        form.setNonRandomRunListener(new NonRandomRunListener() {
-            @Override
-            public void runNonRandom() {
-                textPanel.appendText(controller.runNonRandom() + "\n---------------------");
-            }
-        });
+        form.setRunListener(() -> textPanel.appendText(controller.run() + "\n---------------------"));
+        form.setNonRandomRunListener(() -> textPanel.appendText(controller.runNonRandom() + "\n---------------------"));
 
         setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();

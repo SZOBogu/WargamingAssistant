@@ -48,16 +48,13 @@ public class MainMenu extends JFrame implements ActionListener {
         gbc.fill = GridBagConstraints.NONE;
         gbc.anchor = GridBagConstraints.CENTER;
 
-        //Pierwszy rzad
         gbc.gridy = 0;
         add(scenButton, gbc);
 
-        //nastepny rzad
         gbc.gridy++;
         gbc.anchor = GridBagConstraints.CENTER;
         add(diceButton, gbc);
 
-        //nastepny rzad
         gbc.gridy++;
         gbc.anchor = GridBagConstraints.CENTER;
         add(rosterButton, gbc);
@@ -67,15 +64,15 @@ public class MainMenu extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent actionEvent) {
         JButton clicked = (JButton)actionEvent.getSource();
         if(clicked == rosterButton) {
-            SystemSelectionMenu systemSelectionMenu = new SystemSelectionMenu(this.wargamingSystems, ModulesEnum.ROSTER_BUILDER);
+            new SystemSelectionMenu(this.wargamingSystems, ModulesEnum.ROSTER_BUILDER);
             this.dispose();
         }
         else if(clicked == scenButton){
-            SystemSelectionMenu systemSelectionMenu = new SystemSelectionMenu(this.wargamingSystems, ModulesEnum.SCENARIO_CREATOR);
+            new SystemSelectionMenu(this.wargamingSystems, ModulesEnum.SCENARIO_CREATOR);
             this.dispose();
         }
         else if(clicked == diceButton){
-            DiceRollMenu diceRollMenu = new DiceRollMenu();
+            new DiceRollMenu();
             this.dispose();
         }
     }

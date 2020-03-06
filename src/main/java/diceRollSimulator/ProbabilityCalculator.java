@@ -10,19 +10,26 @@ public class ProbabilityCalculator {
     }
     public double calculateChanceOfSuccessAfterFavourableSingleValueReRoll(DiceRoll diceRoll){
         double chanceOfNonRerolledSuccess = this.calculateChanceOfNonRerolledSuccess(diceRoll);
-        return chanceOfNonRerolledSuccess + ((1 - chanceOfNonRerolledSuccess)/(double)diceRoll.getDiceSides()) * chanceOfNonRerolledSuccess;
+        return chanceOfNonRerolledSuccess + (
+                (1 - chanceOfNonRerolledSuccess)/(double)diceRoll.getDiceSides()) * chanceOfNonRerolledSuccess;
     }
     public double calculateChanceOfSuccessAfterNonFavourableSingleValueReRoll(DiceRoll diceRoll){
         double chanceOfNonRerolledSuccess = this.calculateChanceOfNonRerolledSuccess(diceRoll);
-        return (chanceOfNonRerolledSuccess - 1/(double)diceRoll.getDiceSides()) + ((1 - (chanceOfNonRerolledSuccess - 1/(double)diceRoll.getDiceSides())) * 1/(double)diceRoll.getDiceSides()) * chanceOfNonRerolledSuccess;
+        return (chanceOfNonRerolledSuccess - 1/(double)diceRoll.getDiceSides()) +
+                ((1 - (chanceOfNonRerolledSuccess - 1/(double)diceRoll.getDiceSides()))
+                        * 1/(double)diceRoll.getDiceSides()) * chanceOfNonRerolledSuccess;
     }
 
     public double calculateProbability(DiceRoll diceRoll){
         double chance = 0;
-        double chanceOfNonRerolledSuccess = this.calculateChanceOfNonRerolledSuccess(diceRoll);
-        double chanceOfRerolledSuccess = this.calculateChanceOfRerolledSuccess(diceRoll);
-        double chanceOfSuccessAfterFavourableSingleValueReRoll = this.calculateChanceOfSuccessAfterFavourableSingleValueReRoll(diceRoll);
-        double chanceOfSuccessAfterNonFavourableSingleValueReRoll = this.calculateChanceOfSuccessAfterNonFavourableSingleValueReRoll(diceRoll);
+        double chanceOfNonRerolledSuccess =
+                this.calculateChanceOfNonRerolledSuccess(diceRoll);
+        double chanceOfRerolledSuccess =
+                this.calculateChanceOfRerolledSuccess(diceRoll);
+        double chanceOfSuccessAfterFavourableSingleValueReRoll =
+                this.calculateChanceOfSuccessAfterFavourableSingleValueReRoll(diceRoll);
+        double chanceOfSuccessAfterNonFavourableSingleValueReRoll =
+                this.calculateChanceOfSuccessAfterNonFavourableSingleValueReRoll(diceRoll);
 
         //rolls with rerolls
         if(diceRoll.isReroll()){

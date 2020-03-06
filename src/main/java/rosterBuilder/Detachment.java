@@ -66,9 +66,9 @@ public class Detachment {
 
     public int getCost() {
         int totalCost = 0;
-        for(int i = 0; i < this.boughtUnitsCategorized.size(); i++){
-            for(int j = 0; j < this.boughtUnitsCategorized.get(i).size(); j++) {
-                totalCost += this.boughtUnitsCategorized.get(i).get(j).getPointCost();
+        for (ArrayList<Unit> units : this.boughtUnitsCategorized) {
+            for (Unit unit : units) {
+                totalCost += unit.getPointCost();
             }
         }
         return totalCost;
@@ -89,9 +89,9 @@ public class Detachment {
             ArrayList<Entity> allEntities = new ArrayList<>();
             allEntities.addAll(unit.getNonBaseEquipment());
             allEntities.addAll(unit.getBaseEquipmentAndRules());
-            for(int i = 0; i < allEntities.size(); i++){
-                if(this.pool.getAvailable().contains(allEntities.get(i)))
-                    this.pool.get(allEntities.get(i).getName());
+            for (Entity allEntity : allEntities) {
+                if (this.pool.getAvailable().contains(allEntity))
+                    this.pool.get(allEntity.getName());
             }
         this.profileFilter();
         }
@@ -105,9 +105,9 @@ public class Detachment {
             ArrayList<Entity> allEntities = new ArrayList<>();
             allEntities.addAll(unit.getNonBaseEquipment());
             allEntities.addAll(unit.getBaseEquipmentAndRules());
-            for (int i = 0; i < allEntities.size(); i++) {
-                if(this.pool.contains(allEntities.get(i)) && !this.pool.getAvailable().contains(allEntities.get(i)))
-                    this.pool.release(allEntities.get(i));
+            for (Entity allEntity : allEntities) {
+                if (this.pool.contains(allEntity) && !this.pool.getAvailable().contains(allEntity))
+                    this.pool.release(allEntity);
             }
             this.profileFilter();
         }
@@ -173,7 +173,8 @@ public class Detachment {
     @Override
     public String toString(){
         if(this.army != null) {
-            StringBuilder detachmentInfo = new StringBuilder("Detachment No." + this.getDetachmentNumber() + ": " + this.getName() + "\n");
+            StringBuilder detachmentInfo = new StringBuilder("Detachment No." + this.getDetachmentNumber() + ": "
+                    + this.getName() + "\n");
             for (int i = 0; i < army.getRelevantSlotCount(); i++) {
                 detachmentInfo.append("   ").append(army.getArmySubcategory(i).getName()).append("\n");
                 for (int j = 0; j < boughtUnitsCategorized.get(i).size(); j++) {
@@ -183,10 +184,6 @@ public class Detachment {
             return detachmentInfo.toString();
         }
         else return "Army not set in detachment";
-    }
-
-    public UniqueEntitiesPool getPool() {
-        return pool;
     }
 
     public void setPool(UniqueEntitiesPool pool) {

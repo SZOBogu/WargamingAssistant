@@ -47,8 +47,8 @@ public class ScenarioDisplayer extends JFrame implements ActionListener {
         add(this.titleLabel, gbc);
         gbc.gridy++;
 
-        for(int i=0;i<this.scenarioPanels.size();i++){
-            add(this.scenarioPanels.get(i), gbc);
+        for (GeneratedScenarioPanel scenarioPanel : this.scenarioPanels) {
+            add(scenarioPanel, gbc);
             gbc.gridy++;
         }
 

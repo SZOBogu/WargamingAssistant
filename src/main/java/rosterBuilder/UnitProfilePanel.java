@@ -47,16 +47,13 @@ public class UnitProfilePanel extends JPanel implements ActionListener {
         SpinnerNumberModel modelQuantityModel = new SpinnerNumberModel(0, 0,
                 unitProfile.getMaxModels() - unitProfile.getMinModels(), 1);
         this.modelQuantitySpinner = new JSpinner(modelQuantityModel);
-        this.modelQuantitySpinner.addChangeListener(new ChangeListener() {
-            @Override
-            public void stateChanged(ChangeEvent changeEvent) {
-                for(int i = 0; i < unitProfile.getOptionSets().size(); i++){
-                    for(int j = 0; j < unitProfile.getOptionSets().get(i).getOptions().size(); j++){
-                        if(unitProfile.getOptionSets().get(i).getOptions().get(j) instanceof QuantityDependentOption)
-                            ((QuantityDependentOption) unitProfile.getOptionSets().
-                                    get(i).getOptions().get(j)).
-                                    setModelQuantity(unitProfile.getMinModels () + (int)modelQuantitySpinner.getValue());
-                    }
+        this.modelQuantitySpinner.addChangeListener(changeEvent -> {
+            for(int i = 0; i < unitProfile.getOptionSets().size(); i++){
+                for(int j = 0; j < unitProfile.getOptionSets().get(i).getOptions().size(); j++){
+                    if(unitProfile.getOptionSets().get(i).getOptions().get(j) instanceof QuantityDependentOption)
+                        ((QuantityDependentOption) unitProfile.getOptionSets().
+                                get(i).getOptions().get(j)).
+                                setModelQuantity(unitProfile.getMinModels () + (int)modelQuantitySpinner.getValue());
                 }
             }
         });
@@ -136,7 +133,7 @@ public class UnitProfilePanel extends JPanel implements ActionListener {
             if(RuleViolationLog.getUnitRuleViolationLog().isEmpty()) {
                 roster.getRoster().getDetachments().get(detNumber).addUnit(unit, categoryNumber);
                 this.detachmentPanel.refresh();
-                RosterBuilderWindow rosterBuilderWindow = new RosterBuilderWindow(this.wargamingSystem, this.roster);
+                new RosterBuilderWindow(this.wargamingSystem, this.roster);
                 this.roster.refreshComponents();
                 JFrame topFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
                 topFrame.dispose();
@@ -149,7 +146,7 @@ public class UnitProfilePanel extends JPanel implements ActionListener {
 
         }
         else if(clicked == this.cancelButton){
-            RosterBuilderWindow rosterBuilderWindow = new RosterBuilderWindow(this.wargamingSystem, this.roster);
+            new RosterBuilderWindow(this.wargamingSystem, this.roster);
             JFrame topFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
             topFrame.dispose();
         }

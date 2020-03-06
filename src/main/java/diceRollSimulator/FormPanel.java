@@ -53,7 +53,8 @@ public class FormPanel extends JPanel implements ActionListener {
         SpinnerNumberModel quantityModel = new SpinnerNumberModel(1, 1, 1000, 1);
         this.diceQuantitySpinner = new JSpinner(quantityModel);
 
-        SpinnerNumberModel successModel = new SpinnerNumberModel(2, 2, (int)this.diceSidesSpinner.getValue(), 1);
+        SpinnerNumberModel successModel = new SpinnerNumberModel(2, 2,
+                (int)this.diceSidesSpinner.getValue(), 1);
         this.diceRollSuccessfulResultSpinner = new JSpinner(successModel);
 
         SpinnerNumberModel valueToReRollModel = new SpinnerNumberModel(-1, -1, 1000, 1);
@@ -70,10 +71,12 @@ public class FormPanel extends JPanel implements ActionListener {
                 boolean failures = countFailuresCheckbox.isSelected();
                 int diceSides = (int)diceSidesSpinner.getValue();
 
-                SpinnerNumberModel valueToReRollModel = new SpinnerNumberModel(-1, -1, (int)diceSidesSpinner.getValue(), 1);
+                SpinnerNumberModel valueToReRollModel = new SpinnerNumberModel(-1, -1,
+                        (int)diceSidesSpinner.getValue(), 1);
                 specificResultRerollSpinner = new JSpinner(valueToReRollModel);
 
-                FormEvent event = new FormEvent(this, quantity, successValue, reroll, failures, diceSides, valueToReRoll);
+                FormEvent event = new FormEvent(this, quantity, successValue, reroll,
+                        failures, diceSides, valueToReRoll);
 
                 if (formListener != null){
                     formListener.formEventOccurred(event);
@@ -106,69 +109,59 @@ public class FormPanel extends JPanel implements ActionListener {
         gbc.fill = GridBagConstraints.NONE;
         gbc.anchor = GridBagConstraints.CENTER;
 
-        //Pierwszy rzad
         gbc.gridy = 0;
         gbc.gridx = 1;
         add(titleLabel, gbc);
         titleLabel.setHorizontalAlignment(JLabel.CENTER);
 
-        //nastepny rzad
         gbc.gridy++;
         gbc.gridx = 0;
         add(diceQuantityLabel, gbc);
         gbc.gridx = 1;
         add(diceQuantitySpinner, gbc);
 
-        //nastepny rzad
         gbc.gridx = 0;
         gbc.gridy++;
         add(diceRollSuccessfulResultLabel, gbc);
         gbc.gridx = 1;
         add(diceRollSuccessfulResultSpinner, gbc);
 
-        //nastepny rzad
         gbc.gridx = 0;
         gbc.gridy++;
         add(rerollLabel, gbc);
         gbc.gridx = 1;
         add(rerollCheckBox, gbc);
 
-        //nastepny rzad
         gbc.gridx = 0;
         gbc.gridy++;
         add(specificResultRerollLabel, gbc);
         gbc.gridx = 1;
         add(specificResultRerollSpinner, gbc);
 
-        //nastepny rzad
         gbc.gridx = 0;
         gbc.gridy++;
         add(diceSidesLabel, gbc);
         gbc.gridx = 1;
         add(diceSidesSpinner, gbc);
 
-        //nastepny rzad
         gbc.gridx = 0;
         gbc.gridy++;
         add(countFailuresLabel, gbc);
         gbc.gridx = 1;
         add(countFailuresCheckbox, gbc);
 
-        //nastepny rzad
         gbc.gridx = 0;
         gbc.gridy++;
         add(clearButton, gbc);
         gbc.gridx++;
         add(addDiceRollButton, gbc);
 
-        //nastepny rzad
         gbc.gridx = 0;
         gbc.gridy++;
         add(backButton, gbc);
         gbc.gridx++;
         add(helpButton, gbc);
 
-        //nastepny rzad
         gbc.gridx = 0;
         gbc.gridy++;
         add(randomButton, gbc);
@@ -197,7 +190,7 @@ public class FormPanel extends JPanel implements ActionListener {
             clearListener.clearButtonPressed();
         }
         if(clicked == helpButton){
-            JFrame helpFrame = new JFrame("HELP");
+            new JFrame("HELP");
         }
         if(clicked == randomButton){
             this.runListener.run();
@@ -206,7 +199,7 @@ public class FormPanel extends JPanel implements ActionListener {
             this.nonRandomRunListener.runNonRandom();
         }
         if(clicked == backButton){
-            MainMenu mainMenu = new MainMenu();
+            new MainMenu();
             JFrame topFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
             topFrame.dispose();
         }

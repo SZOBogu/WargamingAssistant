@@ -17,11 +17,12 @@ public class ReportGenerator {
     }
 
     //TODO: DRY
-    public void addDiceRoll(ArrayList<ArrayList<Integer>> results, int number, int successes, int successValue, boolean failures){
+    public void addDiceRoll(ArrayList<ArrayList<Integer>> results,
+                            int number, int successes, int successValue, boolean failures){
         for (int i = 0; i<results.size(); i++) {
             this.report += "Dice Roll " + number + ": " + successes + " successes (" + successValue;
 
-            if (failures == true)   this.report += "-";
+            if (failures)   this.report += "-";
             else                    this.report += "+";
 
             if(results.size() == 1)   this.report += "). ";
@@ -42,7 +43,7 @@ public class ReportGenerator {
         for (int i = 0; i<results.size(); i++) {
             this.report += "Dice Roll " + number + ": " + successes + " successes (" + successValue;
 
-            if (failures == true)   this.report += "-";
+            if (failures)   this.report += "-";
             else                    this.report += "+";
 
 
@@ -62,14 +63,14 @@ public class ReportGenerator {
     }
 
     public String generateReport(ArrayList<DiceRoll> diceRolls, int successes){
-        String finalRep = "TOTAL RESULT: " + successes + " SUCCESSES\n";
+        StringBuilder finalRep = new StringBuilder("TOTAL RESULT: " + successes + " SUCCESSES\n");
         if(diceRolls.size() > 0) {
-            finalRep += diceRolls.get(0).getQuantity() + " dices\n";
+            finalRep.append(diceRolls.get(0).getQuantity()).append(" dices\n");
             for (int i = 0; i < diceRolls.size(); i++) {
-                finalRep += (i + 1) + "." + diceRolls.get(i).toString() + "\n";
+                finalRep.append(i + 1).append(".").append(diceRolls.get(i).toString()).append("\n");
             }
-            finalRep += this.report;
+            finalRep.append(this.report);
         }
-        return finalRep;
+        return finalRep.toString();
     }
 }

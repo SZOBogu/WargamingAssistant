@@ -38,10 +38,7 @@ public class ScenarioFormValidator {
             missionCount = counter.count2D(missions, missionReps);
             deploymentCount = counter.count(deployments, deploymentReps);
 
-            if (missionCount >= scensToGenerate && deploymentCount >= scensToGenerate)
-                return true;
-            else
-                return false;
+            return missionCount >= scensToGenerate && deploymentCount >= scensToGenerate;
         }
         return false;
     }
