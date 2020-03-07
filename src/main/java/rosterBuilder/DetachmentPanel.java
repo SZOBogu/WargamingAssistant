@@ -20,7 +20,8 @@ public class DetachmentPanel extends JPanel implements ActionListener, Refreshab
     private RosterObserverSubject roster;
     private WargamingSystem wargamingSystem;
 
-    public DetachmentPanel(RosterObserverSubject roster, Detachment detachment, WargamingSystem system, int detachmentIndex){
+    public DetachmentPanel(RosterObserverSubject roster, Detachment detachment, WargamingSystem system,
+                           int detachmentIndex){
         this.detachmentInfoLabel = new JLabel("Detachment " + detachmentIndex + ": " + detachment.getName());
         this.detachment = detachment;
         this.roster = roster;
@@ -39,8 +40,10 @@ public class DetachmentPanel extends JPanel implements ActionListener, Refreshab
                 this.editUnitButtons.add(new ArrayList<>());
                 this.removeUnitButtons.add(new ArrayList<>());
         }
-        ArrayList<Integer> arrayOfMandatoryChoicesInCategories = detachment.getArrayOfMandatoryChoicesInCategories();
-        ArrayList<Integer> arrayOfMaxChoicesPerCategory = detachment.getArrayOfMaxChoicesPerCategory();
+        ArrayList<Integer> arrayOfMandatoryChoicesInCategories =
+                detachment.getArrayOfMandatoryChoicesInCategories();
+        ArrayList<Integer> arrayOfMaxChoicesPerCategory =
+                detachment.getArrayOfMaxChoicesPerCategory();
         this.isLooseDetachment = this.determineLayoutStyle(arrayOfMandatoryChoicesInCategories,
                 arrayOfMaxChoicesPerCategory);
          if(!this.isLooseDetachment) {
@@ -79,7 +82,8 @@ public class DetachmentPanel extends JPanel implements ActionListener, Refreshab
         this.layoutComponents();
     }
 
-    public boolean determineLayoutStyle(ArrayList<Integer> arrayOfMandatoryChoicesInCategories, ArrayList<Integer> arrayOfMaxChoicesPerCategory){
+    public boolean determineLayoutStyle(ArrayList<Integer> arrayOfMandatoryChoicesInCategories,
+                                        ArrayList<Integer> arrayOfMaxChoicesPerCategory){
         int sumOfMin = 0;
         int sumOfMaxes = 0;
 
@@ -166,8 +170,6 @@ public class DetachmentPanel extends JPanel implements ActionListener, Refreshab
         this.removeUnitButtons.clear();
         this.editUnitButtons.clear();
 
-        //TODO: refresh listenerow
-
         for(int i = 0; i < detachment.getArmy().getRelevantSlotCount();i++){
             this.categoryLabels.add(new JLabel(detachment.getArmy().getArmySubcategory(i).getName()));
             this.unitLabels.add(new ArrayList<>());
@@ -175,9 +177,12 @@ public class DetachmentPanel extends JPanel implements ActionListener, Refreshab
             this.removeUnitButtons.add(new ArrayList<>());
             this.editUnitButtons.add(new ArrayList<>());
         }
-        ArrayList<Integer> arrayOfMandatoryChoicesInCategories = detachment.getArrayOfMandatoryChoicesInCategories();
-        ArrayList<Integer> arrayOfMaxChoicesPerCategory = detachment.getArrayOfMaxChoicesPerCategory();
-        this.isLooseDetachment = this.determineLayoutStyle(arrayOfMandatoryChoicesInCategories, arrayOfMaxChoicesPerCategory);
+        ArrayList<Integer> arrayOfMandatoryChoicesInCategories =
+                detachment.getArrayOfMandatoryChoicesInCategories();
+        ArrayList<Integer> arrayOfMaxChoicesPerCategory =
+                detachment.getArrayOfMaxChoicesPerCategory();
+        this.isLooseDetachment = this.determineLayoutStyle(
+                arrayOfMandatoryChoicesInCategories, arrayOfMaxChoicesPerCategory);
         if(!this.isLooseDetachment) {
             for (int i = 0; i < detachment.getArmy().getRelevantSlotCount(); i++) {
                 for (int j = 0; j < arrayOfMaxChoicesPerCategory.get(i); j++) {
@@ -262,7 +267,8 @@ public class DetachmentPanel extends JPanel implements ActionListener, Refreshab
                 }
             }
             new UnitSelectionMenu(armySubcategory, roster,
-                    this, this.detachment.getDetachmentNumber(), categoryIndex, this.wargamingSystem);
+                    this, this.detachment.getDetachmentNumber(), categoryIndex,
+                    this.wargamingSystem);
             RosterBuilderWindow topFrame = (RosterBuilderWindow) SwingUtilities.getWindowAncestor(this);
             roster.refreshComponents();
             topFrame.dispose();
@@ -283,7 +289,7 @@ public class DetachmentPanel extends JPanel implements ActionListener, Refreshab
             ArrayList<ArrayList<Integer>> optionsIndexes = getter.getTakenOptionsIndexes(unit, unitProfile);
 
             this.detachment.deleteUnit(tempi, tempj);
-           new UnitProfileFrame(
+            new UnitProfileFrame(
                     unitProfile, roster, this, this.detachment.getDetachmentNumber(),
                     tempi, wargamingSystem, optionsIndexes);
             RosterBuilderWindow topFrame = (RosterBuilderWindow) SwingUtilities.getWindowAncestor(this);

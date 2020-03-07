@@ -3,6 +3,7 @@ package rosterBuilder;
 import common.Refreshable;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class RosterObserverSubject {
     private Roster roster;
@@ -30,8 +31,11 @@ public class RosterObserverSubject {
         }
     }
 
-    //TODO: czysciciel obserwawtorow konkretnej klasy
-    public void removeClassOfRefreshables(){
+    public void removeRefreshable(Refreshable refreshable){
+        this.refreshables.remove(refreshable);
+    }
 
+    public void removeRefreshables(ArrayList<Refreshable> refreshableList){
+        this.refreshables.removeAll(refreshableList);
     }
 }

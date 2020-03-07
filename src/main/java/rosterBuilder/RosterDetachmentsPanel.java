@@ -4,7 +4,6 @@ import common.ModulesEnum;
 import common.Refreshable;
 import common.SystemSelectionMenu;
 import rosterBuilder.rules.RosterBuildingRule;
-import rosterBuilder.rules.UnitBuildingRule;
 
 import javax.swing.*;
 import java.awt.*;
@@ -74,10 +73,13 @@ public class RosterDetachmentsPanel extends JPanel implements ActionListener, Re
 
     public void refresh(){
         this.removeAll();
+
         this.detachmentPanels.clear();
         for(int i = 0; i < roster.getRoster().getDetachments().size(); i++){
-            this.detachmentPanels.add(new DetachmentPanel(roster, roster.getRoster().getDetachments().get(i),
-                    wargamingSystem,  i));
+            this.roster.removeRefreshable(this.detachmentPanels.get(i));
+            DetachmentPanel detachmentPanel = new DetachmentPanel(roster, roster.getRoster().getDetachments().get(i),
+                    wargamingSystem,  i);
+            this.detachmentPanels.add(detachmentPanel);
             JButton button = new JButton("Delete Detachment");
             button.addActionListener(this);
             this.deleteDetachmentButtons.add(button);
@@ -115,8 +117,8 @@ public class RosterDetachmentsPanel extends JPanel implements ActionListener, Re
                 new RosterDisplayMenu(this.roster.getRoster());
             }
             else {
-                JOptionPane.showMessageDialog(new JFrame(), RuleViolationLog.getRosterRuleViolationLog(), "Dialog",
-                        JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(new JFrame(), RuleViolationLog.getRosterRuleViolationLog(),
+                        "Dialog", JOptionPane.ERROR_MESSAGE);
                 RuleViolationLog.clear();
             }
         }
