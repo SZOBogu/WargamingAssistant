@@ -161,24 +161,18 @@ public class testDetachment {
     void testSetAndGetArmy(){
         assertEquals(3, detachment0.getBoughtUnitsCategorized().size());
         detachment0.setArmy(army);
-        assertEquals(3, detachment0.getBoughtUnitsCategorized().size()); //???????????
+        assertEquals(2, detachment0.getBoughtUnitsCategorized().size());
         assertEquals(army, detachment0.getArmy());
     }
 
     @Test
     void testCopyEmptyDetachment(){
         Detachment copiedDetachment = detachment0.copyEmptyDetachment();
+
         assertEquals(detachment0.getName(), copiedDetachment.getName());
         assertEquals(0, copiedDetachment.getCost());
         assertEquals(3, copiedDetachment.getBoughtUnitsCategorized().size());
         assertEquals(0, copiedDetachment.getBoughtUnitsCategorized().get(0).size());
-        assertNotSame(detachment0.getArrayOfMandatoryChoicesInCategories().get(0), copiedDetachment.getArrayOfMandatoryChoicesInCategories().get(0));
-        assertNotSame(detachment0.getArrayOfMandatoryChoicesInCategories().get(0), copiedDetachment.getArrayOfMandatoryChoicesInCategories().get(1));
-        assertNotSame(detachment0.getArrayOfMandatoryChoicesInCategories().get(0), copiedDetachment.getArrayOfMandatoryChoicesInCategories().get(2));
-
-        assertNotSame(detachment0.getArrayOfMaxChoicesPerCategory().get(0), copiedDetachment.getArrayOfMaxChoicesPerCategory().get(0));
-        assertNotSame(detachment0.getArrayOfMaxChoicesPerCategory().get(0), copiedDetachment.getArrayOfMaxChoicesPerCategory().get(1));
-        assertNotSame(detachment0.getArrayOfMaxChoicesPerCategory().get(0), copiedDetachment.getArrayOfMaxChoicesPerCategory().get(2));
 
         assertEquals(1, copiedDetachment.getDetachmentNumber());
 

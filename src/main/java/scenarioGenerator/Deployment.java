@@ -35,12 +35,11 @@ public class Deployment {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Deployment that = (Deployment) o;
-        return Objects.equals(name, that.name) &&
-                Objects.equals(img, that.img);
+        return Objects.equals(getName(), that.getName());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, img);
+        return Objects.hash(getName());
     }
 }
