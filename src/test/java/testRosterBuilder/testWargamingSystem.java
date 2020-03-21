@@ -6,6 +6,7 @@ import rosterBuilder.rules.*;
 import scenarioGenerator.Deployment;
 import scenarioGenerator.Mission;
 import scenarioGenerator.MissionList;
+import scenarioGenerator.Scenario;
 
 import javax.swing.*;
 import java.util.ArrayList;
@@ -202,25 +203,28 @@ public class testWargamingSystem {
     Deployment deployment1 = new Deployment("Deployment", img1);
     ArrayList<Deployment> deployments = new ArrayList<>(Arrays.asList(deployment0, deployment1));
     //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@2222
-    Mission scen00 = new Mission();
-    Mission scen01 =  new Mission("test1", new ArrayList<>());
-    ArrayList<Mission> scenarios0 = new ArrayList<>(Arrays.asList(scen00, scen01));
-    MissionList scenList01 = new MissionList("Type", scenarios0);
+    Mission mission00 = new Mission();
+    Mission mission01 =  new Mission("test1", new ArrayList<>());
+    ArrayList<Mission> missions0 = new ArrayList<>(Arrays.asList(mission00, mission01));
+    MissionList missionList01 = new MissionList("Type", missions0);
 
-    Mission scen10 = new Mission();
-    Mission scen11 =  new Mission("test1", new ArrayList<>());
-    ArrayList<Mission> scenarios1 = new ArrayList<>(Arrays.asList(scen10, scen11));
-    MissionList scenList11 = new MissionList("Type", scenarios1);
+    Mission mission10 = new Mission();
+    Mission mission11 =  new Mission("test1", new ArrayList<>());
+    ArrayList<Mission> missions1 = new ArrayList<>(Arrays.asList(mission10, mission11));
+    MissionList missionList11 = new MissionList("Type", missions1);
 
-    ArrayList<MissionList> scens = new ArrayList<>(Arrays.asList(scenList01, scenList11));
+    ArrayList<MissionList> missions = new ArrayList<>(Arrays.asList(missionList01, missionList11));
 
     Detachment det0 = new Detachment("Patrol", new ArrayList<Integer>(Arrays.asList(1,1,0)), new ArrayList<Integer>(Arrays.asList(1,4,2)), 0);
     Detachment det1 = new Detachment("CAD", new ArrayList<Integer>(Arrays.asList(1,2,0)), new ArrayList<Integer>(Arrays.asList(2,6,3)), 1);
     ArrayList<Detachment> detachments = new ArrayList<>(Arrays.asList(det0, det1));
 
+    Scenario scenario0 = new Scenario();
+    Scenario scenario1 = new Scenario();
+    ArrayList<Scenario> scenarios = new ArrayList<>(Arrays.asList(scenario0, scenario1));
 
-    //ArrayList<ArrayList<Boolean>> allianceMatrix = new ArrayList<>(Arrays.asList(new ArrayList<>(Arrays.asList(true, true)), new ArrayList<>(Arrays.asList(false, true))));
-    WargamingSystem system1 = new WargamingSystem("T10B", armies, new ArrayList<>(), deployments, scens, detachments, 3, true);
+    WargamingSystem system1 = new WargamingSystem("T10B", armies, new ArrayList<>(), deployments,
+            missions, scenarios, detachments, 3, true);
     WargamingSystem system2 = new WargamingSystem("QG50k");
 
     @Test
@@ -232,13 +236,11 @@ public class testWargamingSystem {
     @Test
     void testGetArmies() {
         assertEquals(armies, system1.getArmies());
-        //assertEquals(new ArrayList<>(), system2.getArmies());
     }
 
     @Test
     void testGetArmy() {
         assertEquals(army, system1.getArmy(0));
-        //assertEquals(new ArrayList<>(), system2.getArmies());
     }
 
     @Test
@@ -273,19 +275,19 @@ public class testWargamingSystem {
     }
 
     @Test
-    void testGetAllScenarios() {
-        assertEquals(scens, system1.getAllScenarios());
+    void testGetAllMissions() {
+        assertEquals(missions, system1.getAllMissions());
     }
 
     @Test
-    void testGetScenarioList() {
-        assertEquals(scenList01, system1.getScenarioList(0));
+    void testGetMissionList() {
+        assertEquals(missionList01, system1.getMissionList(0));
     }
 
     @Test
-    void testSetScenarios() {
-        system2.setScenarios(scens);
-        assertEquals(scens, system2.getAllScenarios());
+    void testSetMissions() {
+        system2.setMissions(missions);
+        assertEquals(missions, system2.getAllMissions());
     }
 
     @Test
@@ -361,5 +363,19 @@ public class testWargamingSystem {
         UniqueEntitiesPool pool = new UniqueEntitiesPool(initArray);
         system1.setPool(pool);
         assertEquals(pool, system1.getPool());
+    }
+
+    @Test
+    void testGetScenarios(){
+        assertEquals(scenarios, system1.getScenarios());
+    }
+
+    @Test
+    void testSetScenarios(){
+        Scenario scenario2 = new Scenario("Scen2", new Deployment("Deploy2"), new ArrayList<>());
+        Scenario scenario3 = new Scenario("Scen3", new Deployment("Deploy3"), new ArrayList<>());
+        ArrayList<Scenario> scenarios1 = new ArrayList<>(Arrays.asList(scenario2, scenario3));
+        system2.setScenarios(scenarios1);
+        assertEquals(scenarios1, system2.getScenarios());
     }
 }

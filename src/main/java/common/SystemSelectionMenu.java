@@ -60,7 +60,7 @@ public class SystemSelectionMenu extends JFrame implements ActionListener {
         for(int i =0; i < this.buttons.size(); i++){
             if(this.buttons.get(i) == clicked && this.furtherModule == ModulesEnum.SCENARIO_CREATOR){
                 new ScenarioCreator(this.wargamingSystems.get(i).getDeployments(),
-                        this.wargamingSystems.get(i).getAllScenarios(), this.wargamingSystems.get(i).getName());
+                        this.wargamingSystems.get(i).getAllMissions(), this.wargamingSystems.get(i).getName());
                 this.dispose();
             }
             else if(this.buttons.get(i) == clicked && this.furtherModule == ModulesEnum.ROSTER_BUILDER){

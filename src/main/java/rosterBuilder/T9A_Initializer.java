@@ -27,26 +27,27 @@ public class T9A_Initializer implements IWargameInitializer {
         T9A.setDetachments(new ArrayList<>(Arrays.asList(looseDetachment, rigidDetachment, bigRigidDetachment)));
 
         ArrayList<Deployment> deployments = new ArrayList<>();
-        ArrayList<MissionList> scenPack = new ArrayList<>();
-        MissionList scenarios0 = new MissionList("Scenario Pack 0");
-        MissionList scenarios1 = new MissionList("Scenario Pack 1");
+        ArrayList<MissionList> missionPack = new ArrayList<>();
+        MissionList missions0 = new MissionList("Mission Pack 0");
+        MissionList missions1 = new MissionList("Mission Pack 1");
 
         String[] depNames = {"Deployment 0", "Deployment 1", "Deployment 2", "Deployment 3", "Deployment 4", "Deployment 5"};
-        String[] scenNames0 = {"Scenario 00", "Scenario 01", "Scenario 02", "Scenario 03", "Scenario 04", "Scenario 05"};
-        String[] scenNames1 = {"Scenario 10", "Scenario 11", "Scenario 12", "Scenario 13", "Scenario14", "Scenario 15"};
+        String[] missionNames0 = {"Mission 00", "Mission 01", "Mission 02", "Mission 03",
+                "Mission 04", "Mission 05"};
+        String[] missionNames1 = {"Mission 10", "Mission 11", "Mission 12", "Mission 13",
+                "Mission 14", "Mission 15"};
 
         for(int i=0; i<6; i++) {
             ImageIcon icon = new ImageIcon("/home/bogu/IdeaProjects/GUI//src/main/img/T9A/deployments/" + i + ".png");
-            if(icon != null) {
-                deployments.add(new Deployment(depNames[i], icon));
-                scenarios0.add(new Mission(scenNames0[i], new ArrayList<>()));
-                scenarios1.add(new Mission(scenNames1[i], new ArrayList<>()));
-            }
+            deployments.add(new Deployment(depNames[i], icon));
+            missions0.add(new Mission(missionNames0[i], new ArrayList<>()));
+            missions1.add(new Mission(missionNames1[i], new ArrayList<>()));
         }
-        scenPack.add(scenarios0);
-        scenPack.add(scenarios1);
+
+        missionPack.add(missions0);
+        missionPack.add(missions1);
         T9A.setDeployments(deployments);
-        T9A.setScenarios(scenPack);
+        T9A.setMissions(missionPack);
 
         SpecialRule strider = new SpecialRule("Strider", "");
         SpecialRule wizardApprentice = new SpecialRule("Wizard Apprentice", "");

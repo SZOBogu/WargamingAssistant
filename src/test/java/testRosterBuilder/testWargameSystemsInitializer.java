@@ -21,6 +21,6 @@ public class testWargameSystemsInitializer {
         assertTrue(wargamingSystems.get(0).getAllInGameEntities().size() > 0);
         assertTrue(wargamingSystems.get(0).getDetachments().size() > 0);
         assertTrue(wargamingSystems.get(0).getDeployments().size() > 0);
-        assertTrue(wargamingSystems.get(0).getAllScenarios().size() > 0);
+        assertTrue(wargamingSystems.get(0).getAllMissions().size() > 0);
     }
 }

@@ -3,6 +3,7 @@ package rosterBuilder;
 import rosterBuilder.rules.RosterBuildingRule;
 import scenarioGenerator.Deployment;
 import scenarioGenerator.MissionList;
+import scenarioGenerator.Scenario;
 
 import java.util.ArrayList;
 
@@ -11,8 +12,9 @@ public class WargamingSystem {
     private ArrayList<Army> armies;
     private EntityContainer allInGameEntities;
     private ArrayList<Deployment> deployments;
-    private ArrayList<MissionList> scenarios;
+    private ArrayList<MissionList> missions;
     private ArrayList<Detachment> detachments;
+    private ArrayList<Scenario> scenarios;
     private int maxDetachments;
     private boolean isAllowingAlliances;
     private ArrayList<RosterBuildingRule> rules;
@@ -21,19 +23,21 @@ public class WargamingSystem {
     public WargamingSystem(String name){
         this(name, new ArrayList<>(), new ArrayList<>(),
                 new ArrayList<>(), new ArrayList<>(), new ArrayList<>(),
-                1, false);
+                new ArrayList<>(), 1, false);
     }
 
     public WargamingSystem(String name, ArrayList<Army> armies, ArrayList<Entity> allEqAndSR,
-                           ArrayList<Deployment> deployments, ArrayList<MissionList> scenarios,
-                           ArrayList<Detachment> detachmnets, int maxDetachments, boolean isAllowingAlliances){
+                           ArrayList<Deployment> deployments, ArrayList<MissionList> missions,
+                           ArrayList<Scenario> scenarios, ArrayList<Detachment> detachments,
+                           int maxDetachments, boolean isAllowingAlliances){
         this.name = name;
         this.armies = armies;
         this.allInGameEntities = new EntityContainer();
         this.allInGameEntities.addAll(allEqAndSR);
         this.deployments = deployments;
+        this.missions = missions;
+        this.detachments = detachments;
         this.scenarios = scenarios;
-        this.detachments = detachmnets;
         this.maxDetachments = maxDetachments;
         this.isAllowingAlliances = isAllowingAlliances;
         this.rules = new ArrayList<>();
@@ -68,16 +72,16 @@ public class WargamingSystem {
         this.deployments = deployments;
     }
 
-    public ArrayList<MissionList> getAllScenarios() {
-        return scenarios;
+    public ArrayList<MissionList> getAllMissions() {
+        return missions;
     }
 
-    public MissionList getScenarioList(int index) {
-        return scenarios.get(index);
+    public MissionList getMissionList(int index) {
+        return missions.get(index);
     }
 
-    public void setScenarios(ArrayList<MissionList> scenarios) {
-        this.scenarios = scenarios;
+    public void setMissions(ArrayList<MissionList> missions) {
+        this.missions = missions;
     }
 
     public int getMaxDetachments() {
@@ -108,7 +112,6 @@ public class WargamingSystem {
         return allInGameEntities;
     }
 
-
     public boolean isAllowingAlliances(){
         return this.isAllowingAlliances;
     }
@@ -131,5 +134,13 @@ public class WargamingSystem {
 
     public void setPool(UniqueEntitiesPool pool) {
         this.pool = pool;
+    }
+
+    public ArrayList<Scenario> getScenarios() {
+        return scenarios;
+    }
+
+    public void setScenarios(ArrayList<Scenario> scenarios) {
+        this.scenarios = scenarios;
     }
 }
