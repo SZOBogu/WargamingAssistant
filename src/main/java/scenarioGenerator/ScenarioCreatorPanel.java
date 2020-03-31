@@ -20,13 +20,15 @@ public class ScenarioCreatorPanel extends JPanel implements ActionListener {
     private ScenarioOptionsPanel scenarioOptionsPanel;
     private DeploymentPanel deploymentPanel;
     private MissionPanelsPanel missionPanel;
+    private ScenarioPanelsPanel scenarioPanelsPanel;
     private JButton backButton;
     private JButton runButton;
 
     private ArrayList<Deployment> deployments;
     private ArrayList<MissionList> missionLists;
 
-    public ScenarioCreatorPanel(ArrayList<Deployment> deployments, ArrayList<MissionList> missionLists, String systemName){
+    public ScenarioCreatorPanel(ArrayList<Deployment> deployments, ArrayList<MissionList> missionLists,
+                                ArrayList<Scenario> scenarios ,String systemName){
         this.deployments = deployments;
         this.missionLists = missionLists;
 
@@ -36,6 +38,7 @@ public class ScenarioCreatorPanel extends JPanel implements ActionListener {
         this.scenarioOptionsPanel = new ScenarioOptionsPanel();
         this.deploymentPanel = new DeploymentPanel(deployments);
         this.missionPanel = new MissionPanelsPanel(missionLists);
+        this.scenarioPanelsPanel = new ScenarioPanelsPanel(scenarios);
         this.runButton = new JButton("Generate Scenario");
         this.backButton = new JButton("Go Back");
         this.runButton.addActionListener(this);

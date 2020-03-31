@@ -8,12 +8,14 @@ public class ScenarioPanel extends JPanel{
     private JLabel deploymentPic;
     private JLabel deploymentLabel;
     private JLabel missionsLabel;
+    private JRadioButton choiceRadioButton;
 
     public ScenarioPanel(Scenario scenario){
         this.scenarioNameLabel = new JLabel(scenario.getName().toUpperCase());
         this.deploymentPic = new JLabel(scenario.getDeployment().getImg());
         this.deploymentLabel = new JLabel("Deployment: " + scenario.getDeployment().getName());
         this.missionsLabel = new JLabel();
+        this.choiceRadioButton = new JRadioButton(scenario.getName());
 
         StringBuilder missions = new StringBuilder("Missions:\n");
         for(Mission mission : scenario.getMissions()){
@@ -40,5 +42,7 @@ public class ScenarioPanel extends JPanel{
         add(this.deploymentLabel, gbc);
         gbc.gridy++;
         add(this.missionsLabel, gbc);
+        gbc.gridy++;
+        add(this.choiceRadioButton, gbc);
     }
 }
