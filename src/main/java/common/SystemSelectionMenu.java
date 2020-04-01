@@ -4,7 +4,7 @@ import rosterBuilder.Roster;
 import rosterBuilder.RosterInfoDialog;
 import rosterBuilder.RosterObserverSubject;
 import rosterBuilder.WargamingSystem;
-import scenarioGenerator.ScenarioCreator;
+import scenarioGenerator.ScenarioCreatorFrame;
 
 import javax.swing.*;
 import java.awt.*;
@@ -59,8 +59,10 @@ public class SystemSelectionMenu extends JFrame implements ActionListener {
         JButton clicked = (JButton)actionEvent.getSource();
         for(int i =0; i < this.buttons.size(); i++){
             if(this.buttons.get(i) == clicked && this.furtherModule == ModulesEnum.SCENARIO_CREATOR){
-                new ScenarioCreator(this.wargamingSystems.get(i).getDeployments(),
-                        this.wargamingSystems.get(i).getAllMissions(), this.wargamingSystems.get(i).getName());
+                new ScenarioCreatorFrame(this.wargamingSystems.get(i).getScenarios(),
+                        this.wargamingSystems.get(i).getDeployments(),
+                        this.wargamingSystems.get(i).getAllMissions(),
+                        this.wargamingSystems.get(i).getName());
                 this.dispose();
             }
             else if(this.buttons.get(i) == clicked && this.furtherModule == ModulesEnum.ROSTER_BUILDER){

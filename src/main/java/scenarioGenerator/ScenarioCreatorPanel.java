@@ -27,8 +27,8 @@ public class ScenarioCreatorPanel extends JPanel implements ActionListener {
     private ArrayList<Deployment> deployments;
     private ArrayList<MissionList> missionLists;
 
-    public ScenarioCreatorPanel(ArrayList<Deployment> deployments, ArrayList<MissionList> missionLists,
-                                ArrayList<Scenario> scenarios ,String systemName){
+    public ScenarioCreatorPanel(ArrayList<Scenario> scenarios, ArrayList<Deployment> deployments,
+                                ArrayList<MissionList> missionLists, String systemName){
         this.deployments = deployments;
         this.missionLists = missionLists;
 

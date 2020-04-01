@@ -1,9 +1,6 @@
 package rosterBuilder;
 
-import common.MainMenu;
-import common.ModulesEnum;
 import diceRollSimulator.TextPanel;
-import scenarioGenerator.ScenarioCreator;
 
 import javax.swing.*;
 import java.awt.*;

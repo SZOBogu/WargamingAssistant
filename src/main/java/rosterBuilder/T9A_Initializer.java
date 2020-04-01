@@ -1145,6 +1145,7 @@ public class T9A_Initializer implements IWargameInitializer {
         T9A.setArmies(new ArrayList<>(Arrays.asList(bh, dl, eos, id, koe)));
         T9A.setPool(pool);
         T9A.setRules(new ArrayList<>(Collections.singletonList(new MustHaveExactly(general, 1))));
+        T9A.setScenarios(new ArrayList<>());
         return T9A;
     }
 }

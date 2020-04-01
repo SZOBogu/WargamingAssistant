@@ -1,14 +1,9 @@
 package rosterBuilder;
 
-import common.ModulesEnum;
-import rosterBuilder.WargamingSystem;
-import scenarioGenerator.ScenarioCreator;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class RosterInfoDialog extends JFrame implements ActionListener {
