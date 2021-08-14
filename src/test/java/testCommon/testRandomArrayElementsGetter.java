@@ -2,6 +2,7 @@ package testCommon;
 
 import common.RandomArrayElementsGetter;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 import rosterBuilder.Entity;
 
 import java.util.Arrays;
@@ -11,9 +12,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class testRandomArrayElementsGetter {
     RandomArrayElementsGetter getter = new RandomArrayElementsGetter();
-    Entity entity1 = new Entity("1", "");
-    Entity entity2 = new Entity("2", "");
-    Entity entity3 = new Entity("3", "");
+    Entity entity1 = Mockito.mock(Entity.class);
+    Entity entity2 = Mockito.mock(Entity.class);
+    Entity entity3 = Mockito.mock(Entity.class);
     List<Entity> dummyList = Arrays.asList(entity1, entity2, entity3);
 
     @Test
@@ -127,18 +128,15 @@ public class testRandomArrayElementsGetter {
             }
         }
         if(reps0 > 2){
-            for (Entity e : elementList2)
-                System.out.print(e + " ");
+            elementList2.forEach(System.out::println);
             fail();
         }
         if(reps1 > 1){
-            for (Entity e : elementList2)
-                System.out.print(e + " ");
+            elementList2.forEach(System.out::println);
             fail();
         }
         if(reps2 > 7){
-            for (Entity e : elementList2)
-                System.out.print(e + " ");
+            elementList2.forEach(System.out::println);
             fail();
         }
     }

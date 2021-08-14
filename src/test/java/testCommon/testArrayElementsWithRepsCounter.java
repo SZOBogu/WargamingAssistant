@@ -10,7 +10,6 @@ import java.util.Arrays;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class testArrayElementsWithRepsCounter {
-    ArrayElementsWithRepsCounter counter = new ArrayElementsWithRepsCounter();
 
     ArrayList<Mission> elementList0 = new ArrayList<>(Arrays.asList(
             new Mission(), new Mission(), new Mission(), new Mission(), new Mission()
@@ -27,23 +26,23 @@ public class testArrayElementsWithRepsCounter {
 
     @Test
     void testCount1DInt(){
-        assertEquals(20, counter.count(elementList0, 4));
-        assertEquals(25, counter.count(elementList1, 5));
+        assertEquals(20, ArrayElementsWithRepsCounter.count(elementList0, 4));
+        assertEquals(25, ArrayElementsWithRepsCounter.count(elementList1, 5));
     }
 
     @Test
     void testCount1dArray(){
-        assertEquals(15, counter.count(elementList0, repList0));
-        assertEquals(108, counter.count(elementList1, repList1));
+        assertEquals(15, ArrayElementsWithRepsCounter.count(elementList0, repList0));
+        assertEquals(108, ArrayElementsWithRepsCounter.count(elementList1, repList1));
     }
 
     @Test
     void testCount2DInt(){
-        assertEquals(50, counter.count2D(elementTotalList, 5));
+        assertEquals(50, ArrayElementsWithRepsCounter.count2D(elementTotalList, 5));
     }
 
     @Test
     void testCount2DArray(){
-        assertEquals(123, counter.count2D(elementTotalList, repTotalList));
+        assertEquals(123, ArrayElementsWithRepsCounter.count2D(elementTotalList, repTotalList));
     }
 }

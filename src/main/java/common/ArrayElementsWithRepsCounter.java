@@ -4,16 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ArrayElementsWithRepsCounter {
-    public <T> int count(List<T> elements, int reps){
+    public static <T> int count(List<T> elements, int reps){
         List<Integer> reppedList = new ArrayList<>();
 
         for(int i = 0; i < elements.size(); i ++){
             reppedList.add(reps);
         }
-        return this.count(elements, reppedList);
+        return ArrayElementsWithRepsCounter.count(elements, reppedList);
     }
 
-    public <T> int count(List<T> elements, List<Integer> repList){
+    public static <T> int count(List<T> elements, List<Integer> repList){
         int count = 0;
 
         if(elements.size() > repList.size()){
@@ -32,20 +32,20 @@ public class ArrayElementsWithRepsCounter {
         return count;
     }
 
-    public <T> int count2D(ArrayList<ArrayList<T>> elements, int reps){
+    public static <T> int count2D(ArrayList<ArrayList<T>> elements, int reps){
         int count = 0;
 
         for (ArrayList<T> element : elements) {
-            count += this.count(element, reps);
+            count += ArrayElementsWithRepsCounter.count(element, reps);
         }
         return count;
     }
 
-    public <T> int count2D(ArrayList<ArrayList<T>> elements, ArrayList<ArrayList<Integer>> repList){
+    public static <T> int count2D(ArrayList<ArrayList<T>> elements, ArrayList<ArrayList<Integer>> repList){
         int count = 0;
 
         for(int i = 0; i < elements.size(); i++){
-            count += this.count(elements.get(i), repList.get(i));
+            count += ArrayElementsWithRepsCounter.count(elements.get(i), repList.get(i));
         }
         return count;
     }

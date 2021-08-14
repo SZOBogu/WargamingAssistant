@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ArrayOrderMixer {
-    public <T> ArrayList<T> getArrayInRandomOrder(List<T> objectList){
+    public static <T> ArrayList<T> getArrayInRandomOrder(List<T> objectList){
         ArrayList<T> elementList = new ArrayList<>();
         ArrayList<T> tempList = new ArrayList<>(objectList);
 

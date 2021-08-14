@@ -7,8 +7,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 public class testRounder {
-    Rounder rounder = new Rounder();
-
     @Test
     void testRound(){
         assertEquals(1.52, Rounder.round(1.51501));       //co za idiotyzm

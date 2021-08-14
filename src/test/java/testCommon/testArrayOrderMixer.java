@@ -10,11 +10,10 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class testArrayOrderMixer {
     List<Object> dummyList = Arrays.asList("1", "2", "3", "4", "5", "6", "7", "8", "9", "10");
-    ArrayOrderMixer arrayOrderMixer = new ArrayOrderMixer();
 
     @Test
     void testGetArrayInRandomOrder(){
-        List<Object> elementList = arrayOrderMixer.getArrayInRandomOrder(dummyList);
+        List<Object> elementList = ArrayOrderMixer.getArrayInRandomOrder(dummyList);
         assertTrue(elementList.contains("1"));
         assertTrue(elementList.contains("2"));
         assertTrue(elementList.contains("3"));
