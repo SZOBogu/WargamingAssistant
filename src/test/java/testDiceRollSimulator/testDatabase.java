@@ -3,6 +3,7 @@ package testDiceRollSimulator;
 import diceRollSimulator.DiceRoll;
 import diceRollSimulator.Database;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 
 import java.util.ArrayList;
 
@@ -10,8 +11,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class testDatabase {
     Database db = new Database();
-    DiceRoll dr1 = new DiceRoll(10, 5, false, false, 6);
-    DiceRoll dr2 = new DiceRoll(10, 5, true, true, 8);
+    DiceRoll dr1 = Mockito.mock(DiceRoll.class);
+    DiceRoll dr2 = Mockito.mock(DiceRoll.class);
 
     @Test
     public void testGetDiceRolls(){
@@ -25,8 +26,8 @@ public class testDatabase {
 
 
         Database db1 = new Database();
-        DiceRoll dr11 = new DiceRoll(10, 5, false, false, 6);
-        DiceRoll dr21 = new DiceRoll(10, 5, true, true, 8);
+        DiceRoll dr11 = Mockito.mock(DiceRoll.class);
+        DiceRoll dr21 = Mockito.mock(DiceRoll.class);
 
         db1.addDiceRoll(dr11);
         db1.addDiceRoll(dr21);

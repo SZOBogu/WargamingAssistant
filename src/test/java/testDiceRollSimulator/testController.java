@@ -4,6 +4,7 @@ import diceRollSimulator.DiceRoll;
 import diceRollSimulator.Controller;
 import diceRollSimulator.FormEvent;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.not;
@@ -12,11 +13,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class testController {
     Controller controller = new Controller();
-    DiceRoll testRoll0 = new DiceRoll(10, 5, false, false, 6);
+    DiceRoll testRoll0 = Mockito.mock(DiceRoll.class);
     FormEvent formObject0 = new FormEvent(new Object(), testRoll0);
-    DiceRoll testRoll1 = new DiceRoll(40, 3, false, false, 6);
+    DiceRoll testRoll1 = Mockito.mock(DiceRoll.class);
     FormEvent formObject1 = new FormEvent(new Object(), testRoll1);
-    DiceRoll testRoll2 = new DiceRoll(50, 4, false, false, 6);
+    DiceRoll testRoll2 = Mockito.mock(DiceRoll.class);
     FormEvent formObject2 = new FormEvent(new Object(), testRoll2);
 
     @Test
