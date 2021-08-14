@@ -16,9 +16,9 @@ public class testOption {
 
     @Test
     void testGetEntity(){
-        assertTrue(option0.getEntity().equals(new Entity("Miecz", "+1S")));
-        assertTrue(option1.getEntity().equals(new SpecialRule("Cieknace wiadro", "+1 do przeciekania")));
-        assertTrue(option2.getEntity().equals(new Weapon("Tarcza", "+Def")));
+        assertEquals(option0.getEntity(), new Entity("Miecz", "+1S"));
+        assertEquals(option1.getEntity(), new SpecialRule("Cieknace wiadro", "+1 do przeciekania"));
+        assertEquals(option2.getEntity(), new Weapon("Tarcza", "+Def"));
     }
 
     @Test

@@ -6,7 +6,6 @@ import rosterBuilder.Statistic;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class testStatistic {
-
     Statistic stat = new Statistic("Strength", "2D6");
 
     @Test

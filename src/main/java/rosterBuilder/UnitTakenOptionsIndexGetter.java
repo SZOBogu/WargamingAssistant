@@ -3,7 +3,7 @@ package rosterBuilder;
 import java.util.ArrayList;
 
 public class UnitTakenOptionsIndexGetter {
-    public ArrayList<ArrayList<Integer>> getTakenOptionsIndexes(Unit unit, UnitProfile unitProfile) {
+    public static ArrayList<ArrayList<Integer>> getTakenOptionsIndexes(Unit unit, UnitProfile unitProfile) {
         ArrayList<ArrayList<Integer>> takenOptionsIndexes = new ArrayList<>();
 
         for (int i = 0; i < unitProfile.getOptionSets().size(); i++) {

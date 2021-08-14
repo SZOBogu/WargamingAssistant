@@ -1,6 +1,7 @@
 package testRosterBuilder;
 
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 import rosterBuilder.*;
 
 import java.util.ArrayList;
@@ -9,11 +10,11 @@ import java.util.Arrays;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class testDetachment {
-    UnitProfile up0 = new UnitProfile("Spearmen", new ArrayList<>(), new ArrayList<>(), 100);
-    UnitProfile up1 = new UnitProfile("Archer", new ArrayList<>(), new ArrayList<>(), 200);
+    UnitProfile up0 = Mockito.mock(UnitProfile.class);
+    UnitProfile up1 = Mockito.mock(UnitProfile.class);
     ArmySubcategory armySubcategory0 = new ArmySubcategory("HQ", new ArrayList<UnitProfile>(Arrays.asList(up0, up1)));
-    UnitProfile up2 = new UnitProfile("Swordsmen", new ArrayList<>(), new ArrayList<>(), 300);
-    UnitProfile up3 = new UnitProfile("SLinger", new ArrayList<>(), new ArrayList<>(), 400);
+    UnitProfile up2 = Mockito.mock(UnitProfile.class);
+    UnitProfile up3 = Mockito.mock(UnitProfile.class);
     ArmySubcategory armySubcategory1 = new ArmySubcategory("Troops", new ArrayList<UnitProfile>(Arrays.asList(up2, up3)));
     Army army = new Army("Kingdom of costam", new ArrayList<>(Arrays.asList(armySubcategory0, armySubcategory1)));
 
@@ -193,9 +194,9 @@ public class testDetachment {
     @Test
     void testToString(){
         detachment0.setArmy(army);
-        Unit testUnit0 = new Unit("General", 1, new ArrayList<Entity>(Arrays.asList(new SpecialRule("Skirmisher", "-"))), new ArrayList<>(), 50);
+        Unit testUnit0 = new Unit("General", 1, new ArrayList<>(Arrays.asList(new SpecialRule("Skirmisher", "-"))), new ArrayList<>(), 50);
         detachment0.addUnit(testUnit0, 0);
-        Unit testUnit1 = new Unit("Swordsmen", 10, new ArrayList<Entity>(Arrays.asList(new Weapon("Sword", "-"))), new ArrayList<>(), 30);
+        Unit testUnit1 = new Unit("Swordsmen", 10, new ArrayList<>(Arrays.asList(new Weapon("Sword", "-"))), new ArrayList<>(), 30);
         detachment0.addUnit(testUnit1, 1);
         String expected = "Detachment No.0: Detachment 0\n" +
                 "   HQ\n      " + testUnit0.toString() + "\n" +

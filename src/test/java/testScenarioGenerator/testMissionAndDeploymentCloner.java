@@ -13,13 +13,13 @@ import java.util.Arrays;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class testMissionAndDeploymentCloner {
-    Mission mission0 = Mockito.mock(Mission.class);
-    Mission mission1 = Mockito.mock(Mission.class);
-    Mission mission2 = Mockito.mock(Mission.class);
+    Mission mission0 = new Mission("Mission 0", new ArrayList<>());
+    Mission mission1 = new Mission("Mission 1", new ArrayList<>());
+    Mission mission2 = new Mission("Mission 2", new ArrayList<>());
 
-    Deployment deployment0 = Mockito.mock(Deployment.class);
-    Deployment deployment1 = Mockito.mock(Deployment.class);
-    Deployment deployment2 = Mockito.mock(Deployment.class);
+    Deployment deployment0 = new Deployment("Deployment 0", new ImageIcon());
+    Deployment deployment1 = new Deployment("Deployment 1", new ImageIcon());
+    Deployment deployment2 = new Deployment("Deployment 2", new ImageIcon());
 
     ArrayList<Mission> missions = new ArrayList<>(Arrays.asList(mission0, mission1, mission2));
     ArrayList<Deployment> deployments = new ArrayList<>(Arrays.asList(deployment0, deployment1, deployment2));

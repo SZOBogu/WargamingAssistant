@@ -1,6 +1,7 @@
 package testRosterBuilder;
 
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 import rosterBuilder.*;
 
 import java.util.ArrayList;
@@ -9,16 +10,12 @@ import java.util.Arrays;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class testPointCapOptionSet {
-    SpecialRule ambush = new SpecialRule("Ambush", "ciach");
-    Item lightArmour = new Item("Light Armour", "+1 Armour.");
-    Weapon pairedWeapons = new Weapon("Paired Weapon", "Two-Handed . The wielder gains +1 Attack Value and +1 Offensive Skill when using\n" +
-            "Paired Weapons. Attacks made with Paired Weapons ignore Parry (while Paired\n" +
-            "Weapons are often modelled as two Hand Weapons, they are considered a separate\n" +
-            "weapon category for rules purposes).");
+    SpecialRule ambush = Mockito.mock(SpecialRule.class);
+    Item lightArmour = Mockito.mock(Item.class);
+    Weapon pairedWeapons = Mockito.mock(Weapon.class);
 
-    SpecialRule wizardAdept = new SpecialRule("Wizard Adept", "The Wizard gains Channel (1) and selects its spells as described in “Spell Selection ”, page 36 .");
-    SpecialRule wizardMaster = new SpecialRule("Wizard Master", "The Wizard gains Channel (1) and a +1 modifier to its casting rolls, and selects its spells as described in “Spell\n" +
-            "Selection ”, page 36 .");
+    SpecialRule wizardAdept = Mockito.mock(SpecialRule.class);
+    SpecialRule wizardMaster = Mockito.mock(SpecialRule.class);
 
     Option op0 = new Option(ambush, 10);
     Option op1 = new Option(lightArmour, 5);

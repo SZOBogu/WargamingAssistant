@@ -1,6 +1,7 @@
 package testRosterBuilder;
 
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 import rosterBuilder.*;
 
 import java.util.ArrayList;
@@ -10,15 +11,16 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
 public class testRoster {
-    UnitProfile up0 = new UnitProfile("Spearmen", new ArrayList<>(), new ArrayList<>(), 100);
-    UnitProfile up1 = new UnitProfile("Archer", new ArrayList<>(), new ArrayList<>(), 200);
-    ArmySubcategory armySubcategory0 = new ArmySubcategory("HQ", new ArrayList<UnitProfile>(Arrays.asList(up0, up1)));
-    UnitProfile up2 = new UnitProfile("Swordsmen", new ArrayList<>(), new ArrayList<>(), 300);
-    UnitProfile up3 = new UnitProfile("SLinger", new ArrayList<>(), new ArrayList<>(), 400);
-    ArmySubcategory armySubcategory1 = new ArmySubcategory("TROOPS", new ArrayList<UnitProfile>(Arrays.asList(up2, up3)));
+    UnitProfile up0 = Mockito.mock(UnitProfile.class);
+    UnitProfile up1 = Mockito.mock(UnitProfile.class);
+
+    UnitProfile up2 = Mockito.mock(UnitProfile.class);
+    UnitProfile up3 = Mockito.mock(UnitProfile.class);
+
+    ArmySubcategory armySubcategory0 = new ArmySubcategory("HQ", new ArrayList<>(Arrays.asList(up0, up1)));
+    ArmySubcategory armySubcategory1 = new ArmySubcategory("TROOPS", new ArrayList<>(Arrays.asList(up2, up3)));
     Army army = new Army("Kingdom of costam", new ArrayList<>(Arrays.asList(armySubcategory0, armySubcategory1)));
     Army army1 = new Army("Republic of costam", new ArrayList<>(Arrays.asList(armySubcategory0, armySubcategory1)));
-
 
     Roster roster  = new Roster();
 
@@ -94,14 +96,10 @@ public class testRoster {
         roster.addDetachment(detachment1);
         detachment1.setArmy(army);
 
-        ArrayList<Entity> eq0 = new ArrayList<>(Arrays.asList(new SpecialRule("Wizard Master", ""), new Entity("Talisman", "")));
-        Unit unit0 = new Unit("Wizard", 1, eq0, new ArrayList<>(),350);
-        ArrayList<Entity> eq1 = new ArrayList<>(Arrays.asList(new Weapon("Sword", ""), new Entity("Shield", "")));
-        Unit unit1 = new Unit("Swordsmen", 10, eq1, new ArrayList<>(),350);
-        ArrayList<Entity> eq2 = new ArrayList<>(Arrays.asList(new SpecialRule("Commander", ""), new Item("Plate Armour", "")));
-        Unit unit2 = new Unit("General", 1, eq2, new ArrayList<>(),350);
-        ArrayList<Entity> eq3 = new ArrayList<>(Arrays.asList(new SpecialRule("Cannon", ""), new Entity("3 Crew", "")));
-        Unit unit3 = new Unit("Cannon", 1, eq3, new ArrayList<>(),350);
+        Unit unit0 = Mockito.mock(Unit.class);
+        Unit unit1 = Mockito.mock(Unit.class);
+        Unit unit2 = Mockito.mock(Unit.class);
+        Unit unit3 = Mockito.mock(Unit.class);
 
         roster.getDetachments().get(0).addUnit(unit0, 0);
         roster.getDetachments().get(0).addUnit(unit1, 1);
@@ -117,9 +115,9 @@ public class testRoster {
     void testGetTotalCost(){
         roster.addDetachment(detachment0);
         detachment0.setArmy(army);
-        Unit testUnit0 = new Unit("General", 1, new ArrayList<Entity>(Arrays.asList(new SpecialRule("Skirmisher", "-"))), new ArrayList<>(), 50);
+        Unit testUnit0 = new Unit("General", 1, new ArrayList<>(), new ArrayList<>(), 50);
         detachment0.addUnit(testUnit0, 0);
-        Unit testUnit1 = new Unit("Swordsmen", 10, new ArrayList<Entity>(Arrays.asList(new Weapon("Sword", "-"))), new ArrayList<>(), 30);
+        Unit testUnit1 = new Unit("Swordsmen", 10, new ArrayList<>(), new ArrayList<>(), 30);
         detachment0.addUnit(testUnit1, 1);
 
         assertEquals(80, roster.getTotalCost());

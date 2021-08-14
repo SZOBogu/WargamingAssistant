@@ -43,8 +43,7 @@ public class testUnitTakenOptionsIndexGetter {
         modelParts.add(modelPart0);
 
         ArrayList<ArrayList<Integer>> results = new ArrayList<ArrayList<Integer>>();
-        UnitTakenOptionsIndexGetter takenOptionsIndexGetter = new UnitTakenOptionsIndexGetter();
-        results = takenOptionsIndexGetter.getTakenOptionsIndexes(unit, unitProfile);
+        results = UnitTakenOptionsIndexGetter.getTakenOptionsIndexes(unit, unitProfile);
         assertEquals(2, results.size());
         assertEquals(new ArrayList<>(Arrays.asList(0,1)),results.get(0));
         assertEquals(new ArrayList<>(Arrays.asList(1,0)),results.get(1));

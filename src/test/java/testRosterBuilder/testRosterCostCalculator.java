@@ -35,8 +35,6 @@ public class testRosterCostCalculator {
     ArrayList<Integer> max1 = new ArrayList<>(Arrays.asList(3, 6, 2));
     Detachment detachment1 = new Detachment("Detachment 1", min1, max1, 1);
 
-    RosterCostCalculator rosterCostCalculator = new RosterCostCalculator();
-
     @Test
     void testCalculateCategoryCost(){
         roster.setPrimaryArmy(army);
@@ -50,10 +48,10 @@ public class testRosterCostCalculator {
         roster.getDetachments().get(1).addUnit(unit2, 0);
         roster.getDetachments().get(1).addUnit(unit3, 1);
 
-        assertEquals(350, rosterCostCalculator.calculateCategoryCost(roster, 0,0));
-        assertEquals(100, rosterCostCalculator.calculateCategoryCost(roster, 0,1));
-        assertEquals(50, rosterCostCalculator.calculateCategoryCost(roster, 1,0));
-        assertEquals(500, rosterCostCalculator.calculateCategoryCost(roster, 1,1));
+        assertEquals(350, RosterCostCalculator.calculateCategoryCost(roster, 0,0));
+        assertEquals(100, RosterCostCalculator.calculateCategoryCost(roster, 0,1));
+        assertEquals(50, RosterCostCalculator.calculateCategoryCost(roster, 1,0));
+        assertEquals(500, RosterCostCalculator.calculateCategoryCost(roster, 1,1));
     }
 
     @Test
@@ -69,6 +67,6 @@ public class testRosterCostCalculator {
         roster.getDetachments().get(1).addUnit(unit2, 0);
         roster.getDetachments().get(1).addUnit(unit3, 1);
 
-        assertEquals(1000, rosterCostCalculator.calculateRosterCost(roster));
+        assertEquals(1000, RosterCostCalculator.calculateRosterCost(roster));
     }
 }

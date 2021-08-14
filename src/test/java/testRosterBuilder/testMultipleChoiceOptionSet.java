@@ -1,6 +1,7 @@
 package testRosterBuilder;
 
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 import rosterBuilder.*;
 
 import java.util.ArrayList;
@@ -10,12 +11,14 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class testMultipleChoiceOptionSet {
-    Weapon eq0 = new Weapon("Pala", "bum bum");
-    SpecialRule eq1 = new SpecialRule("skrmish", "asdas");
-    Entity eq2 = new Entity("plaszcz", "asd");
+    Weapon eq0 = Mockito.mock(Weapon.class);
+    SpecialRule eq1 = Mockito.mock(SpecialRule.class);
+    Entity eq2 = Mockito.mock(Entity.class);
+
     Option option0 = new Option(eq0, 20);
     Option option1 = new Option(eq1, 50);
     Option option2 = new Option(eq2, 10);
+
     MultipleChoiceOptionSet optionSet = new MultipleChoiceOptionSet(new ArrayList<Option>(Arrays.asList(option0, option1, option2)));
     MultipleChoiceOptionSet optionSet1 = new MultipleChoiceOptionSet(new ArrayList<Option>(Arrays.asList(option0, option1, option2)), true);
     MultipleChoiceOptionSet optionSet2 = new MultipleChoiceOptionSet(new ArrayList<Option>(Arrays.asList(option0, option1, option2)), "Special Equipment", "get");

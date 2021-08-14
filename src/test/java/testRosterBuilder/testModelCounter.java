@@ -34,7 +34,6 @@ public class testModelCounter {
     ArrayList<Entity> eq3 = new ArrayList<>(Arrays.asList(new SpecialRule("Cannon", ""), new Entity("3 Crew", "")));
     Unit unit3 = new Unit("Cannon", 1, eq3, new ArrayList<>(),350);
 
-    ModelCounter counter = new ModelCounter();
     @Test
     void testCountModels(){
         roster.setPrimaryArmy(army);
@@ -46,7 +45,7 @@ public class testModelCounter {
         roster.getDetachments().get(1).addUnit(unit2, 0);
         roster.getDetachments().get(1).addUnit(unit3, 1);
 
-        assertEquals(13, counter.countModels(roster));
+        assertEquals(13, ModelCounter.countModels(roster));
     }
     @Test
     void testCountModelsNamed(){
@@ -59,9 +58,9 @@ public class testModelCounter {
         roster.getDetachments().get(1).addUnit(unit2, 0);
         roster.getDetachments().get(1).addUnit(unit3, 1);
 
-        assertEquals(10, counter.countModelsNamed(roster, "Swordsmen"));
-        assertEquals(1, counter.countModelsNamed(roster, "Wizard"));
-        assertEquals(0, counter.countModelsNamed(roster, "Kosmita"));
+        assertEquals(10, ModelCounter.countModelsNamed(roster, "Swordsmen"));
+        assertEquals(1, ModelCounter.countModelsNamed(roster, "Wizard"));
+        assertEquals(0, ModelCounter.countModelsNamed(roster, "Kosmita"));
     }
 
 
@@ -76,7 +75,7 @@ public class testModelCounter {
         roster.getDetachments().get(1).addUnit(unit2, 0);
         roster.getDetachments().get(1).addUnit(unit3, 1);
 
-        assertEquals(11, counter.countModelsWith(roster, new Weapon("Sword", "")));
+        assertEquals(11, ModelCounter.countModelsWith(roster, new Weapon("Sword", "")));
     }
 
     @Test
@@ -90,7 +89,7 @@ public class testModelCounter {
         roster.getDetachments().get(1).addUnit(unit2, 0);
         roster.getDetachments().get(1).addUnit(unit3, 1);
 
-        assertEquals(12, counter.countModelsWithAny(roster, new ArrayList<>(Arrays.asList(new Weapon("Sword", ""), new SpecialRule("Any", "")))));
+        assertEquals(12, ModelCounter.countModelsWithAny(roster, new ArrayList<>(Arrays.asList(new Weapon("Sword", ""), new SpecialRule("Any", "")))));
     }
 
     @Test
@@ -104,6 +103,6 @@ public class testModelCounter {
         roster.getDetachments().get(1).addUnit(unit2, 0);
         roster.getDetachments().get(1).addUnit(unit3, 1);
 
-        assertEquals(1, counter.countModelsWithAll(roster, new ArrayList<>(Arrays.asList(new Entity("Talisman", ""), new SpecialRule("Wizard Master", "")))));
+        assertEquals(1, ModelCounter.countModelsWithAll(roster, new ArrayList<>(Arrays.asList(new Entity("Talisman", ""), new SpecialRule("Wizard Master", "")))));
     }
 }

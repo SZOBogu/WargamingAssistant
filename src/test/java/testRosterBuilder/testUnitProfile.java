@@ -78,8 +78,8 @@ public class testUnitProfile {
 
     @Test
     void testGetOptionSet(){
-        assertTrue(optionSet0.equals(unitProfile0.getOptionSets().get(0)));
-        assertTrue(optionSet1.equals(unitProfile0.getOptionSets().get(1)));
+        assertEquals(optionSet0, unitProfile0.getOptionSets().get(0));
+        assertEquals(optionSet1, unitProfile0.getOptionSets().get(1));
         assertEquals(new ArrayList<>(), unitProfile4.getOptionSets());
     }
 

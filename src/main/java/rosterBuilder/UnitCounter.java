@@ -3,7 +3,7 @@ package rosterBuilder;
 import java.util.ArrayList;
 
 public class UnitCounter {
-    public int countUnits(Roster roster){
+    public static int countUnits(Roster roster){
         int count = 0;
         for(int i = 0; i < roster.size(); i++){         //po detkach
             for(int j = 0; j < roster.getDetachments().get(i).getBoughtUnitsCategorized().size(); j++){//po kategoriach
@@ -15,7 +15,7 @@ public class UnitCounter {
         return count;
     }
 
-    public int countUnitsNamed(Roster roster, String string){
+    public static int countUnitsNamed(Roster roster, String string){
         int count = 0;
         for(int i = 0; i < roster.size(); i++){         //po detkach
             for(int j = 0; j < roster.getDetachments().get(i).getBoughtUnitsCategorized().size(); j++){//po kategoriach
@@ -31,7 +31,7 @@ public class UnitCounter {
         return count;
     }
 
-    public int countUnitsWith(Roster roster, Entity entity){
+    public static int countUnitsWith(Roster roster, Entity entity){
         int count = 0;
         for(int i = 0; i < roster.size(); i++){         //po detkach
             for(int j = 0; j < roster.getDetachments().get(i).getBoughtUnitsCategorized().size(); j++){//po kategoriach
@@ -54,7 +54,7 @@ public class UnitCounter {
         return count;
     }
 
-    public int countUnitsWithAll(Roster roster, ArrayList<Entity> entities){
+    public static int countUnitsWithAll(Roster roster, ArrayList<Entity> entities){
         int count = 0;
         int matchingEntitiesCounter = 0;
         for (int i = 0; i < roster.size(); i++) {         //po detkach
@@ -81,7 +81,7 @@ public class UnitCounter {
         return count;
     }
 
-    public int countUnitsWithAny(Roster roster, ArrayList<Entity> entities) {
+    public static int countUnitsWithAny(Roster roster, ArrayList<Entity> entities) {
         int count = 0;
         for (int i = 0; i < roster.size(); i++) {         //po detkach
             for (int j = 0; j < roster.getDetachments().get(i).getBoughtUnitsCategorized().size(); j++) {//po kategoriach

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class RosterSummarizer {
-    public String summarize(Roster roster){
+    public static String summarize(Roster roster){
         RosterCostCalculator rosterCostCalculator = new RosterCostCalculator();
         ModelCounter modelCounter = new ModelCounter();
 
