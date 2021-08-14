@@ -3,6 +3,7 @@ package testScenarioGenerator;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 import scenarioGenerator.Deployment;
 import scenarioGenerator.Mission;
 import scenarioGenerator.ScenarioFormValidator;
@@ -13,25 +14,23 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class testScenarioFormValidator {
-    ScenarioFormValidator validator = new ScenarioFormValidator();
-
-    Deployment d0 = new Deployment("D0");
-    Deployment d1 = new Deployment("D1");
-    Deployment d2 = new Deployment("D2");
-    Deployment d3 = new Deployment("D3");
+    Deployment d0 = Mockito.mock(Deployment.class);
+    Deployment d1 = Mockito.mock(Deployment.class);
+    Deployment d2 = Mockito.mock(Deployment.class);
+    Deployment d3 = Mockito.mock(Deployment.class);
 
     ArrayList<Deployment> deployments = new ArrayList<>(Arrays.asList(d0,d1,d2,d3));
 
-    Mission m00 = new Mission("M00", new ArrayList<>());
-    Mission m01 = new Mission("M01", new ArrayList<>());
-    Mission m02 = new Mission("M02", new ArrayList<>());
-    Mission m03 = new Mission("M03", new ArrayList<>());
+    Mission m00 = Mockito.mock(Mission.class);
+    Mission m01 = Mockito.mock(Mission.class);
+    Mission m02 = Mockito.mock(Mission.class);
+    Mission m03 = Mockito.mock(Mission.class);
     ArrayList<Mission> missions0 = new ArrayList<>(Arrays.asList(m00,m01,m02,m03));
 
-    Mission m10 = new Mission("M10", new ArrayList<>());
-    Mission m11 = new Mission("M11", new ArrayList<>());
-    Mission m12 = new Mission("M12", new ArrayList<>());
-    Mission m13 = new Mission("M13", new ArrayList<>());
+    Mission m10 = Mockito.mock(Mission.class);
+    Mission m11 = Mockito.mock(Mission.class);
+    Mission m12 = Mockito.mock(Mission.class);
+    Mission m13 = Mockito.mock(Mission.class);
     ArrayList<Mission> missions1 = new ArrayList<>(Arrays.asList(m10,m11,m12,m13));
 
     ArrayList<ArrayList<Mission>> missions = new ArrayList<>();
@@ -45,19 +44,19 @@ public class testScenarioFormValidator {
 
     @Test
     void testCanBeGeneratedInts(){
-        assertTrue(validator.canBeGenerated(
+        assertTrue(ScenarioFormValidator.canBeGenerated(
                 deployments, missions, 1, 1, 2
         ));
-        assertFalse(validator.canBeGenerated(
+        assertFalse(ScenarioFormValidator.canBeGenerated(
                 deployments, missions, 1, 1, 2000
         ));
-        assertTrue(validator.canBeGenerated(
+        assertTrue(ScenarioFormValidator.canBeGenerated(
                 deployments, missions, 1, 1, 4
         ));
-        assertFalse(validator.canBeGenerated(
+        assertFalse(ScenarioFormValidator.canBeGenerated(
                 deployments, missions, 1, 1, 5
         ));
-        assertFalse(validator.canBeGenerated(
+        assertFalse(ScenarioFormValidator.canBeGenerated(
                 deployments, missions, 1, 1, -1
         ));
     }
@@ -77,38 +76,38 @@ public class testScenarioFormValidator {
         ArrayList<ArrayList<Integer>> missRepTotalList1 = new ArrayList<>(Arrays.asList(
                 missRepList10, missRepList11));
 
-        assertTrue(validator.canBeGenerated(
+        assertTrue(ScenarioFormValidator.canBeGenerated(
                 deployments, missions, depRepList0, missRepTotalList0, 2
         ));
-        assertTrue(validator.canBeGenerated(
+        assertTrue(ScenarioFormValidator.canBeGenerated(
                 deployments, missions, depRepList0, missRepTotalList1, 3
         ));
-        assertTrue(validator.canBeGenerated(
+        assertTrue(ScenarioFormValidator.canBeGenerated(
                 deployments, missions, depRepList1, missRepTotalList0, 4
         ));
-        assertTrue(validator.canBeGenerated(
+        assertTrue(ScenarioFormValidator.canBeGenerated(
                 deployments, missions, depRepList1, missRepTotalList1, 10
         ));
 
 
-        assertFalse(validator.canBeGenerated(
+        assertFalse(ScenarioFormValidator.canBeGenerated(
                 deployments, missions, depRepList0, missRepTotalList0, 200
         ));
-        assertFalse(validator.canBeGenerated(
+        assertFalse(ScenarioFormValidator.canBeGenerated(
                 deployments, missions, depRepList0, missRepTotalList1, 2000
         ));
-        assertFalse(validator.canBeGenerated(
+        assertFalse(ScenarioFormValidator.canBeGenerated(
                 deployments, missions, depRepList1, missRepTotalList0, 40000
         ));
-        assertFalse(validator.canBeGenerated(
+        assertFalse(ScenarioFormValidator.canBeGenerated(
                 deployments, missions, depRepList1, missRepTotalList1, 500000
         ));
 
 
-        assertFalse(validator.canBeGenerated(
+        assertFalse(ScenarioFormValidator.canBeGenerated(
                 deployments, missions, depRepList1, missRepTotalList1, -1
         ));
-        assertFalse(validator.canBeGenerated(
+        assertFalse(ScenarioFormValidator.canBeGenerated(
                 deployments, missions, depRepList1, missRepTotalList1, 0
         ));
     }

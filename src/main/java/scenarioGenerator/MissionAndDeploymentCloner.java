@@ -3,7 +3,7 @@ package scenarioGenerator;
 import java.util.ArrayList;
 
 public class MissionAndDeploymentCloner {
-    public ArrayList<Mission> cloneMissions(ArrayList<Mission> missions, int quantity){
+    public static ArrayList<Mission> cloneMissions(ArrayList<Mission> missions, int quantity){
         if(quantity < 2)
             return missions;
         else {
@@ -17,7 +17,7 @@ public class MissionAndDeploymentCloner {
         }
     }
 
-    public ArrayList<Deployment> cloneDeployments(ArrayList<Deployment> deployments, int quantity){
+    public static ArrayList<Deployment> cloneDeployments(ArrayList<Deployment> deployments, int quantity){
         if(quantity < 2)
             return deployments;
         else {

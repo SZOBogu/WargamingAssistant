@@ -6,7 +6,7 @@ import java.awt.image.AreaAveragingScaleFilter;
 import java.util.ArrayList;
 
 public class ScenarioFormValidator {
-    public boolean canBeGenerated(ArrayList<Deployment> deployments, ArrayList<ArrayList<Mission>> missions,
+    public static boolean canBeGenerated(ArrayList<Deployment> deployments, ArrayList<ArrayList<Mission>> missions,
                                   int deploymentReps, int missionReps,int scensToGenerate){
         if(scensToGenerate > 0) {
             ArrayList<Integer> deploymentRepList = new ArrayList<>();
@@ -23,11 +23,11 @@ public class ScenarioFormValidator {
                 }
             }
 
-            return this.canBeGenerated(deployments, missions, deploymentRepList, missionRepList, scensToGenerate);
+            return ScenarioFormValidator.canBeGenerated(deployments, missions, deploymentRepList, missionRepList, scensToGenerate);
         }
         else return false;
     }
-    public boolean canBeGenerated(ArrayList<Deployment> deployments, ArrayList<ArrayList<Mission>> missions,
+    public static boolean canBeGenerated(ArrayList<Deployment> deployments, ArrayList<ArrayList<Mission>> missions,
                                   ArrayList<Integer> deploymentReps, ArrayList<ArrayList<Integer>> missionReps,
                                   int scensToGenerate){
         if(scensToGenerate > 0) {

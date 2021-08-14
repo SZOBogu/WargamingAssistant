@@ -1,6 +1,7 @@
 package testScenarioGenerator;
 
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 import scenarioGenerator.Deployment;
 import scenarioGenerator.Mission;
 import scenarioGenerator.Scenario;
@@ -10,9 +11,9 @@ import java.util.Arrays;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class testScenario {
-    Deployment deployment = new Deployment("Deployment 0");
-    Mission mission0 = new Mission("Mission 0", new ArrayList<>());
-    Mission mission1 = new Mission("Mission 1", new ArrayList<>());
+    Deployment deployment = Mockito.mock(Deployment.class);
+    Mission mission0 = Mockito.mock(Mission.class);
+    Mission mission1 = Mockito.mock(Mission.class);
     ArrayList<Mission> missionList = new ArrayList<>(new ArrayList<>(Arrays.asList(mission0, mission1)));
 
     Scenario scenario0 = new Scenario("Scenario 0", deployment, missionList);

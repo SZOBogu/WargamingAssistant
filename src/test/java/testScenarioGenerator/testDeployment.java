@@ -1,6 +1,7 @@
 package testScenarioGenerator;
 
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 import scenarioGenerator.Deployment;
 
 import javax.swing.*;
@@ -8,7 +9,7 @@ import javax.swing.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class testDeployment {
-    ImageIcon img = new ImageIcon("/home/bogu/IdeaProjects/WargamingAssistant//src/main/img/T9A/deployments/1.png");
+    ImageIcon img = Mockito.mock(ImageIcon.class);
     Deployment deployment = new Deployment("Deployment", img);
     Deployment deployment0 = new Deployment(deployment);
     Deployment deployment1 = new Deployment("Deploy");
