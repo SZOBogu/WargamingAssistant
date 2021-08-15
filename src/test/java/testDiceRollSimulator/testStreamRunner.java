@@ -15,9 +15,10 @@ import static org.hamcrest.text.MatchesPattern.matchesPattern;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class testStreamRunner {
-    DiceRoll toHit = new DiceRoll(10, 5, false, false, 6);
-    DiceRoll toWound = new DiceRoll(10, 5, true, true, 8);
-    DiceRoll toSave = new DiceRoll(10, 5, true, true, 8, 1);
+    DiceRoll toHit = new DiceRoll.DiceRollBuilder(10, 5).build();
+    DiceRoll toWound = new DiceRoll.DiceRollBuilder(10, 5).reroll(true).failures(true).diceSides(8).build();
+    DiceRoll toSave = new DiceRoll.DiceRollBuilder(10, 5).reroll(true).failures(true).diceSides(8).valueToReRoll(1).build();
+
     ArrayList<DiceRoll> testArray = new ArrayList<>(Arrays.asList(toHit, toWound, toSave));
     StreamRunner runner = new StreamRunner();
 

@@ -1,6 +1,5 @@
 package common;
 
-import diceRollSimulator.DiceRollMenu;
 import rosterBuilder.T9A_Initializer;
 import rosterBuilder.WargameSystemsInitializer;
 import rosterBuilder.WargamingSystem;
@@ -69,10 +68,6 @@ public class MainMenu extends JFrame implements ActionListener {
         }
         else if(clicked == scenButton){
             new SystemSelectionMenu(this.wargamingSystems, ModulesEnum.SCENARIO_CREATOR);
-            this.dispose();
-        }
-        else if(clicked == diceButton){
-            new DiceRollMenu();
             this.dispose();
         }
     }

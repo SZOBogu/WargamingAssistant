@@ -9,11 +9,10 @@ import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class testNonRandomReportGenerator {
-    NonRandomReportGenerator generator = new NonRandomReportGenerator();
     ArrayList<DiceRoll> diceRolls = new ArrayList<>();
-    DiceRoll diceRoll1 = new DiceRoll(20, 3, false, false, 6);
-    DiceRoll diceRoll2 = new DiceRoll(10, 5, true, true, 6);
-    DiceRoll diceRoll3 = new DiceRoll(5, 4, true, false, 6, 6);
+    DiceRoll diceRoll1 = new DiceRoll.DiceRollBuilder(20, 3).build();
+    DiceRoll diceRoll2 = new DiceRoll.DiceRollBuilder(12, 5).reroll(true).failures(true).build();
+    DiceRoll diceRoll3 = new DiceRoll.DiceRollBuilder(5, 4).valueToReRoll(6).build();
 
     @Test
     void testAddDiceRolls(){
@@ -30,6 +29,6 @@ public class testNonRandomReportGenerator {
         "common.Dice Roll 2: probability of single dice success: 0.4444444444444444\n" +
         "common.Dice Roll 3: probability of single dice success: 0.38888888888888895\n" +
         "Probability of Total Success: 0.11522633744855969",
-        generator.generateReport(diceRolls));
+        NonRandomReportGenerator.generateReport(diceRolls));
     }
 }

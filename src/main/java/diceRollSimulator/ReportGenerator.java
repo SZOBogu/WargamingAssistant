@@ -16,7 +16,7 @@ public class ReportGenerator {
         return report;
     }
     public void setReport(String report){
-        report = report;
+        this.report = report;
     }
 
     //TODO: DRY

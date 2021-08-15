@@ -5,10 +5,10 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 
 @Component
-public class Database {
+public class DiceRollList {
     private final ArrayList<DiceRoll> diceRolls;
 
-    public Database(){
+    public DiceRollList(){
         this.diceRolls = new ArrayList<>();
     }
 

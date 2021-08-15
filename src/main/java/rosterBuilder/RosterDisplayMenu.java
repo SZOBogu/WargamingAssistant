@@ -1,7 +1,5 @@
 package rosterBuilder;
 
-import diceRollSimulator.TextPanel;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;

@@ -1,4 +1,4 @@
-package diceRollSimulator;
+package rosterBuilder;
 
 import javax.swing.*;
 import java.awt.*;

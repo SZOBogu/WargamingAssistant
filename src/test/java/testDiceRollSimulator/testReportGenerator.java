@@ -21,9 +21,9 @@ public class testReportGenerator {
         ArrayList<Integer> results3RR = new ArrayList(Arrays.asList(5,6,4,3,5,5,6));                  //3- rr
 
         ArrayList<DiceRoll> diceRolls = new ArrayList<>();
-        DiceRoll diceRoll1 = new DiceRoll(20, 3, false, false, 6);
-        DiceRoll diceRoll2 = new DiceRoll(10, 5, true, true, 6);
-        DiceRoll diceRoll3 = new DiceRoll(5, 4, true, false, 6, 6);
+        DiceRoll diceRoll1 = new DiceRoll.DiceRollBuilder(30, 3).build();
+        DiceRoll diceRoll2 = new DiceRoll.DiceRollBuilder(10, 5).reroll(true).failures(true).build();
+        DiceRoll diceRoll3 = new DiceRoll.DiceRollBuilder(5, 4).reroll(true).valueToReRoll(6).build();
 
         @Test
         void testAddDiceRoll(){

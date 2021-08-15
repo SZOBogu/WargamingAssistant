@@ -8,17 +8,17 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class testProbabilityCalculator {
     ProbabilityCalculator calculator = new ProbabilityCalculator();
-    DiceRoll testRoll0 = new DiceRoll(10, 6, false, false, 6);
-    DiceRoll testRoll1 = new DiceRoll(40, 5, true, false, 6);
-    DiceRoll testRoll2 = new DiceRoll(50, 4, false, false, 6, 1);
-    DiceRoll testRoll3 = new DiceRoll(40, 3, true, true, 6 );
-    DiceRoll testRoll4 = new DiceRoll(50, 2, false, true, 6, 6);
+    DiceRoll testRoll0 = new DiceRoll.DiceRollBuilder(10, 6).build();
+    DiceRoll testRoll1 = new DiceRoll.DiceRollBuilder(40, 5).reroll(true).build();
+    DiceRoll testRoll2 = new DiceRoll.DiceRollBuilder(50, 4).valueToReRoll(1).build();
+    DiceRoll testRoll3 = new DiceRoll.DiceRollBuilder(40, 3).reroll(true).failures(true).build();
+    DiceRoll testRoll4 = new DiceRoll.DiceRollBuilder(50, 2).failures(true).valueToReRoll(6).build();
 
-    DiceRoll testRoll10 = new DiceRoll(10, 6, false, false, 11);
-    DiceRoll testRoll11 = new DiceRoll(40, 5, true, false, 11);
-    DiceRoll testRoll12 = new DiceRoll(50, 4, false, false, 11, 1);
-    DiceRoll testRoll13 = new DiceRoll(40, 3, true, true, 11);
-    DiceRoll testRoll14 = new DiceRoll(50, 2, false, true, 11, 6);
+    DiceRoll testRoll10 = new DiceRoll.DiceRollBuilder(10, 6).diceSides(11).build();
+    DiceRoll testRoll11 = new DiceRoll.DiceRollBuilder(40, 5).diceSides(11).reroll(true).build();
+    DiceRoll testRoll12 = new DiceRoll.DiceRollBuilder(50, 4).diceSides(11).valueToReRoll(1).build();
+    DiceRoll testRoll13 = new DiceRoll.DiceRollBuilder(40, 3).diceSides(11).reroll(true).failures(true).build();
+    DiceRoll testRoll14 = new DiceRoll.DiceRollBuilder(50, 2).diceSides(11).failures(true).valueToReRoll(6).build();
 
     @Test
     void testCalculateChanceOfNonRerolledSuccess(){

@@ -56,6 +56,7 @@ public class DiceRoll {
 
         public DiceRollBuilder valueToReRoll(int valueToReRoll){
             this.valueToReRoll = valueToReRoll;
+
             return this;
         }
 
@@ -90,11 +91,9 @@ public class DiceRoll {
     public ArrayList<ArrayList<Integer>> makeDiceRoll(){
         ArrayList<ArrayList<Integer>> bothResults = new ArrayList<>();
         ArrayList<Integer> result = this.rollDices();
-        ArrayList<Integer> resultRerolled = new ArrayList<>();
         bothResults.add(result);
 
-        //deep copy substitute, fuck the police
-        resultRerolled.addAll(result);
+        ArrayList<Integer> resultRerolled = new ArrayList<>(result);
 
         if(this.reroll){
             //regular reroll of non passed dices

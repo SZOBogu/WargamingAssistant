@@ -12,9 +12,9 @@ import static org.hamcrest.Matchers.lessThanOrEqualTo;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class testDiceRoll {
-    public DiceRoll testRoll0 = new DiceRoll(10, 5, false, false, 6);
-    public DiceRoll testRoll1 = new DiceRoll(11, 5, true, true, 8);
-    public DiceRoll testRoll2 = new DiceRoll(12, 5, true, true, 8, 1);
+    public DiceRoll testRoll0 = new DiceRoll.DiceRollBuilder(10, 5).build();
+    public DiceRoll testRoll1 = new DiceRoll.DiceRollBuilder(11, 5).reroll(true).failures(true).diceSides(8).build();
+    public DiceRoll testRoll2 = new DiceRoll.DiceRollBuilder(12, 5).failures(true).diceSides(8).valueToReRoll(1).build();
 
 
     @Test
@@ -50,9 +50,9 @@ public class testDiceRoll {
 
     @Test
     public void testEquals(){
-         DiceRoll testRoll01 = new DiceRoll(10, 5, false, false, 6);
-         DiceRoll testRoll11 = new DiceRoll(11, 5, true, true, 8);
-         DiceRoll testRoll21 = new DiceRoll(12, 5, false, true, 8, 1);
+         DiceRoll testRoll01 = new DiceRoll.DiceRollBuilder(10, 5).build();
+         DiceRoll testRoll11 = new DiceRoll.DiceRollBuilder(11, 5).reroll(true).failures(true).diceSides(8).build();
+         DiceRoll testRoll21 = new DiceRoll.DiceRollBuilder(12, 5).failures(true).diceSides(8).valueToReRoll(1).build();
 
         assertEquals(testRoll01, testRoll0);
         assertEquals(testRoll11, testRoll1);

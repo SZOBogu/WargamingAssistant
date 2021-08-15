@@ -1,6 +1,6 @@
 package diceRollSimulator.controllers;
 
-import diceRollSimulator.Database;
+import diceRollSimulator.DiceRollList;
 import diceRollSimulator.DiceRoll;
 import diceRollSimulator.NonRandomReportGenerator;
 import diceRollSimulator.StreamRunner;
@@ -13,7 +13,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/dice")
 public class DiceController {
-    private Database db;
+    private DiceRollList db;
 
     @PostConstruct
     public void getDiceRollJson(){
@@ -62,7 +62,7 @@ public class DiceController {
     }
 
     @Autowired
-    public void setDb(Database db) {
+    public void setDb(DiceRollList db) {
         this.db = db;
     }
 }
