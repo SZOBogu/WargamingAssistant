@@ -75,8 +75,11 @@ public class FormPanel extends JPanel implements ActionListener {
                         (int)diceSidesSpinner.getValue(), 1);
                 specificResultRerollSpinner = new JSpinner(valueToReRollModel);
 
-                FormEvent event = new FormEvent(this, quantity, successValue, reroll,
-                        failures, diceSides, valueToReRoll);
+                DiceRoll diceRoll = new DiceRoll.DiceRollBuilder(quantity, successValue)
+                        .valueToReRoll(valueToReRoll).diceSides(diceSides).failures(failures).reroll(reroll)
+                        .build();
+
+                FormEvent event = new FormEvent(this, diceRoll);
 
                 if (formListener != null){
                     formListener.formEventOccurred(event);

@@ -1,5 +1,7 @@
 package diceRollSimulator;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import java.util.ArrayList;
 
 public class StreamRunner {
@@ -7,16 +9,16 @@ public class StreamRunner {
 
     public int runDiceRoll(DiceRoll diceRoll, int number){
         ArrayList<ArrayList<Integer>> results = diceRoll.makeDiceRoll();
-        SuccessChecker checker = new SuccessChecker();
+
         int successes;
         if(results.size() == 1 && !diceRoll.isFailures())
-            successes = checker.countSuccesses(results.get(0), diceRoll.getSuccessValue());
+            successes = SuccessChecker.countSuccesses(results.get(0), diceRoll.getSuccessValue());
         else if(results.size() == 1 && diceRoll.isFailures())
-            successes = checker.countFailures(results.get(0), diceRoll.getSuccessValue());
+            successes = SuccessChecker.countFailures(results.get(0), diceRoll.getSuccessValue());
         else if(results.size() == 2 && !diceRoll.isFailures())
-            successes = checker.countSuccesses(results.get(1), diceRoll.getSuccessValue());
+            successes = SuccessChecker.countSuccesses(results.get(1), diceRoll.getSuccessValue());
         else
-            successes = checker.countFailures(results.get(1), diceRoll.getSuccessValue());
+            successes = SuccessChecker.countFailures(results.get(1), diceRoll.getSuccessValue());
 
         if(diceRoll.getValueToReRoll() > 0)
             reportGenerator.addDiceRoll(results, number, successes,
@@ -34,10 +36,15 @@ public class StreamRunner {
             successes = runDiceRoll(diceRolls.get(i), i);
             if(i < diceRolls.size() - 1)    diceRolls.get(i + 1).setQuantity(successes);
         }
-        return this.reportGenerator.generateReport(diceRolls, successes);
+        return reportGenerator.generateReport(diceRolls, successes);
     }
 
     public String getReport(){
-        return this.reportGenerator.getReport();
+        return reportGenerator.getReport();
+    }
+
+    @Autowired
+    public void setReportGenerator(ReportGenerator reportGenerator) {
+        this.reportGenerator = reportGenerator;
     }
 }

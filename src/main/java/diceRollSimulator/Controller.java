@@ -1,23 +1,31 @@
 package diceRollSimulator;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import java.util.ArrayList;
 
 public class Controller {
-    Database db = new Database();
+    private Database db;
 
     public ArrayList<DiceRoll> getDiceRolls(){
         return db.getDiceRolls();
     }
 
     public void addDiceRoll(FormEvent event){
-        int quantity = event.getQuantity();
-        int successValue = event.getSuccessValue();
-        boolean reroll = event.isReroll();
-        int valueToReRoll = event.getValueToReRoll();
-        boolean failures = event.isFailures();
-        int diceSides = event.getDiceSides();
+        int quantity = event.getDiceRoll().getQuantity();
+        int successValue = event.getDiceRoll().getSuccessValue();
+        boolean reroll = event.getDiceRoll().isReroll();
+        int valueToReRoll = event.getDiceRoll().getValueToReRoll();
+        boolean failures = event.getDiceRoll().isFailures();
+        int diceSides = event.getDiceRoll().getDiceSides();
 
-        DiceRoll roll = new DiceRoll(quantity, successValue, reroll, failures, diceSides, valueToReRoll);
+        DiceRoll roll = new DiceRoll.DiceRollBuilder(quantity, successValue)
+                        .reroll(reroll)
+                        .valueToReRoll(valueToReRoll)
+                        .failures(failures)
+                        .diceSides(diceSides)
+                        .build();
+
         db.addDiceRoll(roll);
     }
 
@@ -33,7 +41,15 @@ public class Controller {
     }
 
     public String runNonRandom(){
-        NonRandomReportGenerator runner = new NonRandomReportGenerator();
-        return runner.generateReport(this.getDiceRolls());
+        return NonRandomReportGenerator.generateReport(this.getDiceRolls());
+    }
+
+    public Database getDb() {
+        return db;
+    }
+
+    @Autowired
+    public void setDb(Database db) {
+        this.db = db;
     }
 }

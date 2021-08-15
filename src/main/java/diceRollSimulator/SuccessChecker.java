@@ -3,8 +3,7 @@ package diceRollSimulator;
 import java.util.ArrayList;
 
 public class SuccessChecker {
-
-    public int countSuccesses(ArrayList<Integer> results, int successValue){
+    public static int countSuccesses(ArrayList<Integer> results, int successValue){
         int successes = 0;
         for (Integer result : results) {
             if (result >= successValue) {
@@ -14,7 +13,7 @@ public class SuccessChecker {
         return successes;
     }
 
-    public int countFailures(ArrayList<Integer> results, int successValue){
-        return results.size() - this.countSuccesses(results, successValue);
+    public static int countFailures(ArrayList<Integer> results, int successValue){
+        return results.size() - SuccessChecker.countSuccesses(results, successValue);
     }
 }

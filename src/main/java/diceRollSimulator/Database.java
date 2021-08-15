@@ -1,9 +1,12 @@
 package diceRollSimulator;
 
+import org.springframework.stereotype.Component;
+
 import java.util.ArrayList;
 
+@Component
 public class Database {
-    private ArrayList<DiceRoll> diceRolls;
+    private final ArrayList<DiceRoll> diceRolls;
 
     public Database(){
         this.diceRolls = new ArrayList<>();

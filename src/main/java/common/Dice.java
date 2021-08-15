@@ -15,12 +15,10 @@ public class Dice {
     }
 
     public Dice(int max){
-        if(max < 1){
+        if(max < 1)
             this.max = 6;
-        }
-        else{
+        else
             this.max = max;
-        }
     }
 
     public int roll(){

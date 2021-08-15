@@ -3,8 +3,8 @@ package diceRollSimulator;
 import java.util.ArrayList;
 
 public class NonRandomReportGenerator {
-    public String generateReport(ArrayList<DiceRoll> diceRolls){
-        StringBuilder report = new StringBuilder();
+    public static String generateReport(ArrayList<DiceRoll> diceRolls){
+        StringBuilder report;
         ArrayList<Double> probabilities = new ArrayList<>();
         ProbabilityCalculator calculator = new ProbabilityCalculator();
         double totalSuccessProbability = 1.0;
