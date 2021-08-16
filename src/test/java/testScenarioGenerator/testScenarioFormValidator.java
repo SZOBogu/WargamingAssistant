@@ -9,6 +9,7 @@ import scenarioGenerator.Mission;
 import scenarioGenerator.ScenarioFormValidator;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -19,21 +20,21 @@ public class testScenarioFormValidator {
     Deployment d2 = Mockito.mock(Deployment.class);
     Deployment d3 = Mockito.mock(Deployment.class);
 
-    ArrayList<Deployment> deployments = new ArrayList<>(Arrays.asList(d0,d1,d2,d3));
+    List<Deployment> deployments = new ArrayList<>(Arrays.asList(d0,d1,d2,d3));
 
     Mission m00 = Mockito.mock(Mission.class);
     Mission m01 = Mockito.mock(Mission.class);
     Mission m02 = Mockito.mock(Mission.class);
     Mission m03 = Mockito.mock(Mission.class);
-    ArrayList<Mission> missions0 = new ArrayList<>(Arrays.asList(m00,m01,m02,m03));
+    List<Mission> missions0 = new ArrayList<>(Arrays.asList(m00,m01,m02,m03));
 
     Mission m10 = Mockito.mock(Mission.class);
     Mission m11 = Mockito.mock(Mission.class);
     Mission m12 = Mockito.mock(Mission.class);
     Mission m13 = Mockito.mock(Mission.class);
-    ArrayList<Mission> missions1 = new ArrayList<>(Arrays.asList(m10,m11,m12,m13));
+    List<Mission> missions1 = new ArrayList<>(Arrays.asList(m10,m11,m12,m13));
 
-    ArrayList<ArrayList<Mission>> missions = new ArrayList<>();
+    List<List<Mission>> missions = new ArrayList<>();
 
     @BeforeEach
     void init(){
@@ -63,17 +64,17 @@ public class testScenarioFormValidator {
 
     @Test
     void testCanBeGeneratedArrays() {
-        ArrayList<Integer> depRepList0 = new ArrayList<>(Arrays.asList(1, 1, 1, 1));
-        ArrayList<Integer> depRepList1 = new ArrayList<>(Arrays.asList(10, 10, 10, 10));
-        ArrayList<Integer> missRepList00 = new ArrayList<>(Arrays.asList(1, 1, 1, 1));
-        ArrayList<Integer> missRepList01 = new ArrayList<>(Arrays.asList(10, 10, 10, 10));
+        List<Integer> depRepList0 = new ArrayList<>(Arrays.asList(1, 1, 1, 1));
+        List<Integer> depRepList1 = new ArrayList<>(Arrays.asList(10, 10, 10, 10));
+        List<Integer> missRepList00 = new ArrayList<>(Arrays.asList(1, 1, 1, 1));
+        List<Integer> missRepList01 = new ArrayList<>(Arrays.asList(10, 10, 10, 10));
 
-        ArrayList<ArrayList<Integer>> missRepTotalList0 = new ArrayList<>(Arrays.asList(
+        List<List<Integer>> missRepTotalList0 = new ArrayList<>(Arrays.asList(
                 missRepList00, missRepList01));
-        ArrayList<Integer> missRepList10 = new ArrayList<>(Arrays.asList(1, 1, 1, 1));
-        ArrayList<Integer> missRepList11 = new ArrayList<>(Arrays.asList(10, 10, 10, 10));
+        List<Integer> missRepList10 = new ArrayList<>(Arrays.asList(1, 1, 1, 1));
+        List<Integer> missRepList11 = new ArrayList<>(Arrays.asList(10, 10, 10, 10));
 
-        ArrayList<ArrayList<Integer>> missRepTotalList1 = new ArrayList<>(Arrays.asList(
+        List<List<Integer>> missRepTotalList1 = new ArrayList<>(Arrays.asList(
                 missRepList10, missRepList11));
 
         assertTrue(ScenarioFormValidator.canBeGenerated(

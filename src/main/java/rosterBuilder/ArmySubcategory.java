@@ -10,6 +10,13 @@ public class ArmySubcategory {
     private double categoryPointCapPercentage;
     private int categoryPointCap;
 
+    public ArmySubcategory(String name){
+        this.name = name;
+        this.unitProfiles = new ArrayList<>();
+        this.categoryPointCapPercentage = 1.0;
+        this.categoryPointCap = Integer.MAX_VALUE;
+    }
+
     public ArmySubcategory(String name, ArrayList<UnitProfile> unitProfiles){
         this.name = name;
         this.unitProfiles = unitProfiles;
@@ -41,12 +48,16 @@ public class ArmySubcategory {
         this.categoryPointCap = categoryPointCap;
     }
 
+    public int getCategoryPointCap() {
+        return categoryPointCap;
+    }
+
     public void setCategoryPointCap(Roster roster){
         this.categoryPointCap = roster.getPointCap();
     }
 
-    public int getCategoryPointCap() {
-        return categoryPointCap;
+    public void setUnitProfiles(ArrayList<UnitProfile> unitProfiles) {
+        this.unitProfiles = unitProfiles;
     }
 
     public void recalculateCategoryPointCap() {

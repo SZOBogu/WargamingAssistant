@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 
 public class testMission {
     Mission miss0 = new Mission();
-    Deployment deployment = new Deployment("test Deployment", new ImageIcon());
+    Deployment deployment = new Deployment("test Deployment", "asdfa");
     ArrayList<Objective> objectives = new ArrayList<>(Arrays.asList(
             new Objective("W ogóle"),
             new Objective("Centralnie", 2),

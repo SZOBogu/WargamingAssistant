@@ -9,8 +9,7 @@ import javax.swing.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class testDeployment {
-    ImageIcon img = Mockito.mock(ImageIcon.class);
-    Deployment deployment = new Deployment("Deployment", img);
+    Deployment deployment = new Deployment("Deployment", "/static/1.jpg");
     Deployment deployment0 = new Deployment(deployment);
     Deployment deployment1 = new Deployment("Deploy");
     @Test
@@ -21,19 +20,19 @@ public class testDeployment {
 
     @Test
     void getImg(){
-        assertEquals(img, deployment.getImg());
+        assertEquals("/static/1.jpg", deployment.getEncodedImage());
     }
 
     @Test
     void testCopyConstructor(){
         assertEquals(deployment.getName(), deployment0.getName());
-        assertEquals(deployment.getImg(), deployment0.getImg());
+        assertEquals(deployment.getEncodedImage(), deployment0.getEncodedImage());
     }
 
     @Test
     void testEquals(){
         assertEquals(deployment, deployment0);
-        Deployment deploymentTest = new Deployment("Deployment", img);
+        Deployment deploymentTest = new Deployment("Deployment", "/static/1.jpg");
         assertEquals(deploymentTest, deployment);
     }
 }

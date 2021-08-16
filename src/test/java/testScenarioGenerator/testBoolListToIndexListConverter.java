@@ -5,20 +5,21 @@ import scenarioGenerator.BoolListToIndexListConverter;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class testBoolListToIndexListConverter {
-    ArrayList<Boolean> test0 = new ArrayList<>(Arrays.asList(true, true, true, true, true, true));
-    ArrayList<Boolean> test1 = new ArrayList<>(Arrays.asList(true, true, true, false, false, true));
-    ArrayList<Boolean> test2 = new ArrayList<>(Arrays.asList(false, false, false, false, false, false));
-    ArrayList<ArrayList<Boolean>> testList = new ArrayList<>(Arrays.asList(test0, test1, test2));
+    List<Boolean> test0 = new ArrayList<>(Arrays.asList(true, true, true, true, true, true));
+    List<Boolean> test1 = new ArrayList<>(Arrays.asList(true, true, true, false, false, true));
+    List<Boolean> test2 = new ArrayList<>(Arrays.asList(false, false, false, false, false, false));
+    List<List<Boolean>> testList = new ArrayList<>(Arrays.asList(test0, test1, test2));
 
     @Test
     void testConvert(){
-        ArrayList<Integer> indexesTest0 = BoolListToIndexListConverter.convert(test0);
-        ArrayList<Integer> indexesTest1 = BoolListToIndexListConverter.convert(test1);
-        ArrayList<Integer> indexesTest2 = BoolListToIndexListConverter.convert(test2);
+        List<Integer> indexesTest0 = BoolListToIndexListConverter.convert(test0);
+        List<Integer> indexesTest1 = BoolListToIndexListConverter.convert(test1);
+        List<Integer> indexesTest2 = BoolListToIndexListConverter.convert(test2);
 
         assertEquals(6, indexesTest0.size());
         assertEquals(0, (int)indexesTest0.get(0));
@@ -39,7 +40,7 @@ public class testBoolListToIndexListConverter {
 
     @Test
     void testList(){
-        ArrayList<ArrayList<Integer>> indexesTest = BoolListToIndexListConverter.convertList(testList);
+        List<List<Integer>> indexesTest = BoolListToIndexListConverter.convert2dList(testList);
         assertEquals(3, indexesTest.size());
         assertEquals(6,indexesTest.get(0).size());
         assertEquals(4,indexesTest.get(1).size());

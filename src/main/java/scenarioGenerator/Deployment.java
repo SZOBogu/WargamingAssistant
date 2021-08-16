@@ -6,28 +6,28 @@ import java.util.Objects;
 
 public class Deployment {
     private String name;
-    private ImageIcon img;
+    private String encodedImage;
 
     public Deployment(String name){
         this.name = name;
-        this.img = new ImageIcon();
+        this.encodedImage = "";
     }
 
-    public Deployment(String name, ImageIcon img){
+    public Deployment(String name, String img){
         this.name = name;
-        this.img  = img;
+        this.encodedImage  = img;
     }
 
     public Deployment(Deployment deployment){
-        this(deployment.getName(), deployment.getImg());
+        this(deployment.getName(), deployment.getEncodedImage());
     }
 
     public String getName() {
         return name;
     }
 
-    public ImageIcon getImg() {
-        return img;
+    public String getEncodedImage() {
+        return encodedImage;
     }
 
     @Override
@@ -35,11 +35,11 @@ public class Deployment {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Deployment that = (Deployment) o;
-        return Objects.equals(getName(), that.getName());
+        return Objects.equals(name, that.name) && Objects.equals(encodedImage, that.encodedImage);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getName());
+        return Objects.hash(name, encodedImage);
     }
 }

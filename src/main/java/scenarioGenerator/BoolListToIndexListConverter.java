@@ -1,20 +1,21 @@
 package scenarioGenerator;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class BoolListToIndexListConverter {
-    public static ArrayList<Integer> convert(ArrayList<Boolean> booleansArray){
-        ArrayList<Integer> indexList = new ArrayList<>();
+    public static List<Integer> convert(List<Boolean> booleansArray){
+        List<Integer> indexList = new ArrayList<>();
         for(int i = 0; i < booleansArray.size(); i++){
             if(booleansArray.get(i)) indexList.add(i);
         }
         return indexList;
     }
 
-    public static ArrayList<ArrayList<Integer>> convertList(ArrayList<ArrayList<Boolean>> booleansArraysArray){
-        ArrayList<ArrayList<Integer>> convertedList = new ArrayList<>();
-        for(int i = 0; i < booleansArraysArray.size(); i++){
-            convertedList.add(convert(booleansArraysArray.get(i)));
+    public static List<List<Integer>> convert2dList(List<List<Boolean>> booleansArraysArray){
+        List<List<Integer>> convertedList = new ArrayList<>();
+        for (List<Boolean> booleans : booleansArraysArray) {
+            convertedList.add(convert(booleans));
         }
         return convertedList;
     }

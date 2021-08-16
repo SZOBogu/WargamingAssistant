@@ -7,11 +7,11 @@ import java.util.Objects;
 
 public class DiceRoll {
     private int quantity;
-    private int successValue;
-    private boolean reroll;
-    private int valueToReRoll;
-    private boolean failures;
-    private int diceSides;
+    private final int successValue;
+    private final boolean reroll;
+    private final int valueToReRoll;
+    private final boolean failures;
+    private final int diceSides;
 
     public DiceRoll(){
         this.quantity = 0;

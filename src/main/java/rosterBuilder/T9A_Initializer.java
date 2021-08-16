@@ -38,8 +38,7 @@ public class T9A_Initializer implements IWargameInitializer {
                 "Mission 14", "Mission 15"};
 
         for(int i=0; i<6; i++) {
-            ImageIcon icon = new ImageIcon("/home/bogu/IdeaProjects/GUI//src/main/img/T9A/deployments/" + i + ".png");
-            deployments.add(new Deployment(depNames[i], icon));
+            deployments.add(new Deployment(depNames[i], "/home/bogu/IdeaProjects/GUI//src/main/img/T9A/deployments/"));
             missions0.add(new Mission(missionNames0[i], new ArrayList<>()));
             missions1.add(new Mission(missionNames1[i], new ArrayList<>()));
         }

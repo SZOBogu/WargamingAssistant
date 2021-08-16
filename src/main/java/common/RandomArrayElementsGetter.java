@@ -4,15 +4,14 @@ import java.util.List;
 
 public class RandomArrayElementsGetter {
 
-    public <T> ArrayList<T> randomArrayElementsWithoutReps(List<T> list, int howManyElements){
+    public static <T> ArrayList<T> randomArrayElementsWithoutReps(List<T> list, int howManyElements){
         ArrayList<T> elementList = new ArrayList<>(list);
         ArrayList<T> resultList = new ArrayList<>();
 
         if(elementList.size() < howManyElements)
             return elementList;
         else if(elementList.size() == howManyElements){
-            ArrayOrderMixer mixer = new ArrayOrderMixer();
-            return mixer.getArrayInRandomOrder(list);
+            return ArrayOrderMixer.getArrayInRandomOrder(list);
         }
         else {
             ArrayList<Integer> indexList = new ArrayList<>();
@@ -30,7 +29,7 @@ public class RandomArrayElementsGetter {
         return resultList;
     }
 
-    public <T> ArrayList<T> randomArrayElementsWithReps(List<T> list, List<Integer> repList, int howManyElements){
+    public static  <T> ArrayList<T> randomArrayElementsWithReps(List<T> list, List<Integer> repList, int howManyElements){
         ArrayList<T> objectList = new ArrayList<>(list);
         ArrayList<Integer> repCountList = new ArrayList<>(repList);
 
@@ -56,19 +55,19 @@ public class RandomArrayElementsGetter {
             }
         }
 
-        List<T> randomsList = this.randomArrayElementsWithoutReps(objectList, howManyElements);
+        List<T> randomsList = randomArrayElementsWithoutReps(objectList, howManyElements);
         return new ArrayList<>(randomsList);
     }
 
-    public <T> ArrayList<T> randomArrayElementsWithReps(List<T> list, int reps, int howManyElements){
+    public static  <T> ArrayList<T> randomArrayElementsWithReps(List<T> list, int reps, int howManyElements){
         List<Integer> repList = new ArrayList<>();
         for(int i = 0; i < list.size(); i++){
             repList.add(reps);
         }
-        return this.randomArrayElementsWithReps(list, repList, howManyElements);
+        return randomArrayElementsWithReps(list, repList, howManyElements);
     }
 
-    public <T> ArrayList<T> randomArrayElementsWithAnyReps(List<T> list, int howManyElements){
+    public static  <T> ArrayList<T> randomArrayElementsWithAnyReps(List<T> list, int howManyElements){
         ArrayList<T> elementList = new ArrayList<>();
         Dice dice = new Dice(list.size());
         for(int i = 0; i < howManyElements; i++){

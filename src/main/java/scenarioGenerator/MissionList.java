@@ -30,4 +30,8 @@ public class MissionList {
     public void add(Mission mission){
         this.missions.add(mission);
     }
+
+    public ArrayList<Mission> getMissions() {
+        return missions;
+    }
 }

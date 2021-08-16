@@ -15,7 +15,7 @@ public class DeploymentPanel extends JPanel {
         this.radioButtons = new ArrayList<>();
 
         for(int i=0;i<deployments.size();i++){
-            JLabel label = new JLabel(deployments.get(i).getImg());
+            JLabel label = new JLabel(deployments.get(i).getEncodedImage());
             JRadioButton radioButton = new JRadioButton(deployments.get(i).getName());
 
             this.labels.add(label);

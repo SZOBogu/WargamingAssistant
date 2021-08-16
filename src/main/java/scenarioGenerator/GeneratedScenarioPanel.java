@@ -13,7 +13,7 @@ public class GeneratedScenarioPanel extends JPanel {
     public GeneratedScenarioPanel(Deployment deployment, ArrayList<Mission> missions){
         super();
         this.deploymentNameLabel = new JLabel(deployment.getName());
-        this.deploymentImageLabel = new JLabel(deployment.getImg());
+        this.deploymentImageLabel = new JLabel(deployment.getEncodedImage());
         this.scenarioNamesLabel = new ArrayList<>();
         this.scenarioDescriptionsLabel = new ArrayList<>();
 

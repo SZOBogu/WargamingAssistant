@@ -32,16 +32,16 @@ public class ArrayElementsWithRepsCounter {
         return count;
     }
 
-    public static <T> int count2D(ArrayList<ArrayList<T>> elements, int reps){
+    public static <T> int count2D(List<List<T>> elements, int reps){
         int count = 0;
 
-        for (ArrayList<T> element : elements) {
+        for (List<T> element : elements) {
             count += ArrayElementsWithRepsCounter.count(element, reps);
         }
         return count;
     }
 
-    public static <T> int count2D(ArrayList<ArrayList<T>> elements, ArrayList<ArrayList<Integer>> repList){
+    public static <T> int count2D(List<List<T>> elements, List<List<Integer>> repList){
         int count = 0;
 
         for(int i = 0; i < elements.size(); i++){

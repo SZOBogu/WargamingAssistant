@@ -4,13 +4,14 @@ import common.ArrayElementsWithRepsCounter;
 
 import java.awt.image.AreaAveragingScaleFilter;
 import java.util.ArrayList;
+import java.util.List;
 
 public class ScenarioFormValidator {
-    public static boolean canBeGenerated(ArrayList<Deployment> deployments, ArrayList<ArrayList<Mission>> missions,
+    public static boolean canBeGenerated(List<Deployment> deployments, List<List<Mission>> missions,
                                   int deploymentReps, int missionReps,int scensToGenerate){
         if(scensToGenerate > 0) {
-            ArrayList<Integer> deploymentRepList = new ArrayList<>();
-            ArrayList<ArrayList<Integer>> missionRepList = new ArrayList<>();
+            List<Integer> deploymentRepList = new ArrayList<>();
+            List<List<Integer>> missionRepList = new ArrayList<>();
 
             for (int i = 0; i < deployments.size(); i++) {
                 deploymentRepList.add(deploymentReps);
@@ -27,16 +28,15 @@ public class ScenarioFormValidator {
         }
         else return false;
     }
-    public static boolean canBeGenerated(ArrayList<Deployment> deployments, ArrayList<ArrayList<Mission>> missions,
-                                  ArrayList<Integer> deploymentReps, ArrayList<ArrayList<Integer>> missionReps,
+    public static boolean canBeGenerated(List<Deployment> deployments, List<List<Mission>> missions,
+                                         List<Integer> deploymentReps, List<List<Integer>> missionReps,
                                   int scensToGenerate){
         if(scensToGenerate > 0) {
             int missionCount = 0;
             int deploymentCount = 0;
-            ArrayElementsWithRepsCounter counter = new ArrayElementsWithRepsCounter();
 
-            missionCount = counter.count2D(missions, missionReps);
-            deploymentCount = counter.count(deployments, deploymentReps);
+            missionCount = ArrayElementsWithRepsCounter.count2D(missions, missionReps);
+            deploymentCount = ArrayElementsWithRepsCounter.count(deployments, deploymentReps);
 
             return missionCount >= scensToGenerate && deploymentCount >= scensToGenerate;
         }

@@ -5,11 +5,12 @@ import scenarioGenerator.BoolListToIndexListConverter;
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.List;
 
 public class OptionPanel extends JPanel {
     private JLabel descriptionLabel;
     private OptionSet optionSet;
-    private ArrayList<JRadioButton> optionButtons;
+    private List<JRadioButton> optionButtons;
 
     public OptionPanel(OptionSet optionSet){
         this.optionSet = optionSet;
@@ -43,19 +44,18 @@ public class OptionPanel extends JPanel {
         }
     }
 
-    private ArrayList<Integer> getCheckedIndexes(){
-        ArrayList<Boolean> areButtonsChosen = new ArrayList<>();
+    private List<Integer> getCheckedIndexes(){
+        List<Boolean> areButtonsChosen = new ArrayList<>();
         for (JRadioButton optionButton : this.optionButtons) {
             areButtonsChosen.add(optionButton.isSelected());
         }
-        BoolListToIndexListConverter converter =  new BoolListToIndexListConverter();
 
-        return converter.convert(areButtonsChosen);
+        return BoolListToIndexListConverter.convert(areButtonsChosen);
     }
 
-    public ArrayList<Entity> getChosenEntities(){
-        ArrayList<Entity> chosenEntities =new ArrayList<>();
-        ArrayList<Integer> chosenEquipmentIndexes = this.getCheckedIndexes();
+    public List<Entity> getChosenEntities(){
+        List<Entity> chosenEntities = new ArrayList<>();
+        List<Integer> chosenEquipmentIndexes = this.getCheckedIndexes();
 
         for (Integer chosenEquipmentIndex : chosenEquipmentIndexes) {
             chosenEntities.add(optionSet.getAllEntities().get(chosenEquipmentIndex));
@@ -68,7 +68,7 @@ public class OptionPanel extends JPanel {
 
     public int getTotalCost() {
         int totalCost = 0;
-        ArrayList<Integer> chosenEquipmentIndexes = this.getCheckedIndexes();
+        List<Integer> chosenEquipmentIndexes = this.getCheckedIndexes();
 
         for (Integer chosenEquipmentIndex : chosenEquipmentIndexes) {
             totalCost += optionSet.getOptions().get(chosenEquipmentIndex).getCost();

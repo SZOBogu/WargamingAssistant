@@ -12,7 +12,7 @@ public class ScenarioPanel extends JPanel{
 
     public ScenarioPanel(Scenario scenario){
         this.scenarioNameLabel = new JLabel(scenario.getName().toUpperCase());
-        this.deploymentPic = new JLabel(scenario.getDeployment().getImg());
+        this.deploymentPic = new JLabel(scenario.getDeployment().getEncodedImage());
         this.deploymentLabel = new JLabel("Deployment: " + scenario.getDeployment().getName());
         this.missionsLabel = new JLabel();
         this.choiceRadioButton = new JRadioButton(scenario.getName());
