@@ -10,6 +10,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.List;
 
 public class RosterDetachmentsPanel extends JPanel implements ActionListener, Refreshable {
     private JButton addDetachmentButton;
@@ -106,7 +107,7 @@ public class RosterDetachmentsPanel extends JPanel implements ActionListener, Re
             }
         }
         else if(clicked == readyButton){
-            ArrayList<RosterBuildingRule> rules = this.wargamingSystem.getRules();
+            List<RosterBuildingRule> rules = this.wargamingSystem.getRules();
 
             if(roster.getRoster().getTotalCost() > roster.getRoster().getPointCap())
                 RuleViolationLog.appendRosterRuleViolationLog("Point Limit Exceeded");

@@ -4,13 +4,14 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.List;
 
 public class ScenarioDisplayer extends JFrame implements ActionListener {
     private JLabel titleLabel;
-    private ArrayList<GeneratedScenarioPanel> scenarioPanels;
+    private List<GeneratedScenarioPanel> scenarioPanels;
     private JButton disposeButton;
 
-    public ScenarioDisplayer(ArrayList<Deployment> deployments, ArrayList<ArrayList<Mission>> missions){
+    public ScenarioDisplayer(List<Deployment> deployments, List<List<Mission>> missions){
         super();
         this.titleLabel = new JLabel("Scenario Generator");
         this.disposeButton = new JButton("Go Back");

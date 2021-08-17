@@ -3,11 +3,12 @@ package scenarioGenerator;
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.List;
 
 public class ScenarioPanelsPanel extends JPanel {
-    private ArrayList<ScenarioPanel> scenarioPanels;
+    private List<ScenarioPanel> scenarioPanels;
 
-    public ScenarioPanelsPanel(ArrayList<Scenario> scenarios){
+    public ScenarioPanelsPanel(List<Scenario> scenarios){
         this.scenarioPanels = new ArrayList<>();
         for(Scenario scenario : scenarios){
             this.scenarioPanels.add(new ScenarioPanel(scenario));

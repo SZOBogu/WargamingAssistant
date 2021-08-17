@@ -10,14 +10,15 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.List;
 
 public class SystemSelectionMenu extends JFrame implements ActionListener {
-    private ArrayList<JButton> buttons;
+    private List<JButton> buttons;
     private ModulesEnum furtherModule;
-    private ArrayList<WargamingSystem> wargamingSystems;
+    private List<WargamingSystem> wargamingSystems;
     private JButton backButton;
 
-    public SystemSelectionMenu(ArrayList<WargamingSystem> wargamingSystems, ModulesEnum furtherModule){
+    public SystemSelectionMenu(List<WargamingSystem> wargamingSystems, ModulesEnum furtherModule){
         super("System Selection Menu");
         this.furtherModule = furtherModule;
         this.wargamingSystems = wargamingSystems;

@@ -42,4 +42,11 @@ public class Deployment {
     public int hashCode() {
         return Objects.hash(name, encodedImage);
     }
+
+    @Override
+    public String toString() {
+        return "Deployment{" +
+                "name='" + name + '\'' +
+                '}';
+    }
 }

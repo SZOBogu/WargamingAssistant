@@ -3,14 +3,15 @@ package scenarioGenerator;
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.List;
 
 public class GeneratedScenarioPanel extends JPanel {
     private JLabel deploymentNameLabel;
     private JLabel deploymentImageLabel;
-    private ArrayList<JLabel> scenarioNamesLabel;
-    private ArrayList<JLabel> scenarioDescriptionsLabel;
+    private List<JLabel> scenarioNamesLabel;
+    private List<JLabel> scenarioDescriptionsLabel;
 
-    public GeneratedScenarioPanel(Deployment deployment, ArrayList<Mission> missions){
+    public GeneratedScenarioPanel(Deployment deployment, List<Mission> missions){
         super();
         this.deploymentNameLabel = new JLabel(deployment.getName());
         this.deploymentImageLabel = new JLabel(deployment.getEncodedImage());

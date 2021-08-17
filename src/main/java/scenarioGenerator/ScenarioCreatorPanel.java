@@ -10,6 +10,7 @@
 //import java.awt.*;
 //import java.awt.event.ActionEvent;
 //import java.awt.event.ActionListener;
+//import java.util.List;
 //import java.util.ArrayList;
 //import java.util.Collections;
 //
@@ -24,11 +25,11 @@
 //    private JButton backButton;
 //    private JButton runButton;
 //
-//    private ArrayList<Deployment> deployments;
-//    private ArrayList<MissionList> missionLists;
+//    private List<Deployment> deployments;
+//    private List<MissionList> missionLists;
 //
-//    public ScenarioCreatorPanel(ArrayList<Scenario> scenarios, ArrayList<Deployment> deployments,
-//                                ArrayList<MissionList> missionLists, String systemName){
+//    public ScenarioCreatorPanel(List<Scenario> scenarios, List<Deployment> deployments,
+//                                List<MissionList> missionLists, String systemName){
 //        this.deployments = deployments;
 //        this.missionLists = missionLists;
 //
@@ -76,8 +77,6 @@
 //    public void actionPerformed(ActionEvent actionEvent){
 //        JButton clicked = (JButton)actionEvent.getSource();
 //        if(clicked == runButton) {
-//            RandomArrayElementsGetter getter = new RandomArrayElementsGetter();
-//
 //            boolean isDeploymentsChosen = false;
 //            for(int i = 0; i < this.deploymentPanel.getChosenData().size(); i++){
 //                if(this.deploymentPanel.getChosenData().get(i)){
@@ -108,8 +107,8 @@
 //                        JOptionPane.ERROR_MESSAGE);
 //            }
 //            else {
-//                ArrayList<ArrayList<Boolean>> scenarioBooleans = this.missionPanel.getChosenData();
-//                ArrayList<Integer> allFalseArraysIndexes = new ArrayList<>();
+//                List<List<Boolean>> scenarioBooleans = this.missionPanel.getChosenData();
+//                List<Integer> allFalseArraysIndexes = new ArrayList<>();
 //                //TODO: do osobnego obiektu
 //                for (int i = 0; i < scenarioBooleans.size(); i++) {
 //                    boolean isArrayAllFalse = true;
@@ -133,16 +132,17 @@
 //                boolean anyRepsD = scenarioOptionsPanel.getAnyNumberOfDuplicateDeployments();
 //                boolean canRepD = scenarioOptionsPanel.getCanDuplicateDeployments();
 //
-//                ArrayList<Deployment> randomDeployments;
-//                ArrayList<ArrayList<Mission>> randomMissionsPack = new ArrayList<>();
+//                List<Deployment> randomDeployments;
+//                List<List<Mission>> randomMissionsPack = new ArrayList<>();
 //
-//                ArrayList<Integer> chosenDeploymentIndexes = BoolListToIndexListConverter.convert(this.deploymentPanel.getChosenData());
-//                ArrayList<Deployment> chosenDeploymentPool = new ArrayList<>();
+//                List<Integer> chosenDeploymentIndexes = BoolListToIndexListConverter.convert(this.deploymentPanel.getChosenData());
+//                List<Deployment> chosenDeploymentPool = new ArrayList<>();
 //                for (Integer chosenDeploymentIndex : chosenDeploymentIndexes) {
 //                    chosenDeploymentPool.add(this.deployments.get(chosenDeploymentIndex));
 //                }
-//                ArrayList<ArrayList<Integer>> chosenMissionsIndexes = BoolListToIndexListConverter.convertList(this.missionPanel.getChosenData());
-//                ArrayList<ArrayList<Mission>> chosenMissions = new ArrayList<>();
+//                List<List<Integer>> chosenMissionsIndexes = BoolListToIndexListConverter.convert2dList(this.missionPanel.getChosenData());
+//                List<List<Mission>> chosenMissions = new ArrayList<>();
+//
 //                for (int i = 0; i < chosenMissionsIndexes.size(); i++) {
 //                    chosenMissions.add(new ArrayList<>());
 //                    for (int j = 0; j < chosenMissionsIndexes.get(i).size(); j++) {
@@ -155,33 +155,33 @@
 //                        this.scenarioOptionsPanel.getScenarioToGenerateCount())) {
 //                    if (canRepD) {
 //                        if (anyRepsD) {
-//                            randomDeployments = getter.randomArrayElementsWithAnyReps(chosenDeploymentPool,
+//                            randomDeployments = RandomArrayElementsGetter.randomArrayElementsWithAnyReps(chosenDeploymentPool,
 //                                    this.scenarioOptionsPanel.getScenarioToGenerateCount());
 //                        } else {
-//                            randomDeployments = getter.randomArrayElementsWithReps(chosenDeploymentPool,
+//                            randomDeployments = RandomArrayElementsGetter.randomArrayElementsWithReps(chosenDeploymentPool,
 //                                    this.scenarioOptionsPanel.getDuplicateDeploymentsQuantity(),
 //                                    this.scenarioOptionsPanel.getScenarioToGenerateCount());
 //                        }
 //                    }
 //                    else
-//                        randomDeployments = getter.randomArrayElementsWithoutReps(chosenDeploymentPool, this.scenarioOptionsPanel.getScenarioToGenerateCount());
+//                        randomDeployments = RandomArrayElementsGetter.randomArrayElementsWithoutReps(chosenDeploymentPool, this.scenarioOptionsPanel.getScenarioToGenerateCount());
 //
 //                    if (canRepM) {
 //                        if (anyRepsM) {
 //                            for (int i = 0; i < chosenMissionsIndexes.size(); i++) {
-//                                randomMissionsPack.add(getter.randomArrayElementsWithAnyReps(chosenMissions.get(i),
+//                                randomMissionsPack.add(RandomArrayElementsGetter.randomArrayElementsWithAnyReps(chosenMissions.get(i),
 //                                        this.scenarioOptionsPanel.getScenarioToGenerateCount()));
 //                            }
 //                        } else {
-//                            for (ArrayList<Mission> chosenMission : chosenMissions) {
-//                                randomMissionsPack.add(getter.randomArrayElementsWithReps(chosenMission,
+//                            for (List<Mission> chosenMission : chosenMissions) {
+//                                randomMissionsPack.add(RandomArrayElementsGetter.randomArrayElementsWithReps(chosenMission,
 //                                        this.scenarioOptionsPanel.getDuplicateMissionsQuantity(),
 //                                        this.scenarioOptionsPanel.getScenarioToGenerateCount()));
 //                            }
 //                        }
 //                    } else {
-//                        for (ArrayList<Mission> chosenMission : chosenMissions) {
-//                            randomMissionsPack.add(getter.randomArrayElementsWithoutReps(chosenMission,
+//                        for (List<Mission> chosenMission : chosenMissions) {
+//                            randomMissionsPack.add(RandomArrayElementsGetter.randomArrayElementsWithoutReps(chosenMission,
 //                                    this.scenarioOptionsPanel.getScenarioToGenerateCount()));
 //                        }
 //                    }
@@ -195,7 +195,7 @@
 //        }
 //        else if(clicked == backButton){
 //            WargameSystemsInitializer init = new WargameSystemsInitializer();
-//            ArrayList<WargamingSystem> wargamingSystems = init.initialize();
+//            List<WargamingSystem> wargamingSystems = init.initialize();
 //            SystemSelectionMenu systemSelectionMenu = new SystemSelectionMenu(
 //                    wargamingSystems, ModulesEnum.SCENARIO_CREATOR);
 //            JFrame topFrame = (JFrame) SwingUtilities.getWindowAncestor(this);

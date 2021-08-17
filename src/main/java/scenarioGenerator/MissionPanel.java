@@ -2,10 +2,11 @@ package scenarioGenerator;
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.List;
 
 public class MissionPanel extends JPanel {
     private JLabel label;
-    private ArrayList<JRadioButton> radioButtons;
+    private List<JRadioButton> radioButtons;
 
     public MissionPanel(MissionList missions){
         super();
@@ -47,8 +48,8 @@ public class MissionPanel extends JPanel {
         }
     }
 
-    public ArrayList<Boolean> getChosenData(){
-        ArrayList<Boolean> data = new ArrayList<>();
+    public List<Boolean> getChosenData(){
+        List<Boolean> data = new ArrayList<>();
         for (JRadioButton radioButton : this.radioButtons) {
             boolean isChosen = radioButton.isSelected();
             data.add(isChosen);

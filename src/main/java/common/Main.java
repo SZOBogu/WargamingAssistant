@@ -11,7 +11,6 @@ import javax.swing.*;
         scanBasePackages = {"common", "diceRollSimulator", "diceRollSimulator.controllers", "rosterBuilder", "scenarioGenerator", "config"})
 public class Main {
     public static void main(String[] args){
-        SwingUtilities.invokeLater(MainMenu::new);
-//        SpringApplication.run(Main.class, args);
+        SpringApplication.run(Main.class, args);
     }
 }

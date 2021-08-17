@@ -113,5 +113,32 @@ public class ScenarioRequest {
 //        this.missionRepList = missionRepList;
 //    }
 
+/*
+{
+	"deploymentBooleanPool": [false, true, false, true, false, true],
+	"missionBooleanPool": [[false, true, false, true, false, true],[false, true, false, true, false, true]],
+	"scenariosToGenerate": 3,
+	"canDuplicateMissions": true,
+	"getCanDuplicateDeployments": true,
+	"duplicateMissionsFreely": false,
+	"duplicateDeploymentsFreely": false,
+	"duplicateDeploymentsQuantity": 2,
+	"duplicateMissionsQuantity": 2
+}
+ */
 
+    @Override
+    public String toString() {
+        return "ScenarioRequest{" +
+                "deploymentBooleanPool=" + deploymentBooleanPool +
+                ", missionBooleanPool=" + missionBooleanPool +
+                ", scenariosToGenerate=" + scenariosToGenerate +
+                ", canDuplicateMissions=" + canDuplicateMissions +
+                ", getCanDuplicateDeployments=" + getCanDuplicateDeployments +
+                ", duplicateMissionsFreely=" + duplicateMissionsFreely +
+                ", duplicateDeploymentsFreely=" + duplicateDeploymentsFreely +
+                ", duplicateDeploymentsQuantity=" + duplicateDeploymentsQuantity +
+                ", duplicateMissionsQuantity=" + duplicateMissionsQuantity +
+                '}';
+    }
 }

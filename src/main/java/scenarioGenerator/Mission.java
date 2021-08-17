@@ -67,4 +67,13 @@ public class Mission {
     public int hashCode() {
         return Objects.hash(name, objectives, deployment, description);
     }
+
+    @Override
+    public String toString() {
+        return "Mission{" +
+                "name='" + name + '\'' +
+                ", objectives=" + objectives +
+                ", description='" + description + '\'' +
+                '}';
+    }
 }

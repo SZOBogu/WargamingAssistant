@@ -2,13 +2,14 @@ package scenarioGenerator;
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.List;
 
 public class DeploymentPanel extends JPanel {
     private JLabel titleLabel;
-    private ArrayList<JLabel> labels;
-    private ArrayList<JRadioButton> radioButtons;
+    private List<JLabel> labels;
+    private List<JRadioButton> radioButtons;
 
-    public DeploymentPanel(ArrayList<Deployment> deployments){
+    public DeploymentPanel(List<Deployment> deployments){
         super();
         this.titleLabel = new JLabel("Deployments:");
         this.labels = new ArrayList<>();
@@ -49,8 +50,8 @@ public class DeploymentPanel extends JPanel {
         }
     }
 
-    public ArrayList<Boolean> getChosenData(){
-        ArrayList<Boolean> data = new ArrayList<>();
+    public List<Boolean> getChosenData(){
+        List<Boolean> data = new ArrayList<>();
         for(int i=0; i < this.radioButtons.size(); i++){
             boolean isChosen = this.radioButtons.get(i).isSelected();
             data.add(isChosen);
