@@ -6,18 +6,19 @@ import scenarioGenerator.MissionList;
 import scenarioGenerator.Scenario;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class WargamingSystem {
     private String name;
-    private ArrayList<Army> armies;
+    private List<Army> armies;
     private EntityContainer allInGameEntities;
-    private ArrayList<Deployment> deployments;
-    private ArrayList<MissionList> missions;
-    private ArrayList<Detachment> detachments;
-    private ArrayList<Scenario> scenarios;
+    private List<Deployment> deployments;
+    private List<MissionList> missions;
+    private List<Detachment> detachments;
+    private List<Scenario> scenarios;
     private int maxDetachments;
     private boolean isAllowingAlliances;
-    private ArrayList<RosterBuildingRule> rules;
+    private List<RosterBuildingRule> rules;
     private UniqueEntitiesPool pool;
 
     public WargamingSystem(String name){
@@ -48,7 +49,7 @@ public class WargamingSystem {
         return name;
     }
 
-    public ArrayList<Army> getArmies() {
+    public List<Army> getArmies() {
         return armies;
     }
 
@@ -56,11 +57,11 @@ public class WargamingSystem {
         return armies.get(index);
     }
 
-    public void setArmies(ArrayList<Army> armies) {
+    public void setArmies(List<Army> armies) {
         this.armies = armies;
     }
 
-    public ArrayList<Deployment> getDeployments() {
+    public List<Deployment> getDeployments() {
         return deployments;
     }
 
@@ -68,11 +69,11 @@ public class WargamingSystem {
         return deployments.get(index);
     }
 
-    public void setDeployments(ArrayList<Deployment> deployments) {
+    public void setDeployments(List<Deployment> deployments) {
         this.deployments = deployments;
     }
 
-    public ArrayList<MissionList> getAllMissions() {
+    public List<MissionList> getAllMissions() {
         return missions;
     }
 
@@ -80,7 +81,7 @@ public class WargamingSystem {
         return missions.get(index);
     }
 
-    public void setMissions(ArrayList<MissionList> missions) {
+    public void setMissions(List<MissionList> missions) {
         this.missions = missions;
     }
 
@@ -92,7 +93,7 @@ public class WargamingSystem {
         this.maxDetachments = maxDetachments;
     }
 
-    public ArrayList<Detachment> getDetachments() {
+    public List<Detachment> getDetachments() {
         return detachments;
     }
 
@@ -104,7 +105,7 @@ public class WargamingSystem {
         return detachments.get(index).copyEmptyDetachment();
     }
 
-    public void setDetachments(ArrayList<Detachment> detachments) {
+    public void setDetachments(List<Detachment> detachments) {
         this.detachments = detachments;
     }
 
@@ -120,11 +121,11 @@ public class WargamingSystem {
         isAllowingAlliances = allowingAlliances;
     }
 
-    public ArrayList<RosterBuildingRule> getRules() {
+    public List<RosterBuildingRule> getRules() {
         return rules;
     }
 
-    public void setRules(ArrayList<RosterBuildingRule> rules) {
+    public void setRules(List<RosterBuildingRule> rules) {
         this.rules = rules;
     }
 
@@ -136,11 +137,11 @@ public class WargamingSystem {
         this.pool = pool;
     }
 
-    public ArrayList<Scenario> getScenarios() {
+    public List<Scenario> getScenarios() {
         return scenarios;
     }
 
-    public void setScenarios(ArrayList<Scenario> scenarios) {
+    public void setScenarios(List<Scenario> scenarios) {
         this.scenarios = scenarios;
     }
 }
