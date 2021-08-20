@@ -1,6 +1,6 @@
 package testDiceRollSimulator;
 
-import diceRollSimulator.DiceRoll;
+import diceRollSimulator.helpers.DiceRoll;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;

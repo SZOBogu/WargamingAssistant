@@ -4,10 +4,10 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import rosterBuilder.*;
 import rosterBuilder.rules.*;
-import scenarioGenerator.Deployment;
-import scenarioGenerator.Mission;
-import scenarioGenerator.MissionList;
-import scenarioGenerator.Scenario;
+import scenarioGenerator.pojos.Deployment;
+import scenarioGenerator.pojos.Mission;
+import scenarioGenerator.pojos.MissionList;
+import scenarioGenerator.pojos.Scenario;
 
 import javax.swing.*;
 import java.util.ArrayList;

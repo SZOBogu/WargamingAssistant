@@ -1,9 +1,9 @@
 package rosterBuilder;
 
 import rosterBuilder.rules.RosterBuildingRule;
-import scenarioGenerator.Deployment;
-import scenarioGenerator.MissionList;
-import scenarioGenerator.Scenario;
+import scenarioGenerator.pojos.Deployment;
+import scenarioGenerator.pojos.MissionList;
+import scenarioGenerator.pojos.Scenario;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -3,14 +3,14 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class Unit {
-    private String name;
+    private final String name;
     private int modelsInUnit;
     private ArrayList<Entity> nonBaseEquipment;
-    private ArrayList<Entity> baseEquipmentAndRules;
+    private final ArrayList<Entity> baseEquipmentAndRules;
     private int pointCost;
 
     public Unit(){
-        this("",1,new ArrayList<>(), new ArrayList<>(), 0);
+        this("",0, new ArrayList<>(), new ArrayList<>(), 0);
     }
 
     public Unit(String name, int modelsInUnit,

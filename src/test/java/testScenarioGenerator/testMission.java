@@ -1,11 +1,10 @@
 package testScenarioGenerator;
 
 import org.junit.jupiter.api.Test;
-import scenarioGenerator.Deployment;
-import scenarioGenerator.Mission;
-import scenarioGenerator.Objective;
+import scenarioGenerator.pojos.Deployment;
+import scenarioGenerator.pojos.Mission;
+import scenarioGenerator.pojos.Objective;
 
-import javax.swing.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 

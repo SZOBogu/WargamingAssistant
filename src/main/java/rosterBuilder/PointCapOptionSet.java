@@ -3,7 +3,7 @@ package rosterBuilder;
 import java.util.ArrayList;
 
 public class PointCapOptionSet extends MultipleChoiceOptionSet{
-    private int pointCap;
+    private final int pointCap;
 
     public PointCapOptionSet(ArrayList<Option> options, int pointCap){
         super(options);

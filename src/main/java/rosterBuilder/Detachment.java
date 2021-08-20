@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Detachment {
-    private String name;
+    private final String name;
     private Army army;
     private int detachmentNumber;
     private int totalDetachmentCost;
-    private ArrayList<ArrayList<Unit>> boughtUnitsCategorized;
+    private final ArrayList<ArrayList<Unit>> boughtUnitsCategorized;
     private ArrayList<Integer> arrayOfMandatoryChoicesInCategories;
     private ArrayList<Integer> arrayOfMaxChoicesPerCategory;
     private UniqueEntitiesPool pool;
@@ -161,11 +161,9 @@ public class Detachment {
                     this.boughtUnitsCategorized.add(new ArrayList<>());
                 }
             } else if (this.boughtUnitsCategorized.size() > capacity) {
-                for (;;) {
+                do {
                     this.boughtUnitsCategorized.remove(this.boughtUnitsCategorized.size() - 1);
-                    if (this.boughtUnitsCategorized.size() == capacity)
-                        break;
-                }
+                } while (this.boughtUnitsCategorized.size() != capacity);
             }
         }
     }

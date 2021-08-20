@@ -3,7 +3,7 @@ package rosterBuilder;
 import java.util.ArrayList;
 
 public class EntityContainer {
-    private ArrayList<Entity> entities;
+    private final ArrayList<Entity> entities;
 
     public EntityContainer(){
         this.entities = new ArrayList<>();

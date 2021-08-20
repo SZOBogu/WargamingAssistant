@@ -1,12 +1,11 @@
 package testScenarioGenerator;
 
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
-import scenarioGenerator.Deployment;
-import scenarioGenerator.Mission;
-import scenarioGenerator.ScenarioFormValidator;
+import scenarioGenerator.pojos.Deployment;
+import scenarioGenerator.pojos.Mission;
+import scenarioGenerator.helpers.ScenarioFormValidator;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;

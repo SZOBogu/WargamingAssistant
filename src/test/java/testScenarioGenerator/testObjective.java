@@ -1,7 +1,7 @@
 package testScenarioGenerator;
 
 import org.junit.jupiter.api.Test;
-import scenarioGenerator.Objective;
+import scenarioGenerator.pojos.Objective;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

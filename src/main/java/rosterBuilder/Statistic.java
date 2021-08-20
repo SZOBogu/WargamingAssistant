@@ -4,8 +4,8 @@ import java.util.Objects;
 
 public class Statistic {
 
-    private String name;
-    private String value;
+    private final String name;
+    private final String value;
 
     public Statistic(String name, String value){
         this.name = name;

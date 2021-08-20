@@ -1,7 +1,7 @@
 package testScenarioGenerator;
 
 import org.junit.jupiter.api.Test;
-import scenarioGenerator.BoolListToIndexListConverter;
+import scenarioGenerator.helpers.BoolListToIndexListConverter;
 
 import java.util.ArrayList;
 import java.util.Arrays;

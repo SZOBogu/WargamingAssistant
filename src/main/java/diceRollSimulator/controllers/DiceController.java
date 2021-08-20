@@ -1,25 +1,18 @@
 package diceRollSimulator.controllers;
 
-import diceRollSimulator.DiceRollList;
-import diceRollSimulator.DiceRoll;
-import diceRollSimulator.NonRandomReportGenerator;
-import diceRollSimulator.StreamRunner;
+import diceRollSimulator.helpers.DiceRollList;
+import diceRollSimulator.helpers.DiceRoll;
+import diceRollSimulator.pojos.NonRandomReportGenerator;
+import diceRollSimulator.pojos.StreamRunner;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.PostConstruct;
 import java.util.List;
 
 @RestController
 @RequestMapping("/dice")
 public class DiceController {
     private DiceRollList db;
-
-    @PostConstruct
-    public void getDiceRollJson(){
-        DiceRoll diceRoll = new DiceRoll.DiceRollBuilder(50, 4).reroll(true).build();
-        this.db.addDiceRoll(diceRoll);
-    }
 
     @GetMapping
     public List<DiceRoll> getAllDiceRolls(){

@@ -7,12 +7,12 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class UnitProfile {
-    private String name;
-    private ArrayList<ModelPart> modelsParts;
+    private final String name;
+    private final ArrayList<ModelPart> modelsParts;
     private ArrayList<OptionSet> options;
-    private int minModels;
-    private int maxModels;
-    private int initialCost;
+    private final int minModels;
+    private final int maxModels;
+    private final int initialCost;
     private int additionalModelCost;
     private int unitsPerArmy;
     private ArrayList<UnitBuildingRule> rules;

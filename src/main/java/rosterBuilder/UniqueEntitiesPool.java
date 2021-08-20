@@ -3,8 +3,8 @@ package rosterBuilder;
 import java.util.ArrayList;
 
 public class UniqueEntitiesPool {
-    private ArrayList<Entity> available;
-    private ArrayList<Entity> locked;
+    private final ArrayList<Entity> available;
+    private final ArrayList<Entity> locked;
 
     public UniqueEntitiesPool(ArrayList<Entity> pool){
         this.available = pool;

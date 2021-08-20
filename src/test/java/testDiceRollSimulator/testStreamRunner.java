@@ -1,7 +1,7 @@
 package testDiceRollSimulator;
 
-import diceRollSimulator.DiceRoll;
-import diceRollSimulator.StreamRunner;
+import diceRollSimulator.helpers.DiceRoll;
+import diceRollSimulator.pojos.StreamRunner;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;

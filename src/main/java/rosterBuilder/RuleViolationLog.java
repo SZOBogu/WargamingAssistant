@@ -4,14 +4,6 @@ public class RuleViolationLog {
     private static String unitRuleViolationLog = "";
     private static String rosterRuleViolationLog = "";
 
-    private static class SingletonHolder {
-        private static final RuleViolationLog ruleViolationLog = new RuleViolationLog();
-    }
-
-    public static RuleViolationLog getInstance(){
-        return SingletonHolder.ruleViolationLog;
-    }
-
     public static void appendUnitRuleViolationLog(String string) {
         unitRuleViolationLog += string + "\n";
     }

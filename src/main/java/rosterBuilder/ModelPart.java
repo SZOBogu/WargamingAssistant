@@ -3,10 +3,10 @@ package rosterBuilder;
 import java.util.ArrayList;
 
 public class ModelPart {
-    private String name;
-    private Statline statline;
-    private ArrayList<SpecialRule> specialRules;
-    private ArrayList<Entity> equipment;
+    private final String name;
+    private final Statline statline;
+    private final ArrayList<SpecialRule> specialRules;
+    private final ArrayList<Entity> equipment;
 
     public ModelPart(String name, Statline statline, ArrayList<SpecialRule> specialRules, ArrayList<Entity> equipment){
         this.name = name;

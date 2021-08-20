@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class Statline {
-    private ArrayList<Statistic> statline;
+    private final ArrayList<Statistic> statline;
 
     public Statline(){ this(new ArrayList<Statistic>()); }
     public Statline(ArrayList<Statistic> statistics){

@@ -3,8 +3,8 @@ package rosterBuilder;
 import java.util.Objects;
 
 public class Entity {
-    private String name;
-    private String description;
+    private final String name;
+    private final String description;
     private String parameter;
 
     public Entity(String name, String description){

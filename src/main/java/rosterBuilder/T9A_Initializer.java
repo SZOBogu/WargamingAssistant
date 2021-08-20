@@ -3,11 +3,10 @@ package rosterBuilder;
 import rosterBuilder.rules.CannotBeTakenWithMoreThanModels;
 import rosterBuilder.rules.MustBeTakenTogether;
 import rosterBuilder.rules.MustHaveExactly;
-import scenarioGenerator.Deployment;
-import scenarioGenerator.Mission;
-import scenarioGenerator.MissionList;
+import scenarioGenerator.pojos.Deployment;
+import scenarioGenerator.pojos.Mission;
+import scenarioGenerator.pojos.MissionList;
 
-import javax.swing.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;

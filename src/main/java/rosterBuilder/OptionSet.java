@@ -8,6 +8,7 @@ public abstract class OptionSet {
     protected ArrayList<Option> options;
     protected boolean isMandatory;
 
+    //TODO: builder
     public OptionSet(ArrayList<Option> options){
         this(options, "", "take", false);
     }
@@ -60,6 +61,10 @@ public abstract class OptionSet {
             entities.add(option.getEntity());
         }
         return entities;
+    }
+
+    public boolean isMandatory() {
+        return isMandatory;
     }
 
     public void setOptions(ArrayList<Option> options) {

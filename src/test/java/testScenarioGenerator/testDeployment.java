@@ -1,10 +1,7 @@
 package testScenarioGenerator;
 
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
-import scenarioGenerator.Deployment;
-
-import javax.swing.*;
+import scenarioGenerator.pojos.Deployment;
 
 import static org.junit.jupiter.api.Assertions.*;
 

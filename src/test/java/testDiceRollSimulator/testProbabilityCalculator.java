@@ -1,7 +1,7 @@
 package testDiceRollSimulator;
 
-import diceRollSimulator.DiceRoll;
-import diceRollSimulator.ProbabilityCalculator;
+import diceRollSimulator.helpers.DiceRoll;
+import diceRollSimulator.pojos.ProbabilityCalculator;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

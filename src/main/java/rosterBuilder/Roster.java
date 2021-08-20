@@ -3,7 +3,7 @@ package rosterBuilder;
 import java.util.ArrayList;
 
 public class Roster {
-    private ArrayList<Detachment> detachments;
+    private final ArrayList<Detachment> detachments;
     private Army primaryArmy;
     private int pointCap;
 

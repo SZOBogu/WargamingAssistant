@@ -1,9 +1,8 @@
 package scenarioGenerator.helpers;
 
 import rosterBuilder.WargamingSystem;
-import scenarioGenerator.BoolListToIndexListConverter;
-import scenarioGenerator.Deployment;
-import scenarioGenerator.ScenarioRequest;
+import scenarioGenerator.pojos.Deployment;
+import scenarioGenerator.requests.ScenarioRequest;
 
 import java.util.ArrayList;
 import java.util.List;

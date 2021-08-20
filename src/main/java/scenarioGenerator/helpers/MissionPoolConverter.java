@@ -1,10 +1,9 @@
 package scenarioGenerator.helpers;
 
 import rosterBuilder.WargamingSystem;
-import scenarioGenerator.BoolListToIndexListConverter;
-import scenarioGenerator.Mission;
-import scenarioGenerator.MissionList;
-import scenarioGenerator.ScenarioRequest;
+import scenarioGenerator.pojos.Mission;
+import scenarioGenerator.pojos.MissionList;
+import scenarioGenerator.requests.ScenarioRequest;
 
 import java.util.ArrayList;
 import java.util.List;
