@@ -5,8 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import rosterBuilder.WargamingSystem;
 import scenarioGenerator.*;
-import scenarioGenerator.helpers.DeploymentPoolConverter;
-import scenarioGenerator.helpers.MissionPoolConverter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +16,7 @@ public class ScenarioService {
     public List<Scenario> generateScenarioList(ScenarioRequest request){
         List<Scenario> scenarios = new ArrayList<>();
 
-        List<Integer> chosenDeploymentIndexes = BoolListToIndexListConverter.convert(request.getDeploymentBooleanPool());
+        List<Integer> chosenDeploymentIndexes = BoolListToIndexListConverter.convertList(request.getDeploymentBooleanPool());
         List<Deployment> chosenDeploymentPool = new ArrayList<>();
         for (Integer chosenDeploymentIndex : chosenDeploymentIndexes) {
             chosenDeploymentPool.add(this.system.getDeployments().get(chosenDeploymentIndex));

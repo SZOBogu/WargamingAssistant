@@ -10,7 +10,7 @@ import java.util.List;
 
 public class DeploymentPoolConverter {
     public static List<Deployment> getDeploymentPoolList(ScenarioRequest request, WargamingSystem system){
-        List<Integer> deploymentPoolIndexes = BoolListToIndexListConverter.convert(request.getDeploymentBooleanPool());
+        List<Integer> deploymentPoolIndexes = BoolListToIndexListConverter.convertList(request.getDeploymentBooleanPool());
         List<Deployment> deploymentPool = new ArrayList<>();
         List<Deployment> allDeployments = system.getDeployments();
 

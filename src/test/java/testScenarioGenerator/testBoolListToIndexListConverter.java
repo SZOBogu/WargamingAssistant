@@ -17,9 +17,9 @@ public class testBoolListToIndexListConverter {
 
     @Test
     void testConvert(){
-        List<Integer> indexesTest0 = BoolListToIndexListConverter.convert(test0);
-        List<Integer> indexesTest1 = BoolListToIndexListConverter.convert(test1);
-        List<Integer> indexesTest2 = BoolListToIndexListConverter.convert(test2);
+        List<Integer> indexesTest0 = BoolListToIndexListConverter.convertList(test0);
+        List<Integer> indexesTest1 = BoolListToIndexListConverter.convertList(test1);
+        List<Integer> indexesTest2 = BoolListToIndexListConverter.convertList(test2);
 
         assertEquals(6, indexesTest0.size());
         assertEquals(0, (int)indexesTest0.get(0));
