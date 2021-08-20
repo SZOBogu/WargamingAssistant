@@ -6,11 +6,12 @@ import scenarioGenerator.ScenarioRequest;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class RandomMissionGenerator {
     public static  List<List<Mission>> generate(ScenarioRequest request, List<List<Mission>> chosenMissionPool){
         if(request.isCanDuplicateMissions() && request.isDuplicateMissionsFreely()){
-            return generateWithAnyReps();
+            return generateWithAnyReps(chosenMissionPool, request.getScenariosToGenerate());
         }
         else if(request.isCanDuplicateMissions() && !request.isDuplicateMissionsFreely() && request.getDuplicateMissionsQuantity() > 1){
             return generateWithReps(chosenMissionPool, request.getScenariosToGenerate(), request.getDuplicateMissionsQuantity());
@@ -21,8 +22,6 @@ public class RandomMissionGenerator {
     }
 
     private static List<List<Mission>> generateWithoutReps(List<List<Mission>> chosenMissionPool, int scenariosToGenerate){
-        System.out.println("NO DUPES");
-
         List<List<Mission>> randomMissionsPack = new ArrayList<>();
         List<List<Mission>> randomOrderMissionPool = new ArrayList<>();
 
@@ -50,19 +49,27 @@ public class RandomMissionGenerator {
         List<List<Mission>> randomMissionsPack = new ArrayList<>();
 
         for(List<Mission> missionList : chosenMissionPool){
-            System.out.println("PRZED: " + missionList);
             missionList.addAll(missionList);
-            System.out.println("PO: " + missionList);
         }
 
         return generateWithoutReps(chosenMissionPool, scenariosToGenerate);
     }
 
-    private static List<List<Mission>> generateWithAnyReps(){
+    private static List<List<Mission>> generateWithAnyReps(List<List<Mission>> chosenMissionPool, int scenariosToGenerate){
         System.out.println("ANY DUPES");
+
+        Random random = new Random();
 
         List<List<Mission>> randomMissionsPack = new ArrayList<>();
 
-        return new ArrayList<>();
+        for (int i = 0; i < scenariosToGenerate; i++) {
+            List<Mission> tempMissionList = new ArrayList<>();
+            for (int j = 0; j < chosenMissionPool.size(); j++) {
+                tempMissionList.add(chosenMissionPool.get(j).get(random.nextInt(chosenMissionPool.get(j).size())));
+            }
+            randomMissionsPack.add(tempMissionList);
+        }
+
+        return randomMissionsPack;
     }
 }
