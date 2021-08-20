@@ -3,7 +3,6 @@ package rosterBuilder;
 import common.Refreshable;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class RosterObserverSubject {
     private Roster roster;

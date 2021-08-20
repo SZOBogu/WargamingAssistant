@@ -1,13 +1,18 @@
 package scenarioGenerator.services;
 
+import common.ArrayOrderMixer;
 import common.RandomArrayElementsGetter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import rosterBuilder.WargamingSystem;
 import scenarioGenerator.*;
+import scenarioGenerator.helpers.DeploymentPoolConverter;
+import scenarioGenerator.helpers.MissionPoolConverter;
+import scenarioGenerator.helpers.RandomMissionGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 @Service
 public class ScenarioService {
@@ -16,16 +21,14 @@ public class ScenarioService {
     public List<Scenario> generateScenarioList(ScenarioRequest request){
         List<Scenario> scenarios = new ArrayList<>();
 
-        List<Integer> chosenDeploymentIndexes = BoolListToIndexListConverter.convertList(request.getDeploymentBooleanPool());
-        List<Deployment> chosenDeploymentPool = new ArrayList<>();
-        for (Integer chosenDeploymentIndex : chosenDeploymentIndexes) {
-            chosenDeploymentPool.add(this.system.getDeployments().get(chosenDeploymentIndex));
-        }
+        List<Deployment> chosenDeploymentPool = DeploymentPoolConverter.getDeploymentPoolList(request, this.system);
+        List<List<Mission>> chosenMissionPool = MissionPoolConverter.getMissionPoolList(request, this.system);
+
         List<List<Integer>> chosenMissionsIndexes = BoolListToIndexListConverter.convert2dList(request.getMissionBooleanPool());
         List<List<Mission>> chosenMissions = new ArrayList<>();
 
         List<Deployment> randomDeployments;
-        List<List<Mission>> randomMissionsPack = new ArrayList<>();
+        List<List<Mission>> randomMissionsPack = RandomMissionGenerator.generate(request, chosenMissionPool);
 
         for (int i = 0; i < chosenMissionsIndexes.size(); i++) {
             chosenMissions.add(new ArrayList<>());
@@ -34,42 +37,27 @@ public class ScenarioService {
             }
         }
 
-        if (ScenarioFormValidator.canBeGenerated(chosenDeploymentPool, chosenMissions,
+        if(ScenarioFormValidator.canBeGenerated(chosenDeploymentPool, chosenMissions,
                 request.getDuplicateDeploymentsQuantity(), request.getDuplicateMissionsQuantity(),
         request.getScenariosToGenerate())) {
+
             if (request.isGetCanDuplicateDeployments()) {
                 if (request.isDuplicateDeploymentsFreely()) {
                     randomDeployments = RandomArrayElementsGetter.randomArrayElementsWithAnyReps(chosenDeploymentPool,
                             request.getScenariosToGenerate());
-                } else {
+                }
+                else {
                     randomDeployments = RandomArrayElementsGetter.randomArrayElementsWithReps(chosenDeploymentPool,
                             request.getDuplicateDeploymentsQuantity(),
                             request.getScenariosToGenerate());
                 }
-            } else
+            }
+            else
                 randomDeployments = RandomArrayElementsGetter.randomArrayElementsWithoutReps(chosenDeploymentPool, request.getScenariosToGenerate());
 
-            if (request.isCanDuplicateMissions()) {
-                if (request.isDuplicateMissionsFreely()) {
-                    for (int i = 0; i < chosenMissionsIndexes.size(); i++) {
-                        randomMissionsPack.add(RandomArrayElementsGetter.randomArrayElementsWithAnyReps(chosenMissions.get(i),
-                                request.getScenariosToGenerate()));
-                    }
-                } else {
-                    for (List<Mission> chosenMission : chosenMissions) {
-                        randomMissionsPack.add(RandomArrayElementsGetter.randomArrayElementsWithReps(chosenMission,
-                                request.getDuplicateMissionsQuantity(),
-                                request.getScenariosToGenerate()));
-                    }
-                }
-            }
-            else {
-                for (List<Mission> chosenMission : chosenMissions) {
-                    randomMissionsPack.add(RandomArrayElementsGetter.randomArrayElementsWithoutReps(chosenMission,
-                            request.getScenariosToGenerate()));
-                }
-            }
-            for(int i = 0; i < Math.min(randomDeployments.size(), randomMissionsPack.size()); i++){
+
+            //Merge Deployments and Mission lists into Scenario list.
+            for(int i = 0; i < request.getScenariosToGenerate(); i++){
                 scenarios.add(new Scenario("Scenario " + i, randomDeployments.get(i), randomMissionsPack.get(i)));
             }
             return scenarios;
