@@ -2,9 +2,9 @@ package scenarioGenerator.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import rosterBuilder.WargamingSystem;
+import rosterBuilder.pojos.WargamingSystem;
 import scenarioGenerator.exceptions.ScenarioGenerationException;
-import scenarioGenerator.helpers.*;
+import scenarioGenerator.utility.*;
 import scenarioGenerator.pojos.Deployment;
 import scenarioGenerator.pojos.Mission;
 import scenarioGenerator.pojos.Scenario;

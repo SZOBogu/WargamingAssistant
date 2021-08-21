@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ArrayElementsWithRepsCounter {
+
+    private ArrayElementsWithRepsCounter(){}
+
     public static <T> int count(List<T> elements, int reps){
         List<Integer> reppedList = new ArrayList<>();
 

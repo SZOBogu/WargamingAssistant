@@ -3,7 +3,7 @@ package testCommon;
 import common.RandomArrayElementsGetter;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
-import rosterBuilder.Entity;
+import rosterBuilder.pojos.Entity;
 
 import java.util.Arrays;
 import java.util.List;
@@ -11,7 +11,6 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class testRandomArrayElementsGetter {
-    RandomArrayElementsGetter getter = new RandomArrayElementsGetter();
     Entity entity1 = Mockito.mock(Entity.class);
     Entity entity2 = Mockito.mock(Entity.class);
     Entity entity3 = Mockito.mock(Entity.class);
@@ -19,7 +18,7 @@ public class testRandomArrayElementsGetter {
 
     @Test
     void testRandomArrayWithoutReps() {
-        List<Entity> elementList = getter.randomArrayElementsWithoutReps(dummyList, 2);
+        List<Entity> elementList = RandomArrayElementsGetter.randomArrayElementsWithoutReps(dummyList, 2);
 
         assertEquals(elementList.size(), 2);
         assertTrue(elementList.get(0) == entity1 || elementList.get(0) == entity2 || elementList.get(0) == entity3);
@@ -32,9 +31,9 @@ public class testRandomArrayElementsGetter {
         List<Integer> repList = Arrays.asList(5,2,0);
         List<Integer> tooShortRepList = Arrays.asList(2, 1);
         List<Integer> tooLongRepList = Arrays.asList(2, 1, 7, 23, 2);
-        List<Entity> elementList0 = getter.randomArrayElementsWithReps(dummyList, repList, 3);
-        List<Entity> elementList1 = getter.randomArrayElementsWithReps(dummyList, tooShortRepList, 3);
-        List<Entity> elementList2 = getter.randomArrayElementsWithReps(dummyList, tooLongRepList, 3);
+        List<Entity> elementList0 = RandomArrayElementsGetter.randomArrayElementsWithReps(dummyList, repList, 3);
+        List<Entity> elementList1 = RandomArrayElementsGetter.randomArrayElementsWithReps(dummyList, tooShortRepList, 3);
+        List<Entity> elementList2 = RandomArrayElementsGetter.randomArrayElementsWithReps(dummyList, tooLongRepList, 3);
 
         assertEquals(elementList0.size(), 3);
         assertEquals(elementList1.size(), 3);
@@ -143,7 +142,7 @@ public class testRandomArrayElementsGetter {
 
     @Test
     void testRandomArrayWithRepsInt() {
-        List<Entity> elementList = getter.randomArrayElementsWithReps(dummyList, 2, 3);
+        List<Entity> elementList = RandomArrayElementsGetter.randomArrayElementsWithReps(dummyList, 2, 3);
         assertEquals(elementList.size(), 3);
 
         assertTrue(elementList.get(0) == entity1 || elementList.get(0) == entity2 || elementList.get(0) == entity3);
@@ -163,7 +162,7 @@ public class testRandomArrayElementsGetter {
 
     @Test
     void testRandomArrayWithAnyReps() {
-        List<Entity> elementList = getter.randomArrayElementsWithAnyReps(dummyList, 2);
+        List<Entity> elementList = RandomArrayElementsGetter.randomArrayElementsWithAnyReps(dummyList, 2);
         assertEquals(elementList.size(), 2);
         assertTrue(elementList.get(0) == entity1 || elementList.get(0) == entity2 || elementList.get(0) == entity3);
         assertTrue(elementList.get(1) == entity1 || elementList.get(1) == entity2 || elementList.get(1) == entity3);

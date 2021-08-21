@@ -2,9 +2,9 @@ package testRosterBuilder.testRules;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import rosterBuilder.*;
-import rosterBuilder.rules.CannotBeMoreUnitsWithThan;
+import rosterBuilder.pojos.*;
 import rosterBuilder.rules.CategoryPointCapExceedRule;
+import rosterBuilder.utility.RuleViolationLog;
 
 import java.util.ArrayList;
 import java.util.Arrays;

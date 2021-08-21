@@ -2,7 +2,9 @@ package testRosterBuilder;
 
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
-import rosterBuilder.*;
+import rosterBuilder.pojos.Army;
+import rosterBuilder.pojos.ArmySubcategory;
+import rosterBuilder.pojos.UnitProfile;
 
 import javax.swing.*;
 import java.util.ArrayList;

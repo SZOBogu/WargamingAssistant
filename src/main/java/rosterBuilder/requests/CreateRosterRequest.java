@@ -1,7 +1,5 @@
 package rosterBuilder.requests;
 
-import rosterBuilder.Army;
-
 public class CreateRosterRequest {
     private int pointCap;
     private int primaryArmyIndex;

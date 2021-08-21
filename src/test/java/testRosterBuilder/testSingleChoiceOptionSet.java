@@ -1,7 +1,8 @@
 package testRosterBuilder;
 
 import org.junit.jupiter.api.Test;
-import rosterBuilder.*;
+import rosterBuilder.pojos.*;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -12,10 +13,10 @@ public class testSingleChoiceOptionSet {
     Option option0 = new Option(new Weapon("Pala", "bum bum"), 20);
     Option option1 = new Option(new SpecialRule("skrmish", "asdas"), 50);
     Option option2 = new Option(new Entity("plaszcz", "asd"), 10);
-    SingleChoiceOptionSet optionSet0 = new SingleChoiceOptionSet(new ArrayList<Option>(Arrays.asList(option0, option1, option2)));
-    SingleChoiceOptionSet optionSet1 = new SingleChoiceOptionSet(new ArrayList<Option>(Arrays.asList(option0, option1, option2)), true);
-    SingleChoiceOptionSet optionSet2 = new SingleChoiceOptionSet(new ArrayList<Option>(Arrays.asList(option0, option1, option2)), "Special Equipment", "get");
-    SingleChoiceOptionSet optionSet3 = new SingleChoiceOptionSet(new ArrayList<Option>(Arrays.asList(option0, option1, option2)), "Wizard", "become", true);
+    SingleChoiceOptionSet optionSet0 = new SingleChoiceOptionSet(new ArrayList<>(Arrays.asList(option0, option1, option2)));
+    SingleChoiceOptionSet optionSet1 = new SingleChoiceOptionSet(new ArrayList<>(Arrays.asList(option0, option1, option2)), true);
+    SingleChoiceOptionSet optionSet2 = new SingleChoiceOptionSet(new ArrayList<>(Arrays.asList(option0, option1, option2)), "Special Equipment", "get");
+    SingleChoiceOptionSet optionSet3 = new SingleChoiceOptionSet(new ArrayList<>(Arrays.asList(option0, option1, option2)), "Wizard", "become", true);
 
     @Test
     void testGetEntity(){

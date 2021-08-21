@@ -1,8 +1,8 @@
 package rosterBuilder.swingGUI;
 
-import rosterBuilder.Detachment;
-import rosterBuilder.Roster;
-import rosterBuilder.WargamingSystem;
+import rosterBuilder.pojos.Detachment;
+import rosterBuilder.pojos.Roster;
+import rosterBuilder.pojos.WargamingSystem;
 
 import javax.swing.*;
 import java.awt.*;

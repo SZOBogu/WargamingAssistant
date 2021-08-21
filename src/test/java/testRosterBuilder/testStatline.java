@@ -1,8 +1,8 @@
 package testRosterBuilder;
 
 import org.junit.jupiter.api.Test;
-import rosterBuilder.Statistic;
-import rosterBuilder.Statline;
+import rosterBuilder.pojos.Statistic;
+import rosterBuilder.pojos.Statline;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

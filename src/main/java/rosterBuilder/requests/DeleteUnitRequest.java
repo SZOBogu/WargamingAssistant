@@ -1,7 +1,5 @@
 package rosterBuilder.requests;
 
-import rosterBuilder.Unit;
-
 public class DeleteUnitRequest {
     private int detachmentId;
     private int categoryId;

@@ -1,9 +1,9 @@
 package testRosterBuilder;
 
 import org.junit.jupiter.api.Test;
-import rosterBuilder.Statistic;
-import rosterBuilder.Statline;
-import rosterBuilder.Weapon;
+import rosterBuilder.pojos.Statistic;
+import rosterBuilder.pojos.Statline;
+import rosterBuilder.pojos.Weapon;
 
 import java.util.ArrayList;
 import java.util.Arrays;

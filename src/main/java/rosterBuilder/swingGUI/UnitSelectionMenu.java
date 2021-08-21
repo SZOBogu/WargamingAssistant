@@ -1,6 +1,10 @@
 package rosterBuilder.swingGUI;
 
-import rosterBuilder.*;
+import rosterBuilder.pojos.ArmySubcategory;
+import rosterBuilder.pojos.RosterObserverSubject;
+import rosterBuilder.pojos.UnitProfile;
+import rosterBuilder.pojos.WargamingSystem;
+import rosterBuilder.utility.UnitCounter;
 
 import javax.swing.*;
 import java.awt.*;
@@ -33,7 +37,7 @@ public class UnitSelectionMenu extends JFrame implements ActionListener {
         this.titleLabel = new JLabel("Choose Unit from " + this.armySubcategory.getName() + " category.");
 
         for(int i = 0; i < armySubcategory.size(); i++){
-            String textOnButton = "";
+            String textOnButton;
             if(armySubcategory.getUnitProfile(i).getUnitsPerArmy() < 100)
                 textOnButton = armySubcategory.getUnitProfile(i).getName() +
                         " (max " + armySubcategory.getUnitProfile(i).getUnitsPerArmy() + " units)";

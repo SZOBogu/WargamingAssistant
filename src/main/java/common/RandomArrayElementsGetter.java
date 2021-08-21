@@ -4,6 +4,8 @@ import java.util.List;
 
 public class RandomArrayElementsGetter {
 
+    private RandomArrayElementsGetter(){}
+
     public static <T> ArrayList<T> randomArrayElementsWithoutReps(List<T> list, int howManyElements){
         ArrayList<T> elementList = new ArrayList<>(list);
         ArrayList<T> resultList = new ArrayList<>();

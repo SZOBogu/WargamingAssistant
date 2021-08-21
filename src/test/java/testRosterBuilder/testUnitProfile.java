@@ -1,7 +1,7 @@
 package testRosterBuilder;
 
 import org.junit.jupiter.api.Test;
-import rosterBuilder.*;
+import rosterBuilder.pojos.*;
 import rosterBuilder.rules.*;
 
 import java.util.ArrayList;
@@ -12,11 +12,11 @@ import static org.junit.jupiter.api.Assertions.*;
 public class testUnitProfile {
     Option option00 = new Option(new Weapon("op00", "bum bum"), 20);
     Option option01 = new Option(new SpecialRule("op01", "asdas"), 50);
-    OptionSet optionSet0 = new SingleChoiceOptionSet(new ArrayList<Option>(Arrays.asList(option00, option01)));
+    OptionSet optionSet0 = new SingleChoiceOptionSet(new ArrayList<>(Arrays.asList(option00, option01)));
 
     Option option10 = new Option(new Weapon("op10", "bam bam"), 200);
     Option option11 = new Option(new SpecialRule("op11", "asdasa"), 500);
-    OptionSet optionSet1 = new MultipleChoiceOptionSet(new ArrayList<Option>(Arrays.asList(option10, option11)));
+    OptionSet optionSet1 = new MultipleChoiceOptionSet(new ArrayList<>(Arrays.asList(option10, option11)));
 
     Weapon eq00 = new Weapon("Pala0", "bum bum");
     Entity eq01 =    new Entity("plaszcz0", "asd");

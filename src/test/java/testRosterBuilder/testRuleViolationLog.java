@@ -1,8 +1,7 @@
 package testRosterBuilder;
 
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import rosterBuilder.RuleViolationLog;
+import rosterBuilder.utility.RuleViolationLog;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

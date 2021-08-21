@@ -4,14 +4,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import rosterBuilder.*;
 import rosterBuilder.exceptions.RosterBuildingException;
 import rosterBuilder.exceptions.UnitBuildingException;
+import rosterBuilder.pojos.*;
 import rosterBuilder.requests.AddUnitRequest;
 import rosterBuilder.requests.CreateRosterRequest;
 import rosterBuilder.requests.DeleteUnitRequest;
 import rosterBuilder.rules.RosterBuildingRule;
 import rosterBuilder.swingGUI.RosterDisplayMenu;
+import rosterBuilder.utility.RuleViolationLog;
 
 import java.util.List;
 

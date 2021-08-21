@@ -1,6 +1,6 @@
 package rosterBuilder.requests;
 
-import rosterBuilder.Unit;
+import rosterBuilder.pojos.Unit;
 
 public class AddUnitRequest {
     private Unit unit;

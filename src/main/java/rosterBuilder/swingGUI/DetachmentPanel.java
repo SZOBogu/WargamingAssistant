@@ -1,7 +1,9 @@
 package rosterBuilder.swingGUI;
 
 import common.Refreshable;
-import rosterBuilder.*;
+import rosterBuilder.pojos.*;
+import rosterBuilder.utility.UnitAndProfileFinder;
+import rosterBuilder.utility.UnitTakenOptionsIndexGetter;
 
 import javax.swing.*;
 import java.awt.*;
@@ -283,9 +285,7 @@ public class DetachmentPanel extends JPanel implements ActionListener, Refreshab
             roster.refreshComponents();
         }
         else if(editUnit){
-            UnitAndProfileFinder finder = new UnitAndProfileFinder();
-
-            UnitProfile unitProfile =  finder.getProfile(this.detachment.getArmy(),
+            UnitProfile unitProfile =  UnitAndProfileFinder.getProfile(this.detachment.getArmy(),
                     this.detachment.getUnit(tempi, tempj).getName());
 
             Unit unit = this.detachment.getUnit(tempi, tempj);

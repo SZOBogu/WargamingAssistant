@@ -1,7 +1,7 @@
 package testRosterBuilder;
 
 import org.junit.jupiter.api.Test;
-import rosterBuilder.Statistic;
+import rosterBuilder.pojos.Statistic;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

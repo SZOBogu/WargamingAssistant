@@ -2,7 +2,7 @@ package scenarioGenerator.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import rosterBuilder.WargamingSystem;
+import rosterBuilder.pojos.WargamingSystem;
 import scenarioGenerator.pojos.Scenario;
 import scenarioGenerator.responses.ScenarioInfoResponse;
 import scenarioGenerator.requests.ScenarioRequest;
@@ -22,7 +22,7 @@ public class ScenarioController {
     public ScenarioInfoResponse getScenarioInfo(){
         ScenarioInfoResponse scenarioInfoResponse = new ScenarioInfoResponse(system);
 
-        return scenarioInfoResponse;
+        return new ScenarioInfoResponse(system);
     }
 
     @PostMapping

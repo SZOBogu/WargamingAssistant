@@ -1,7 +1,10 @@
 package testRosterBuilder;
 
 import org.junit.jupiter.api.Test;
-import rosterBuilder.*;
+import rosterBuilder.pojos.Entity;
+import rosterBuilder.pojos.QuantityDependentOption;
+import rosterBuilder.pojos.SpecialRule;
+import rosterBuilder.pojos.Weapon;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;

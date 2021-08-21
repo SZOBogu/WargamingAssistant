@@ -3,8 +3,8 @@ package testRosterBuilder;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
-import rosterBuilder.Roster;
-import rosterBuilder.RosterObserverSubject;
+import rosterBuilder.pojos.Roster;
+import rosterBuilder.pojos.RosterObserverSubject;
 
 public class testRosterObserverSubject {
     RosterObserverSubject rosterOS = new RosterObserverSubject();

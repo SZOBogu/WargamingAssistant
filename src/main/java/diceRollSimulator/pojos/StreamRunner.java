@@ -1,6 +1,6 @@
 package diceRollSimulator.pojos;
 
-import diceRollSimulator.helpers.DiceRoll;
+import diceRollSimulator.utility.DiceRoll;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
@@ -43,10 +43,5 @@ public class StreamRunner {
 
     public String getReport(){
         return reportGenerator.getReport();
-    }
-
-    @Autowired
-    public void setReportGenerator(ReportGenerator reportGenerator) {
-        this.reportGenerator = reportGenerator;
     }
 }

@@ -1,8 +1,8 @@
 package testRosterBuilder;
 
 import org.junit.jupiter.api.Test;
-import rosterBuilder.WargameSystemsInitializer;
-import rosterBuilder.WargamingSystem;
+import rosterBuilder.pojos.WargameSystemsInitializer;
+import rosterBuilder.pojos.WargamingSystem;
 
 import java.util.ArrayList;
 

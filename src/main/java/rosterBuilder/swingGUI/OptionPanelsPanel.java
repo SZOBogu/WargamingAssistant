@@ -1,7 +1,7 @@
 package rosterBuilder.swingGUI;
 
-import rosterBuilder.Entity;
-import rosterBuilder.OptionSet;
+import rosterBuilder.pojos.Entity;
+import rosterBuilder.pojos.OptionSet;
 
 import javax.swing.*;
 import java.awt.*;

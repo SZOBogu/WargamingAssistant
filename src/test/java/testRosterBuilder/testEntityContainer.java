@@ -1,10 +1,10 @@
 package testRosterBuilder;
 
 import org.junit.jupiter.api.Test;
-import rosterBuilder.Entity;
-import rosterBuilder.EntityContainer;
-import rosterBuilder.Item;
-import rosterBuilder.SpecialRule;
+import rosterBuilder.pojos.Entity;
+import rosterBuilder.pojos.EntityContainer;
+import rosterBuilder.pojos.Item;
+import rosterBuilder.pojos.SpecialRule;
 
 import java.util.ArrayList;
 import java.util.Arrays;

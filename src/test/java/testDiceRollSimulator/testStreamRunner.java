@@ -1,6 +1,6 @@
 package testDiceRollSimulator;
 
-import diceRollSimulator.helpers.DiceRoll;
+import diceRollSimulator.utility.DiceRoll;
 import diceRollSimulator.pojos.StreamRunner;
 import org.junit.jupiter.api.Test;
 
@@ -10,9 +10,7 @@ import java.util.Arrays;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 import static org.hamcrest.Matchers.*;
-import static org.hamcrest.text.IsEmptyString.isEmptyString;
-import static org.hamcrest.text.MatchesPattern.matchesPattern;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class testStreamRunner {
     DiceRoll toHit = new DiceRoll.DiceRollBuilder(10, 5).build();
@@ -24,10 +22,9 @@ public class testStreamRunner {
 
     @Test
     public void testRunDiceRoll(){
-        String tempReport = "";
         int successes = runner.runDiceRoll(toHit, 1);
 
-        assertThat(runner.getReport().length(), greaterThan(tempReport.length()));
+        assertThat(runner.getReport().length(), greaterThan(0));
         assertThat(successes, lessThanOrEqualTo(toHit.getQuantity()));
     }
 
@@ -35,6 +32,6 @@ public class testStreamRunner {
     @Test
     public void testRunAll(){
         String report = runner.runAll(testArray);
-        assertThat(report, not(isEmptyString()));
+        assertTrue(report.length() > 0);
     }
 }

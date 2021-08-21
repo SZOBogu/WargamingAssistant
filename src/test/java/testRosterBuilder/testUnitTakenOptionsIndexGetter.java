@@ -1,7 +1,8 @@
 package testRosterBuilder;
 
 import org.junit.jupiter.api.Test;
-import rosterBuilder.*;
+import rosterBuilder.pojos.*;
+import rosterBuilder.utility.UnitTakenOptionsIndexGetter;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -34,7 +35,7 @@ public class testUnitTakenOptionsIndexGetter {
 
     Option option20 = new Option(new Weapon("Tarcza", "+Def"), 200);
     Option option21 = new Option(new Entity("lekka zbroja", "+1S"), 500);
-    OptionSet optionSet2 = new MultipleChoiceOptionSet(new ArrayList<Option>(Arrays.asList(option20, option21)));
+    OptionSet optionSet2 = new MultipleChoiceOptionSet(new ArrayList<>(Arrays.asList(option20, option21)));
 
     ModelPart modelPart0 = new ModelPart("Model", new Statline(new ArrayList<>()), new ArrayList<>(), new ArrayList<>());
 

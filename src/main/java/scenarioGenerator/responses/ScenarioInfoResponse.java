@@ -1,6 +1,6 @@
 package scenarioGenerator.responses;
 
-import rosterBuilder.WargamingSystem;
+import rosterBuilder.pojos.WargamingSystem;
 import scenarioGenerator.pojos.Deployment;
 import scenarioGenerator.pojos.MissionList;
 

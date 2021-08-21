@@ -1,7 +1,8 @@
 package testRosterBuilder;
 
 import org.junit.jupiter.api.Test;
-import rosterBuilder.*;
+import rosterBuilder.pojos.*;
+import rosterBuilder.utility.RosterSummarizer;
 
 import java.util.ArrayList;
 import java.util.Arrays;

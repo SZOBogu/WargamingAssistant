@@ -1,7 +1,7 @@
 package rosterBuilder.rules;
 
-import rosterBuilder.Entity;
-import rosterBuilder.Roster;
+import rosterBuilder.pojos.Entity;
+import rosterBuilder.pojos.Roster;
 
 public abstract class RosterBuildingRule implements Rule {
     protected Entity entity;

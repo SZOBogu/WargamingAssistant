@@ -1,9 +1,9 @@
 package rosterBuilder.rules;
 
-import rosterBuilder.Entity;
-import rosterBuilder.Roster;
-import rosterBuilder.RuleViolationLog;
-import rosterBuilder.UnitCounter;
+import rosterBuilder.pojos.Entity;
+import rosterBuilder.pojos.Roster;
+import rosterBuilder.utility.RuleViolationLog;
+import rosterBuilder.utility.UnitCounter;
 
 public class MustHaveExactly extends RosterBuildingRule implements Rule {
     public MustHaveExactly(Entity entity, int quantity){

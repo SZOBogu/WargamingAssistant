@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import scenarioGenerator.pojos.Deployment;
 import scenarioGenerator.pojos.Mission;
-import scenarioGenerator.helpers.ScenarioFormValidator;
+import scenarioGenerator.utility.ScenarioFormValidator;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;

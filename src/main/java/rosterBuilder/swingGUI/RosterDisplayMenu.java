@@ -1,7 +1,7 @@
 package rosterBuilder.swingGUI;
 
-import rosterBuilder.Roster;
-import rosterBuilder.RosterSummarizer;
+import rosterBuilder.pojos.Roster;
+import rosterBuilder.utility.RosterSummarizer;
 
 import javax.swing.*;
 import java.awt.*;
@@ -20,8 +20,7 @@ public class RosterDisplayMenu extends JFrame implements ActionListener {
 
     public RosterDisplayMenu(Roster roster){
         this.rosterTextArea = new TextPanel(40, 50);
-        RosterSummarizer rosterSummarizer = new RosterSummarizer();
-        this.displayedText = roster.toString() + "\n\n" + rosterSummarizer.summarize(roster);
+        this.displayedText = roster.toString() + "\n\n" + RosterSummarizer.summarize(roster);
         this.rosterTextArea.appendText(displayedText);
 
         this.backButton = new JButton("Go Back");
@@ -69,10 +68,8 @@ public class RosterDisplayMenu extends JFrame implements ActionListener {
                 FileWriter fw = new FileWriter(f);
                 fw.write(displayedText);
                 JOptionPane.showMessageDialog(new JFrame(), "Roster exported to file: " + f.getName(),
-                        "Roster Export Successful", JOptionPane.OK_OPTION);
-                if(writer != null)
-                    writer.close();
-                }
+                        "Roster Export Successful", JOptionPane.INFORMATION_MESSAGE);
+            }
                 catch (IOException e) {
                     e.printStackTrace();
                  }

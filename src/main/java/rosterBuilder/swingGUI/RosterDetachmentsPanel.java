@@ -1,8 +1,11 @@
 package rosterBuilder.swingGUI;
 
 import common.Refreshable;
-import rosterBuilder.*;
+import rosterBuilder.pojos.RosterObserverSubject;
+import rosterBuilder.pojos.WargamingSystem;
 import rosterBuilder.rules.RosterBuildingRule;
+import rosterBuilder.utility.RuleViolationLog;
+import rosterBuilder.pojos.WargameSystemsInitializer;
 
 import javax.swing.*;
 import java.awt.*;

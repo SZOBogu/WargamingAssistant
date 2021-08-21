@@ -1,10 +1,10 @@
 package rosterBuilder.swingGUI;
 
-import rosterBuilder.Entity;
-import rosterBuilder.OptionSet;
-import rosterBuilder.RuleViolationLog;
-import rosterBuilder.SingleChoiceOptionSet;
-import scenarioGenerator.helpers.BoolListToIndexListConverter;
+import rosterBuilder.pojos.Entity;
+import rosterBuilder.pojos.OptionSet;
+import rosterBuilder.utility.RuleViolationLog;
+import rosterBuilder.pojos.SingleChoiceOptionSet;
+import scenarioGenerator.utility.BoolListToIndexListConverter;
 
 import javax.swing.*;
 import java.awt.*;

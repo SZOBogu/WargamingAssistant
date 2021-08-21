@@ -1,9 +1,9 @@
 package rosterBuilder.rules;
 
-import rosterBuilder.Entity;
-import rosterBuilder.Roster;
-import rosterBuilder.RuleViolationLog;
-import rosterBuilder.UnitCounter;
+import rosterBuilder.pojos.Entity;
+import rosterBuilder.pojos.Roster;
+import rosterBuilder.utility.RuleViolationLog;
+import rosterBuilder.utility.UnitCounter;
 
 public class CannotBeMoreUnitsWithThan extends RosterBuildingRule implements Rule {
     public CannotBeMoreUnitsWithThan(Entity entity, int quantity){

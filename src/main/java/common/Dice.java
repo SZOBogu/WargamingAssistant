@@ -3,8 +3,7 @@ package common;
 import java.util.Random;
 
 public class Dice {
-
-    private int max;
+    private final int max;
 
     public Dice(){
         this.max = 6;

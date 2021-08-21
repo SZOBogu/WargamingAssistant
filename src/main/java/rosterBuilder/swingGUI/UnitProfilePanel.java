@@ -1,9 +1,9 @@
 package rosterBuilder.swingGUI;
 
-import rosterBuilder.*;
-import rosterBuilder.Unit.UnitBuilder;
-import rosterBuilder.swingGUI.DetachmentPanel;
+import rosterBuilder.pojos.*;
+import rosterBuilder.pojos.Unit.UnitBuilder;
 import rosterBuilder.rules.UnitBuildingRule;
+import rosterBuilder.utility.RuleViolationLog;
 
 import javax.swing.*;
 import java.awt.*;

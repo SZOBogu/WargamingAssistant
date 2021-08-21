@@ -1,8 +1,8 @@
 package rosterBuilder.rules;
 
-import rosterBuilder.Entity;
-import rosterBuilder.RuleViolationLog;
-import rosterBuilder.Unit;
+import rosterBuilder.pojos.Entity;
+import rosterBuilder.utility.RuleViolationLog;
+import rosterBuilder.pojos.Unit;
 
 public class CannotBeTakenWithMoreThanModels extends UnitBuildingRule implements Rule {
     public CannotBeTakenWithMoreThanModels(Entity entity, int quantity){

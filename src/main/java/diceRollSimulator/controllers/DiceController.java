@@ -1,7 +1,7 @@
 package diceRollSimulator.controllers;
 
-import diceRollSimulator.helpers.DiceRollList;
-import diceRollSimulator.helpers.DiceRoll;
+import diceRollSimulator.utility.DiceRollList;
+import diceRollSimulator.utility.DiceRoll;
 import diceRollSimulator.pojos.NonRandomReportGenerator;
 import diceRollSimulator.pojos.StreamRunner;
 import org.springframework.beans.factory.annotation.Autowired;

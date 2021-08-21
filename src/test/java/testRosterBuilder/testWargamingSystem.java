@@ -2,7 +2,7 @@ package testRosterBuilder;
 
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
-import rosterBuilder.*;
+import rosterBuilder.pojos.*;
 import rosterBuilder.rules.*;
 import scenarioGenerator.pojos.Deployment;
 import scenarioGenerator.pojos.Mission;

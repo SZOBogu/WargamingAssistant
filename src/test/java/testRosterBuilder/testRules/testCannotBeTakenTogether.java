@@ -2,14 +2,15 @@ package testRosterBuilder.testRules;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import rosterBuilder.*;
+import rosterBuilder.pojos.Entity;
+import rosterBuilder.pojos.SpecialRule;
+import rosterBuilder.pojos.Unit;
 import rosterBuilder.rules.CannotBeTakenTogether;
-import rosterBuilder.rules.MustHaveAtLeast;
+import rosterBuilder.utility.RuleViolationLog;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class testCannotBeTakenTogether {

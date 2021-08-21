@@ -1,8 +1,8 @@
 package rosterBuilder.swingGUI;
 
 import common.Refreshable;
-import rosterBuilder.Roster;
-import rosterBuilder.RosterCostCalculator;
+import rosterBuilder.pojos.Roster;
+import rosterBuilder.utility.RosterCostCalculator;
 
 import javax.swing.*;
 
@@ -15,7 +15,6 @@ public class RosterCostLabel extends JLabel implements Refreshable {
     }
 
     public void refresh(){
-        RosterCostCalculator rosterCostCalculator = new RosterCostCalculator();
-        this.setText(rosterCostCalculator.calculateRosterCost(this.roster) + "/" + roster.getPointCap() + " points");
+        this.setText(RosterCostCalculator.calculateRosterCost(this.roster) + "/" + roster.getPointCap() + " points");
     }
 }

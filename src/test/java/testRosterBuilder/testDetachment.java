@@ -2,7 +2,7 @@ package testRosterBuilder;
 
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
-import rosterBuilder.*;
+import rosterBuilder.pojos.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -12,10 +12,10 @@ import static org.junit.jupiter.api.Assertions.*;
 public class testDetachment {
     UnitProfile up0 = Mockito.mock(UnitProfile.class);
     UnitProfile up1 = Mockito.mock(UnitProfile.class);
-    ArmySubcategory armySubcategory0 = new ArmySubcategory("HQ", new ArrayList<UnitProfile>(Arrays.asList(up0, up1)));
+    ArmySubcategory armySubcategory0 = new ArmySubcategory("HQ", new ArrayList<>(Arrays.asList(up0, up1)));
     UnitProfile up2 = Mockito.mock(UnitProfile.class);
     UnitProfile up3 = Mockito.mock(UnitProfile.class);
-    ArmySubcategory armySubcategory1 = new ArmySubcategory("Troops", new ArrayList<UnitProfile>(Arrays.asList(up2, up3)));
+    ArmySubcategory armySubcategory1 = new ArmySubcategory("Troops", new ArrayList<>(Arrays.asList(up2, up3)));
     Army army = new Army("Kingdom of costam", new ArrayList<>(Arrays.asList(armySubcategory0, armySubcategory1)));
 
     ArrayList<Integer> min = new ArrayList<>(Arrays.asList(1, 2, 0));
