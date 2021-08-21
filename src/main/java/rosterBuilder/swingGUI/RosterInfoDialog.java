@@ -93,7 +93,6 @@ public class RosterInfoDialog extends JFrame implements ActionListener {
             detachment.setPool(this.wargamingSystem.getPool());
             roster.getRoster().addDetachment(detachment);
             roster.getRoster().getDetachments().get(0).setArmy(roster.getRoster().getPrimaryArmy());
-            roster.getRoster().getDetachments().get(0).setDetachmentNumber(0);
             new RosterBuilderWindow(wargamingSystem, roster);
             this.dispose();
     }

@@ -26,10 +26,18 @@ public class testRoster {
 
     ArrayList<Integer> min0 = new ArrayList<>(Arrays.asList(1, 2, 0));
     ArrayList<Integer> max0 = new ArrayList<>(Arrays.asList(3, 6, 2));
-    Detachment detachment0 = new Detachment("Detachment 0", min0, max0, 0);
+    Detachment detachment0 = new Detachment.DetachmentBuilder("Detachment 0")
+            .arrayOfMandatoryChoicesInCategories(min0)
+            .arrayOfMaxChoicesPerCategory(max0)
+            .build();
+
     ArrayList<Integer> min1 = new ArrayList<>(Arrays.asList(1, 2, 0));
     ArrayList<Integer> max1 = new ArrayList<>(Arrays.asList(3, 6, 2));
-    Detachment detachment1 = new Detachment("Detachment 1", min1, max1, 1);
+    Detachment detachment1 = new Detachment.DetachmentBuilder("Detachment 1")
+            .arrayOfMandatoryChoicesInCategories(min1)
+            .arrayOfMaxChoicesPerCategory(max1)
+            .detachmentNumber(1)
+            .build();
 
     @Test
     void testGetDetachments(){
@@ -115,9 +123,15 @@ public class testRoster {
     void testGetTotalCost(){
         roster.addDetachment(detachment0);
         detachment0.setArmy(army);
-        Unit testUnit0 = new Unit("General", 1, new ArrayList<>(), new ArrayList<>(), 50);
+        Unit testUnit0 = new Unit.UnitBuilder("General", new ArrayList<>())
+                .pointCost(50)
+                .build();
         detachment0.addUnit(testUnit0, 0);
-        Unit testUnit1 = new Unit("Swordsmen", 10, new ArrayList<>(), new ArrayList<>(), 30);
+
+        Unit testUnit1 = new Unit.UnitBuilder("Swordsmen", new ArrayList<>())
+                .modelsInUnit(10)
+                .pointCost(30)
+                .build();
         detachment0.addUnit(testUnit1, 1);
 
         assertEquals(80, roster.getTotalCost());

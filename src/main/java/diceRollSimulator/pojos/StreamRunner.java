@@ -4,12 +4,13 @@ import diceRollSimulator.helpers.DiceRoll;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class StreamRunner {
     private ReportGenerator reportGenerator = new ReportGenerator();
 
     public int runDiceRoll(DiceRoll diceRoll, int number){
-        ArrayList<ArrayList<Integer>> results = diceRoll.makeDiceRoll();
+        List<List<Integer>> results = diceRoll.makeDiceRoll();
 
         int successes;
         if(results.size() == 1 && !diceRoll.isFailures())

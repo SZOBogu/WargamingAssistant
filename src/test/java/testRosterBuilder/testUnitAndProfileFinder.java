@@ -11,10 +11,26 @@ import java.util.Arrays;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class testUnitAndProfileFinder {
-    Unit unit0 = new Unit("Unit0", 20, new ArrayList<>(), new ArrayList<>(), 1000);
-    Unit unit1 = new Unit("Unit1", 20, new ArrayList<>(), new ArrayList<>(), 1000);
-    Unit unit2 = new Unit("Unit2", 20, new ArrayList<>(), new ArrayList<>(), 1000);
-    Unit unit3 = new Unit("Unit3", 20, new ArrayList<>(), new ArrayList<>(), 1000);
+    Unit unit0 = new Unit.UnitBuilder("Unit0", new ArrayList<>())
+            .modelsInUnit(20)
+            .nonBaseEquipment(new ArrayList<>())
+            .pointCost(1000)
+            .build();
+    Unit unit1 = new Unit.UnitBuilder("Unit1", new ArrayList<>())
+            .modelsInUnit(20)
+            .nonBaseEquipment(new ArrayList<>())
+            .pointCost(1000)
+            .build();
+    Unit unit2 = new Unit.UnitBuilder("Unit2", new ArrayList<>())
+            .modelsInUnit(20)
+            .nonBaseEquipment(new ArrayList<>())
+            .pointCost(1000)
+            .build();
+    Unit unit3 = new Unit.UnitBuilder("Unit3", new ArrayList<>())
+            .modelsInUnit(20)
+            .nonBaseEquipment(new ArrayList<>())
+            .pointCost(1000)
+            .build();
 
     UnitProfile profile0 =  new UnitProfile("Unit0", new ArrayList<>(), new ArrayList<>(), 100);
     UnitProfile profile1 =  new UnitProfile("Unit1", new ArrayList<>(), new ArrayList<>(), 100);
@@ -33,8 +49,8 @@ public class testUnitAndProfileFinder {
     ImageIcon img = new ImageIcon();
     Army army = new Army("Army", armySubcategories, img);
 
-    Detachment detachment0 = new Detachment("Detachment 0", 2, 0);
-    Detachment detachment1 = new Detachment("Detachment 1", 2, 1);
+    Detachment detachment0 = new Detachment.DetachmentBuilder("Detachment 0", 2).build();
+    Detachment detachment1 = new Detachment.DetachmentBuilder("Detachment 1", 2).detachmentNumber(1).build();
 
     Roster roster = new Roster();
 
@@ -64,7 +80,11 @@ public class testUnitAndProfileFinder {
         assertEquals(profile2, unitAndProfileFinder.getProfile(army, unit2));
         assertEquals(profile3, unitAndProfileFinder.getProfile(army, unit3));
 
-        Unit unit4 = new Unit("Unit4", 20, new ArrayList<>(), new ArrayList<>(), 1000);
+        Unit unit4 = new Unit.UnitBuilder("Unit4", new ArrayList<>())
+                .modelsInUnit(20)
+                .nonBaseEquipment(new ArrayList<>())
+                .pointCost(1000)
+                .build();
 
         assertEquals(new UnitProfile(), unitAndProfileFinder.getProfile(army, unit4));
     }

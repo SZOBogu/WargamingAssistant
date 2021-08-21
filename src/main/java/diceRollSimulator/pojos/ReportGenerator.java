@@ -4,6 +4,7 @@ import diceRollSimulator.helpers.DiceRoll;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Component
 public class ReportGenerator {
@@ -21,7 +22,7 @@ public class ReportGenerator {
     }
 
     //TODO: DRY
-    public void addDiceRoll(ArrayList<ArrayList<Integer>> results,
+    public void addDiceRoll(List<List<Integer>> results,
                                    int number, int successes, int successValue, boolean failures){
 
         for (int i = 0; i<results.size(); i++) {
@@ -44,7 +45,7 @@ public class ReportGenerator {
         }
     }
 
-    public void addDiceRoll(ArrayList<ArrayList<Integer>> results, int number, int successes, int successValue, boolean failures, int valueToReRoll) {
+    public void addDiceRoll(List<List<Integer>> results, int number, int successes, int successValue, boolean failures, int valueToReRoll) {
         for (int i = 0; i<results.size(); i++) {
             report += "Dice Roll " + number + ": " + successes + " successes (" + successValue;
 
@@ -67,7 +68,7 @@ public class ReportGenerator {
         }
     }
 
-    public String generateReport(ArrayList<DiceRoll> diceRolls, int successes){
+    public String generateReport(List<DiceRoll> diceRolls, int successes){
         StringBuilder finalRep = new StringBuilder("TOTAL RESULT: " + successes + " SUCCESSES\n");
         if(diceRolls.size() > 0) {
             finalRep.append(diceRolls.get(0).getQuantity()).append(" dices\n");

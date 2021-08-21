@@ -2,55 +2,113 @@ package rosterBuilder;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class Detachment {
     private final String name;
     private Army army;
     private int detachmentNumber;
-    private int totalDetachmentCost;
-    private final ArrayList<ArrayList<Unit>> boughtUnitsCategorized;
-    private ArrayList<Integer> arrayOfMandatoryChoicesInCategories;
-    private ArrayList<Integer> arrayOfMaxChoicesPerCategory;
+    private final List<List<Unit>> boughtUnitsCategorized;
+    private final List<Integer> arrayOfMandatoryChoicesInCategories;
+    private final List<Integer> arrayOfMaxChoicesPerCategory;
     private UniqueEntitiesPool pool;
 
-    public Detachment(String name, int numberOfCategories, int detachmentNumber){
-        this(name, new ArrayList<>(), detachmentNumber);
-        this.arrayOfMandatoryChoicesInCategories = new ArrayList<>();
-        this.arrayOfMaxChoicesPerCategory = new ArrayList<>();
 
-        this.setCapacity(numberOfCategories);
+    public Detachment(DetachmentBuilder builder){
+        this.name = builder.name;
+        this.army = builder.army;
+        this.detachmentNumber = builder.detachmentNumber;
+        this.boughtUnitsCategorized = builder.boughtUnitsCategorized;
+        this.arrayOfMandatoryChoicesInCategories = builder.arrayOfMandatoryChoicesInCategories;
+        this.arrayOfMaxChoicesPerCategory = builder.arrayOfMaxChoicesPerCategory;
+        this.pool = builder.pool;
 
-        for(int i = 0;i < numberOfCategories; i++){
-            this.arrayOfMandatoryChoicesInCategories.add(0);
+        this.setCapacity(builder.arrayOfMaxChoicesPerCategory.size());
+    }
+
+    public static class DetachmentBuilder{
+        private final String name;
+        private Army army;
+        private int detachmentNumber;
+        private List<List<Unit>> boughtUnitsCategorized;
+        private List<Integer> arrayOfMandatoryChoicesInCategories;
+        private List<Integer> arrayOfMaxChoicesPerCategory;
+        private UniqueEntitiesPool pool;
+
+        public DetachmentBuilder(String name){
+            this.name = name;
+            this.boughtUnitsCategorized = new ArrayList<>();
+            this.arrayOfMandatoryChoicesInCategories = new ArrayList<>();
+            this.arrayOfMaxChoicesPerCategory = new ArrayList<>();
+            this.detachmentNumber = 0;
         }
-        for(int i = 0;i < numberOfCategories; i++){
-            this.arrayOfMaxChoicesPerCategory.add(100);
+
+        public DetachmentBuilder(String name, int categories){
+            this.name = name;
+            this.boughtUnitsCategorized = new ArrayList<>();
+
+            this.arrayOfMaxChoicesPerCategory = new ArrayList<>();
+            for(int i = 0;i < categories; i++){
+                this.arrayOfMaxChoicesPerCategory.add(100);
+            }
+
+            this.arrayOfMandatoryChoicesInCategories = new ArrayList<>();
+            for(int i = 0;i < categories; i++){
+                this.arrayOfMandatoryChoicesInCategories.add(0);
+            }
+
+            this.detachmentNumber = 0;
+        }
+
+        public DetachmentBuilder army(Army army){
+            this.army = army;
+            return this;
+        }
+
+        public DetachmentBuilder detachmentNumber(int detachmentNumber){
+            this.detachmentNumber = detachmentNumber;
+            return this;
+        }
+
+        public DetachmentBuilder boughtUnitsCategorized(List<List<Unit>>  boughtUnitsCategorized){
+            this.boughtUnitsCategorized = boughtUnitsCategorized;
+            return this;
+        }
+
+        public DetachmentBuilder arrayOfMandatoryChoicesInCategories(List<Integer> arrayOfMandatoryChoicesInCategories){
+            this.arrayOfMandatoryChoicesInCategories = arrayOfMandatoryChoicesInCategories;
+
+            if(this.arrayOfMaxChoicesPerCategory.isEmpty()){
+                for(int i = 0; i < arrayOfMandatoryChoicesInCategories.size(); i++){
+                    this.arrayOfMaxChoicesPerCategory.add(100);
+                }
+            }
+
+            return this;
+        }
+
+        public DetachmentBuilder arrayOfMaxChoicesPerCategory(List<Integer> arrayOfMaxChoicesPerCategory){
+            this.arrayOfMaxChoicesPerCategory = arrayOfMaxChoicesPerCategory;
+
+            if(this.arrayOfMandatoryChoicesInCategories.isEmpty()){
+                for(int i = 0;i < arrayOfMaxChoicesPerCategory.size(); i++){
+                    this.arrayOfMandatoryChoicesInCategories.add(0);
+                }
+            }
+
+            return this;
+        }
+
+        public DetachmentBuilder pool(UniqueEntitiesPool pool){
+            this.pool = pool;
+            return this;
+        }
+
+        public Detachment build(){
+            return new Detachment(this);
         }
     }
 
-
-    public Detachment(String name, ArrayList<Integer> arrayOfMandatoryChoicesInCategories, int detachmentNumber){
-        this.name = name;
-        this.totalDetachmentCost = 0;
-        this.detachmentNumber = detachmentNumber;
-        this.boughtUnitsCategorized = new ArrayList<>(Arrays.asList(new ArrayList<>()));
-        this.setCapacity(arrayOfMandatoryChoicesInCategories.size());
-        this.arrayOfMandatoryChoicesInCategories = arrayOfMandatoryChoicesInCategories;
-        ArrayList<Integer> arrayOfMaxChoicesInCategories = new ArrayList<>();
-        for(int i = 0;i < arrayOfMandatoryChoicesInCategories.size(); i++){
-            arrayOfMaxChoicesInCategories.add(100);
-        }
-        this.arrayOfMaxChoicesPerCategory = arrayOfMaxChoicesInCategories;
-        this.army = null;
-        this.pool = null;
-    }
-
-
-    public Detachment(String name, ArrayList<Integer> arrayOfMandatoryChoicesInCategories,
-                      ArrayList<Integer> arrayOfMaxChoicesInCategories, int detachmentNumber){
-        this(name, arrayOfMandatoryChoicesInCategories, detachmentNumber);
-        this.arrayOfMaxChoicesPerCategory = arrayOfMaxChoicesInCategories;
-    }
 
     public String getName() {
         return name;
@@ -66,7 +124,7 @@ public class Detachment {
 
     public int getCost() {
         int totalCost = 0;
-        for (ArrayList<Unit> units : this.boughtUnitsCategorized) {
+        for (List<Unit> units : this.boughtUnitsCategorized) {
             for (Unit unit : units) {
                 totalCost += unit.getPointCost();
             }
@@ -74,19 +132,19 @@ public class Detachment {
         return totalCost;
     }
 
-    public ArrayList<ArrayList<Unit>> getBoughtUnitsCategorized() {
+    public List<List<Unit>> getBoughtUnitsCategorized() {
         return boughtUnitsCategorized;
     }
-    public ArrayList<Integer> getArrayOfMandatoryChoicesInCategories() {
+    public List<Integer> getArrayOfMandatoryChoicesInCategories() {
         return arrayOfMandatoryChoicesInCategories;
     }
-    public ArrayList<Integer> getArrayOfMaxChoicesPerCategory() {
+    public List<Integer> getArrayOfMaxChoicesPerCategory() {
         return arrayOfMaxChoicesPerCategory;
     }
 
     public void addUnit(Unit unit, int categoryIndex){
         if(this.pool != null){
-            ArrayList<Entity> allEntities = new ArrayList<>();
+            List<Entity> allEntities = new ArrayList<>();
             allEntities.addAll(unit.getNonBaseEquipment());
             allEntities.addAll(unit.getBaseEquipmentAndRules());
             for (Entity allEntity : allEntities) {
@@ -96,13 +154,12 @@ public class Detachment {
         this.profileFilter();
         }
         this.boughtUnitsCategorized.get(categoryIndex).add(unit);
-        this.totalDetachmentCost += unit.getPointCost();
     }
 
     public void deleteUnit(int categoryIndex, int index){
         if(this.pool != null) {
             Unit unit = this.boughtUnitsCategorized.get(categoryIndex).get(index);
-            ArrayList<Entity> allEntities = new ArrayList<>();
+            List<Entity> allEntities = new ArrayList<>();
             allEntities.addAll(unit.getNonBaseEquipment());
             allEntities.addAll(unit.getBaseEquipmentAndRules());
             for (Entity allEntity : allEntities) {
@@ -111,7 +168,6 @@ public class Detachment {
             }
             this.profileFilter();
         }
-        this.totalDetachmentCost -= this.boughtUnitsCategorized.get(categoryIndex).get(index).getPointCost();
         this.boughtUnitsCategorized.get(categoryIndex).remove(index);
     }
 
@@ -120,7 +176,7 @@ public class Detachment {
     }
 
     public boolean contains(Unit unit){
-        for (ArrayList<Unit> units : this.boughtUnitsCategorized) {
+        for (List<Unit> units : this.boughtUnitsCategorized) {
             if (units.contains(unit))
                 return true;
         }
@@ -128,12 +184,14 @@ public class Detachment {
     }
 
     public Detachment copyEmptyDetachment(){
+        List<Integer> arrayOfMandatoryChoicesInCategories = new ArrayList<>(this.arrayOfMandatoryChoicesInCategories);
+        List<Integer> arrayOfMaxChoicesPerCategory = new ArrayList<>(this.arrayOfMaxChoicesPerCategory);
 
-        ArrayList<Integer> arrayOfMandatoryChoicesInCategories = new ArrayList<>(this.arrayOfMandatoryChoicesInCategories);
-        ArrayList<Integer> arrayOfMaxChoicesPerCategory = new ArrayList<>(this.arrayOfMaxChoicesPerCategory);
-
-        return new Detachment(this.name, arrayOfMandatoryChoicesInCategories, arrayOfMaxChoicesPerCategory,
-                this.detachmentNumber+1);
+        return new DetachmentBuilder(this.name)
+                .arrayOfMandatoryChoicesInCategories(arrayOfMandatoryChoicesInCategories)
+                .arrayOfMaxChoicesPerCategory(arrayOfMaxChoicesPerCategory)
+                .detachmentNumber(this.detachmentNumber + 1)
+                .build();
     }
 
     public Army getArmy() {
@@ -147,7 +205,7 @@ public class Detachment {
 
     public int getUnitCount(){
         int count = 0;
-        for (ArrayList<Unit> units : this.boughtUnitsCategorized) {
+        for (List<Unit> units : this.boughtUnitsCategorized) {
             count += units.size();
         }
         return count;

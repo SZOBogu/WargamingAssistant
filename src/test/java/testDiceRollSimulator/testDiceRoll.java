@@ -4,6 +4,7 @@ import diceRollSimulator.helpers.DiceRoll;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static org.hamcrest.CoreMatchers.everyItem;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -19,9 +20,9 @@ public class testDiceRoll {
 
     @Test
     public void testRollDices(){
-        ArrayList<Integer> results0 = testRoll0.rollDices();
-        ArrayList<Integer> results1 = testRoll1.rollDices();
-        ArrayList<Integer> results2 = testRoll2.rollDices();
+        List<Integer> results0 = testRoll0.rollDices();
+        List<Integer> results1 = testRoll1.rollDices();
+        List<Integer> results2 = testRoll2.rollDices();
 
         assertThat(results0, everyItem(greaterThanOrEqualTo(1)));
         assertThat(results0, everyItem(lessThanOrEqualTo(6)));
@@ -33,9 +34,9 @@ public class testDiceRoll {
 
     @Test
     public void testMakeDiceRoll(){
-        ArrayList<ArrayList<Integer>> results0 = testRoll0.makeDiceRoll();
-        ArrayList<ArrayList<Integer>> results1 = testRoll1.makeDiceRoll();
-        ArrayList<ArrayList<Integer>> results2 = testRoll2.makeDiceRoll();
+        List<List<Integer>> results0 = testRoll0.makeDiceRoll();
+        List<List<Integer>> results1 = testRoll1.makeDiceRoll();
+        List<List<Integer>> results2 = testRoll2.makeDiceRoll();
 
         assertEquals(results0.size(), 1);
         assertEquals(results1.size(), 2);

@@ -1,9 +1,7 @@
 package rosterBuilder.swingGUI;
 
-import common.ModulesEnum;
 import common.Refreshable;
 import rosterBuilder.*;
-import rosterBuilder.DetachmentPanel;
 import rosterBuilder.rules.RosterBuildingRule;
 
 import javax.swing.*;
@@ -112,8 +110,9 @@ public class RosterDetachmentsPanel extends JPanel implements ActionListener, Re
 
             if(roster.getRoster().getTotalCost() > roster.getRoster().getPointCap())
                 RuleViolationLog.appendRosterRuleViolationLog("Point Limit Exceeded");
-            for (RosterBuildingRule rule : rules) {
-                rule.check(roster.getRoster());
+
+                for (RosterBuildingRule rule : rules) {
+                    rule.check(roster.getRoster());
             }
             if(RuleViolationLog.getRosterRuleViolationLog().isEmpty()) {
                 new RosterDisplayMenu(this.roster.getRoster());

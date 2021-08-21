@@ -60,8 +60,17 @@ public class testWargamingSystem {
 
     ArrayList<MissionList> missions = new ArrayList<>(Arrays.asList(missionList01, missionList11));
 
-    Detachment det0 = new Detachment("Patrol", new ArrayList<>(Arrays.asList(1,1,0)), new ArrayList<>(Arrays.asList(1,4,2)), 0);
-    Detachment det1 = new Detachment("CAD", new ArrayList<>(Arrays.asList(1,2,0)), new ArrayList<>(Arrays.asList(2,6,3)), 1);
+    Detachment det0 = new Detachment.DetachmentBuilder("Patrol")
+            .arrayOfMandatoryChoicesInCategories(new ArrayList<>(Arrays.asList(1,1,0)))
+            .arrayOfMaxChoicesPerCategory(new ArrayList<>(Arrays.asList(1,4,2)))
+            .build();
+
+    Detachment det1 = new Detachment.DetachmentBuilder("CAD")
+            .arrayOfMandatoryChoicesInCategories(new ArrayList<>(Arrays.asList(1,2,0)))
+            .arrayOfMaxChoicesPerCategory(new ArrayList<>(Arrays.asList(2,6,3)))
+            .detachmentNumber(1)
+            .build();
+
     ArrayList<Detachment> detachments = new ArrayList<>(Arrays.asList(det0, det1));
 
     Scenario scenario0 = new Scenario();

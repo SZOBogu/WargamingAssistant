@@ -19,15 +19,15 @@ public class testMultipleChoiceOptionSet {
     Option option1 = new Option(eq1, 50);
     Option option2 = new Option(eq2, 10);
 
-    MultipleChoiceOptionSet optionSet = new MultipleChoiceOptionSet(new ArrayList<Option>(Arrays.asList(option0, option1, option2)));
-    MultipleChoiceOptionSet optionSet1 = new MultipleChoiceOptionSet(new ArrayList<Option>(Arrays.asList(option0, option1, option2)), true);
-    MultipleChoiceOptionSet optionSet2 = new MultipleChoiceOptionSet(new ArrayList<Option>(Arrays.asList(option0, option1, option2)), "Special Equipment", "get");
-    MultipleChoiceOptionSet optionSet3 = new MultipleChoiceOptionSet(new ArrayList<Option>(Arrays.asList(option0, option1, option2)), "Wizard", "become", true);
+    MultipleChoiceOptionSet optionSet = new MultipleChoiceOptionSet(new ArrayList<>(Arrays.asList(option0, option1, option2)));
+    MultipleChoiceOptionSet optionSet1 = new MultipleChoiceOptionSet(new ArrayList<>(Arrays.asList(option0, option1, option2)), true);
+    MultipleChoiceOptionSet optionSet2 = new MultipleChoiceOptionSet(new ArrayList<>(Arrays.asList(option0, option1, option2)), "Special Equipment", "get");
+    MultipleChoiceOptionSet optionSet3 = new MultipleChoiceOptionSet(new ArrayList<>(Arrays.asList(option0, option1, option2)), "Wizard", "become", true);
 
     ArrayList<Integer> indexes = new ArrayList<>(Arrays.asList(0, 2));
     @Test
     void testGetEntity(){
-        assertEquals( new ArrayList<Entity>(Arrays.asList(eq0, eq2)), optionSet.getEntities(indexes));
+        assertEquals( new ArrayList<>(Arrays.asList(eq0, eq2)), optionSet.getEntities(indexes));
     }
 
     @Test

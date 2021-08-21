@@ -5,7 +5,6 @@ import rosterBuilder.Roster;
 
 public abstract class RosterBuildingRule implements Rule {
     protected Entity entity;
-//    protected Entity entity2;
     protected int quantity;
 
     public RosterBuildingRule(Entity entity){

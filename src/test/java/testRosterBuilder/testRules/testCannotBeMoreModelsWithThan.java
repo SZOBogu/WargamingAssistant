@@ -24,19 +24,39 @@ public class testCannotBeMoreModelsWithThan {
 
     ArrayList<Integer> min0 = new ArrayList<>(Arrays.asList(1, 2, 0));
     ArrayList<Integer> max0 = new ArrayList<>(Arrays.asList(3, 6, 2));
-    Detachment detachment0 = new Detachment("Detachment 0", min0, max0, 0);
+    Detachment detachment0 = new Detachment.DetachmentBuilder("Detachment 0")
+            .arrayOfMandatoryChoicesInCategories(min0)
+            .arrayOfMaxChoicesPerCategory(max0)
+            .build();
+
     ArrayList<Integer> min1 = new ArrayList<>(Arrays.asList(1, 2, 0));
     ArrayList<Integer> max1 = new ArrayList<>(Arrays.asList(3, 6, 2));
-    Detachment detachment1 = new Detachment("Detachment 1", min1, max1, 1);
+    Detachment detachment1 = new Detachment.DetachmentBuilder("Detachment 1")
+            .arrayOfMandatoryChoicesInCategories(min1)
+            .arrayOfMaxChoicesPerCategory(max1)
+            .detachmentNumber(1)
+            .build();
 
     ArrayList<Entity> eq0 = new ArrayList<>(Arrays.asList(new SpecialRule("Wizard Master", ""), new Entity("Talisman", ""), new SpecialRule("Any", "")));
-    Unit unit0 = new Unit("Wizard", 1, eq0, new ArrayList<>(),350);
+    Unit unit0 = new Unit.UnitBuilder("Wizard", eq0)
+            .pointCost(350)
+            .build();
+
     ArrayList<Entity> eq1 = new ArrayList<>(Arrays.asList(new Weapon("Sword", ""), new Entity("Shield", "")));
-    Unit unit1 = new Unit("Swordsmen", 10, eq1, new ArrayList<>(),350);
+    Unit unit1 = new Unit.UnitBuilder("Swordsmen", eq1)
+            .modelsInUnit(10)
+            .pointCost(350)
+            .build();
+
     ArrayList<Entity> eq2 = new ArrayList<>(Arrays.asList(new Weapon("Sword", ""), new SpecialRule("Commander", ""), new Item("Plate Armour", ""), new SpecialRule("Any", "")));
-    Unit unit2 = new Unit("General", 1, eq2, new ArrayList<>(),350);
+    Unit unit2 = new Unit.UnitBuilder("General", eq2)
+            .pointCost(350)
+            .build();
+
     ArrayList<Entity> eq3 = new ArrayList<>(Arrays.asList(new SpecialRule("Cannon", ""), new Entity("3 Crew", "")));
-    Unit unit3 = new Unit("Cannon", 1, eq3, new ArrayList<>(),350);
+    Unit unit3 = new Unit.UnitBuilder("Cannon", eq3)
+            .pointCost(350)
+            .build();
 
     CannotBeMoreUnitsWithThan ruleOK = new CannotBeMoreUnitsWithThan(new SpecialRule("Any", ""), 100);
     CannotBeMoreUnitsWithThan ruleNotOK = new CannotBeMoreUnitsWithThan(new SpecialRule("Any", ""), 1);

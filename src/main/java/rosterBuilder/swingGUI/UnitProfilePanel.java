@@ -1,7 +1,8 @@
 package rosterBuilder.swingGUI;
 
 import rosterBuilder.*;
-import rosterBuilder.DetachmentPanel;
+import rosterBuilder.Unit.UnitBuilder;
+import rosterBuilder.swingGUI.DetachmentPanel;
 import rosterBuilder.rules.UnitBuildingRule;
 
 import javax.swing.*;
@@ -9,6 +10,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.List;
 
 public class UnitProfilePanel extends JPanel implements ActionListener {
     private UnitProfile unitProfile;
@@ -80,9 +82,10 @@ public class UnitProfilePanel extends JPanel implements ActionListener {
 
     public UnitProfilePanel(UnitProfile unitProfile, RosterObserverSubject roster, DetachmentPanel detachmentPanel,
                             int detNumber, int categoryNumber, WargamingSystem wargamingSystem,
-                            ArrayList<ArrayList<Integer>> indexesToSelect){
+                            List<List<Integer>> indexesToSelect){
+
         this(unitProfile, roster, detachmentPanel, detNumber, categoryNumber, wargamingSystem);
-        for (ArrayList<Integer> integers : indexesToSelect) {
+        for (List<Integer> integers : indexesToSelect) {
             this.optionPanelsPanel.getOptionPanels().get(integers.get(0)).selectPreviouslyTaken(integers.get(1));
         }
     }
@@ -120,12 +123,13 @@ public class UnitProfilePanel extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent actionEvent) {
         JButton clicked = (JButton)actionEvent.getSource();
         if(clicked == this.addUnitButton){
-            //TODO:moze jakis builder?
-            Unit unit = new Unit(this.unitProfile.getName(), this.unitProfile.getMinModels()
-                    + (int)this.modelQuantitySpinner.getValue(),
-                    this.optionPanelsPanel.getChosenEquipment(), this.unitProfile.getBaseEquipmentAndRules(),
-                    this.unitProfile.getInitialCost() + this.optionPanelsPanel.getChosenEquipmentCost() +
-                            ((int)this.modelQuantitySpinner.getValue() * this.unitProfile.getAdditionalModelCost()));
+            Unit unit = new UnitBuilder(this.unitProfile.getName(), this.unitProfile.getBaseEquipmentAndRules())
+                    .modelsInUnit(this.unitProfile.getMinModels() + (int)this.modelQuantitySpinner.getValue())
+                    .nonBaseEquipment(this.optionPanelsPanel.getChosenEquipment())
+                    .pointCost(this.unitProfile.getInitialCost() + this.optionPanelsPanel.getChosenEquipmentCost()
+                                + ((int)this.modelQuantitySpinner.getValue() * this.unitProfile.getAdditionalModelCost()))
+                    .build();
+
             ArrayList<UnitBuildingRule> rules = this.unitProfile.getRules();
             for (UnitBuildingRule rule : rules) {
                 rule.check(unit);

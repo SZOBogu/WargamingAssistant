@@ -1,23 +1,22 @@
-package rosterBuilder;
+package rosterBuilder.swingGUI;
 
 import common.Refreshable;
-import rosterBuilder.swingGUI.RosterBuilderWindow;
-import rosterBuilder.swingGUI.UnitProfileFrame;
-import rosterBuilder.swingGUI.UnitSelectionMenu;
+import rosterBuilder.*;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.List;
 
 public class DetachmentPanel extends JPanel implements ActionListener, Refreshable {
     private JLabel detachmentInfoLabel;
-    private ArrayList<JLabel> categoryLabels;
-    private ArrayList<ArrayList<JLabel>> unitLabels;
-    private ArrayList<ArrayList<JButton>> addUnitButtons;
-    private ArrayList<ArrayList<JButton>> editUnitButtons;
-    private ArrayList<ArrayList<JButton>> removeUnitButtons;
+    private List<JLabel> categoryLabels;
+    private List<List<JLabel>> unitLabels;
+    private List<List<JButton>> addUnitButtons;
+    private List<List<JButton>> editUnitButtons;
+    private List<List<JButton>> removeUnitButtons;
     private boolean isLooseDetachment;
     private Detachment detachment;
     private RosterObserverSubject roster;
@@ -29,7 +28,7 @@ public class DetachmentPanel extends JPanel implements ActionListener, Refreshab
         this.detachment = detachment;
         this.roster = roster;
         this.wargamingSystem = system;
-        this.categoryLabels = new ArrayList<>();
+        this.categoryLabels = new ArrayList();
         this.unitLabels = new ArrayList<>();
         this.addUnitButtons = new ArrayList<>();
         this.editUnitButtons = new ArrayList<>();
@@ -43,10 +42,11 @@ public class DetachmentPanel extends JPanel implements ActionListener, Refreshab
                 this.editUnitButtons.add(new ArrayList<>());
                 this.removeUnitButtons.add(new ArrayList<>());
         }
-        ArrayList<Integer> arrayOfMandatoryChoicesInCategories =
+        List<Integer> arrayOfMandatoryChoicesInCategories =
                 detachment.getArrayOfMandatoryChoicesInCategories();
-        ArrayList<Integer> arrayOfMaxChoicesPerCategory =
+        List<Integer> arrayOfMaxChoicesPerCategory =
                 detachment.getArrayOfMaxChoicesPerCategory();
+
         this.isLooseDetachment = this.determineLayoutStyle(arrayOfMandatoryChoicesInCategories,
                 arrayOfMaxChoicesPerCategory);
          if(!this.isLooseDetachment) {
@@ -85,8 +85,8 @@ public class DetachmentPanel extends JPanel implements ActionListener, Refreshab
         this.layoutComponents();
     }
 
-    public boolean determineLayoutStyle(ArrayList<Integer> arrayOfMandatoryChoicesInCategories,
-                                        ArrayList<Integer> arrayOfMaxChoicesPerCategory){
+    public boolean determineLayoutStyle(List<Integer> arrayOfMandatoryChoicesInCategories,
+                                        List<Integer> arrayOfMaxChoicesPerCategory){
         int sumOfMin = 0;
         int sumOfMaxes = 0;
 
@@ -180,9 +180,9 @@ public class DetachmentPanel extends JPanel implements ActionListener, Refreshab
             this.removeUnitButtons.add(new ArrayList<>());
             this.editUnitButtons.add(new ArrayList<>());
         }
-        ArrayList<Integer> arrayOfMandatoryChoicesInCategories =
+        List<Integer> arrayOfMandatoryChoicesInCategories =
                 detachment.getArrayOfMandatoryChoicesInCategories();
-        ArrayList<Integer> arrayOfMaxChoicesPerCategory =
+        List<Integer> arrayOfMaxChoicesPerCategory =
                 detachment.getArrayOfMaxChoicesPerCategory();
         this.isLooseDetachment = this.determineLayoutStyle(
                 arrayOfMandatoryChoicesInCategories, arrayOfMaxChoicesPerCategory);
@@ -261,6 +261,7 @@ public class DetachmentPanel extends JPanel implements ActionListener, Refreshab
                 }
             }
         }
+
         if(addUnit) {
             int categoryIndex = 0;
             for (int i = 0; i < this.detachment.getArmy().size(); i++) {
@@ -288,7 +289,7 @@ public class DetachmentPanel extends JPanel implements ActionListener, Refreshab
                     this.detachment.getUnit(tempi, tempj).getName());
 
             Unit unit = this.detachment.getUnit(tempi, tempj);
-            ArrayList<ArrayList<Integer>> optionsIndexes = UnitTakenOptionsIndexGetter.getTakenOptionsIndexes(unit, unitProfile);
+            List<List<Integer>> optionsIndexes = UnitTakenOptionsIndexGetter.getTakenOptionsIndexes(unit, unitProfile);
 
             this.detachment.deleteUnit(tempi, tempj);
             new UnitProfileFrame(

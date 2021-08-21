@@ -1,17 +1,17 @@
 package rosterBuilder.swingGUI;
 
 import rosterBuilder.*;
-import rosterBuilder.DetachmentPanel;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.List;
 
 public class UnitSelectionMenu extends JFrame implements ActionListener {
     private JLabel titleLabel;
-    private ArrayList<JButton> unitButtons;
+    private List<JButton> unitButtons;
 
     private ArmySubcategory armySubcategory;
     private RosterObserverSubject roster;
@@ -42,8 +42,7 @@ public class UnitSelectionMenu extends JFrame implements ActionListener {
             JButton button = new JButton(textOnButton);
             button.addActionListener(this);
             this.unitButtons.add(button);
-            UnitCounter unitCounter = new UnitCounter();
-            if(unitCounter.countUnitsNamed(roster.getRoster(),
+            if(UnitCounter.countUnitsNamed(roster.getRoster(),
                     armySubcategory.getUnitProfile(i).getName()) >=armySubcategory.getUnitProfile(i).getUnitsPerArmy())
                 button.setVisible(false);       //TODO: cos tu nie gra
         }

@@ -19,9 +19,9 @@ public class testSingleChoiceOptionSet {
 
     @Test
     void testGetEntity(){
-        assertTrue(option0.getEntity().equals(optionSet0.getEntity(0)));
-        assertTrue(option1.getEntity().equals(optionSet0.getEntity(1)));
-        assertTrue(option2.getEntity().equals(optionSet0.getEntity(2)));
+        assertEquals(option0.getEntity(), optionSet0.getEntity(0));
+        assertEquals(option1.getEntity(), optionSet0.getEntity(1));
+        assertEquals(option2.getEntity(), optionSet0.getEntity(2));
     }
 
     @Test

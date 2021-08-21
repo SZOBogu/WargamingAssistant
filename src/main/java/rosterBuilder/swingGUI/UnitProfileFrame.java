@@ -1,13 +1,12 @@
 package rosterBuilder.swingGUI;
 
-import rosterBuilder.DetachmentPanel;
 import rosterBuilder.RosterObserverSubject;
 import rosterBuilder.UnitProfile;
 import rosterBuilder.WargamingSystem;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
+import java.util.List;
 
 public class UnitProfileFrame extends JFrame{
     private UnitProfilePanel unitProfilePanel;
@@ -15,6 +14,7 @@ public class UnitProfileFrame extends JFrame{
     public UnitProfileFrame(UnitProfile unitProfile, RosterObserverSubject roster,
                             DetachmentPanel detachmentPanel, int detNumber, int categoryNumber,
                             WargamingSystem wargamingSystem){
+
         super(unitProfile.getName() + " - Unit Creator");
         this.unitProfilePanel = new UnitProfilePanel(unitProfile, roster,
                 detachmentPanel, detNumber, categoryNumber, wargamingSystem);
@@ -28,7 +28,8 @@ public class UnitProfileFrame extends JFrame{
     }
     public UnitProfileFrame(UnitProfile unitProfile, RosterObserverSubject roster,
                             DetachmentPanel detachmentPanel, int detNumber, int categoryNumber,
-                            WargamingSystem wargamingSystem, ArrayList<ArrayList<Integer>> indexesToSelect){
+                            WargamingSystem wargamingSystem, List<List<Integer>> indexesToSelect){
+
         this(unitProfile, roster, detachmentPanel, detNumber, categoryNumber, wargamingSystem);
         this.unitProfilePanel = new UnitProfilePanel(unitProfile, roster, detachmentPanel,
                 detNumber, categoryNumber, wargamingSystem, indexesToSelect);

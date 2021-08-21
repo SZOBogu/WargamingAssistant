@@ -13,8 +13,7 @@ public class MustHaveExactly extends RosterBuildingRule implements Rule {
 
     @Override
     public void check(Roster roster) {
-        UnitCounter counter = new UnitCounter();
-        if(counter.countUnitsWith(roster, entity) != quantity)
+        if(UnitCounter.countUnitsWith(roster, entity) != quantity)
             RuleViolationLog.appendRosterRuleViolationLog("Roster must contain exactly " + quantity +
                     " units with " + entity.getName() + ".");
     }

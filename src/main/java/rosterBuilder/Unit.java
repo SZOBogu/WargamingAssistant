@@ -1,26 +1,64 @@
 package rosterBuilder;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class Unit {
     private final String name;
     private int modelsInUnit;
-    private ArrayList<Entity> nonBaseEquipment;
-    private final ArrayList<Entity> baseEquipmentAndRules;
+    private List<Entity> nonBaseEquipment;
+    private final List<Entity> baseEquipmentAndRules;
     private int pointCost;
 
     public Unit(){
-        this("",0, new ArrayList<>(), new ArrayList<>(), 0);
+        this.name = "";
+        this.modelsInUnit = 1;
+        this.nonBaseEquipment = new ArrayList<>();
+        this.baseEquipmentAndRules = new ArrayList<>();
+        this.pointCost = 0;
     }
 
-    public Unit(String name, int modelsInUnit,
-                ArrayList<Entity> nonBaseEquipment, ArrayList<Entity> baseEquipmentAndRules, int pointCost){
-        this.name = name;
-        this.modelsInUnit = modelsInUnit;
-        this.nonBaseEquipment = nonBaseEquipment;
-        this.baseEquipmentAndRules = baseEquipmentAndRules;
-        this.pointCost = pointCost;
+
+    public Unit(UnitBuilder builder){
+        this.name = builder.name;
+        this.modelsInUnit = builder.modelsInUnit;
+        this.nonBaseEquipment = builder.nonBaseEquipment;
+        this.baseEquipmentAndRules = builder.baseEquipmentAndRules;
+        this.pointCost = builder.pointCost;
     }
+
+    public static class UnitBuilder{
+        private final String name;
+        private int modelsInUnit = 1;
+        private List<Entity> nonBaseEquipment = new ArrayList<>();
+        private final List<Entity> baseEquipmentAndRules;
+        private int pointCost = 0;
+
+        public UnitBuilder(String name, List<Entity> baseEquipmentAndRules){
+            this.name = name;
+            this.baseEquipmentAndRules = baseEquipmentAndRules;
+        }
+
+        public UnitBuilder modelsInUnit(int modelsInUnit){
+            this.modelsInUnit = modelsInUnit;
+            return this;
+        }
+
+        public UnitBuilder nonBaseEquipment(List<Entity> nonBaseEquipment){
+            this.nonBaseEquipment = nonBaseEquipment;
+            return this;
+        }
+
+        public UnitBuilder pointCost(int pointCost){
+            this.pointCost = pointCost;
+            return this;
+        }
+
+        public Unit build(){
+            return new Unit(this);
+        }
+    }
+
 
     public String getName() {
         return name;
@@ -30,11 +68,11 @@ public class Unit {
         return modelsInUnit;
     }
 
-    public ArrayList<Entity> getNonBaseEquipment() {
+    public List<Entity> getNonBaseEquipment() {
         return nonBaseEquipment;
     }
 
-    public ArrayList<Entity> getBaseEquipmentAndRules() {
+    public List<Entity> getBaseEquipmentAndRules() {
         return baseEquipmentAndRules;
     }
 
@@ -54,7 +92,7 @@ public class Unit {
         this.pointCost = pointCost;
     }
 
-    public void setNonBaseEquipment(ArrayList<Entity> nonBaseEquipment) {
+    public void setNonBaseEquipment(List<Entity> nonBaseEquipment) {
          this.nonBaseEquipment = nonBaseEquipment;
     }
 

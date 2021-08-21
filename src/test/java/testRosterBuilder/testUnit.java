@@ -22,7 +22,12 @@ public class testUnit {
     Entity eq5 = new Weapon("czapka", "+Def");
     ArrayList<Entity> standard = new ArrayList<>(Arrays.asList(eq3, eq4, eq5));
 
-    Unit unit = new Unit("Unit", 20, equipment, standard, 1000);
+    Unit unit = new Unit.UnitBuilder("Unit", standard)
+            .modelsInUnit(20)
+            .pointCost(1000)
+            .nonBaseEquipment(equipment)
+            .build();
+
     Unit unit0 = new Unit();
 
     @Test

@@ -5,6 +5,7 @@ import rosterBuilder.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -15,7 +16,11 @@ public class testUnitTakenOptionsIndexGetter {
     Entity eq11 = new Weapon("czapka", "+Def");
     ArrayList<Entity> equipment = new ArrayList<>(Arrays.asList(eq01, eq10));
 
-    Unit unit = new Unit("Unit", 20, equipment, new ArrayList<>(), 1000);
+    Unit unit = new Unit.UnitBuilder("Unit", new ArrayList<>())
+            .nonBaseEquipment(equipment)
+            .modelsInUnit(20)
+            .pointCost(1000)
+            .build();
 
     //*************************
 
@@ -42,8 +47,7 @@ public class testUnitTakenOptionsIndexGetter {
     void testGetTakenOptionsIndexes(){
         modelParts.add(modelPart0);
 
-        ArrayList<ArrayList<Integer>> results = new ArrayList<ArrayList<Integer>>();
-        results = UnitTakenOptionsIndexGetter.getTakenOptionsIndexes(unit, unitProfile);
+        List<List<Integer>> results = UnitTakenOptionsIndexGetter.getTakenOptionsIndexes(unit, unitProfile);
         assertEquals(2, results.size());
         assertEquals(new ArrayList<>(Arrays.asList(0,1)),results.get(0));
         assertEquals(new ArrayList<>(Arrays.asList(1,0)),results.get(1));

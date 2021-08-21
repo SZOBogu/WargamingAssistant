@@ -1,10 +1,11 @@
 package rosterBuilder;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class UnitTakenOptionsIndexGetter {
-    public static ArrayList<ArrayList<Integer>> getTakenOptionsIndexes(Unit unit, UnitProfile unitProfile) {
-        ArrayList<ArrayList<Integer>> takenOptionsIndexes = new ArrayList<>();
+    public static List<List<Integer>> getTakenOptionsIndexes(Unit unit, UnitProfile unitProfile) {
+        List<List<Integer>> takenOptionsIndexes = new ArrayList<>();
 
         for (int i = 0; i < unitProfile.getOptionSets().size(); i++) {
             for (int j = 0; j < unitProfile.getOptionSets().get(i).getOptions().size(); j++) {

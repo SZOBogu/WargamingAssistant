@@ -1,6 +1,7 @@
 package rosterBuilder;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class UnitAndProfileFinder {
 
@@ -57,7 +58,7 @@ public class UnitAndProfileFinder {
         return targetUnit;
     }
 
-    public Unit getUnit(ArrayList<Unit> units, String name){
+    public Unit getUnit(List<Unit> units, String name){
         Unit targetUnit = new Unit();
         for (Unit unit : units) {
             if (unit.getName().equals(name)) {
@@ -76,7 +77,7 @@ public class UnitAndProfileFinder {
         return this.getUnit(detachment, unitProfile.getName());
     }
 
-    public Unit getUnit(ArrayList<Unit> units, UnitProfile unitProfile) {
+    public Unit getUnit(List<Unit> units, UnitProfile unitProfile) {
         return this.getUnit(units, unitProfile.getName());
     }
 }

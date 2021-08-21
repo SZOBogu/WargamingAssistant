@@ -3,6 +3,7 @@ package diceRollSimulator.helpers;
 import common.Dice;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class DiceRoll {
@@ -78,8 +79,8 @@ public class DiceRoll {
         }
     }
 
-    public ArrayList<Integer> rollDices() {
-        ArrayList<Integer> result = new ArrayList<>();
+    public List<Integer> rollDices() {
+        List<Integer> result = new ArrayList<>();
         for (int i = 0; i < this.quantity; i++){
             Dice dice = new Dice(this.diceSides);
             Integer res = dice.roll();
@@ -88,12 +89,12 @@ public class DiceRoll {
         return result;
     }
 
-    public ArrayList<ArrayList<Integer>> makeDiceRoll(){
-        ArrayList<ArrayList<Integer>> bothResults = new ArrayList<>();
-        ArrayList<Integer> result = this.rollDices();
+    public List<List<Integer>> makeDiceRoll(){
+        List<List<Integer>> bothResults = new ArrayList<>();
+        List<Integer> result = this.rollDices();
         bothResults.add(result);
 
-        ArrayList<Integer> resultRerolled = new ArrayList<>(result);
+        List<Integer> resultRerolled = new ArrayList<>(result);
 
         if(this.reroll){
             //regular reroll of non passed dices

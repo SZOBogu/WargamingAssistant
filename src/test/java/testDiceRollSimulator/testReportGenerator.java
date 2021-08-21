@@ -6,21 +6,22 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class testReportGenerator {
         ReportGenerator generator = new ReportGenerator();
-        ArrayList<ArrayList<Integer>> results1 = new ArrayList<ArrayList<Integer>>();
-        ArrayList<Integer> results11 = new ArrayList<>(Arrays.asList(4,1,4,3,6,3,4,2,2,5,4,3,2,5,1,4,3,3,5,2));   //3+
-        ArrayList<ArrayList<Integer>> results2 = new ArrayList<ArrayList<Integer>>();
-        ArrayList<Integer> results2notRR = new ArrayList(Arrays.asList(1,4,1,2,3,4,6,1,1,5,1,2,6,6));                  //5+ rr 1
-        ArrayList<Integer> results2RR = new ArrayList(Arrays.asList(6,4,4,2,3,4,6,5,5,5,2,2,6,6));                  //5+ rr 1
-        ArrayList<ArrayList<Integer>> results3 = new ArrayList<ArrayList<Integer>>();
-        ArrayList<Integer> results3notRR = new ArrayList(Arrays.asList(5,2,4,3,1,5,6));                  //3- rr
-        ArrayList<Integer> results3RR = new ArrayList(Arrays.asList(5,6,4,3,5,5,6));                  //3- rr
+        List<List<Integer>> results1 = new ArrayList<>();
+        List<Integer> results11 = new ArrayList<>(Arrays.asList(4,1,4,3,6,3,4,2,2,5,4,3,2,5,1,4,3,3,5,2));   //3+
+        List<List<Integer>> results2 = new ArrayList<>();
+        List<Integer> results2notRR = new ArrayList(Arrays.asList(1,4,1,2,3,4,6,1,1,5,1,2,6,6));                  //5+ rr 1
+        List<Integer> results2RR = new ArrayList(Arrays.asList(6,4,4,2,3,4,6,5,5,5,2,2,6,6));                  //5+ rr 1
+        List<List<Integer>> results3 = new ArrayList<>();
+        List<Integer> results3notRR = new ArrayList(Arrays.asList(5,2,4,3,1,5,6));                  //3- rr
+        List<Integer> results3RR = new ArrayList(Arrays.asList(5,6,4,3,5,5,6));                  //3- rr
 
-        ArrayList<DiceRoll> diceRolls = new ArrayList<>();
+        List<DiceRoll> diceRolls = new ArrayList<>();
         DiceRoll diceRoll1 = new DiceRoll.DiceRollBuilder(30, 3).build();
         DiceRoll diceRoll2 = new DiceRoll.DiceRollBuilder(10, 5).reroll(true).failures(true).build();
         DiceRoll diceRoll3 = new DiceRoll.DiceRollBuilder(5, 4).reroll(true).valueToReRoll(6).build();

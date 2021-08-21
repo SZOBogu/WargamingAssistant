@@ -6,8 +6,7 @@ import rosterBuilder.RuleViolationLog;
 
 public class CategoryPointCapExceedRule implements Rule {
     public void check(Roster roster, int detachmentNumber, int categoryNumber) {
-        RosterCostCalculator rosterCostCalculator = new RosterCostCalculator();
-        if(rosterCostCalculator.calculateCategoryCost(
+        if(RosterCostCalculator.calculateCategoryCost(
                 roster,detachmentNumber, categoryNumber) > roster.getDetachments().
                 get(detachmentNumber).getArmy().getArmySubcategory(categoryNumber).getCategoryPointCap()){
             RuleViolationLog.appendRosterRuleViolationLog(

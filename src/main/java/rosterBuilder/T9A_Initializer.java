@@ -17,11 +17,16 @@ public class T9A_Initializer implements IWargameInitializer {
     public WargamingSystem initWargame() {
         WargamingSystem T9A = new WargamingSystem("The 9th Age");
 
-        Detachment looseDetachment = new Detachment("Loose Detachment", 6, 0);
-        Detachment rigidDetachment = new Detachment("Rigid Detachment", new ArrayList<>(
-                Arrays.asList(1,1,0,0,0)), new ArrayList<>(Arrays.asList(2,3,3,3,3)), 0);
-        Detachment bigRigidDetachment = new Detachment("Rigid with too many slots available Detachment",
-                new ArrayList<>(Arrays.asList(1,1,0,0,0)), new ArrayList<>(Arrays.asList(20,30,30,30,30)), 0);
+        Detachment looseDetachment = new Detachment.DetachmentBuilder("Loose Detachment", 6).build();
+        Detachment rigidDetachment = new Detachment.DetachmentBuilder("Rigid Detachment")
+                .arrayOfMandatoryChoicesInCategories(new ArrayList<>(Arrays.asList(1,1,0,0,0)))
+                .arrayOfMaxChoicesPerCategory(new ArrayList<>(Arrays.asList(2,3,3,3,3)))
+                .build();
+
+        Detachment bigRigidDetachment = new Detachment.DetachmentBuilder("Rigid with too many slots available Detachment")
+                .arrayOfMandatoryChoicesInCategories(new ArrayList<>(Arrays.asList(1,1,0,0,0)))
+                .arrayOfMaxChoicesPerCategory(new ArrayList<>(Arrays.asList(20,30,30,30,30)))
+                .build();
 
         T9A.setDetachments(new ArrayList<>(Arrays.asList(looseDetachment, rigidDetachment, bigRigidDetachment)));
 

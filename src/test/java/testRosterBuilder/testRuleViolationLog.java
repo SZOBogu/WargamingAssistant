@@ -7,7 +7,6 @@ import rosterBuilder.RuleViolationLog;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class testRuleViolationLog {
-    RuleViolationLog ruleViolationLog = RuleViolationLog.getInstance();
 //TODO: co to maja byc za testy?
     @Test
     public void testGetUnitRuleViolationLog() {
