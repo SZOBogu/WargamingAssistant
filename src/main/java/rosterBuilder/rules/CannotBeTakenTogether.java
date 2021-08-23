@@ -1,5 +1,6 @@
 package rosterBuilder.rules;
 
+import rosterBuilder.exceptions.UnitBuildingException;
 import rosterBuilder.pojos.Entity;
 import rosterBuilder.utility.RuleViolationLog;
 import rosterBuilder.pojos.Unit;
@@ -11,7 +12,7 @@ public class CannotBeTakenTogether extends UnitBuildingRule implements Rule {
     @Override
     public void check(Unit unit) {
         if(unit.getNonBaseEquipment().contains(entity1) && unit.getNonBaseEquipment().contains(entity2)){
-            RuleViolationLog.appendUnitRuleViolationLog(
+            throw new UnitBuildingException(
                     entity1.getName() + " and " + entity2.getName() + " cannot be taken together");
         }
     }

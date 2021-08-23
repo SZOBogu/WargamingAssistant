@@ -4,6 +4,7 @@ public class CreateRosterRequest {
     private int pointCap;
     private int primaryArmyIndex;
     private int detachmentTypeIndex;
+    private int wargameId;
 
     public int getPointCap() {
         return pointCap;
@@ -27,5 +28,13 @@ public class CreateRosterRequest {
 
     public void setDetachmentTypeIndex(int detachmentTypeIndex) {
         this.detachmentTypeIndex = detachmentTypeIndex;
+    }
+
+    public int getWargameId() {
+        return wargameId;
+    }
+
+    public void setWargameId(int wargameId) {
+        this.wargameId = wargameId;
     }
 }

@@ -1,5 +1,6 @@
 package rosterBuilder.rules;
 
+import rosterBuilder.exceptions.UnitBuildingException;
 import rosterBuilder.pojos.Entity;
 import rosterBuilder.utility.RuleViolationLog;
 import rosterBuilder.pojos.Unit;
@@ -18,7 +19,7 @@ public class CannotHaveTogether extends UnitBuildingRule implements Rule {
         allEntities.addAll(unit.getBaseEquipmentAndRules());
 
         if(allEntities.contains(entity1) && allEntities.contains(entity2))
-            RuleViolationLog.appendUnitRuleViolationLog("Unit cannot have " + entity1.getName() +
+            throw new UnitBuildingException("Unit cannot have " + entity1.getName() +
                     " and " + entity2.getName() + " together.");
     }
 }

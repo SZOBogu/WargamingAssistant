@@ -2,7 +2,10 @@ package rosterBuilder.rules;
 
 import rosterBuilder.pojos.Entity;
 import rosterBuilder.pojos.Unit;
-public abstract class UnitBuildingRule implements Rule {
+
+import java.io.Serializable;
+
+public abstract class UnitBuildingRule implements Rule, Serializable {
     protected Entity entity1;
     protected Entity entity2;
     protected int modelQuantity;

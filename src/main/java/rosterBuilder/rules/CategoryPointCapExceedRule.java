@@ -1,5 +1,6 @@
 package rosterBuilder.rules;
 
+import rosterBuilder.exceptions.RosterBuildingException;
 import rosterBuilder.pojos.Roster;
 import rosterBuilder.utility.RosterCostCalculator;
 import rosterBuilder.utility.RuleViolationLog;
@@ -9,7 +10,7 @@ public class CategoryPointCapExceedRule implements Rule {
         if(RosterCostCalculator.calculateCategoryCost(
                 roster,detachmentNumber, categoryNumber) > roster.getDetachments().
                 get(detachmentNumber).getArmy().getArmySubcategory(categoryNumber).getCategoryPointCap()){
-            RuleViolationLog.appendRosterRuleViolationLog(
+            throw new RosterBuildingException(
                     roster.getDetachments().get(detachmentNumber).getArmy().
                             getArmySubcategory(categoryNumber).getName() + " Category Point Limit Exceeded.");
         }

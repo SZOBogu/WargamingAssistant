@@ -1,5 +1,6 @@
 package rosterBuilder.rules;
 
+import rosterBuilder.exceptions.RosterBuildingException;
 import rosterBuilder.pojos.Entity;
 import rosterBuilder.utility.ModelCounter;
 import rosterBuilder.pojos.Roster;
@@ -13,7 +14,7 @@ public class CannotHaveMoreModelsWithThan extends RosterBuildingRule implements 
     @Override
     public void check(Roster roster) {
         if(ModelCounter.countModelsWith(roster, entity) > quantity){
-            RuleViolationLog.appendRosterRuleViolationLog("Roster cannot contain more than " +
+            throw new RosterBuildingException("Roster cannot contain more than " +
                     quantity + " models with " + entity.getName() + ".");
         }
     }

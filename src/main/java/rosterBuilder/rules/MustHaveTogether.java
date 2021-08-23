@@ -1,5 +1,6 @@
 package rosterBuilder.rules;
 
+import rosterBuilder.exceptions.UnitBuildingException;
 import rosterBuilder.pojos.Entity;
 import rosterBuilder.utility.RuleViolationLog;
 import rosterBuilder.pojos.Unit;
@@ -18,7 +19,7 @@ public class MustHaveTogether extends UnitBuildingRule implements Rule {
         all.addAll(unit.getNonBaseEquipment());
 
         if(all.contains(entity1) && !all.contains(entity2))
-            RuleViolationLog.appendUnitRuleViolationLog("Unit must have " + entity1.getName() +
+            throw new UnitBuildingException("Unit must have " + entity1.getName() +
                     " and " + entity2.getName() + " together.");
     }
 }

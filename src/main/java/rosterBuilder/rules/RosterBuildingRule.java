@@ -3,7 +3,9 @@ package rosterBuilder.rules;
 import rosterBuilder.pojos.Entity;
 import rosterBuilder.pojos.Roster;
 
-public abstract class RosterBuildingRule implements Rule {
+import java.io.Serializable;
+
+public abstract class RosterBuildingRule implements Rule, Serializable {
     protected Entity entity;
     protected int quantity;
 

@@ -1,14 +1,11 @@
 package rosterBuilder.requests;
 
-import rosterBuilder.pojos.Roster;
-import rosterBuilder.pojos.Unit;
 
-public class AddUnitRequest {
+import rosterBuilder.pojos.Roster;
+
+public class AddDetachmentRequest {
     private Roster roster;
-    private Unit unit;
-    private int armyIndex;
     private int detachmentIndex;
-    private int categoryIndex;
     private int wargameId;
 
     public Roster getRoster() {
@@ -19,36 +16,12 @@ public class AddUnitRequest {
         this.roster = roster;
     }
 
-    public Unit getUnit() {
-        return unit;
-    }
-
-    public void setUnit(Unit unit) {
-        this.unit = unit;
-    }
-
-    public int getArmyIndex() {
-        return armyIndex;
-    }
-
-    public void setArmyIndex(int armyIndex) {
-        this.armyIndex = armyIndex;
-    }
-
     public int getDetachmentIndex() {
         return detachmentIndex;
     }
 
     public void setDetachmentIndex(int detachmentIndex) {
         this.detachmentIndex = detachmentIndex;
-    }
-
-    public int getCategoryIndex() {
-        return categoryIndex;
-    }
-
-    public void setCategoryIndex(int categoryIndex) {
-        this.categoryIndex = categoryIndex;
     }
 
     public int getWargameId() {

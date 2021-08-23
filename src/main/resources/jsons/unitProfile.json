@@ -1,0 +1,549 @@
+{
+  "name": "Beast Lord",
+  "minModels": 1,
+  "maxModels": 1,
+  "initialCost": 215,
+  "additionalModelCost": 0,
+  "unitsPerArmy": 100,
+  "rules": [
+    {}
+  ],
+  "pool": {
+    "available": [
+      {
+        "name": "Unique Weapon",
+        "description": "",
+        "parameter": "",
+        "statline": {
+          "statline": []
+        }
+      },
+      {
+        "name": "Unique Armour",
+        "description": "",
+        "parameter": "",
+        "statline": {
+          "statline": []
+        }
+      },
+      {
+        "name": "Unique Shield",
+        "description": "",
+        "parameter": "",
+        "statline": {
+          "statline": []
+        }
+      },
+      {
+        "name": "Unique Something",
+        "description": "",
+        "parameter": ""
+      },
+      {
+        "name": "Unique Daemon Weapon",
+        "description": "",
+        "parameter": "",
+        "statline": {
+          "statline": []
+        }
+      },
+      {
+        "name": "Unique Beast Weapon",
+        "description": "",
+        "parameter": "",
+        "statline": {
+          "statline": []
+        }
+      }
+    ]
+  },
+  "modelParts": [
+    {
+      "name": "Global",
+      "statline": {
+        "statline": [
+          {
+            "name": "Adv",
+            "value": "5\""
+          },
+          {
+            "name": "Mar",
+            "value": "10\""
+          },
+          {
+            "name": "Dis",
+            "value": "8"
+          }
+        ]
+      },
+      "specialRules": [
+        {
+          "name": "Strider",
+          "description": "",
+          "parameter": "Forest"
+        },
+        {
+          "name": "Pack Tactics",
+          "description": "",
+          "parameter": ""
+        }
+      ],
+      "equipment": []
+    },
+    {
+      "name": "Defensive",
+      "statline": {
+        "statline": [
+          {
+            "name": "HP",
+            "value": "3"
+          },
+          {
+            "name": "Def",
+            "value": "6"
+          },
+          {
+            "name": "Res",
+            "value": "5"
+          },
+          {
+            "name": "Arm",
+            "value": "0"
+          }
+        ]
+      },
+      "specialRules": [],
+      "equipment": [
+        {
+          "name": "Light Armour",
+          "description": "+1 Armour.",
+          "parameter": ""
+        }
+      ]
+    },
+    {
+      "name": "Offensive",
+      "statline": {
+        "statline": [
+          {
+            "name": "Att",
+            "value": "6"
+          },
+          {
+            "name": "Off",
+            "value": "6"
+          },
+          {
+            "name": "Str",
+            "value": "5"
+          },
+          {
+            "name": "AP",
+            "value": "2"
+          },
+          {
+            "name": "Agi",
+            "value": "5"
+          }
+        ]
+      },
+      "specialRules": [
+        {
+          "name": "Primal Instinct",
+          "description": "",
+          "parameter": ""
+        }
+      ],
+      "equipment": []
+    },
+    {
+      "name": "Other",
+      "statline": {
+        "statline": [
+          {
+            "name": "Size",
+            "value": "Standard"
+          },
+          {
+            "name": "Type",
+            "value": "Infantry"
+          },
+          {
+            "name": "Base",
+            "value": "25x25mm"
+          }
+        ]
+      },
+      "specialRules": [],
+      "equipment": []
+    }
+  ],
+  "optionSets": [
+    {
+      "itemListName": "",
+      "keyVerb": "take",
+      "options": [
+        {
+          "entity": {
+            "name": "General",
+            "description": "",
+            "parameter": ""
+          },
+          "cost": 0
+        },
+        {
+          "entity": {
+            "name": "Hunting Call",
+            "description": "",
+            "parameter": ""
+          },
+          "cost": 25
+        },
+        {
+          "entity": {
+            "name": "Heavy Armour",
+            "description": "+2 Armour.",
+            "parameter": ""
+          },
+          "cost": 15
+        },
+        {
+          "entity": {
+            "name": "Throwing Weapons",
+            "description": "",
+            "parameter": "5+",
+            "statline": {
+              "statline": [
+                {
+                  "name": "Range",
+                  "value": "8\""
+                },
+                {
+                  "name": "Shots",
+                  "value": "2"
+                },
+                {
+                  "name": "Strength",
+                  "value": "User"
+                },
+                {
+                  "name": "Armour Penetration",
+                  "value": "User"
+                },
+                {
+                  "name": "Attack Attributes",
+                  "value": "Accurate, Quick to Fire"
+                }
+              ]
+            }
+          },
+          "cost": 5
+        },
+        {
+          "entity": {
+            "name": "Shield",
+            "description": "",
+            "parameter": ""
+          },
+          "cost": 5
+        }
+      ],
+      "allEntities": [
+        {
+          "name": "General",
+          "description": "",
+          "parameter": ""
+        },
+        {
+          "name": "Hunting Call",
+          "description": "",
+          "parameter": ""
+        },
+        {
+          "name": "Heavy Armour",
+          "description": "+2 Armour.",
+          "parameter": ""
+        },
+        {
+          "name": "Throwing Weapons",
+          "description": "",
+          "parameter": "5+",
+          "statline": {
+            "statline": [
+              {
+                "name": "Range",
+                "value": "8\""
+              },
+              {
+                "name": "Shots",
+                "value": "2"
+              },
+              {
+                "name": "Strength",
+                "value": "User"
+              },
+              {
+                "name": "Armour Penetration",
+                "value": "User"
+              },
+              {
+                "name": "Attack Attributes",
+                "value": "Accurate, Quick to Fire"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Shield",
+          "description": "",
+          "parameter": ""
+        }
+      ],
+      "description": "May take:",
+      "mandatory": false
+    },
+    {
+      "itemListName": "",
+      "keyVerb": "take",
+      "options": [
+        {
+          "entity": {
+            "name": "Paired Weapon",
+            "description": "",
+            "parameter": "",
+            "statline": {
+              "statline": []
+            }
+          },
+          "cost": 10
+        },
+        {
+          "entity": {
+            "name": "Great Weapon",
+            "description": "",
+            "parameter": "",
+            "statline": {
+              "statline": []
+            }
+          },
+          "cost": 20
+        },
+        {
+          "entity": {
+            "name": "Lance",
+            "description": "",
+            "parameter": "",
+            "statline": {
+              "statline": []
+            }
+          },
+          "cost": 20
+        },
+        {
+          "entity": {
+            "name": "Beast Axe",
+            "description": "",
+            "parameter": "",
+            "statline": {
+              "statline": []
+            }
+          },
+          "cost": 25
+        }
+      ],
+      "description": "May take (one choice only):",
+      "allEntities": [
+        {
+          "name": "Paired Weapon",
+          "description": "",
+          "parameter": "",
+          "statline": {
+            "statline": []
+          }
+        },
+        {
+          "name": "Great Weapon",
+          "description": "",
+          "parameter": "",
+          "statline": {
+            "statline": []
+          }
+        },
+        {
+          "name": "Lance",
+          "description": "",
+          "parameter": "",
+          "statline": {
+            "statline": []
+          }
+        },
+        {
+          "name": "Beast Axe",
+          "description": "",
+          "parameter": "",
+          "statline": {
+            "statline": []
+          }
+        }
+      ],
+      "mandatory": false
+    },
+    {
+      "itemListName": "",
+      "keyVerb": "take",
+      "options": [
+        {
+          "entity": {
+            "name": "Raiding Chariot",
+            "description": "See Army Book",
+            "parameter": ""
+          },
+          "cost": 90
+        },
+        {
+          "entity": {
+            "name": "Razortusk Chariot",
+            "description": "See Army Book",
+            "parameter": ""
+          },
+          "cost": 125
+        }
+      ],
+      "description": "May take (one choice only):",
+      "allEntities": [
+        {
+          "name": "Raiding Chariot",
+          "description": "See Army Book",
+          "parameter": ""
+        },
+        {
+          "name": "Razortusk Chariot",
+          "description": "See Army Book",
+          "parameter": ""
+        }
+      ],
+      "mandatory": false
+    },
+    {
+      "itemListName": "",
+      "keyVerb": "take",
+      "options": [
+        {
+          "entity": {
+            "name": "Unique Weapon",
+            "description": "",
+            "parameter": "",
+            "statline": {
+              "statline": []
+            }
+          },
+          "cost": 110
+        },
+        {
+          "entity": {
+            "name": "Unique Armour",
+            "description": "",
+            "parameter": "",
+            "statline": {
+              "statline": []
+            }
+          },
+          "cost": 80
+        },
+        {
+          "entity": {
+            "name": "Unique Shield",
+            "description": "",
+            "parameter": "",
+            "statline": {
+              "statline": []
+            }
+          },
+          "cost": 50
+        },
+        {
+          "entity": {
+            "name": "Unique Something",
+            "description": "",
+            "parameter": ""
+          },
+          "cost": 25
+        },
+        {
+          "entity": {
+            "name": "Unique Beast Weapon",
+            "description": "",
+            "parameter": "",
+            "statline": {
+              "statline": []
+            }
+          },
+          "cost": 35
+        }
+      ],
+      "description": "May take (max 200 points):",
+      "allEntities": [
+        {
+          "name": "Unique Weapon",
+          "description": "",
+          "parameter": "",
+          "statline": {
+            "statline": []
+          }
+        },
+        {
+          "name": "Unique Armour",
+          "description": "",
+          "parameter": "",
+          "statline": {
+            "statline": []
+          }
+        },
+        {
+          "name": "Unique Shield",
+          "description": "",
+          "parameter": "",
+          "statline": {
+            "statline": []
+          }
+        },
+        {
+          "name": "Unique Something",
+          "description": "",
+          "parameter": ""
+        },
+        {
+          "name": "Unique Beast Weapon",
+          "description": "",
+          "parameter": "",
+          "statline": {
+            "statline": []
+          }
+        }
+      ],
+      "mandatory": false
+    }
+  ],
+  "baseEquipmentAndRules": [
+    {
+      "name": "Strider",
+      "description": "",
+      "parameter": "Forest"
+    },
+    {
+      "name": "Pack Tactics",
+      "description": "",
+      "parameter": ""
+    },
+    {
+      "name": "Light Armour",
+      "description": "+1 Armour.",
+      "parameter": ""
+    },
+    {
+      "name": "Primal Instinct",
+      "description": "",
+      "parameter": ""
+    }
+  ]
+}
