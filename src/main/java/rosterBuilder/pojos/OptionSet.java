@@ -4,34 +4,35 @@ import rosterBuilder.pojos.Entity;
 import rosterBuilder.pojos.Option;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public abstract class OptionSet {
+    protected List<Option> options;
     protected String itemListName;
     protected String keyVerb;
-    protected ArrayList<Option> options;
     protected boolean isMandatory;
 
     //TODO: builder
-    public OptionSet(ArrayList<Option> options){
+    public OptionSet(List<Option> options){
         this(options, "", "take", false);
     }
 
-    public OptionSet(ArrayList<Option> options, boolean isMandatory){
+    public OptionSet(List<Option> options, boolean isMandatory){
         this(options, "", "take", isMandatory);
     }
 
-    public OptionSet(ArrayList<Option> options, String itemListName, String keyVerb){
+    public OptionSet(List<Option> options, String itemListName, String keyVerb){
         this(options, itemListName, keyVerb, false);
     }
 
-    public OptionSet(ArrayList<Option> options, String itemListName, String keyVerb, boolean isMandatory){
+    public OptionSet(List<Option> options, String itemListName, String keyVerb, boolean isMandatory){
         this.options = options;
         this.itemListName = itemListName;
         this.keyVerb = keyVerb;
         this.isMandatory = isMandatory;
     }
 
-    public ArrayList<Option> getOptions() {
+    public List<Option> getOptions() {
         return options;
     }
 
@@ -58,8 +59,8 @@ public abstract class OptionSet {
         }
     }
 
-    public ArrayList<Entity> getAllEntities(){
-        ArrayList<Entity> entities = new ArrayList<>();
+    public List<Entity> getAllEntities(){
+        List<Entity> entities = new ArrayList<>();
         for (Option option : options) {
             entities.add(option.getEntity());
         }
@@ -70,7 +71,7 @@ public abstract class OptionSet {
         return isMandatory;
     }
 
-    public void setOptions(ArrayList<Option> options) {
+    public void setOptions(List<Option> options) {
         this.options = options;
     }
 }

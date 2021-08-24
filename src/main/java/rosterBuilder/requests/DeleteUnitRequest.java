@@ -4,9 +4,9 @@ import rosterBuilder.pojos.Roster;
 
 public class DeleteUnitRequest {
     private Roster roster;
-    private int detachmentId;
-    private int categoryId;
-    private int unitId;
+    private int detachmentIndex;
+    private int categoryIndex;
+    private int unitIndex;
     private int wargameId;
 
     public Roster getRoster() {
@@ -17,28 +17,28 @@ public class DeleteUnitRequest {
         this.roster = roster;
     }
 
-    public int getDetachmentId() {
-        return detachmentId;
+    public int getDetachmentIndex() {
+        return detachmentIndex;
     }
 
-    public void setDetachmentId(int detachmentId) {
-        this.detachmentId = detachmentId;
+    public void setDetachmentIndex(int detachmentIndex) {
+        this.detachmentIndex = detachmentIndex;
     }
 
-    public int getCategoryId() {
-        return categoryId;
+    public int getCategoryIndex() {
+        return categoryIndex;
     }
 
-    public void setCategoryId(int categoryId) {
-        this.categoryId = categoryId;
+    public void setCategoryIndex(int categoryIndex) {
+        this.categoryIndex = categoryIndex;
     }
 
-    public int getUnitId() {
-        return unitId;
+    public int getUnitIndex() {
+        return unitIndex;
     }
 
-    public void setUnitId(int unitId) {
-        this.unitId = unitId;
+    public void setUnitIndex(int unitIndex) {
+        this.unitIndex = unitIndex;
     }
 
     public int getWargameId() {

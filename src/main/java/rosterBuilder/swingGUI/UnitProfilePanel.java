@@ -130,7 +130,7 @@ public class UnitProfilePanel extends JPanel implements ActionListener {
                                 + ((int)this.modelQuantitySpinner.getValue() * this.unitProfile.getAdditionalModelCost()))
                     .build();
 
-            ArrayList<UnitBuildingRule> rules = this.unitProfile.getRules();
+            List<UnitBuildingRule> rules = this.unitProfile.getRules();
             for (UnitBuildingRule rule : rules) {
                 rule.check(unit);
             }

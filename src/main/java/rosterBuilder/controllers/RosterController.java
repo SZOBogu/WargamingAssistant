@@ -3,7 +3,6 @@ package rosterBuilder.controllers;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.FileSystemResource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,11 +12,12 @@ import rosterBuilder.pojos.*;
 import rosterBuilder.requests.*;
 import rosterBuilder.rules.RosterBuildingRule;
 import rosterBuilder.rules.UnitBuildingRule;
-import rosterBuilder.swingGUI.RosterDisplayMenu;
 import rosterBuilder.utility.RuleViolationLog;
 import rosterBuilder.utility.UnitAndProfileFinder;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/roster")
@@ -29,8 +29,27 @@ public class RosterController {
         return system.getArmy(armyIndex).getArmySubcategory(categoryIndex).getUnitProfile(unitIndex);
     }
 
+    @GetMapping("/unit")
+    public ResponseEntity<String> getUnitList(@RequestBody GetUnitListRequest request) throws JsonProcessingException {
+        List<List<String>> unitNameList = new ArrayList<>();
+        ObjectMapper mapper = new ObjectMapper();
+        String unitListJson = mapper.writeValueAsString(unitNameList);
+
+        try{
+            for(ArmySubcategory category : this.system.getArmy(request.getArmyIndex()).getArmySubcategories()){
+                unitNameList.add(category.getUnitProfiles().stream().map(UnitProfile::getName).collect(Collectors.toList()));
+            }
+        }
+        catch(IndexOutOfBoundsException ex){
+            return new ResponseEntity<>(unitListJson, HttpStatus.BAD_REQUEST);
+        }
+
+        unitListJson = mapper.writeValueAsString(unitNameList);
+        return new ResponseEntity<>(unitListJson, HttpStatus.OK);
+    }
+
     @PostMapping("/unit")
-    public ResponseEntity<String> addUnit(@RequestBody AddUnitRequest request) throws JsonProcessingException {
+    public ResponseEntity<String> addUnit(@RequestBody SaveUnitRequest request) throws JsonProcessingException {
         Roster roster = request.getRoster();
         Unit unit = request.getUnit();
         UnitProfile unitProfile = UnitAndProfileFinder.getProfile(system.getArmy(request.getArmyIndex()), unit);
@@ -60,13 +79,20 @@ public class RosterController {
     @DeleteMapping("/unit")
     public Roster deleteUnit(@RequestBody DeleteUnitRequest request){
         Roster roster = request.getRoster();
-        roster.getDetachments().get(request.getDetachmentId()).deleteUnit(request.getCategoryId(), request.getUnitId());
+        roster.getDetachments().get(request.getDetachmentIndex()).deleteUnit(request.getCategoryIndex(), request.getUnitIndex());
 
         return roster;
     }
 
+    @GetMapping("/detachment")
+    public List<Detachment> getDetachmentList(@RequestBody GetDetachmentTypeListRequest request){
+        List<Detachment> detachmentTypes = this.system.getDetachments();
+
+        return detachmentTypes;
+    }
+
     @PostMapping("/detachment")
-    public Roster addDetachment(@RequestBody AddDetachmentRequest request){
+    public Roster addDetachment(@RequestBody SaveDetachmentRequest request){
         Roster roster = request.getRoster();
         roster.addDetachment(this.system.getDetachments().get(request.getDetachmentIndex()));
         return roster;
@@ -99,14 +125,6 @@ public class RosterController {
             RuleViolationLog.clear();
             return new ResponseEntity<>(ruleViolations, HttpStatus.BAD_REQUEST);
         }
-    }
-
-    @GetMapping("/file")
-    public ResponseEntity<FileSystemResource> getFile(@RequestBody Roster roster){
-//        String fullPath = stuffService.figureOutFileNameFor(stuffId);
-//        File file = new File(fullPath);
-//        long fileLength = file.length();
-        return null;
     }
 
     @Autowired

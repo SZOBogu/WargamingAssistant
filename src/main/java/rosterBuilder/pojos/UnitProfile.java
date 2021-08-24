@@ -3,40 +3,41 @@ package rosterBuilder.pojos;
 import rosterBuilder.rules.UnitBuildingRule;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class UnitProfile {
     private final String name;
-    private final ArrayList<ModelPart> modelsParts;
-    private ArrayList<OptionSet> options;
+    private final List<ModelPart> modelsParts;
+    private List<OptionSet> options;
     private final int minModels;
     private final int maxModels;
     private final int initialCost;
     private int additionalModelCost;
     private int unitsPerArmy;
-    private ArrayList<UnitBuildingRule> rules;
-    private UniqueEntitiesPool pool;            //?????? TODO: look it up
+    private List<UnitBuildingRule> rules;
+    private UniqueEntitiesPool pool;
 
     public UnitProfile(){
         this("", new ArrayList<>(), new ArrayList<>(),
                 0, 1, 1,0,100);
     }
-    public UnitProfile(String name, ArrayList<ModelPart> modelParts, ArrayList<OptionSet> options, int initialCost){
+    public UnitProfile(String name, List<ModelPart> modelParts, List<OptionSet> options, int initialCost){
         this(name, modelParts, options, initialCost,
                 1, 1,0,100);
     }
 
-    public UnitProfile(String name, ArrayList<ModelPart> modelParts, ArrayList<OptionSet> options,
+    public UnitProfile(String name, List<ModelPart> modelParts, List<OptionSet> options,
                        int initialCost, int unitsPerArmy){
         this(name, modelParts, options, initialCost, 1, 1,0,unitsPerArmy);
     }
 
-    public UnitProfile(String name, ArrayList<ModelPart> modelParts, ArrayList<OptionSet> options,
+    public UnitProfile(String name, List<ModelPart> modelParts, List<OptionSet> options,
                        int initialCost, int minModels, int maxModels, int additionalModelCost){
         this(name, modelParts, options, initialCost, minModels, maxModels,additionalModelCost, 100);
     }
 
-    public UnitProfile(String name, ArrayList<ModelPart> modelParts, ArrayList<OptionSet> options,
+    public UnitProfile(String name, List<ModelPart> modelParts, List<OptionSet> options,
                        int initialCost, int minModels, int maxModels, int additionalModelCost, int unitsPerArmy){
         this.name = name;
         this.modelsParts = modelParts;
@@ -54,11 +55,11 @@ public class UnitProfile {
         return name;
     }
 
-    public ArrayList<ModelPart> getModelParts() {
+    public List<ModelPart> getModelParts() {
         return modelsParts;
     }
 
-    public ArrayList<OptionSet> getOptionSets() {
+    public List<OptionSet> getOptionSets() {
         return options;
     }
 
@@ -90,11 +91,11 @@ public class UnitProfile {
         this.unitsPerArmy = unitsPerArmy;
     }
 
-    public ArrayList<UnitBuildingRule> getRules() {
+    public List<UnitBuildingRule> getRules() {
         return rules;
     }
 
-    public void setRules(ArrayList<UnitBuildingRule> rules) {
+    public void setRules(List<UnitBuildingRule> rules) {
         this.rules = rules;
     }
 
@@ -114,8 +115,8 @@ public class UnitProfile {
         return string.toString();
     }
 
-    public ArrayList<Entity> getBaseEquipmentAndRules() {
-        ArrayList<Entity> entities = new ArrayList<>();
+    public List<Entity> getBaseEquipmentAndRules() {
+        List<Entity> entities = new ArrayList<>();
         for (ModelPart modelsPart : this.modelsParts) {
             entities.addAll(modelsPart.getEquipment());
             entities.addAll(modelsPart.getSpecialRules());
@@ -135,11 +136,11 @@ public class UnitProfile {
         if (this.pool == null)
             System.out.println(" ");
         else {
-            ArrayList<OptionSet> temp = this.options;
+            List<OptionSet> temp = this.options;
             this.options = new ArrayList<>();
             for (OptionSet optionSet : temp) {
                 //TODO: blad jest tutaj
-                ArrayList<Option> filteredOptions = new ArrayList<>();
+                List<Option> filteredOptions = new ArrayList<>();
                 for (int j = 0; j < optionSet.getOptions().size(); j++) {
                     if (this.pool.getAvailable().contains(optionSet.getOptions().get(j).getEntity()) || !this.pool.contains(optionSet.getOptions().get(j).getEntity())) {
                         filteredOptions.add(optionSet.getOptions().get(j));

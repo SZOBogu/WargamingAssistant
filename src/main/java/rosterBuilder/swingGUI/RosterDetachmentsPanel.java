@@ -18,8 +18,8 @@ public class RosterDetachmentsPanel extends JPanel implements ActionListener, Re
     private JButton addDetachmentButton;
     private JButton readyButton;
     private JButton backButton;
-    private ArrayList<DetachmentPanel> detachmentPanels;
-    private ArrayList<JButton> deleteDetachmentButtons;
+    private List<DetachmentPanel> detachmentPanels;
+    private List<JButton> deleteDetachmentButtons;
     private WargamingSystem wargamingSystem;
     private RosterObserverSubject roster;
 
@@ -128,7 +128,7 @@ public class RosterDetachmentsPanel extends JPanel implements ActionListener, Re
         }
         else if(clicked == backButton){
             WargameSystemsInitializer initializer = new WargameSystemsInitializer();
-            ArrayList<WargamingSystem> wargamingSystems = new ArrayList<>(initializer.initialize());
+            List<WargamingSystem> wargamingSystems = new ArrayList<>(initializer.initialize());
 //            new SystemSelectionMenu(wargamingSystems, ModulesEnum.ROSTER_BUILDER);
 
             topFrame.dispose();

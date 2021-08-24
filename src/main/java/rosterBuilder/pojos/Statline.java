@@ -1,17 +1,18 @@
 package rosterBuilder.pojos;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class Statline {
-    private final ArrayList<Statistic> statline;
+    private final List<Statistic> statline;
 
     public Statline(){ this(new ArrayList<>()); }
-    public Statline(ArrayList<Statistic> statistics){
+    public Statline(List<Statistic> statistics){
         this.statline = statistics;
     }
 
-    public ArrayList<Statistic> getStatline(){
+    public List<Statistic> getStatline(){
         return statline;
     }
 

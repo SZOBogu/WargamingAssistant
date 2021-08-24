@@ -32,6 +32,10 @@ public class ArmySubcategory {
         return unitProfiles.get(index);
     }
 
+    public ArrayList<UnitProfile> getUnitProfiles() {
+        return unitProfiles;
+    }
+
     public int size(){
         return this.unitProfiles.size();
     }

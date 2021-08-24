@@ -32,6 +32,10 @@ public class Army {
         this.armySubcategories.set(index, armySubcategory);
     }
 
+    public ArrayList<ArmySubcategory> getArmySubcategories() {
+        return armySubcategories;
+    }
+
     public ImageIcon getImg() {
         return img;
     }

@@ -6,11 +6,12 @@ import rosterBuilder.pojos.OptionSet;
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.List;
 
 public class OptionPanelsPanel extends JPanel {
-    private ArrayList<OptionPanel> optionPanels;
+    private final List<OptionPanel> optionPanels;
 
-    public OptionPanelsPanel(ArrayList<OptionSet> optionSets){
+    public OptionPanelsPanel(List<OptionSet> optionSets){
         this.optionPanels = new ArrayList<>();
         for (OptionSet optionSet : optionSets) {
             optionPanels.add(new OptionPanel(optionSet));
@@ -33,8 +34,8 @@ public class OptionPanelsPanel extends JPanel {
         }
     }
 
-    public ArrayList<Entity> getChosenEquipment(){
-        ArrayList<Entity> chosenEquipment = new ArrayList<>();
+    public List<Entity> getChosenEquipment(){
+        List<Entity> chosenEquipment = new ArrayList<>();
         for (OptionPanel optionPanel : this.optionPanels) {
             chosenEquipment.addAll(optionPanel.getChosenEntities());
         }
@@ -49,7 +50,7 @@ public class OptionPanelsPanel extends JPanel {
         return chosenEquipmentCost;
     }
 
-    public ArrayList<OptionPanel> getOptionPanels() {
+    public List<OptionPanel> getOptionPanels() {
         return optionPanels;
     }
 }
