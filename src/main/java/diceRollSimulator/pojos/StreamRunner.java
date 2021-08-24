@@ -1,13 +1,10 @@
 package diceRollSimulator.pojos;
 
-import diceRollSimulator.utility.DiceRoll;
-import org.springframework.beans.factory.annotation.Autowired;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class StreamRunner {
-    private ReportGenerator reportGenerator = new ReportGenerator();
+    private final ReportGenerator reportGenerator = new ReportGenerator();
 
     public int runDiceRoll(DiceRoll diceRoll, int number){
         List<List<Integer>> results = diceRoll.makeDiceRoll();
@@ -32,7 +29,7 @@ public class StreamRunner {
         return successes;
     }
 
-    public String runAll(ArrayList<DiceRoll> diceRolls){
+    public String runAll(List<DiceRoll> diceRolls){
         int successes = 0;
         for(int i=0; i < diceRolls.size(); i++){
             successes = runDiceRoll(diceRolls.get(i), i);

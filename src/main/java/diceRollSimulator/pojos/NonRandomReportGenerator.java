@@ -1,11 +1,10 @@
 package diceRollSimulator.pojos;
 
-import diceRollSimulator.utility.DiceRoll;
-
 import java.util.ArrayList;
+import java.util.List;
 
 public class NonRandomReportGenerator {
-    public static String generateReport(ArrayList<DiceRoll> diceRolls){
+    public static String generateReport(List<DiceRoll> diceRolls){
         StringBuilder report;
         ArrayList<Double> probabilities = new ArrayList<>();
         ProbabilityCalculator calculator = new ProbabilityCalculator();

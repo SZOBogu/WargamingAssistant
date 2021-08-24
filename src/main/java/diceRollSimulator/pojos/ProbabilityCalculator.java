@@ -1,7 +1,5 @@
 package diceRollSimulator.pojos;
 
-import diceRollSimulator.utility.DiceRoll;
-
 public class ProbabilityCalculator {
     public double calculateChanceOfNonRerolledSuccess(DiceRoll diceRoll){
         return ((double)diceRoll.getDiceSides() - (double)diceRoll.getSuccessValue() + 1.) / (double)diceRoll.getDiceSides();

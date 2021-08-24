@@ -1,6 +1,5 @@
 package diceRollSimulator.pojos;
 
-import diceRollSimulator.utility.DiceRoll;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

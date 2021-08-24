@@ -1,18 +1,19 @@
-package diceRollSimulator.utility;
+package diceRollSimulator.pojos;
 
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Component
 public class DiceRollList {
-    private final ArrayList<DiceRoll> diceRolls;
+    private final List<DiceRoll> diceRolls;
 
     public DiceRollList(){
         this.diceRolls = new ArrayList<>();
     }
 
-    public ArrayList<DiceRoll> getDiceRolls(){
+    public List<DiceRoll> getDiceRolls(){
         return this.diceRolls;
     }
 

@@ -49,7 +49,7 @@ public class RosterController {
     }
 
     @PostMapping("/unit")
-    public ResponseEntity<String> addUnit(@RequestBody SaveUnitRequest request) throws JsonProcessingException {
+    public ResponseEntity<String> saveUnit(@RequestBody SaveUnitRequest request) throws JsonProcessingException {
         Roster roster = request.getRoster();
         Unit unit = request.getUnit();
         UnitProfile unitProfile = UnitAndProfileFinder.getProfile(system.getArmy(request.getArmyIndex()), unit);
@@ -92,7 +92,7 @@ public class RosterController {
     }
 
     @PostMapping("/detachment")
-    public Roster addDetachment(@RequestBody SaveDetachmentRequest request){
+    public Roster saveDetachment(@RequestBody SaveDetachmentRequest request){
         Roster roster = request.getRoster();
         roster.addDetachment(this.system.getDetachments().get(request.getDetachmentIndex()));
         return roster;

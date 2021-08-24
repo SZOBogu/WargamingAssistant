@@ -1,4 +1,4 @@
-package diceRollSimulator.utility;
+package diceRollSimulator.pojos;
 
 import common.Dice;
 

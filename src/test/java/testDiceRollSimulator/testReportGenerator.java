@@ -1,6 +1,6 @@
 package testDiceRollSimulator;
 
-import diceRollSimulator.utility.DiceRoll;
+import diceRollSimulator.pojos.DiceRoll;
 import diceRollSimulator.pojos.ReportGenerator;
 import org.junit.jupiter.api.Test;
 
