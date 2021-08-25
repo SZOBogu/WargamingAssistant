@@ -5,3 +5,5 @@ class DeleteDetachmentRequest {
         this.wargameId = wargameId;
     }
 }
+
+export default DeleteDetachmentRequest;

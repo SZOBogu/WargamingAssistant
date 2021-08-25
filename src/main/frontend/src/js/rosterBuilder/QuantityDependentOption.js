@@ -4,3 +4,5 @@ class QuantityDependentOption extends Option {
         this.modelQuantity = modelQuantity;
     }
 }
+
+export default QuantityDependentOption;

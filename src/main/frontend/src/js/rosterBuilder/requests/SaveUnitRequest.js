@@ -8,3 +8,5 @@ class SaveUnitRequest {
         this.wargameId = wargameId;
     }
 }
+
+export default SaveUnitRequest;

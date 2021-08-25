@@ -4,3 +4,5 @@ class GetUnitListRequest {
         this.armyIndex = armyIndex;
     }
 }
+
+export default GetUnitListRequest;

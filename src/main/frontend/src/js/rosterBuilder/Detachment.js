@@ -9,3 +9,5 @@ class Detachment{
         this.arrayOfMaxChoicesPerCategory = arrayOfMaxChoicesPerCategory;
     }
 }
+
+export default Detachment;

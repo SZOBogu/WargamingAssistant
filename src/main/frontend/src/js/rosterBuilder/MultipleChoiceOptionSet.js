@@ -3,3 +3,5 @@ class MultipleChoiceOptionSet extends OptionSet{
         super();
     }
 }
+
+export default MultipleChoiceOptionSet;

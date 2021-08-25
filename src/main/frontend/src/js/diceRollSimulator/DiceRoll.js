@@ -8,3 +8,5 @@ class DiceRoll {
         this.diceSides = diceSides;
     }
 }
+
+export default DiceRoll;

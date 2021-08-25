@@ -4,3 +4,5 @@ class Option {
         this.cost = cost;
     }
 }
+
+export default Option;

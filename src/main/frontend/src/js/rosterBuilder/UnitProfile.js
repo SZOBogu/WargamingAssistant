@@ -10,3 +10,5 @@ class UnitProfile{
         this.unitsPerArmy = unitsPerArmy;
     }
 }
+
+export default UnitProfile;

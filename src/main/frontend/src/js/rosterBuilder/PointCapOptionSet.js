@@ -4,3 +4,5 @@ class PointCapOptionSet extends MultipleChoiceOptionSet{
         this.pointCap = pointCap;
     }
 }
+
+export default PointCapOptionSet;

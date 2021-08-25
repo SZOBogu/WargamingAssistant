@@ -6,3 +6,5 @@ class ModelPart {
         this.equipment = equipment;
     }
 }
+
+export default ModelPart;

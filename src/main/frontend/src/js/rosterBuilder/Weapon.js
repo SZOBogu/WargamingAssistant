@@ -4,3 +4,5 @@ class Weapon extends Entity{
         this.statline = statline
     }
 }
+
+export default Weapon;

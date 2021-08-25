@@ -4,3 +4,5 @@ class Statline {
     }
 
 }
+
+export default Statline;

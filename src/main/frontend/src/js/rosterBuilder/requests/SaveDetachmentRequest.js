@@ -5,3 +5,5 @@ class SaveDetachmentRequest {
         this.wargameId = wargameId;
     }
 }
+
+export default SaveDetachmentRequest;

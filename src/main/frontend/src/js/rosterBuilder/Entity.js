@@ -4,3 +4,5 @@ class Entity {
         this.description = description;
     }
 }
+
+export default Entity;

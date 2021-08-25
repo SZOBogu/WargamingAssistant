@@ -7,3 +7,5 @@ class Unit {
         this.pointCost = pointCost;
     }
 }
+
+export default Unit;

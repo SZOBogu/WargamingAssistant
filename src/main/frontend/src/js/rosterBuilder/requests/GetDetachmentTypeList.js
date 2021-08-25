@@ -3,3 +3,5 @@ class GetDetachmentTypeListRequest {
         this.wargameId = wargameId;
     }
 }
+
+export default GetDetachmentTypeListRequest;

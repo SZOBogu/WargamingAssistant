@@ -11,3 +11,5 @@ class OptionSet {
         }
     }
 }
+
+export default OptionSet;

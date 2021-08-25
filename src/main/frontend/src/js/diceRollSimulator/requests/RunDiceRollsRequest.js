@@ -3,3 +3,5 @@ class RunDiceRollsRequest {
         this.diceRollList = diceRollList;
     }
 }
+
+export default RunDiceRollsRequest;

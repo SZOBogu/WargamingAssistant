@@ -3,3 +3,5 @@ class SingleChoiceOptionSet extends OptionSet {
         super();
     }
 }
+
+export default SingleChoiceOptionSet;

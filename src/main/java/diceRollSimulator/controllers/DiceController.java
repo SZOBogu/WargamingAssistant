@@ -8,14 +8,15 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/dice")
 public class DiceController {
-    @RequestMapping("/run")
+    @RequestMapping()
     public String runAndGetReport(@RequestBody RunDiceRollsRequest request){
+        System.out.println("DiceController: " + request.getDiceRollList());
         StreamRunner runner = new StreamRunner();
         runner.runAll(request.getDiceRollList());
         return runner.getReport();
     }
 
-    @RequestMapping("/run/nonrandom")
+    @RequestMapping("/nonrandom")
     public String runAndGetNonRandomReport(@RequestBody RunDiceRollsRequest request){
         return NonRandomReportGenerator.generateReport(request.getDiceRollList());
     }

@@ -7,3 +7,5 @@ class DeleteUnitRequest {
         this.wargameId = wargameId;
     }
 }
+
+export default DeleteUnitRequest;

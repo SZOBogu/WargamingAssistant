@@ -4,3 +4,5 @@ class Statistic {
         this.value = value;
     }
 }
+
+export default Statistic;
