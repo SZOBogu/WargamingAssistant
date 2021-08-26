@@ -14,4 +14,11 @@ public class RunDiceRollsRequest {
     public void setDiceRollList(List<DiceRoll> diceRollList) {
         this.diceRollList = diceRollList;
     }
+
+    @Override
+    public String toString() {
+        return "RunDiceRollsRequest{" +
+                "diceRollList=" + diceRollList +
+                '}';
+    }
 }

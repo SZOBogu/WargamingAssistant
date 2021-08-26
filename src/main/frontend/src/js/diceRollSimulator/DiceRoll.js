@@ -7,6 +7,10 @@ class DiceRoll {
         this.failures = failures;
         this.diceSides = diceSides;
     }
+
+    static castObjectToDiceRoll(obj) {
+        return Object.assign(this, obj)
+    }
 }
 
 export default DiceRoll;

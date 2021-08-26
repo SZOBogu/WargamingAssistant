@@ -1,53 +1,68 @@
-import React, {useState} from "react";
+import React, {useContext, useState} from "react";
 import axios from 'axios'
 import DiceRoll from "../js/diceRollSimulator/DiceRoll";
 import RunDiceRollsRequest from "../js/diceRollSimulator/requests/RunDiceRollsRequest";
+import DiceRollList from "./DiceRollList";
+import {DiceContext} from "./DiceContext";
 
 function DiceRollComponent(){
-    const [quantity, setName] = useState('')
+    const [quantity, setQuantity] = useState('')
     const [successValue, setSuccessValue] = useState('')
-    const [reroll, setReroll] = useState('')
-    const [valueToReRoll, setValueToReRoll] = useState('')
-    const [failures, setFailures] = useState('')
-    const [diceSides, setDiceSides] = useState('')
+    const [reroll, setReroll] = useState(false)
+    const [valueToReRoll, setValueToReRoll] = useState(-1)
+    const [failures, setFailures] = useState(false)
+    const [diceSides, setDiceSides] = useState(6)
+    const [response, setResponse] = useState('')
 
-    const bullshitDiceRoll = new DiceRoll(50, 3, false, -1, false, 6);
-    const diceRollList = [];
-    var responseData = "";
+    const {addDiceRoll} = useContext(DiceContext)
+    const {diceRolls} = useContext(DiceContext)
+    const {clearDiceRolls} = useContext(DiceContext)
 
     const handleSubmit = (e) => {
-        const url = "http://localhost:8080/dice/";
+        e.preventDefault()
+        const url = 'http://localhost:8080/dice/';
 
-        const rollRequest = new RunDiceRollsRequest(diceRollList);
+        let diceRoll1 = new DiceRoll(23,3,false,-1,false,6);
+        let diceRoll2 = new DiceRoll(23,4,false,-1,false,6);
+        let diceRoll3 = new DiceRoll(23,5,false,-1,false,6);
 
-        axios.post(url, rollRequest).then(response => {
-            responseData = response.data
-        })
+        let diceRollsLocal = [diceRoll1, diceRoll2, diceRoll3];
+
+        const rollRequest = new RunDiceRollsRequest(diceRollsLocal);
+
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(rollRequest)
+        };
+
+        console.log(JSON.stringify(rollRequest))
+
+        fetch(url, requestOptions).then(r => console.log(r));
+
+        clearDiceRolls()
     }
 
-    const handleSubmitNonRandom = (e) => {
-        const url = "http://localhost:8080/dice/nonrandom";
+    const handleSubmitNonRandom = async (e) => {
+        e.preventDefault()
+        const url = 'http://localhost:8080/dice/nonrandom';
 
-        const rollRequest = new RunDiceRollsRequest(diceRollList);
+        const rollRequest = new RunDiceRollsRequest(diceRolls);
 
-        axios.post(url, rollRequest).then(response => {
-            responseData = response.data
-        })
+        const response = await axios.post(url, rollRequest)
+
+        clearDiceRolls()
     }
 
     const handleAddButton = (e) => {
-        const diceRoll = new DiceRoll(quantity, successValue, reroll, successValue, valueToReRoll, failures, diceSides);
-
-        var element = document.getElementById("pppp");
-        element.innerText =
-            "quantity: " +  diceRollList.quantity + "\n" +
-            "successValue: " + diceRollList.successValue + "\n" +
-            "reroll: " + diceRollList.reroll + "\n" +
-            "valueToReRoll: " + diceRollList.valueToReRoll + "\n" +
-            "failures: " + diceRollList.failures + "\n" +
-            "diceSides: " + diceRollList.diceSides + "\n"
-
-        diceRollList.add(diceRoll);
+        e.preventDefault()
+        addDiceRoll(quantity, successValue, reroll, valueToReRoll, failures, diceSides)
+        setQuantity()
+        setSuccessValue()
+        setReroll(false)
+        setValueToReRoll(-1)
+        setFailures(false)
+        setDiceSides(6)
     }
 
 
@@ -56,17 +71,17 @@ function DiceRollComponent(){
             <form className="col=md-4">
                 <div className="form-group">
                     <h3>Quantity</h3>
-                    <input type="number" value = {quantity} placeholder = "1" onChange={(e) =>setName(e.target.value)}/>
+                    <input type="number" id="quantityInput" value = {quantity} placeholder = "1" onChange={(e) => setQuantity(e.target.value)}/>
                     <h3>Success Value</h3>
-                    <input type="number" value = {successValue} onChange={(e) =>setSuccessValue(e.target.value)}/>
+                    <input type="number" id="successValueInput"  value = {successValue} onChange={(e) => setSuccessValue(e.target.value)}/>
                     <h3>Should there be re rolls?</h3>
-                    <input type="checkbox" value = {reroll} placeholder = "100" onChange={(e) =>setReroll(e.target.value)}/>
+                    <input type="checkbox" id="rerollCheckbox"  value = {reroll} onChange={(e) => setReroll(e.target.checked)}/>
                     <h3>Should there be re rolls, but only of specific value?</h3>
-                    <input type="number" value = {valueToReRoll} onChange={(e) =>setValueToReRoll(e.target.value)}/>
+                    <input type="number" id="valueToReRollInput" value = {valueToReRoll} onChange={(e) => setValueToReRoll(e.target.value)}/>
                     <h3>Should failures be counted as positive result?</h3>
-                    <input type="checkbox" value = {failures} onChange={(e) =>setFailures(e.target.value)}/>
+                    <input type="checkbox"  id="failuresCheckbox" value = {failures} onChange={(e) => setFailures(e.target.checked)}/>
                     <h3>How many sides should dice have?</h3>
-                    <input type="number" value = {diceSides} placeholder = "6" onChange={(e) =>setDiceSides(e.target.value)}/>
+                    <input type="number" id="successDiceSides" value = {diceSides} placeholder = "6" onChange={(e) => setDiceSides(e.target.value)}/>
                 </div>
                 <button className="btn btn-primary" onClick={handleAddButton}>Add Dice Roll</button>
             </form>
@@ -74,16 +89,11 @@ function DiceRollComponent(){
                 <button className="btn btn-primary" type="submit" onClick={handleSubmit}>Run Simulation</button>
                 <button className="btn btn-primary" type="submit" onClick={handleSubmitNonRandom}>Get most probable outcome</button>
                 <p>
-                   Response: {responseData}
+                   Response: {response}
                 </p>
             </div>
 
-            <div>
-                <h1>Test</h1>
-                <p id = "pppp">
-
-                </p>
-            </div>
+            <DiceRollList/>
         </div>
 
     );
