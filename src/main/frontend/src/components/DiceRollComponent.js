@@ -75,37 +75,37 @@ function DiceRollComponent(){
 
 
     return(
-        <div className="container">
+        <div className="container-fluid">
             <div className="row">
-                <form>
-                    <h4>Quantity</h4>
-                    <input type="number" id="quantityInput" value = {quantity} placeholder = "1" onChange={(e) => setQuantity(e.target.value)}/>
-                    <h4>Success Value</h4>
-                    <input type="number" id="successValueInput"  value = {successValue} placeholder = "7" onChange={(e) => setSuccessValue(e.target.value)}/>
-                    <h4>Should there be re rolls?</h4>
-                    <input type="checkbox" id="rerollCheckbox"  value = {reroll} onChange={(e) => setReroll(e.target.checked)}/>
-                    <h4>Should there be re rolls, but only of specific value?</h4>
-                    <input type="number" id="valueToReRollInput" value = {valueToReRoll} onChange={(e) => setValueToReRoll(e.target.value)}/>
-                    <h4>Should failures be counted as positive result?</h4>
-                    <input type="checkbox"  id="failuresCheckbox" value = {failures} onChange={(e) => setFailures(e.target.checked)}/>
-                    <h4>How many sides should dice have?</h4>
-                    <input type="number" id="successDiceSides" value = {diceSides} placeholder = "6" onChange={(e) => setDiceSides(e.target.value)}/>
-
+                <div className="col">
+                    <form>
+                        <h4>Quantity</h4>
+                        <input type="number" id="quantityInput" value = {quantity} placeholder = "1" onChange={(e) => setQuantity(e.target.value)}/>
+                        <h4>Success Value</h4>
+                        <input type="number" id="successValueInput"  value = {successValue} placeholder = "7" onChange={(e) => setSuccessValue(e.target.value)}/>
+                        <h4>Should there be re rolls?</h4>
+                        <input type="checkbox" id="rerollCheckbox"  value = {reroll} onChange={(e) => setReroll(e.target.checked)}/>
+                        <h4>Should there be re rolls, but only of specific value?</h4>
+                        <input type="number" id="valueToReRollInput" value = {valueToReRoll} onChange={(e) => setValueToReRoll(e.target.value)}/>
+                        <h4>Should failures be counted as positive result?</h4>
+                        <input type="checkbox"  id="failuresCheckbox" value = {failures} onChange={(e) => setFailures(e.target.checked)}/>
+                        <h4>How many sides should dice have?</h4>
+                        <input type="number" id="successDiceSides" value = {diceSides} placeholder = "6" onChange={(e) => setDiceSides(e.target.value)}/>
+                    </form>
                     <button className="btn btn-primary" onClick={handleAddButton}>Add Dice Roll</button>
-                </form>
-
-                <button className="btn btn-primary" type="submit" onClick={handleSubmit}>Run Simulation</button>
-                <button className="btn btn-primary" type="submit" onClick={handleSubmitNonRandom}>Get most probable outcome</button>
-                <button className="btn btn-primary" type="submit" onClick={handleClearButton}>Clear Dice Rolls</button>
+                    <button className="btn btn-primary" type="submit" onClick={handleSubmit}>Run Simulation</button>
+                    <button className="btn btn-primary" type="submit" onClick={handleSubmitNonRandom}>Get most probable outcome</button>
+                    <button className="btn btn-primary" type="submit" onClick={handleClearButton}>Clear Dice Rolls</button>
+                </div>
+                <div className="col">
+                    <DiceRollList diceRolls = {diceRolls}/>
+                </div>
             </div>
-            <div className="row">
-                <DiceRollList diceRolls = {diceRolls}/>
+            <div className="col">
+                <p>
+                    Response: <br/> {response}
+                </p>
             </div>
-            {/*<div className="column">*/}
-            {/*    <p>*/}
-            {/*        Response: <br/> {response}*/}
-            {/*    </p>*/}
-            {/*</div>*/}
         </div>
 
     );

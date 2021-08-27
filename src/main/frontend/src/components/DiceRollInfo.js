@@ -3,12 +3,12 @@ import React from "react";
 function DiceRollInfo(props){
     return (
         <div>
-            <p> Dice quantity: {props.diceRoll.quantity} </p>
-            <p> Minimal roll for success: {props.diceRoll.successValue} </p>
-            <p> Should there be rerolls : {props.diceRoll.reroll.toString()} </p>
-            <p> Re roll of specific value: {props.diceRoll.valueToReRoll} </p>
-            <p> Should failures be counted: {props.diceRoll.failures.toString()} </p>
-            <p> How many dice sides: {props.diceRoll.diceSides} </p>
+            <b> Dice quantity: </b> {props.diceRoll.quantity} <br/>
+            <b> Minimal roll for success: </b> {props.diceRoll.successValue} <br/>
+            <b> Should there be rerolls : </b> {props.diceRoll.reroll.toString()} <br/>
+            <b> Re roll of specific value: </b> {props.diceRoll.valueToReRoll} <br/>
+            <b> Should failures be counted: </b> {props.diceRoll.failures.toString()} <br/>
+            <b> How many dice sides: </b> {props.diceRoll.diceSides} <br/>
         </div>
     );
 }
