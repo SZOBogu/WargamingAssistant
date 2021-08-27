@@ -10,7 +10,7 @@ import DiceContextProvider from "./components/DiceContext";
 
 function App() {
   return (
-      <MyContextProvider>
+      <DiceContextProvider>
           <div className="App">
               <header className="App-header">
                   Wargaming Assistant
@@ -19,13 +19,12 @@ function App() {
                   <NavBar/>
                   <Route path="/" component={SystemSelectionMenu}/>
                   <Route path="/scenario" component={ScenarioComponent}/>
-                  <DiceContextProvider>
+
                       <Route path="/dice" component={DiceRollComponent}/>
-                  </DiceContextProvider>
                   <Route path="/roster" component={RosterComponent}/>
               </BrowserRouter>
           </div>
-      </MyContextProvider>
+      </DiceContextProvider>
   );
 }
 

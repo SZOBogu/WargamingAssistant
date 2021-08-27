@@ -1,14 +1,12 @@
-import React, {useContext} from 'react'
-import {DiceContext} from './DiceContext'
+import React from 'react'
 import DiceRoll from "../js/diceRollSimulator/DiceRoll";
 
-function DiceRollList(){
-    const {diceRolls} = useContext(DiceContext)
+function DiceRollList(props){
 
-    return (diceRolls.length ?(
+    return (props.diceRolls.length ?(
                 <div className="d-flex justify-content-center p-3">
                     {
-                        diceRolls.map(diceRoll=> (
+                        props.diceRolls.map(diceRoll=> (
                                 <div>
                                     <p> Dice roll type: {diceRoll instanceof DiceRoll} </p>
                                     <p> Dice quantity: {diceRoll.quantity} </p>

@@ -55,23 +55,4 @@ public class DiceController {
     public String runAndGetNonRandomReport(@RequestBody RunDiceRollsRequest request){
         return NonRandomReportGenerator.generateReport(request.getDiceRollList());
     }
-
-    @RequestMapping("/debug")
-    public String debug() throws JsonProcessingException {
-        DiceRoll diceRoll = new DiceRoll.DiceRollBuilder(23,3).build();
-        DiceRoll diceRoll2 = new DiceRoll.DiceRollBuilder(23,5).reroll(true).build();
-        DiceRoll diceRoll3 = new DiceRoll.DiceRollBuilder(23,7).diceSides(8).build();
-
-        List<DiceRoll> diceRolls = new ArrayList<>(Arrays.asList(diceRoll, diceRoll2, diceRoll3));
-        RunDiceRollsRequest runDiceRollsRequest = new RunDiceRollsRequest();
-        runDiceRollsRequest.setDiceRollList(diceRolls);
-
-        ObjectMapper mapper = new ObjectMapper();
-        String json = mapper.writeValueAsString(runDiceRollsRequest);
-        System.out.println(json);
-        System.out.println("CAN SERIALIZE: " + mapper.canDeserialize(mapper.constructType(RunDiceRollsRequest.class)));
-        System.out.println("CAN DESERIALIZE: " + mapper.canSerialize(RunDiceRollsRequest.class));
-
-        return "gowno";
-    }
 }
