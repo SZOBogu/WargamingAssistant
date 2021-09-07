@@ -1,5 +1,5 @@
 import React from 'react'
-import DiceRoll from "../js/diceRollSimulator/DiceRoll";
+import DiceRoll from "../../js/diceRollSimulator/DiceRoll";
 import DiceRollInfo from "./DiceRollInfo";
 
 function DiceRollList(props){

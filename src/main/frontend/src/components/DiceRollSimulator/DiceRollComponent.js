@@ -1,6 +1,6 @@
-import React, {useState} from "react";
-import DiceRoll from "../js/diceRollSimulator/DiceRoll";
-import RunDiceRollsRequest from "../js/diceRollSimulator/requests/RunDiceRollsRequest";
+import React, {useState, useContext} from "react";
+import DiceRoll from "../../js/diceRollSimulator/DiceRoll";
+import RunDiceRollsRequest from "../../js/diceRollSimulator/requests/RunDiceRollsRequest";
 import DiceRollList from "./DiceRollList";
 import axios from "axios";
 

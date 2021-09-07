@@ -1,15 +1,14 @@
 import './App.css';
-import SystemSelectionMenu from './components/SystemSelectionMenu';
-import ScenarioComponent from './components/ScenarioComponent';
-import DiceRollComponent from './components/DiceRollComponent';
+import ScenarioComponent from './components/ScenarioGenerator/ScenarioComponent';
+import DiceRollComponent from './components/DiceRollSimulator/DiceRollComponent';
 import RosterComponent from './components/RosterComponent';
 import NavBar from './components/NavBar';
 import {BrowserRouter, Route} from 'react-router-dom'
-import DiceContextProvider from "./components/DiceContext";
+import GameContextProvider from "./components/GameContext";
 
 function App() {
   return (
-      <DiceContextProvider>
+      <GameContextProvider>
           <div className="container">
               <header className="App-header">
                   Wargaming Assistant
@@ -22,7 +21,7 @@ function App() {
                   <Route path="/roster" component={RosterComponent}/>
               </BrowserRouter>
           </div>
-      </DiceContextProvider>
+      </GameContextProvider>
   );
 }
 

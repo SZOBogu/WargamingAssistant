@@ -10,8 +10,6 @@ import scenarioGenerator.services.ScenarioService;
 
 import java.util.List;
 
-//TODO: path variable for multiple systems
-
 @RestController
 @RequestMapping(value = "/scenario")
 public class ScenarioController {
@@ -20,6 +18,7 @@ public class ScenarioController {
 
     @GetMapping
     public ScenarioInfoResponse getScenarioInfo(){
+        System.out.println("ScenarioController, getScenarioInfo got GET");
         ScenarioInfoResponse scenarioInfoResponse = new ScenarioInfoResponse(system);
 
         return new ScenarioInfoResponse(system);
