@@ -1,10 +1,11 @@
-import React, {useEffect, useState, useContext} from "react";
+import React, {useEffect, useState, useContext, useLayoutEffect} from "react";
 import axios from "axios";
 import {GameContext} from "../GameContext";
 import ScenarioInfoResponse from "../../js/scenarioGenerator/ScenarioInfoResponse";
 import ScenarioRequest from "../../js/scenarioGenerator/ScenarioRequest";
+import DeploymentComponent from "./DeploymentComponent";
 
-function ScenarioComponent(){
+function ScenarioComponent() {
     const [scenarioInfoResponse, setScenarioInfoResponse] = useState({});
 
     const [deploymentBooleanPool, setDeploymentBooleanPool] = useState([true, false, true, false, true, false]);
@@ -19,24 +20,42 @@ function ScenarioComponent(){
     const [duplicateDeploymentsQuantity, setDuplicateDeploymentsQuantity] = useState(1);
     const [duplicateMissionsQuantity, setDuplicateMissionsQuantity] = useState(1);
 
-    const [generatedScenarios, setGeneratedScenarios] = useState([]);
+    const [generatedScenarios, setGeneratedScenarios] = useState();
 
-    const [deploymentCheckedState, setDeploymentCheckedState] = useState(
-        new Array(5).fill(false)
-    );
+    const [deploymentCheckedState, setDeploymentCheckedState] = useState([]);
+    const [missionsCheckedState, setMissionsCheckedState] = useState([]);
 
     const {wargameId} = useContext(GameContext)
 
     useEffect(() => {
         const url = 'http://localhost:8080/scenario';
 
-        if(scenarioInfoResponse.gameName === "" || scenarioInfoResponse.deploymentList === [] || scenarioInfoResponse.missionList === []) {
-            axios.get(url).then(response => {
-                let scenarioInfoResp = new ScenarioInfoResponse(response.data.gameName, response.data.deploymentList, response.data.missionList);
-                setScenarioInfoResponse(scenarioInfoResp);
-            })
+        let numberOfDeployments;
+        let numberOfMissions = [];
+
+        axios.get(url).then(response => {
+            console.log(response.data)
+
+            numberOfDeployments = response.data.deploymentList.length;
+            console.log(numberOfDeployments)
+            for(let i=0; i < numberOfDeployments; i++){
+                setDeploymentCheckedState([...deploymentCheckedState, false])
+            }
+            console.log(deploymentCheckedState.length)
+            for(let i=0; i < response.data.missionList.length; i++){
+                numberOfMissions.push(response.data.missionList[i].missions.length);
+            }
+
+            let scenarioInfoResp = new ScenarioInfoResponse(response.data.gameName, response.data.deploymentList, response.data.missionList);
+            setScenarioInfoResponse(scenarioInfoResp);
+        })
+
+        for(let i=0; i < numberOfMissions.length; i++){
+            setMissionsCheckedState(missionsCheckedState.concat(new Array(numberOfMissions[i]).fill(false)));
         }
-    });
+
+    }, []);
+
 
     const handleOnChangeDeploymentIndex = (position) => {
         const updatedCheckedState = deploymentCheckedState.map((item, index) =>
@@ -53,26 +72,26 @@ function ScenarioComponent(){
             canDuplicateDeployments, duplicateMissionsFreely, duplicateDeploymentsFreely,
             duplicateDeploymentsQuantity, duplicateMissionsQuantity)
 
-        console.log(JSON.stringify(request))
-
         axios.post(url, request).then(response => {
-            setGeneratedScenarios(JSON.stringify(response));
+            setGeneratedScenarios(response);
         })
     }
 
     const handleGetInfoButton = () => {
         const url = 'http://localhost:8080/scenario';
 
-        if(scenarioInfoResponse.gameName === "" || scenarioInfoResponse.deploymentList === [] || scenarioInfoResponse.missionList === []) {
+        // if(scenarioInfoResponse.gameName === "" || scenarioInfoResponse.deploymentList === [] || scenarioInfoResponse.missionList === []) {
             axios.get(url).then(response => {
                 console.log(JSON.stringify(response))
                 let scenarioInfoResp = new ScenarioInfoResponse(response.data.gameName, response.data.deploymentList, response.data.missionList);
                 setScenarioInfoResponse(scenarioInfoResp);
             })
-        }
+        // }
     }
     return(
         <div>
+            <h1> {scenarioInfoResponse.gameName} </h1>
+            <h1> {deploymentCheckedState.length} </h1>
             <div id="form">
                 <form>
                     <h4>How many scenarios?</h4>
@@ -110,15 +129,15 @@ function ScenarioComponent(){
                     {/*    );*/}
                     {/*})}*/}
 
+                    {deploymentCheckedState.map(()=>{
+                        <DeploymentComponent/>
+                    })}
+
                 </form>
-                <button className="btn btn-primary" onClick={handleGetInfoButton}>Get Initial Info</button>
                 <button className="btn btn-primary" onClick={handleGenerateButton}>Generate Scenarios</button>
             </div>
 
             <div>
-                gameName: {scenarioInfoResponse.gameName}
-                deploymentList: {scenarioInfoResponse.deploymentList}
-                missionList: {scenarioInfoResponse.missionList}
                 response: {generatedScenarios}
             </div>
         </div>
