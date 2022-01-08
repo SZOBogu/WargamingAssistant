@@ -19,7 +19,7 @@ public class testMission {
             new Objective("Centralnie", 2),
             new Objective("Kamieniem go bez kitu", 3)
             ));
-    Mission miss1 = new Mission("Zrobić porządek", objectives, deployment);
+    Mission miss1 = new Mission("Zrobić porządek", objectives);
     Mission miss2 = new Mission("miss 2", new ArrayList<>(), "opis miss 2");
     Mission miss3 = new Mission(miss1);
 
@@ -43,13 +43,6 @@ public class testMission {
         assertEquals(3, miss1.getObjectives().get(2).getVictoryPoints());
 
         assertEquals(miss3.getObjectives(), miss1.getObjectives());
-    }
-
-    @Test
-    void testGetDeployment(){
-        assertEquals(deployment, miss1.getDeployment());
-        assertNull(miss0.getDeployment());
-        assertEquals(miss1.getDeployment(), miss3.getDeployment());
     }
 
     @Test

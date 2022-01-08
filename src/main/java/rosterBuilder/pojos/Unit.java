@@ -59,7 +59,6 @@ public class Unit {
         }
     }
 
-
     public String getName() {
         return name;
     }
@@ -68,8 +67,16 @@ public class Unit {
         return modelsInUnit;
     }
 
+    public void setModelsInUnit(int modelsInUnit) {
+        this.modelsInUnit = modelsInUnit;
+    }
+
     public List<Entity> getNonBaseEquipment() {
         return nonBaseEquipment;
+    }
+
+    public void setNonBaseEquipment(List<Entity> nonBaseEquipment) {
+        this.nonBaseEquipment = nonBaseEquipment;
     }
 
     public List<Entity> getBaseEquipmentAndRules() {
@@ -80,20 +87,12 @@ public class Unit {
         return pointCost;
     }
 
-    public void addEquipment(Entity equipment){
-        this.nonBaseEquipment.add(equipment);
-    }
-
-    public void setModelsInUnit(int modelsInUnit) {
-        this.modelsInUnit = modelsInUnit;
-    }
-
     public void setPointCost(int pointCost) {
         this.pointCost = pointCost;
     }
 
-    public void setNonBaseEquipment(List<Entity> nonBaseEquipment) {
-         this.nonBaseEquipment = nonBaseEquipment;
+    public void addEquipment(Entity equipment){
+        this.nonBaseEquipment.add(equipment);
     }
 
     @Override

@@ -2,12 +2,12 @@ package rosterBuilder.pojos;
 
 import java.util.Objects;
 
-public class Statistic {
+public class Characteristic {
 
     private final String name;
     private final String value;
 
-    public Statistic(String name, String value){
+    public Characteristic(String name, String value){
         this.name = name;
         this.value = value;
     }
@@ -24,9 +24,9 @@ public class Statistic {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Statistic statistic = (Statistic) o;
-        return Objects.equals(name, statistic.name) &&
-                Objects.equals(value, statistic.value);
+        Characteristic characteristic = (Characteristic) o;
+        return Objects.equals(name, characteristic.name) &&
+                Objects.equals(value, characteristic.value);
     }
 
     @Override

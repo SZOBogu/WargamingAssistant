@@ -3,10 +3,15 @@ package rosterBuilder.pojos;
 import java.util.Objects;
 
 public class Entity {
-    private final String name;
-    private final String description;
+    private String name;
+    private String description;
     private String parameter;
 
+    public Entity(){
+        this.name = "";
+        this.description = "";
+        this.parameter = "";
+    }
     public Entity(String name, String description){
         this(name, description, "");
     }
@@ -21,8 +26,16 @@ public class Entity {
         return name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public String getDescription() {
         return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getParameter() {

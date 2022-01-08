@@ -2,6 +2,7 @@ package testRosterBuilder.testRules;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import rosterBuilder.exceptions.UnitBuildingException;
 import rosterBuilder.pojos.Entity;
 import rosterBuilder.pojos.SpecialRule;
 import rosterBuilder.pojos.Unit;
@@ -11,7 +12,7 @@ import rosterBuilder.utility.RuleViolationLog;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class testMustBeTakenTogether {
     ArrayList<Entity> eq0 = new ArrayList<>(Arrays.asList(new SpecialRule("Wizard Master", ""), new Entity("Talisman", ""), new SpecialRule("Any", "")));
@@ -30,10 +31,7 @@ public class testMustBeTakenTogether {
 
     @Test
     void testCheck(){
-        ruleOK.check(unit0);
-        assertEquals("", RuleViolationLog.getUnitRuleViolationLog());
-        ruleNotOK.check(unit0);
-        assertEquals("Any cannot be taken without Not pass.\n", RuleViolationLog.getUnitRuleViolationLog());
-        RuleViolationLog.clear();
+        assertDoesNotThrow(() -> {ruleOK.check(unit0);});
+        assertThrows(UnitBuildingException.class, () -> {ruleNotOK.check(unit0);});
     }
 }

@@ -18,14 +18,18 @@ public class testDetachment {
     ArmySubcategory armySubcategory1 = new ArmySubcategory("Troops", new ArrayList<>(Arrays.asList(up2, up3)));
     Army army = new Army("Kingdom of costam", new ArrayList<>(Arrays.asList(armySubcategory0, armySubcategory1)));
 
+    UniqueEntitiesPool pool = Mockito.mock(UniqueEntitiesPool.class);
+
     ArrayList<Integer> min = new ArrayList<>(Arrays.asList(1, 2, 0));
     ArrayList<Integer> max = new ArrayList<>(Arrays.asList(3, 6, 2));
     Detachment detachment0 = new Detachment.DetachmentBuilder("Detachment 0")
+                    .army(army)
                     .arrayOfMaxChoicesPerCategory(max)
                     .arrayOfMandatoryChoicesInCategories(min)
                     .build();
 
     Detachment detachment1 = new Detachment.DetachmentBuilder("Detachment 1", 4)
+            .army(army)
             .detachmentNumber(1)
             .build();
 
@@ -126,11 +130,11 @@ public class testDetachment {
                 .pointCost(50)
                 .build();
 
-        detachment0.addUnit(testUnit0, 0);
+        detachment0.addUnit(testUnit0, 0, pool);
         assertEquals(1, detachment0.getUnitCount());
         assertEquals(1, detachment0.getBoughtUnitsCategorized().get(0).size());
         assertEquals(0, detachment0.getBoughtUnitsCategorized().get(1).size());
-        detachment0.addUnit(testUnit1, 1);
+        detachment0.addUnit(testUnit1, 1, pool);
         assertEquals(2, detachment0.getUnitCount());
         assertEquals(1, detachment0.getBoughtUnitsCategorized().get(0).size());
         assertEquals(1, detachment0.getBoughtUnitsCategorized().get(1).size());
@@ -141,7 +145,7 @@ public class testDetachment {
         Unit testUnit = new Unit.UnitBuilder("Test 1", new ArrayList<>())
                 .pointCost(50)
                 .build();
-        detachment0.addUnit(testUnit, 0);
+        detachment0.addUnit(testUnit, 0, pool);
         assertEquals(testUnit, detachment0.getUnit(0, 0));
     }
 
@@ -154,7 +158,7 @@ public class testDetachment {
                 .pointCost(30)
                 .build();
 
-        detachment0.addUnit(testUnit, 0);
+        detachment0.addUnit(testUnit, 0, pool);
         assertEquals(1, detachment0.getUnitCount());
         assertEquals(1, detachment0.getBoughtUnitsCategorized().get(0).size());
         assertEquals(0, detachment0.getBoughtUnitsCategorized().get(1).size());
@@ -163,12 +167,12 @@ public class testDetachment {
                 .pointCost(50)
                 .build();
 
-        detachment0.addUnit(testUnit0, 1);
+        detachment0.addUnit(testUnit0, 1, pool);
         assertEquals(2, detachment0.getUnitCount());
         assertEquals(1, detachment0.getBoughtUnitsCategorized().get(0).size());
         assertEquals(1, detachment0.getBoughtUnitsCategorized().get(1).size());
 
-        detachment0.deleteUnit(0, 0);
+        detachment0.deleteUnit(0, 0, pool);
         assertEquals(1, detachment0.getUnitCount());
         assertEquals(0, detachment0.getBoughtUnitsCategorized().get(0).size());
         assertEquals(1, detachment0.getBoughtUnitsCategorized().get(1).size());
@@ -180,16 +184,14 @@ public class testDetachment {
         Unit testUnit = new Unit.UnitBuilder("Test 1", new ArrayList<>())
                 .pointCost(30)
                 .build();
-        detachment0.addUnit(testUnit, 0);
+        detachment0.addUnit(testUnit, 0, pool);
 
         assertTrue(detachment0.contains(testUnit));
     }
 
     @Test
-    void testSetAndGetArmy(){
+    void testGetArmy(){
         assertEquals(3, detachment0.getBoughtUnitsCategorized().size());
-        detachment0.setArmy(army);
-        assertEquals(2, detachment0.getBoughtUnitsCategorized().size());
         assertEquals(army, detachment0.getArmy());
     }
 
@@ -213,11 +215,11 @@ public class testDetachment {
         Unit testUnit = new Unit.UnitBuilder("Test 1", new ArrayList<>())
                 .pointCost(30)
                 .build();
-        detachment0.addUnit(testUnit, 0);
+        detachment0.addUnit(testUnit, 0, pool);
         Unit testUnit0 = new Unit.UnitBuilder("Test 0", new ArrayList<>())
                 .pointCost(50)
                 .build();
-        detachment0.addUnit(testUnit0, 1);
+        detachment0.addUnit(testUnit0, 1, pool);
 
         assertEquals(2, detachment0.getUnitCount());
     }
@@ -228,12 +230,12 @@ public class testDetachment {
         Unit testUnit0 = new Unit.UnitBuilder("General", new ArrayList<>(Arrays.asList(new SpecialRule("Skirmisher", "-"))))
                         .pointCost(50)
                         .build();
-        detachment0.addUnit(testUnit0, 0);
+        detachment0.addUnit(testUnit0, 0, pool);
         Unit testUnit1 = new Unit.UnitBuilder("Swordsmen", new ArrayList<>(Arrays.asList(new SpecialRule("Skirmisher", "-"))))
                 .modelsInUnit(10)
                 .pointCost(50)
                 .build();
-        detachment0.addUnit(testUnit1, 1);
+        detachment0.addUnit(testUnit1, 1, pool);
         String expected = "Detachment No.0: Detachment 0\n" +
                 "   HQ\n      " + testUnit0.toString() + "\n" +
                 "   Troops\n      " + testUnit1.toString() + "\n";

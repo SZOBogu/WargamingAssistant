@@ -1,18 +1,20 @@
 package rosterBuilder.pojos;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class SingleChoiceOptionSet extends OptionSet {
-    public SingleChoiceOptionSet(ArrayList<Option> options){
+    public SingleChoiceOptionSet() {super();}
+    public SingleChoiceOptionSet(List<Option> options){
         super(options);
     }
-    public SingleChoiceOptionSet(ArrayList<Option> options, boolean isMandatory){
+    public SingleChoiceOptionSet(List<Option> options, boolean isMandatory){
         super(options, isMandatory);
     }
-    public SingleChoiceOptionSet(ArrayList<Option> options, String itemListName, String keyVerb){
+    public SingleChoiceOptionSet(List<Option> options, String itemListName, String keyVerb){
         super(options, itemListName, keyVerb);
     }
-    public SingleChoiceOptionSet(ArrayList<Option> options, String itemListName, String keyVerb, boolean isMandatory){
+    public SingleChoiceOptionSet(List<Option> options, String itemListName, String keyVerb, boolean isMandatory){
         super(options, itemListName, keyVerb, isMandatory);
     }
 

@@ -3,18 +3,35 @@ package rosterBuilder.pojos;
 import rosterBuilder.pojos.Entity;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class UniqueEntitiesPool {
-    private final ArrayList<Entity> available;
-    private final ArrayList<Entity> locked;
+    private List<Entity> available;
+    private List<Entity> locked;
 
-    public UniqueEntitiesPool(ArrayList<Entity> pool){
+    public UniqueEntitiesPool(){
+        this(new ArrayList<>());
+    }
+
+    public UniqueEntitiesPool(List<Entity> pool){
         this.available = pool;
         this.locked = new ArrayList<>();
     }
 
-    public ArrayList<Entity> getAvailable(){
-        return this.available;
+    public List<Entity> getAvailable() {
+        return available;
+    }
+
+    public void setAvailable(List<Entity> available) {
+        this.available = available;
+    }
+
+    public List<Entity> getLocked() {
+        return locked;
+    }
+
+    public void setLocked(List<Entity> locked) {
+        this.locked = locked;
     }
 
     public Entity get(String name){

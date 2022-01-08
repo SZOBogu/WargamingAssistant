@@ -47,8 +47,8 @@ public class testUnitAndProfileFinder {
     ImageIcon img = new ImageIcon();
     Army army = new Army("Army", armySubcategories, img);
 
-    Detachment detachment0 = new Detachment.DetachmentBuilder("Detachment 0", 2).build();
-    Detachment detachment1 = new Detachment.DetachmentBuilder("Detachment 1", 2).detachmentNumber(1).build();
+    Detachment detachment0 = new Detachment.DetachmentBuilder("Detachment 0", 2).army(army).build();
+    Detachment detachment1 = new Detachment.DetachmentBuilder("Detachment 1", 2).army(army).detachmentNumber(1).build();
 
     Roster roster = new Roster();
 
@@ -102,10 +102,10 @@ public class testUnitAndProfileFinder {
         roster.setPrimaryArmy(army);
         roster.addDetachment(detachment0);
         roster.addDetachment(detachment1);
-        detachment0.addUnit(unit0, 0);
-        detachment1.addUnit(unit1, 1);
-        detachment0.addUnit(unit2, 0);
-        detachment1.addUnit(unit3, 1);
+        detachment0.addUnit(unit0, 0, roster.getUniqueEntitiesPool());
+        detachment1.addUnit(unit1, 1, roster.getUniqueEntitiesPool());
+        detachment0.addUnit(unit2, 0, roster.getUniqueEntitiesPool());
+        detachment1.addUnit(unit3, 1, roster.getUniqueEntitiesPool());
 
         assertEquals(unit0, UnitAndProfileFinder.getUnit(roster, "Unit0"));
         assertEquals(unit1, UnitAndProfileFinder.getUnit(roster, "Unit1"));
@@ -116,10 +116,10 @@ public class testUnitAndProfileFinder {
 
     @Test
     void testGetUnitDetachmentName(){
-        detachment0.addUnit(unit0, 0);
-        detachment0.addUnit(unit1, 0);
-        detachment0.addUnit(unit2, 1);
-        detachment0.addUnit(unit3, 1);
+        detachment0.addUnit(unit0, 0, roster.getUniqueEntitiesPool());
+        detachment0.addUnit(unit1, 0, roster.getUniqueEntitiesPool());
+        detachment0.addUnit(unit2, 1, roster.getUniqueEntitiesPool());
+        detachment0.addUnit(unit3, 1, roster.getUniqueEntitiesPool());
 
         assertEquals(unit0, UnitAndProfileFinder.getUnit(detachment0, "Unit0"));
         assertEquals(unit1, UnitAndProfileFinder.getUnit(detachment0, "Unit1"));
@@ -149,10 +149,10 @@ public class testUnitAndProfileFinder {
         roster.setPrimaryArmy(army);
         roster.addDetachment(detachment0);
         roster.addDetachment(detachment1);
-        detachment0.addUnit(unit0, 0);
-        detachment1.addUnit(unit1, 1);
-        detachment0.addUnit(unit2, 0);
-        detachment1.addUnit(unit3, 1);
+        detachment0.addUnit(unit0, 0, roster.getUniqueEntitiesPool());
+        detachment1.addUnit(unit1, 1, roster.getUniqueEntitiesPool());
+        detachment0.addUnit(unit2, 0, roster.getUniqueEntitiesPool());
+        detachment1.addUnit(unit3, 1, roster.getUniqueEntitiesPool());
 
         UnitProfile profile4 =  new UnitProfile("Unit4", new ArrayList<>(), new ArrayList<>(), 100);
 
@@ -165,10 +165,10 @@ public class testUnitAndProfileFinder {
 
     @Test
     void testGetUnitDetachmentUnitProfile(){
-        detachment0.addUnit(unit0, 0);
-        detachment0.addUnit(unit1, 0);
-        detachment0.addUnit(unit2, 1);
-        detachment0.addUnit(unit3, 1);
+        detachment0.addUnit(unit0, 0, roster.getUniqueEntitiesPool());
+        detachment0.addUnit(unit1, 0, roster.getUniqueEntitiesPool());
+        detachment0.addUnit(unit2, 1, roster.getUniqueEntitiesPool());
+        detachment0.addUnit(unit3, 1, roster.getUniqueEntitiesPool());
         UnitProfile profile4 =  new UnitProfile("Unit4", new ArrayList<>(), new ArrayList<>(), 100);
 
         assertEquals(unit0, UnitAndProfileFinder.getUnit(detachment0, profile0));

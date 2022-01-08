@@ -5,7 +5,11 @@ import rosterBuilder.utility.RuleViolationLog;
 import java.util.ArrayList;
 
 public class PointCapOptionSet extends MultipleChoiceOptionSet{
-    private final int pointCap;
+    private int pointCap;
+
+    public PointCapOptionSet(){
+        super();
+    }
 
     public PointCapOptionSet(ArrayList<Option> options, int pointCap){
         super(options);
@@ -22,6 +26,14 @@ public class PointCapOptionSet extends MultipleChoiceOptionSet{
     public PointCapOptionSet(ArrayList<Option> options, String itemListName, String keyVerb,
                              boolean isMandatory, int pointCap){
         super(options, itemListName, keyVerb, isMandatory);
+        this.pointCap = pointCap;
+    }
+
+    public int getPointCap() {
+        return pointCap;
+    }
+
+    public void setPointCap(int pointCap) {
         this.pointCap = pointCap;
     }
 

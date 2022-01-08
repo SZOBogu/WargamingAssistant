@@ -12,7 +12,7 @@ public class testUniqueEntitiesPool {
     SpecialRule specialRule = new SpecialRule("usr", "");
     Item item = new Item("ring", "");
     Entity entity = new Entity("ent", "");
-    Weapon weapon = new Weapon("excalibur", "", new Statline(new ArrayList<>(Arrays.asList(new Statistic("S", "10"), new Statistic("AP", "-5")))));
+    Weapon weapon = new Weapon("excalibur", "", new ArrayList<>(Arrays.asList(new Characteristic("S", "10"), new Characteristic("AP", "-5"))));
     ArrayList<Entity> entities = new ArrayList<>(Arrays.asList(specialRule, item, entity, weapon));
     UniqueEntitiesPool pool = new UniqueEntitiesPool(entities);
 

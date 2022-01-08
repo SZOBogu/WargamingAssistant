@@ -10,8 +10,18 @@ public class Detachment {
     private final List<List<Unit>> boughtUnitsCategorized;
     private final List<Integer> arrayOfMandatoryChoicesInCategories;
     private final List<Integer> arrayOfMaxChoicesPerCategory;
-    private UniqueEntitiesPool pool;
 
+
+    public Detachment(){
+        this.name = "";
+        this.army = new Army();
+        this.detachmentNumber = 0;
+        this.boughtUnitsCategorized = new ArrayList<>();
+        this.arrayOfMandatoryChoicesInCategories = new ArrayList<>();
+        this.arrayOfMaxChoicesPerCategory = new ArrayList<>();
+
+        this.setCapacity(100);
+    }
 
     public Detachment(DetachmentBuilder builder){
         this.name = builder.name;
@@ -20,7 +30,6 @@ public class Detachment {
         this.boughtUnitsCategorized = builder.boughtUnitsCategorized;
         this.arrayOfMandatoryChoicesInCategories = builder.arrayOfMandatoryChoicesInCategories;
         this.arrayOfMaxChoicesPerCategory = builder.arrayOfMaxChoicesPerCategory;
-        this.pool = builder.pool;
 
         this.setCapacity(builder.arrayOfMaxChoicesPerCategory.size());
     }
@@ -32,7 +41,6 @@ public class Detachment {
         private List<List<Unit>> boughtUnitsCategorized;
         private List<Integer> arrayOfMandatoryChoicesInCategories;
         private List<Integer> arrayOfMaxChoicesPerCategory;
-        private UniqueEntitiesPool pool;
 
         public DetachmentBuilder(String name){
             this.name = name;
@@ -98,27 +106,9 @@ public class Detachment {
             return this;
         }
 
-        public DetachmentBuilder pool(UniqueEntitiesPool pool){
-            this.pool = pool;
-            return this;
-        }
-
         public Detachment build(){
             return new Detachment(this);
         }
-    }
-
-
-    public String getName() {
-        return name;
-    }
-
-    public int getDetachmentNumber() {
-        return detachmentNumber;
-    }
-
-    public void setDetachmentNumber(int i) {
-        this.detachmentNumber = i;
     }
 
     public int getCost() {
@@ -131,41 +121,31 @@ public class Detachment {
         return totalCost;
     }
 
-    public List<List<Unit>> getBoughtUnitsCategorized() {
-        return boughtUnitsCategorized;
-    }
-    public List<Integer> getArrayOfMandatoryChoicesInCategories() {
-        return arrayOfMandatoryChoicesInCategories;
-    }
-    public List<Integer> getArrayOfMaxChoicesPerCategory() {
-        return arrayOfMaxChoicesPerCategory;
-    }
-
-    public void addUnit(Unit unit, int categoryIndex){
-        if(this.pool != null){
+    public void addUnit(Unit unit, int categoryIndex, UniqueEntitiesPool pool){
+        if(pool != null){
             List<Entity> allEntities = new ArrayList<>();
             allEntities.addAll(unit.getNonBaseEquipment());
             allEntities.addAll(unit.getBaseEquipmentAndRules());
             for (Entity allEntity : allEntities) {
-                if (this.pool.getAvailable().contains(allEntity))
-                    this.pool.get(allEntity.getName());
+                if (pool.getAvailable().contains(allEntity))
+                    pool.get(allEntity.getName());
             }
-        this.profileFilter();
+        this.getUnitProfileFromDetachment();
         }
         this.boughtUnitsCategorized.get(categoryIndex).add(unit);
     }
 
-    public void deleteUnit(int categoryIndex, int index){
-        if(this.pool != null) {
+    public void deleteUnit(int categoryIndex, int index, UniqueEntitiesPool pool){
+        if(pool != null) {
             Unit unit = this.boughtUnitsCategorized.get(categoryIndex).get(index);
             List<Entity> allEntities = new ArrayList<>();
             allEntities.addAll(unit.getNonBaseEquipment());
             allEntities.addAll(unit.getBaseEquipmentAndRules());
             for (Entity allEntity : allEntities) {
-                if (this.pool.contains(allEntity) && !this.pool.getAvailable().contains(allEntity))
-                    this.pool.release(allEntity);
+                if (pool.contains(allEntity) && !pool.getAvailable().contains(allEntity))
+                    pool.release(allEntity);
             }
-            this.profileFilter();
+            this.getUnitProfileFromDetachment();
         }
         this.boughtUnitsCategorized.get(categoryIndex).remove(index);
     }
@@ -193,15 +173,6 @@ public class Detachment {
                 .build();
     }
 
-    public Army getArmy() {
-        return army;
-    }
-
-    public void setArmy(Army army) {
-        this.setCapacity(army.getRelevantSlotCount());
-        this.army = army;
-    }
-
     public int getUnitCount(){
         int count = 0;
         for (List<Unit> units : this.boughtUnitsCategorized) {
@@ -225,6 +196,46 @@ public class Detachment {
         }
     }
 
+    private void getUnitProfileFromDetachment(){
+        for(int i = 0; i < getArmy().size(); i++){
+            for(int j = 0; j < getArmy().getArmySubcategory(i).size(); j++){
+                getArmy().getArmySubcategory(i).getUnitProfile(j);
+            }
+        }
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Army getArmy() {
+        return army;
+    }
+
+    public void setArmy(Army army) {
+        this.army = army;
+    }
+
+    public int getDetachmentNumber() {
+        return detachmentNumber;
+    }
+
+    public void setDetachmentNumber(int detachmentNumber) {
+        this.detachmentNumber = detachmentNumber;
+    }
+
+    public List<List<Unit>> getBoughtUnitsCategorized() {
+        return boughtUnitsCategorized;
+    }
+
+    public List<Integer> getArrayOfMandatoryChoicesInCategories() {
+        return arrayOfMandatoryChoicesInCategories;
+    }
+
+    public List<Integer> getArrayOfMaxChoicesPerCategory() {
+        return arrayOfMaxChoicesPerCategory;
+    }
+
     @Override
     public String toString(){
         if(this.army != null) {
@@ -241,16 +252,4 @@ public class Detachment {
         else return "Army not set in detachment";
     }
 
-    public void setPool(UniqueEntitiesPool pool) {
-        this.pool = pool;
-    }
-
-    private void profileFilter(){
-        for(int i = 0; i < getArmy().size(); i++){
-            for(int j = 0; j < getArmy().getArmySubcategory(i).size(); j++){
-                if(getArmy().getArmySubcategory(i).getUnitProfile(j).getPool() != null)
-                    getArmy().getArmySubcategory(i).getUnitProfile(j).filterTakenUniques();
-            }
-        }
-    }
 }

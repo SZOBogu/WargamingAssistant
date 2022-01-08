@@ -17,9 +17,7 @@ public class MissionPoolConverter {
 
         List<List<Mission>> missionPool= new ArrayList<>();
 
-        List<MissionList> allMissions = system.getAllMissions();
-
-
+        List<MissionList> allMissions = system.getMissions();
 
         for(int i=0; i < allMissions.size(); i++){
             missionPool.add(new ArrayList<>());

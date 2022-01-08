@@ -13,6 +13,13 @@ public abstract class OptionSet {
     protected boolean isMandatory;
 
     //TODO: builder
+    public OptionSet(){
+        this.options = new ArrayList<>();
+        this.itemListName = "";
+        this.keyVerb = "";
+        this.isMandatory = false;
+    }
+
     public OptionSet(List<Option> options){
         this(options, "", "take", false);
     }
@@ -30,18 +37,6 @@ public abstract class OptionSet {
         this.itemListName = itemListName;
         this.keyVerb = keyVerb;
         this.isMandatory = isMandatory;
-    }
-
-    public List<Option> getOptions() {
-        return options;
-    }
-
-    public String getItemListName() {
-        return itemListName;
-    }
-
-    public String getKeyVerb() {
-        return keyVerb;
     }
 
     public String getDescription(){
@@ -67,11 +62,35 @@ public abstract class OptionSet {
         return entities;
     }
 
-    public boolean isMandatory() {
-        return isMandatory;
+    public List<Option> getOptions() {
+        return options;
     }
 
     public void setOptions(List<Option> options) {
         this.options = options;
+    }
+
+    public String getItemListName() {
+        return itemListName;
+    }
+
+    public void setItemListName(String itemListName) {
+        this.itemListName = itemListName;
+    }
+
+    public String getKeyVerb() {
+        return keyVerb;
+    }
+
+    public void setKeyVerb(String keyVerb) {
+        this.keyVerb = keyVerb;
+    }
+
+    public boolean isMandatory() {
+        return isMandatory;
+    }
+
+    public void setMandatory(boolean mandatory) {
+        isMandatory = mandatory;
     }
 }

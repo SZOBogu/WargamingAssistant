@@ -2,6 +2,7 @@ package testRosterBuilder.testRules;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import rosterBuilder.exceptions.UnitBuildingException;
 import rosterBuilder.pojos.*;
 import rosterBuilder.rules.MustHaveTogether;
 import rosterBuilder.utility.RuleViolationLog;
@@ -9,7 +10,7 @@ import rosterBuilder.utility.RuleViolationLog;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class testMustHaveTogether {
     ArrayList<Entity> eq0 = new ArrayList<>(Arrays.asList(new SpecialRule("Wizard Master", ""), new Entity("Talisman", ""), new SpecialRule("Any", "")));
@@ -44,9 +45,7 @@ public class testMustHaveTogether {
     @Test
     void testCheck(){
         ruleOK.check(unit0);
-        assertEquals("", RuleViolationLog.getUnitRuleViolationLog());
-        ruleNotOK.check(unit0);
-        assertEquals("Unit must have Any and Pass together.\n", RuleViolationLog.getUnitRuleViolationLog());
-        RuleViolationLog.clear();
+        assertDoesNotThrow(() -> {ruleOK.check(unit0);});
+        assertThrows(UnitBuildingException.class, () -> {ruleNotOK.check(unit0);});
     }
 }

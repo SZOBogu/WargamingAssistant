@@ -1,30 +1,37 @@
 package rosterBuilder.pojos;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Weapon extends Item{
 
-    private Statline statline;
+    private List<Characteristic> statline;
 
     public Weapon(String name, String description){
         super(name, description);
-        this.statline = new Statline();
+        this.statline = new ArrayList<>();
     }
 
     public Weapon(String name, String description, String parameter){
         super(name, description, parameter);
-        this.statline = new Statline();
+        this.statline = new ArrayList<>();
     }
 
-    public Weapon(String name, String description, Statline statline){
+    public Weapon(String name, String description, List<Characteristic> statline){
         super(name, description);
         this.statline = statline;
     }
 
-    public Weapon(String name, String description, String parameter, Statline statline){
+    public Weapon(String name, String description, String parameter, List<Characteristic> statline){
         super(name, description, parameter);
         this.statline = statline;
     }
 
-    public Statline getStatline() {
+    public List<Characteristic> getStatline() {
         return statline;
+    }
+
+    public void setStatline(List<Characteristic> statline) {
+        this.statline = statline;
     }
 }

@@ -2,6 +2,7 @@ package testRosterBuilder.testRules;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import rosterBuilder.exceptions.RosterBuildingException;
 import rosterBuilder.pojos.*;
 import rosterBuilder.rules.RosterPointCapExceedingRule;
 import rosterBuilder.utility.RuleViolationLog;
@@ -9,7 +10,7 @@ import rosterBuilder.utility.RuleViolationLog;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class testRosterPointCapExceedingRule {
     UnitProfile up0 = new UnitProfile("Spearmen", new ArrayList<>(), new ArrayList<>(), 100);
@@ -25,6 +26,7 @@ public class testRosterPointCapExceedingRule {
     ArrayList<Integer> min0 = new ArrayList<>(Arrays.asList(1, 2, 0));
     ArrayList<Integer> max0 = new ArrayList<>(Arrays.asList(3, 6, 2));
     Detachment detachment0 = new Detachment.DetachmentBuilder("Detachment 0")
+            .army(army)
             .arrayOfMandatoryChoicesInCategories(min0)
             .arrayOfMaxChoicesPerCategory(max0)
             .build();
@@ -32,6 +34,7 @@ public class testRosterPointCapExceedingRule {
     ArrayList<Integer> min1 = new ArrayList<>(Arrays.asList(1, 2, 0));
     ArrayList<Integer> max1 = new ArrayList<>(Arrays.asList(3, 6, 2));
     Detachment detachment1 = new Detachment.DetachmentBuilder("Detachment 1")
+            .army(army)
             .arrayOfMandatoryChoicesInCategories(min1)
             .arrayOfMaxChoicesPerCategory(max1)
             .detachmentNumber(1)
@@ -71,20 +74,18 @@ public class testRosterPointCapExceedingRule {
         roster.addDetachment(detachment0);
         roster.addDetachment(detachment1);
         roster.setPointCap(10000);
-        roster.getDetachments().get(0).addUnit(unit0, 0);
-        roster.getDetachments().get(0).addUnit(unit1, 1);
-        roster.getDetachments().get(1).addUnit(unit2, 0);
-        roster.getDetachments().get(1).addUnit(unit3, 1);
+        roster.getDetachments().get(0).addUnit(unit0, 0, roster.getUniqueEntitiesPool());
+        roster.getDetachments().get(0).addUnit(unit1, 1, roster.getUniqueEntitiesPool());
+        roster.getDetachments().get(1).addUnit(unit2, 0, roster.getUniqueEntitiesPool());
+        roster.getDetachments().get(1).addUnit(unit3, 1, roster.getUniqueEntitiesPool());
 
-        ruleOK.check(roster);
+        assertDoesNotThrow(() -> {ruleOK.check(roster);});
 
         assertEquals(10000, roster.getPointCap());
         assertEquals("", RuleViolationLog.getRosterRuleViolationLog());
         roster.setPointCap(-1);
         assertEquals(-1, roster.getPointCap());
-        RuleViolationLog.clear();
-        ruleOK.check(roster);
-        assertEquals("Roster Point Limit Exceeded.\n", RuleViolationLog.getRosterRuleViolationLog());
-        RuleViolationLog.clear();
+
+        assertThrows(RosterBuildingException.class, () -> {ruleOK.check(roster);});
     }
 }

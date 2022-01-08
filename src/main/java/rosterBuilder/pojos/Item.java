@@ -1,6 +1,7 @@
 package rosterBuilder.pojos;
 
 public class Item extends Entity {
+    public Item() {super();}
     public Item(String name, String description) {
         super(name, description);
     }

@@ -6,6 +6,7 @@ import rosterBuilder.rules.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -24,10 +25,10 @@ public class testUnitProfile {
     SpecialRule sr01 = new SpecialRule("swift0", "like, really");
     ArrayList<Entity> equipment0 = new ArrayList<>(Arrays.asList(eq00, eq01));
     ArrayList<SpecialRule> specialRules0 = new ArrayList<>(Arrays.asList(sr00, sr01));
-    Statistic statistic00 = new Statistic("S", "1");
-    Statistic statistic01 = new Statistic("D", "-1");
-    Statistic statistic02 = new Statistic("toHit", "3+");
-    Statline statline0 = new Statline(new ArrayList<>(Arrays.asList(statistic00, statistic01, statistic02)));
+    Characteristic characteristic00 = new Characteristic("S", "1");
+    Characteristic characteristic01 = new Characteristic("D", "-1");
+    Characteristic characteristic02 = new Characteristic("toHit", "3+");
+    List<Characteristic> statline0 = new ArrayList<>(Arrays.asList(characteristic00, characteristic01, characteristic02));
 
     ModelPart modelPart0 = new ModelPart("Model", statline0, specialRules0, equipment0);
 
@@ -37,10 +38,10 @@ public class testUnitProfile {
     SpecialRule sr11 = new SpecialRule("swift1", "like, really");
     ArrayList<Entity> equipment1 = new ArrayList<>(Arrays.asList(eq10, eq11));
     ArrayList<SpecialRule> specialRules1 = new ArrayList<>(Arrays.asList(sr10, sr11));
-    Statistic statistic10 = new Statistic("S", "1");
-    Statistic statistic11 = new Statistic("D", "-1");
-    Statistic statistic12 = new Statistic("toHit", "3+");
-    Statline statline1 = new Statline(new ArrayList<>(Arrays.asList(statistic10, statistic11, statistic12)));
+    Characteristic characteristic10 = new Characteristic("S", "1");
+    Characteristic characteristic11 = new Characteristic("D", "-1");
+    Characteristic characteristic12 = new Characteristic("toHit", "3+");
+    List<Characteristic> statline1 = new ArrayList<>(Arrays.asList(characteristic10, characteristic11, characteristic12));
 
     ModelPart modelPart1 = new ModelPart("Model", statline1, specialRules1, equipment1);
 
@@ -64,12 +65,12 @@ public class testUnitProfile {
     @Test
     void testGetModelParts(){
         assertEquals(modelPart0.getName(), unitProfile0.getModelParts().get(0).getName());
-        assertEquals(modelPart0.getStatline(), unitProfile0.getModelParts().get(0).getStatline());
+        assertEquals(modelPart0.getCharacteristics(), unitProfile0.getModelParts().get(0).getCharacteristics());
         assertEquals(modelPart0.getSpecialRules(), unitProfile0.getModelParts().get(0).getSpecialRules());       //sprawdz dokumentacje
         assertEquals(modelPart0.getEquipment(), unitProfile0.getModelParts().get(0).getEquipment());       //sprawdz dokumentacje
 
         assertEquals(modelPart1.getName(), unitProfile0.getModelParts().get(1).getName());
-        assertEquals(modelPart1.getStatline(), unitProfile0.getModelParts().get(1).getStatline());
+        assertEquals(modelPart1.getCharacteristics(), unitProfile0.getModelParts().get(1).getCharacteristics());
         assertEquals(modelPart1.getSpecialRules(), unitProfile0.getModelParts().get(1).getSpecialRules());       //sprawdz dokumentacje
         assertEquals(modelPart1.getEquipment(), unitProfile0.getModelParts().get(1).getEquipment());       //sprawdz dokumentacje
 
@@ -78,9 +79,9 @@ public class testUnitProfile {
 
     @Test
     void testGetOptionSet(){
-        assertEquals(optionSet0, unitProfile0.getOptionSets().get(0));
-        assertEquals(optionSet1, unitProfile0.getOptionSets().get(1));
-        assertEquals(new ArrayList<>(), unitProfile4.getOptionSets());
+        assertEquals(optionSet0, unitProfile0.getOptions().get(0));
+        assertEquals(optionSet1, unitProfile0.getOptions().get(1));
+        assertEquals(new ArrayList<>(), unitProfile4.getOptions());
     }
 
     @Test

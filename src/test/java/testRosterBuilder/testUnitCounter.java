@@ -21,13 +21,15 @@ public class testUnitCounter {
     ArrayList<Integer> min0 = new ArrayList<>(Arrays.asList(1, 2, 0));
     ArrayList<Integer> max0 = new ArrayList<>(Arrays.asList(3, 6, 2));
     Detachment detachment0 = new Detachment.DetachmentBuilder("Detachment 0")
-        .arrayOfMandatoryChoicesInCategories(min0)
-        .arrayOfMaxChoicesPerCategory(max0)
+            .army(army)
+            .arrayOfMandatoryChoicesInCategories(min0)
+            .arrayOfMaxChoicesPerCategory(max0)
             .build();
 
     ArrayList<Integer> min1 = new ArrayList<>(Arrays.asList(1, 2, 0));
     ArrayList<Integer> max1 = new ArrayList<>(Arrays.asList(3, 6, 2));
     Detachment detachment1 = new Detachment.DetachmentBuilder("Detachment 1")
+            .army(army)
             .arrayOfMandatoryChoicesInCategories(min1)
             .arrayOfMaxChoicesPerCategory(max1)
             .detachmentNumber(1)
@@ -60,10 +62,10 @@ public class testUnitCounter {
         roster.addDetachment(detachment0);
         roster.addDetachment(detachment1);
 
-        roster.getDetachments().get(0).addUnit(unit0, 0);
-        roster.getDetachments().get(0).addUnit(unit1, 1);
-        roster.getDetachments().get(1).addUnit(unit2, 0);
-        roster.getDetachments().get(1).addUnit(unit3, 1);
+        roster.getDetachments().get(0).addUnit(unit0, 0, roster.getUniqueEntitiesPool());
+        roster.getDetachments().get(0).addUnit(unit1, 1, roster.getUniqueEntitiesPool());
+        roster.getDetachments().get(1).addUnit(unit2, 0, roster.getUniqueEntitiesPool());
+        roster.getDetachments().get(1).addUnit(unit3, 1, roster.getUniqueEntitiesPool());
 
         assertEquals(4, UnitCounter.countUnits(roster));
     }
@@ -73,10 +75,10 @@ public class testUnitCounter {
         roster.addDetachment(detachment0);
         roster.addDetachment(detachment1);
 
-        roster.getDetachments().get(0).addUnit(unit0, 0);
-        roster.getDetachments().get(0).addUnit(unit1, 1);
-        roster.getDetachments().get(1).addUnit(unit2, 0);
-        roster.getDetachments().get(1).addUnit(unit3, 1);
+        roster.getDetachments().get(0).addUnit(unit0, 0, roster.getUniqueEntitiesPool());
+        roster.getDetachments().get(0).addUnit(unit1, 1, roster.getUniqueEntitiesPool());
+        roster.getDetachments().get(1).addUnit(unit2, 0, roster.getUniqueEntitiesPool());
+        roster.getDetachments().get(1).addUnit(unit3, 1, roster.getUniqueEntitiesPool());
 
         assertEquals(1, UnitCounter.countUnitsNamed(roster, "Swordsmen"));
         assertEquals(1, UnitCounter.countUnitsNamed(roster, "Wizard"));
@@ -89,10 +91,10 @@ public class testUnitCounter {
         roster.addDetachment(detachment0);
         roster.addDetachment(detachment1);
 
-        roster.getDetachments().get(0).addUnit(unit0, 0);
-        roster.getDetachments().get(0).addUnit(unit1, 1);
-        roster.getDetachments().get(1).addUnit(unit2, 0);
-        roster.getDetachments().get(1).addUnit(unit3, 1);
+        roster.getDetachments().get(0).addUnit(unit0, 0, roster.getUniqueEntitiesPool());
+        roster.getDetachments().get(0).addUnit(unit1, 1, roster.getUniqueEntitiesPool());
+        roster.getDetachments().get(1).addUnit(unit2, 0, roster.getUniqueEntitiesPool());
+        roster.getDetachments().get(1).addUnit(unit3, 1, roster.getUniqueEntitiesPool());
 
         assertEquals(2, UnitCounter.countUnitsWith(roster, new Weapon("Sword", "")));
     }
@@ -103,10 +105,10 @@ public class testUnitCounter {
         roster.addDetachment(detachment0);
         roster.addDetachment(detachment1);
 
-        roster.getDetachments().get(0).addUnit(unit0, 0);
-        roster.getDetachments().get(0).addUnit(unit1, 1);
-        roster.getDetachments().get(1).addUnit(unit2, 0);
-        roster.getDetachments().get(1).addUnit(unit3, 1);
+        roster.getDetachments().get(0).addUnit(unit0, 0, roster.getUniqueEntitiesPool());
+        roster.getDetachments().get(0).addUnit(unit1, 1, roster.getUniqueEntitiesPool());
+        roster.getDetachments().get(1).addUnit(unit2, 0, roster.getUniqueEntitiesPool());
+        roster.getDetachments().get(1).addUnit(unit3, 1, roster.getUniqueEntitiesPool());
 
         assertEquals(3, UnitCounter.countUnitsWithAny(roster, new ArrayList<>(Arrays.asList(new Weapon("Sword", ""), new SpecialRule("Any", "")))));
     }
@@ -117,10 +119,10 @@ public class testUnitCounter {
         roster.addDetachment(detachment0);
         roster.addDetachment(detachment1);
 
-        roster.getDetachments().get(0).addUnit(unit0, 0);
-        roster.getDetachments().get(0).addUnit(unit1, 1);
-        roster.getDetachments().get(1).addUnit(unit2, 0);
-        roster.getDetachments().get(1).addUnit(unit3, 1);
+        roster.getDetachments().get(0).addUnit(unit0, 0, roster.getUniqueEntitiesPool());
+        roster.getDetachments().get(0).addUnit(unit1, 1, roster.getUniqueEntitiesPool());
+        roster.getDetachments().get(1).addUnit(unit2, 0, roster.getUniqueEntitiesPool());
+        roster.getDetachments().get(1).addUnit(unit3, 1, roster.getUniqueEntitiesPool());
 
         assertEquals(1, UnitCounter.countUnitsWithAll(roster, new ArrayList<>(Arrays.asList(new Entity("Talisman", ""), new SpecialRule("Wizard Master", "")))));
     }

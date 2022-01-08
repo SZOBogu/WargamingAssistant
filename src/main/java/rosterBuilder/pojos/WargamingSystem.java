@@ -11,7 +11,7 @@ import java.util.List;
 public class WargamingSystem {
     private String name;
     private List<Army> armies;
-    private EntityContainer allInGameEntities;
+    private List<Entity> allInGameEntities;
     private List<Deployment> deployments;
     private List<MissionList> missions;
     private List<Detachment> detachments;
@@ -21,8 +21,8 @@ public class WargamingSystem {
     private List<RosterBuildingRule> rules;
     private UniqueEntitiesPool pool;
 
-    public WargamingSystem(String name){
-        this(name, new ArrayList<>(), new ArrayList<>(),
+    public WargamingSystem(){
+        this("", new ArrayList<>(), new ArrayList<>(),
                 new ArrayList<>(), new ArrayList<>(), new ArrayList<>(),
                 new ArrayList<>(), 1, false);
     }
@@ -33,8 +33,7 @@ public class WargamingSystem {
                            int maxDetachments, boolean isAllowingAlliances){
         this.name = name;
         this.armies = armies;
-        this.allInGameEntities = new EntityContainer();
-        this.allInGameEntities.addAll(allEqAndSR);
+        this.allInGameEntities = allEqAndSR;
         this.deployments = deployments;
         this.missions = missions;
         this.detachments = detachments;
@@ -49,40 +48,56 @@ public class WargamingSystem {
         return name;
     }
 
-    public List<Army> getArmies() {
-        return armies;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public Army getArmy(int index) {
-        return armies.get(index);
+    public List<Army> getArmies() {
+        return armies;
     }
 
     public void setArmies(List<Army> armies) {
         this.armies = armies;
     }
 
-    public List<Deployment> getDeployments() {
-        return deployments;
+    public List<Entity> getAllInGameEntities() {
+        return allInGameEntities;
     }
 
-    public Deployment getDeployment(int index) {
-        return deployments.get(index);
+    public void setAllInGameEntities(List<Entity> allInGameEntities) {
+        this.allInGameEntities = allInGameEntities;
+    }
+
+    public List<Deployment> getDeployments() {
+        return deployments;
     }
 
     public void setDeployments(List<Deployment> deployments) {
         this.deployments = deployments;
     }
 
-    public List<MissionList> getAllMissions() {
+    public List<MissionList> getMissions() {
         return missions;
-    }
-
-    public MissionList getMissionList(int index) {
-        return missions.get(index);
     }
 
     public void setMissions(List<MissionList> missions) {
         this.missions = missions;
+    }
+
+    public List<Detachment> getDetachments() {
+        return detachments;
+    }
+
+    public void setDetachments(List<Detachment> detachments) {
+        this.detachments = detachments;
+    }
+
+    public List<Scenario> getScenarios() {
+        return scenarios;
+    }
+
+    public void setScenarios(List<Scenario> scenarios) {
+        this.scenarios = scenarios;
     }
 
     public int getMaxDetachments() {
@@ -93,28 +108,8 @@ public class WargamingSystem {
         this.maxDetachments = maxDetachments;
     }
 
-    public List<Detachment> getDetachments() {
-        return detachments;
-    }
-
-    public Detachment getDetachment(int index) {
-        return detachments.get(index);
-    }
-
-    public Detachment getEmptyDetachment(int index) {
-        return detachments.get(index).copyEmptyDetachment();
-    }
-
-    public void setDetachments(List<Detachment> detachments) {
-        this.detachments = detachments;
-    }
-
-    public EntityContainer getAllInGameEntities() {
-        return allInGameEntities;
-    }
-
-    public boolean isAllowingAlliances(){
-        return this.isAllowingAlliances;
+    public boolean isAllowingAlliances() {
+        return isAllowingAlliances;
     }
 
     public void setAllowingAlliances(boolean allowingAlliances) {
@@ -135,13 +130,5 @@ public class WargamingSystem {
 
     public void setPool(UniqueEntitiesPool pool) {
         this.pool = pool;
-    }
-
-    public List<Scenario> getScenarios() {
-        return scenarios;
-    }
-
-    public void setScenarios(List<Scenario> scenarios) {
-        this.scenarios = scenarios;
     }
 }

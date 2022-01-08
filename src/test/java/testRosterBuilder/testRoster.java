@@ -109,10 +109,10 @@ public class testRoster {
         Unit unit2 = Mockito.mock(Unit.class);
         Unit unit3 = Mockito.mock(Unit.class);
 
-        roster.getDetachments().get(0).addUnit(unit0, 0);
-        roster.getDetachments().get(0).addUnit(unit1, 1);
-        roster.getDetachments().get(1).addUnit(unit2, 0);
-        roster.getDetachments().get(1).addUnit(unit3, 1);
+        roster.getDetachments().get(0).addUnit(unit0, 0, roster.getUniqueEntitiesPool());
+        roster.getDetachments().get(0).addUnit(unit1, 1, roster.getUniqueEntitiesPool());
+        roster.getDetachments().get(1).addUnit(unit2, 0, roster.getUniqueEntitiesPool());
+        roster.getDetachments().get(1).addUnit(unit3, 1, roster.getUniqueEntitiesPool());
 
         String expected = roster.getPrimaryArmy().getName() + " " + roster.getPointCap() +
                 "p Army\n" + roster.getDetachments().get(0).toString() + roster.getDetachments().get(1).toString();
@@ -126,13 +126,13 @@ public class testRoster {
         Unit testUnit0 = new Unit.UnitBuilder("General", new ArrayList<>())
                 .pointCost(50)
                 .build();
-        detachment0.addUnit(testUnit0, 0);
+        detachment0.addUnit(testUnit0, 0, roster.getUniqueEntitiesPool());
 
         Unit testUnit1 = new Unit.UnitBuilder("Swordsmen", new ArrayList<>())
                 .modelsInUnit(10)
                 .pointCost(30)
                 .build();
-        detachment0.addUnit(testUnit1, 1);
+        detachment0.addUnit(testUnit1, 1, roster.getUniqueEntitiesPool());
 
         assertEquals(80, roster.getTotalCost());
     }

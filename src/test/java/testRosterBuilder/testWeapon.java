@@ -1,12 +1,12 @@
 package testRosterBuilder;
 
 import org.junit.jupiter.api.Test;
-import rosterBuilder.pojos.Statistic;
-import rosterBuilder.pojos.Statline;
+import rosterBuilder.pojos.Characteristic;
 import rosterBuilder.pojos.Weapon;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -14,9 +14,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class testWeapon {
     Weapon weapon0 = new Weapon("CCW", "-", "5+");
-    Statistic stat0 = new Statistic("Range", "24\"");
-    Statistic stat1 = new Statistic("Str", "4");
-    Statline statline = new Statline(new ArrayList<>(Arrays.asList(stat0, stat1)));
+    Characteristic stat0 = new Characteristic("Range", "24\"");
+    Characteristic stat1 = new Characteristic("Str", "4");
+    List<Characteristic> statline = new ArrayList<>(Arrays.asList(stat0, stat1));
     Weapon weapon1 = new Weapon("Bolter", "pew pew", statline);
 
     @Test
@@ -31,7 +31,7 @@ public class testWeapon {
     }
     @Test
     void testGetStatline(){
-        assertEquals(new Statline(), weapon0.getStatline());
+        assertEquals(new ArrayList<>(), weapon0.getStatline());
         assertEquals(statline, weapon1.getStatline());
     }
 

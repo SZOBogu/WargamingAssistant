@@ -6,9 +6,17 @@ import rosterBuilder.pojos.Option;
 public class QuantityDependentOption extends Option {
     private int modelQuantity;
 
+    public QuantityDependentOption(){
+        super();
+    }
+
     public QuantityDependentOption(Entity entity, int cost, int modelQuantity){
         super(entity, cost);
         this.modelQuantity = modelQuantity;
+    }
+
+    public int getModelQuantity() {
+        return modelQuantity;
     }
 
     @Override

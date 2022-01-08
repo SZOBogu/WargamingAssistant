@@ -64,10 +64,10 @@ public class testRosterSummarizer {
         detachment0.setArmy(army);
         roster.addDetachment(detachment1);
         detachment1.setArmy(army);
-        roster.getDetachments().get(0).addUnit(unit0, 0);
-        roster.getDetachments().get(0).addUnit(unit1, 1);
-        roster.getDetachments().get(1).addUnit(unit2, 0);
-        roster.getDetachments().get(1).addUnit(unit3, 1);
+        roster.getDetachments().get(0).addUnit(unit0, 0, roster.getUniqueEntitiesPool());
+        roster.getDetachments().get(0).addUnit(unit1, 1, roster.getUniqueEntitiesPool());
+        roster.getDetachments().get(1).addUnit(unit2, 0, roster.getUniqueEntitiesPool());
+        roster.getDetachments().get(1).addUnit(unit3, 1, roster.getUniqueEntitiesPool());
 
         String expected = "TOTAL: 1000/4500\tMODELS: 13";
         assertEquals(expected, RosterSummarizer.summarize(roster));

@@ -6,11 +6,13 @@ public class Roster {
     private final ArrayList<Detachment> detachments;
     private Army primaryArmy;
     private int pointCap;
+    private UniqueEntitiesPool uniqueEntitiesPool;
 
     public Roster(){
         this.detachments = new ArrayList<>();
         this.primaryArmy = null;
         this.pointCap = 0;
+        this.uniqueEntitiesPool = new UniqueEntitiesPool();
     }
 
     public void addDetachment(Detachment detachment){
@@ -21,7 +23,7 @@ public class Roster {
        Detachment detachment = this.detachments.get(index);
        for(int i = 0; i < detachment.getBoughtUnitsCategorized().size(); i++){      //po detkach
            for (int j = 0; j < detachment.getBoughtUnitsCategorized().get(i).size(); j++) {  //po kategoriach
-               detachment.deleteUnit(i, j);
+               detachment.deleteUnit(i, j, uniqueEntitiesPool);
            }
        }
        this.detachments.remove(index);
@@ -61,6 +63,14 @@ public class Roster {
 
     public Army getArmy(int index){
         return this.detachments.get(index).getArmy();
+    }
+
+    public UniqueEntitiesPool getUniqueEntitiesPool() {
+        return uniqueEntitiesPool;
+    }
+
+    public void setUniqueEntitiesPool(UniqueEntitiesPool uniqueEntitiesPool) {
+        this.uniqueEntitiesPool = uniqueEntitiesPool;
     }
 
     @Override

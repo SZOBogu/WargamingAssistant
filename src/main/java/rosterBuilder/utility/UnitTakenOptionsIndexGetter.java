@@ -13,9 +13,9 @@ public class UnitTakenOptionsIndexGetter {
     public static List<List<Integer>> getTakenOptionsIndexes(Unit unit, UnitProfile unitProfile) {
         List<List<Integer>> takenOptionsIndexes = new ArrayList<>();
 
-        for (int i = 0; i < unitProfile.getOptionSets().size(); i++) {
-            for (int j = 0; j < unitProfile.getOptionSets().get(i).getOptions().size(); j++) {
-                if (unit.getNonBaseEquipment().contains(unitProfile.getOptionSets()
+        for (int i = 0; i < unitProfile.getOptions().size(); i++) {
+            for (int j = 0; j < unitProfile.getOptions().get(i).getOptions().size(); j++) {
+                if (unit.getNonBaseEquipment().contains(unitProfile.getOptions()
                         .get(i).getOptions().get(j).getEntity())) {
                     takenOptionsIndexes.add(new ArrayList<>());
                     takenOptionsIndexes.get(takenOptionsIndexes.size() - 1).add(i);

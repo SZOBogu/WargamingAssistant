@@ -64,10 +64,10 @@ public class testRosterCostCalculator {
         detachment0.setArmy(army);
         roster.addDetachment(detachment1);
         detachment1.setArmy(army);
-        roster.getDetachments().get(0).addUnit(unit0, 0);
-        roster.getDetachments().get(0).addUnit(unit1, 1);
-        roster.getDetachments().get(1).addUnit(unit2, 0);
-        roster.getDetachments().get(1).addUnit(unit3, 1);
+        roster.getDetachments().get(0).addUnit(unit0, 0, roster.getUniqueEntitiesPool());
+        roster.getDetachments().get(0).addUnit(unit1, 1, roster.getUniqueEntitiesPool());
+        roster.getDetachments().get(1).addUnit(unit2, 0, roster.getUniqueEntitiesPool());
+        roster.getDetachments().get(1).addUnit(unit3, 1, roster.getUniqueEntitiesPool());
 
         assertEquals(350, RosterCostCalculator.calculateCategoryCost(roster, 0,0));
         assertEquals(100, RosterCostCalculator.calculateCategoryCost(roster, 0,1));
@@ -83,10 +83,10 @@ public class testRosterCostCalculator {
         detachment0.setArmy(army);
         roster.addDetachment(detachment1);
         detachment1.setArmy(army);
-        roster.getDetachments().get(0).addUnit(unit0, 0);
-        roster.getDetachments().get(0).addUnit(unit1, 1);
-        roster.getDetachments().get(1).addUnit(unit2, 0);
-        roster.getDetachments().get(1).addUnit(unit3, 1);
+        roster.getDetachments().get(0).addUnit(unit0, 0, roster.getUniqueEntitiesPool());
+        roster.getDetachments().get(0).addUnit(unit1, 1, roster.getUniqueEntitiesPool());
+        roster.getDetachments().get(1).addUnit(unit2, 0, roster.getUniqueEntitiesPool());
+        roster.getDetachments().get(1).addUnit(unit3, 1, roster.getUniqueEntitiesPool());
 
         assertEquals(1000, RosterCostCalculator.calculateRosterCost(roster));
     }

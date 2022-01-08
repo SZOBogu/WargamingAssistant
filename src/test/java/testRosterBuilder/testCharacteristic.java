@@ -1,12 +1,12 @@
 package testRosterBuilder;
 
 import org.junit.jupiter.api.Test;
-import rosterBuilder.pojos.Statistic;
+import rosterBuilder.pojos.Characteristic;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class testStatistic {
-    Statistic stat = new Statistic("Strength", "2D6");
+class testCharacteristic {
+    Characteristic stat = new Characteristic("Strength", "2D6");
 
     @Test
     public void testGetName() {

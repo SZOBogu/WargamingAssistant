@@ -21,7 +21,7 @@ public class ScenarioInfoResponse {
     public ScenarioInfoResponse(WargamingSystem wargamingSystem) {
         this.gameName = wargamingSystem.getName();
         this.deploymentList = wargamingSystem.getDeployments();
-        this.missionList = wargamingSystem.getAllMissions();
+        this.missionList = wargamingSystem.getMissions();
     }
 
 

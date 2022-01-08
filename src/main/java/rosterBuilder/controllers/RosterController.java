@@ -26,7 +26,7 @@ public class RosterController {
 
     @GetMapping("/unit/{armyIndex}/{categoryIndex}/{unitIndex}")
     public UnitProfile getUnitProfile(@PathVariable int armyIndex, @PathVariable int categoryIndex, @PathVariable int unitIndex){
-        return system.getArmy(armyIndex).getArmySubcategory(categoryIndex).getUnitProfile(unitIndex);
+        return system.getArmies().get(armyIndex).getArmySubcategory(categoryIndex).getUnitProfile(unitIndex);
     }
 
     @GetMapping("/unit")
@@ -36,7 +36,7 @@ public class RosterController {
         String unitListJson = mapper.writeValueAsString(unitNameList);
 
         try{
-            for(ArmySubcategory category : this.system.getArmy(request.getArmyIndex()).getArmySubcategories()){
+            for(ArmySubcategory category : this.system.getArmies().get(request.getArmyIndex()).getArmySubcategories()){
                 unitNameList.add(category.getUnitProfiles().stream().map(UnitProfile::getName).collect(Collectors.toList()));
             }
         }
@@ -52,7 +52,7 @@ public class RosterController {
     public ResponseEntity<String> saveUnit(@RequestBody SaveUnitRequest request) throws JsonProcessingException {
         Roster roster = request.getRoster();
         Unit unit = request.getUnit();
-        UnitProfile unitProfile = UnitAndProfileFinder.getProfile(system.getArmy(request.getArmyIndex()), unit);
+        UnitProfile unitProfile = UnitAndProfileFinder.getProfile(system.getArmies().get(request.getArmyIndex()), unit);
 
         for(UnitBuildingRule rule : unitProfile.getRules()) {
             try {
@@ -65,7 +65,7 @@ public class RosterController {
         }
 
         if(RuleViolationLog.getRosterRuleViolationLog().isEmpty() && RuleViolationLog.getUnitRuleViolationLog().isEmpty()){
-            roster.getDetachments().get(request.getDetachmentIndex()).addUnit(unit, request.getCategoryIndex());
+            roster.getDetachments().get(request.getDetachmentIndex()).addUnit(unit, request.getCategoryIndex(), roster.getUniqueEntitiesPool());
             ObjectMapper mapper = new ObjectMapper();
             String rosterJson = mapper.writeValueAsString(roster);
             return new ResponseEntity<>(rosterJson, HttpStatus.OK);
@@ -79,7 +79,7 @@ public class RosterController {
     @DeleteMapping("/unit")
     public Roster deleteUnit(@RequestBody DeleteUnitRequest request){
         Roster roster = request.getRoster();
-        roster.getDetachments().get(request.getDetachmentIndex()).deleteUnit(request.getCategoryIndex(), request.getUnitIndex());
+        roster.getDetachments().get(request.getDetachmentIndex()).deleteUnit(request.getCategoryIndex(), request.getUnitIndex(), roster.getUniqueEntitiesPool());
 
         return roster;
     }

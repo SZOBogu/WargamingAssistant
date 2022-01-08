@@ -3,6 +3,9 @@ package rosterBuilder.pojos;
 import java.util.ArrayList;
 
 public class MultipleChoiceOptionSet extends OptionSet{
+    public MultipleChoiceOptionSet(){
+        super();
+    }
     public MultipleChoiceOptionSet(ArrayList<Option> options){
         super(options);
     }

@@ -79,22 +79,17 @@ public class testWargamingSystem {
 
     WargamingSystem system1 = new WargamingSystem("T10B", armies, new ArrayList<>(), deployments,
             missions, scenarios, detachments, 3, true);
-    WargamingSystem system2 = new WargamingSystem("QG50k");
+    WargamingSystem system2 = new WargamingSystem();
 
     @Test
     void testGetName() {
         assertEquals("T10B", system1.getName());
-        assertEquals("QG50k", system2.getName());
+        assertEquals("", system2.getName());
     }
 
     @Test
     void testGetArmies() {
         assertEquals(armies, system1.getArmies());
-    }
-
-    @Test
-    void testGetArmy() {
-        assertEquals(army, system1.getArmy(0));
     }
 
     @Test
@@ -118,11 +113,6 @@ public class testWargamingSystem {
     }
 
     @Test
-    void testGetDeployment() {
-        assertEquals(deployment0, system1.getDeployment(0));
-    }
-
-    @Test
     void testSetDeployments() {
         system2.setDeployments(deployments);
         assertEquals(deployments, system2.getDeployments());
@@ -130,18 +120,13 @@ public class testWargamingSystem {
 
     @Test
     void testGetAllMissions() {
-        assertEquals(missions, system1.getAllMissions());
-    }
-
-    @Test
-    void testGetMissionList() {
-        assertEquals(missionList01, system1.getMissionList(0));
+        assertEquals(missions, system1.getMissions());
     }
 
     @Test
     void testSetMissions() {
         system2.setMissions(missions);
-        assertEquals(missions, system2.getAllMissions());
+        assertEquals(missions, system2.getMissions());
     }
 
     @Test
@@ -156,11 +141,6 @@ public class testWargamingSystem {
     }
 
     @Test
-    void testGetDetachment() {
-        assertEquals(det0, system1.getDetachment(0));
-    }
-
-    @Test
     void testGetMaxDetachments() {
         assertEquals(3, system1.getMaxDetachments());
         assertEquals(1, system2.getMaxDetachments());
@@ -171,11 +151,6 @@ public class testWargamingSystem {
         assertEquals(1, system2.getMaxDetachments());
         system2.setMaxDetachments(10);
         assertEquals(10, system2.getMaxDetachments());
-    }
-
-    @Test
-    void testGetEmptyDetachment(){
-        assertNotSame(det0, system1.getEmptyDetachment(0));
     }
 
     @Test

@@ -37,7 +37,7 @@ public class testUnitTakenOptionsIndexGetter {
     Option option21 = new Option(new Entity("lekka zbroja", "+1S"), 500);
     OptionSet optionSet2 = new MultipleChoiceOptionSet(new ArrayList<>(Arrays.asList(option20, option21)));
 
-    ModelPart modelPart0 = new ModelPart("Model", new Statline(new ArrayList<>()), new ArrayList<>(), new ArrayList<>());
+    ModelPart modelPart0 = new ModelPart("Model", new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
 
     ArrayList<ModelPart> modelParts = new ArrayList<>();
     ArrayList<OptionSet> optionSets = new ArrayList<>(Arrays.asList(optionSet0, optionSet1, optionSet2));

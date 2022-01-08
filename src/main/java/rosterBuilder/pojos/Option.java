@@ -4,6 +4,10 @@ public class Option {
     protected Entity entity;
     protected int cost;
 
+    public Option(){
+        this.entity = new Entity();
+        this.cost = 0;
+    }
     public Option(Entity entity, int cost){
         this.entity = entity;
         this.cost = cost;
