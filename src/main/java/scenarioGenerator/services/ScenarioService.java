@@ -1,14 +1,14 @@
 package scenarioGenerator.services;
 
+import scenarioGenerator.exceptions.ScenarioGenerationException;
+import scenarioGenerator.requests.ScenarioRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import rosterBuilder.pojos.WargamingSystem;
-import scenarioGenerator.exceptions.ScenarioGenerationException;
 import scenarioGenerator.utility.*;
 import scenarioGenerator.pojos.Deployment;
 import scenarioGenerator.pojos.Mission;
 import scenarioGenerator.pojos.Scenario;
-import scenarioGenerator.requests.ScenarioRequest;
 
 import java.util.ArrayList;
 import java.util.List;

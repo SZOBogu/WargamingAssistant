@@ -1,27 +1,28 @@
 package scenarioGenerator.pojos;
 
+import common.ScorePoints;
+
 public class Objective {
     private String name;
-    private int victoryPoints;
+    private ScorePoints victoryPoints;
 
     public Objective(){
-        this("Objective", 1);
+        this.name = "Objective 0";
+        this.victoryPoints = new ScorePoints();
     }
-
-    public Objective(String name){
-        this(name, 1);
-    }
-
-    public Objective(String name, int vp){
-        this.name = name;
-        this.victoryPoints = vp;
-    }
-
     public String getName() {
         return name;
     }
 
-    public int getVictoryPoints() {
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public ScorePoints getVictoryPoints() {
         return victoryPoints;
+    }
+
+    public void setVictoryPoints(ScorePoints victoryPoints) {
+        this.victoryPoints = victoryPoints;
     }
 }

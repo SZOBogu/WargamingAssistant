@@ -1,28 +1,32 @@
 package testScenarioGenerator;
 
+import common.ScorePoints;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 import scenarioGenerator.pojos.Objective;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 public class testObjective {
-    Objective obj0 = new Objective("Załóż więcej farm", 10);
-    Objective obj1 = new Objective();
-    Objective obj2 = new Objective("Trza nam więcej legowisk");
+    Objective obj = new Objective();
+    ScorePoints scorePoints = new ScorePoints();
 
     @Test
     void testGetName(){
-        assertEquals("Załóż więcej farm", obj0.getName());
-        assertEquals("Objective", obj1.getName());
-        assertEquals("Trza nam więcej legowisk", obj2.getName());
+        assertEquals("Objective 0", obj.getName());
     }
 
     @Test
     void getVictoryPoints(){
-        assertEquals(10, obj0.getVictoryPoints());
-        assertEquals(1, obj1.getVictoryPoints());
-        assertEquals(1, obj2.getVictoryPoints());
+        assertEquals(new ScorePoints().getPoints(), obj.getVictoryPoints().getPoints());
+        assertEquals(new ScorePoints().getType(), obj.getVictoryPoints().getType());
+    }
+
+    @Test
+    void setVictoryPoints(){
+        obj.setVictoryPoints(scorePoints);
+        assertEquals(scorePoints, obj.getVictoryPoints());
     }
 
 }

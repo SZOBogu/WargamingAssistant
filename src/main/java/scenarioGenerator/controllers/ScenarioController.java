@@ -1,11 +1,11 @@
 package scenarioGenerator.controllers;
 
+import scenarioGenerator.requests.ScenarioRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import rosterBuilder.pojos.WargamingSystem;
 import scenarioGenerator.pojos.Scenario;
 import scenarioGenerator.responses.ScenarioInfoResponse;
-import scenarioGenerator.requests.ScenarioRequest;
 import scenarioGenerator.services.ScenarioService;
 
 import java.util.List;

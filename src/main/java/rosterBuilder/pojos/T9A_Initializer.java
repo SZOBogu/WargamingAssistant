@@ -1,17 +1,5 @@
 package rosterBuilder.pojos;
 
-import rosterBuilder.rules.CannotBeTakenWithMoreThanModels;
-import rosterBuilder.rules.MustBeTakenTogether;
-import rosterBuilder.rules.MustHaveExactly;
-import scenarioGenerator.pojos.Deployment;
-import scenarioGenerator.pojos.Mission;
-import scenarioGenerator.pojos.MissionList;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-
 public class T9A_Initializer implements IWargameInitializer {
 
     @Override

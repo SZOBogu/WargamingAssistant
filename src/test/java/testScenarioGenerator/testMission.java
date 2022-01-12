@@ -1,6 +1,8 @@
 package testScenarioGenerator;
 
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
+import org.mockito.Mockito;
 import scenarioGenerator.pojos.Deployment;
 import scenarioGenerator.pojos.Mission;
 import scenarioGenerator.pojos.Objective;
@@ -14,10 +16,12 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 public class testMission {
     Mission miss0 = new Mission();
     Deployment deployment = new Deployment("test Deployment", "asdfa");
+    Objective objective0 = Mockito.mock(Objective.class);
+    Objective objective1 = Mockito.mock(Objective.class);
+    Objective objective2 = Mockito.mock(Objective.class);
+
     ArrayList<Objective> objectives = new ArrayList<>(Arrays.asList(
-            new Objective("W ogóle"),
-            new Objective("Centralnie", 2),
-            new Objective("Kamieniem go bez kitu", 3)
+            objective0, objective1, objective2
             ));
     Mission miss1 = new Mission("Zrobić porządek", objectives);
     Mission miss2 = new Mission("miss 2", new ArrayList<>(), "opis miss 2");
@@ -35,12 +39,9 @@ public class testMission {
     void testGetObjectives(){
         assertEquals(0, miss0.getObjectives().size());
         assertEquals(3, miss1.getObjectives().size());
-        assertEquals("W ogóle", miss1.getObjectives().get(0).getName());
-        assertEquals("Centralnie", miss1.getObjectives().get(1).getName());
-        assertEquals("Kamieniem go bez kitu", miss1.getObjectives().get(2).getName());
-        assertEquals(1, miss1.getObjectives().get(0).getVictoryPoints());
-        assertEquals(2, miss1.getObjectives().get(1).getVictoryPoints());
-        assertEquals(3, miss1.getObjectives().get(2).getVictoryPoints());
+        assertEquals(objective0, miss1.getObjectives().get(0));
+        assertEquals(objective1, miss1.getObjectives().get(1));
+        assertEquals(objective2, miss1.getObjectives().get(2));
 
         assertEquals(miss3.getObjectives(), miss1.getObjectives());
     }
