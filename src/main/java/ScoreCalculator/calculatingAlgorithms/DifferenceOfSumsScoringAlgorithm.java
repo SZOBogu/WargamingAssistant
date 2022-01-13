@@ -24,7 +24,7 @@ public class DifferenceOfSumsScoringAlgorithm implements ScoringAlgorithm {
         }
         else{
             homePlayerEndScore.setPoints(0);
-            awayPlayerEndScore.setPoints(difference);
+            awayPlayerEndScore.setPoints(Math.abs(difference));
         }
 
         return new ArrayList<>(Arrays.asList(homePlayerEndScore, awayPlayerEndScore));
