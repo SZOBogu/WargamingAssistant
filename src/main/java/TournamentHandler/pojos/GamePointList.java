@@ -1,8 +1,6 @@
 package TournamentHandler.pojos;
 
-import TournamentHandler.pojos.PlayerScore;
-
-public class GameScore {
+public class GamePointList {
     private PlayerScore homePlayerScore;
     private PlayerScore awayPlayersScore;
 

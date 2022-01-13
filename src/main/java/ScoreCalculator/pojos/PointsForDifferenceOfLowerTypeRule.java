@@ -1,25 +1,18 @@
 package ScoreCalculator.pojos;
 
+import ScoreCalculator.helpers.ScorePointAdder;
 import ScoreCalculator.helpers.ScoringPointOfHigherTypeGetter;
 import common.ScorePoints;
 
-public class PointsForDifferenceOfLowerTypeRule implements VictoryPointScoringRule{
-    private int pointDifferenceToChangeScore;
+import java.util.List;
 
+public class PointsForDifferenceOfLowerTypeRule extends VictoryPointScoringRule {
     @Override
-    public ScorePoints implementRule(ScorePoints points) {
-        ScorePoints scorePointsToReturn = new ScorePoints();
-        scorePointsToReturn.setType(ScoringPointOfHigherTypeGetter.getPointOfHigherType(points.getType()));
-        scorePointsToReturn.setPoints(points.getPoints()/(pointDifferenceToChangeScore + 1));
-
-        return scorePointsToReturn;
-    }
-
-    public int getPointDifferenceToChangeScore() {
-        return pointDifferenceToChangeScore;
-    }
-
-    public void setPointDifferenceToChangeScore(int pointDifferenceToChangeScore) {
-        this.pointDifferenceToChangeScore = pointDifferenceToChangeScore;
+    public List<ScorePoints> implementRule(List<ScorePoints> points) {
+        for(ScorePoints scorePoints : points) {
+            if(scorePoints.getType() == this.getInputType())
+                ScorePointAdder.addPoints(points, ScoringPointOfHigherTypeGetter.getPointOfHigherType(scorePoints.getType()), scorePoints.getPoints() / (this.getRuleValue() + 1));
+        }
+        return points;
     }
 }

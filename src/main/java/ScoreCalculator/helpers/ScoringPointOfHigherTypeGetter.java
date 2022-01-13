@@ -14,6 +14,6 @@ public class ScoringPointOfHigherTypeGetter {
                 return type;
             }
         }
-        return ScorePointType.TEAM_POINT;
+        return ScorePointType.EVENT_POINT;
     }
 }
