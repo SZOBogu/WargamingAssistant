@@ -84,7 +84,7 @@ public class TournamentService {
 
     public List<Game> getRandomizedPairings(int tournamentId){
         SwissSystem swissSystem = new SwissSystem();
-
+        return new ArrayList<>();
     }
 
     public String uploadScore(){

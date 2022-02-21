@@ -4,11 +4,12 @@ import java.util.List;
 
 public class ScenarioRequest {
     private List<Integer> deploymentPool;
-    private List<List<Integer>> objectivePackPool;
+    private List<List<Integer>> missionPool;
     private int scenariosToGenerate;
 
-    private boolean duplicateObjectivePacksFreely;
+    private boolean duplicateMissionsFreely;
     private boolean duplicateDeploymentsFreely;
+    private boolean oneMissionPool;
 
     public List<Integer> getDeploymentPool() {
         return deploymentPool;
@@ -18,12 +19,12 @@ public class ScenarioRequest {
         this.deploymentPool = deploymentPool;
     }
 
-    public List<List<Integer>> getObjectivePackPool() {
-        return objectivePackPool;
+    public List<List<Integer>> getMissionPool() {
+        return missionPool;
     }
 
-    public void setObjectivePackPool(List<List<Integer>>objectivePackPool) {
-        this.objectivePackPool = objectivePackPool;
+    public void setMissionPool(List<List<Integer>> missionPool) {
+        this.missionPool = missionPool;
     }
 
     public int getScenariosToGenerate() {
@@ -34,12 +35,12 @@ public class ScenarioRequest {
         this.scenariosToGenerate = scenariosToGenerate;
     }
 
-    public boolean isDuplicateObjectivePacksFreely() {
-        return duplicateObjectivePacksFreely;
+    public boolean isDuplicateMissionsFreely() {
+        return duplicateMissionsFreely;
     }
 
-    public void setDuplicateObjectivePacksFreely(boolean duplicateObjectivePacksFreely) {
-        this.duplicateObjectivePacksFreely = duplicateObjectivePacksFreely;
+    public void setDuplicateMissionsFreely(boolean duplicateMissionsFreely) {
+        this.duplicateMissionsFreely = duplicateMissionsFreely;
     }
 
     public boolean isDuplicateDeploymentsFreely() {
@@ -50,28 +51,23 @@ public class ScenarioRequest {
         this.duplicateDeploymentsFreely = duplicateDeploymentsFreely;
     }
 
-/*
-{
-	"deploymentBooleanPool": [false, true, false, true, false, true],
-	"missionBooleanPool": [[false, true, false, true, false, true],[false, true, false, true, false, true]],
-	"scenariosToGenerate": 3,
-	"canDuplicateMissions": true,
-	"getCanDuplicateDeployments": true,
-	"duplicateMissionsFreely": false,
-	"duplicateDeploymentsFreely": false,
-	"duplicateDeploymentsQuantity": 2,
-	"duplicateMissionsQuantity": 2
-}
- */
+    public boolean isOneMissionPool() {
+        return oneMissionPool;
+    }
+
+    public void setOneMissionPool(boolean oneMissionPool) {
+        this.oneMissionPool = oneMissionPool;
+    }
 
     @Override
     public String toString() {
         return "ScenarioRequest{" +
                 "deploymentPool=" + deploymentPool +
-                ", objectivePackPool=" + objectivePackPool +
+                ", missionPool=" + missionPool +
                 ", scenariosToGenerate=" + scenariosToGenerate +
-                ", duplicateObjectivePacksFreely=" + duplicateObjectivePacksFreely +
+                ", duplicateMissionsFreely=" + duplicateMissionsFreely +
                 ", duplicateDeploymentsFreely=" + duplicateDeploymentsFreely +
+                ", oneMissionPool=" + oneMissionPool +
                 '}';
     }
 }

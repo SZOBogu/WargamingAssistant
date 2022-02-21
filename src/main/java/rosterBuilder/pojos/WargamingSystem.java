@@ -78,7 +78,7 @@ public class WargamingSystem {
         this.deployments = deployments;
     }
 
-    public List<List<Mission>> getMissions() {
+    public List<MissionList> getMissions() {
         return missions;
     }
 

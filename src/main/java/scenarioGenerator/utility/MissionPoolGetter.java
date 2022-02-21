@@ -6,12 +6,12 @@ import scenarioGenerator.requests.ScenarioRequest;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ObjectivePackPoolGetter {
+public class MissionPoolGetter {
 
-    private ObjectivePackPoolGetter(){}
+    private MissionPoolGetter(){}
 
     public static List<List<Mission>> getObjectivePackPoolList(ScenarioRequest request, List<List<Mission>> allObjectivePacks){
-        List<List<Integer>> objectivePackDupeList = request.getObjectivePackPool();
+        List<List<Integer>> objectivePackDupeList = request.getMissionPool();
 
         List<List<Mission>> objectivePackPool= new ArrayList<>();
 

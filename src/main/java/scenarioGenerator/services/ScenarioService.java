@@ -1,6 +1,7 @@
 package scenarioGenerator.services;
 
 import scenarioGenerator.exceptions.ScenarioGenerationException;
+import scenarioGenerator.pojos.MissionList;
 import scenarioGenerator.requests.ScenarioRequest;
 import org.springframework.stereotype.Service;
 import scenarioGenerator.utility.*;
@@ -13,19 +14,20 @@ import java.util.List;
 
 @Service
 public class ScenarioService {
-    //private WargamingSystem system;
-
-    public List<Scenario> generateScenarioList(ScenarioRequest request, List<Deployment> deployments, List<List<Mission>> missions){
+    public List<Scenario> generateScenarioList(ScenarioRequest request, List<Deployment> deployments, List<MissionList> missionList){
         List<Scenario> scenarios = new ArrayList<>();
+        List<List<Mission>> missions = new ArrayList<>();
+
+        for(MissionList m : missionList){
+            missions.add(m.getMissions());
+        }
 
         List<Deployment> chosenDeploymentPool = DeploymentPoolGetter.getDeploymentPoolList(request, deployments);
-        List<List<Mission>> chosenMissionPool = ObjectivePackPoolGetter.getObjectivePackPoolList(request, missions);
+        List<List<Mission>> chosenMissionPool = MissionPoolGetter.getObjectivePackPoolList(request, missions);
 
-        if(ScenarioFormValidator.canBeGenerated(request.getDeploymentPool(), request.getObjectivePackPool(),
-                request.getScenariosToGenerate())) {
-
+        if(ScenarioFormValidator.canBeGenerated(request)) {
             List<Deployment> randomDeployments = RandomDeploymentListGetter.generate(request, chosenDeploymentPool);
-            List<List<Mission>> randomMissionsPack = RandomObjectivePackListGenerator.generate(request, chosenMissionPool);
+            List<List<Mission>> randomMissionsPack = RandomMissionListGenerator.generate(request, chosenMissionPool);
 
             for(int i = 0; i < request.getScenariosToGenerate(); i++){
                 scenarios.add(new Scenario("Scenario " + i, randomDeployments.get(i), randomMissionsPack.get(i)));

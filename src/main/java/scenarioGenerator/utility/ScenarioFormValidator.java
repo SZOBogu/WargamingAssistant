@@ -1,36 +1,49 @@
 package scenarioGenerator.utility;
 
+import scenarioGenerator.pojos.Mission;
+import scenarioGenerator.requests.ScenarioRequest;
+
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class ScenarioFormValidator {
 
     private ScenarioFormValidator(){}
 
-    //TODO: make sure conditions are actually ok
-    public static boolean canBeGenerated(List<Integer> deployments, List<List<Integer>> objectivePack,
-                                         int scensToGenerate){
-        if(scensToGenerate > 0) {
-            int deploymentSum = 0;
-            List<Integer> objectivePackSum = new ArrayList<>();
 
-            for (int i = 0; i < deployments.size(); i++) {
-                deploymentSum += deployments.get(i);
-            }
-
-            for (int i = 0; i < objectivePack.size(); i++) {
-                int tempSum = 0;
-                for (int j = 0; j < objectivePack.get(i).size(); i++) {
-                    tempSum += objectivePack.get(i).get(j);
-                }
-            }
-
-            if (deploymentSum >= scensToGenerate && ObjectivePackQuantityChecker.canObjectivePackBeGenerated(objectivePackSum, scensToGenerate))
-                return true;
-            else
-                return false;
-
+    public static boolean canBeGenerated(ScenarioRequest request){
+        if(request.isOneMissionPool()){
+            return canBeGeneratedWithOnePool(request);
         }
-        else return false;
+        else{
+            return canBeGeneratedWithManyPools(request);
+        }
+    }
+    //for handling one mission per pack requirement
+    private static boolean canBeGeneratedWithManyPools(ScenarioRequest request){
+        int deploymentQuantity = request.getDeploymentPool().stream().reduce(0, Integer::sum);
+        int missionQuantity = request.getMissionPool().stream().flatMap(Collection::stream).reduce(0, Integer::sum);
+
+        for(List<Integer> missions : request.getMissionPool()){
+            if(missions.stream().reduce(0, Integer::sum) < request.getScenariosToGenerate())
+                return false;
+        }
+
+        return canBeGeneratedWithOnePool(request);
+    }
+
+    //for handling one pool of missions
+    private static boolean canBeGeneratedWithOnePool(ScenarioRequest request){
+        int deploymentQuantity = request.getDeploymentPool().stream().reduce(0, Integer::sum);
+        int missionQuantity = request.getMissionPool().stream().flatMap(Collection::stream).reduce(0, Integer::sum);
+
+        if (deploymentQuantity >= request.getScenariosToGenerate() && missionQuantity >= request.getScenariosToGenerate())
+            return true;
+        else
+            return false;
     }
 }

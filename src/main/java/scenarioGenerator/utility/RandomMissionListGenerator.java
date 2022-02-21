@@ -8,13 +8,24 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class RandomObjectivePackListGenerator {
+public class RandomMissionListGenerator {
 
-    private RandomObjectivePackListGenerator(){}
+    private RandomMissionListGenerator(){}
 
     public static  List<List<Mission>> generate(ScenarioRequest request, List<List<Mission>> chosenMissionPool){
-        if(request.isDuplicateObjectivePacksFreely() && request.isDuplicateObjectivePacksFreely()){
-            return generateWithAnyReps(chosenMissionPool, request.getScenariosToGenerate());
+        List<List<Mission>> missionPool = new ArrayList<>();
+        missionPool.add(new ArrayList<>());
+
+        if(request.isOneMissionPool()){
+            for(List<Mission> missions : chosenMissionPool){
+                missionPool.get(0).addAll(missions);
+            }
+        }
+        if(request.isDuplicateMissionsFreely()){
+            return generateWithoutReps(missionPool, request.getScenariosToGenerate());
+        }
+        else{
+            return generateWithAnyReps(missionPool, request.getScenariosToGenerate());
         }
     }
 
@@ -37,15 +48,6 @@ public class RandomObjectivePackListGenerator {
         }
 
         return randomMissionsPack;
-    }
-
-    //TODO: redo the method once you implement number of reps for each individual mission
-    private static List<List<Mission>> generateWithReps(List<List<Mission>> chosenMissionPool, int scenariosToGenerate, int reps){
-        for(List<Mission> missionList : chosenMissionPool){
-            missionList.addAll(missionList);
-        }
-
-        return generateWithoutReps(chosenMissionPool, scenariosToGenerate);
     }
 
     private static List<List<Mission>> generateWithAnyReps(List<List<Mission>> chosenMissionPool, int scenariosToGenerate){

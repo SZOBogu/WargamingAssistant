@@ -11,7 +11,7 @@ public class testScoreList {
 
     @Test
     void testCompareTo(){
-        assertEquals(1, scoreList1.compareTo(scoreList2));
+        assertEquals(0, scoreList1.compareTo(scoreList2));
     }
 
 }
