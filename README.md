@@ -10,18 +10,19 @@ App contains 5 modules:
   ScenarioGenerator:
   - Support of premade scenarios.
   - Turning detachments pools into map pools.
-  - Decoupling part from wargames entirely.
+  - Decoupling this part of app from wargames entirely.
   RosterBuilder:
   - Pool of points on option sets is not working properly.
+  - Rules are checking individual entities/units/whatever instead of sets of them.
   - Overall chaos in code.
   - No detachment rule checking.
   - Suboptimal endpoints.
   - No lazy fetching.
   ScoringCalculator:
   - Faulty calculations.
-  - Unecessary implementation of "rules".
+  - Unnecessary implementation of "rules".
  
  To do:
   - TournamentHandler
-  - Frontend (basic HTML first, ReacjJS later)
+  - Frontend (basic HTML first, ReactJS later)
   - Database (PostgreSQL)
