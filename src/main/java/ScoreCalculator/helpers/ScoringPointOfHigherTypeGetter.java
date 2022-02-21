@@ -7,13 +7,16 @@ public class ScoringPointOfHigherTypeGetter {
     private ScoringPointOfHigherTypeGetter(){}
 
     public static ScorePointType getPointOfHigherType(ScorePointType pointType){
-        ScorePointType[] pointTypes = ScorePointType.values();
+        if(pointType != null) {
+            ScorePointType[] pointTypes = ScorePointType.values();
 
-        for(ScorePointType type : pointTypes){
-            if(type.compareTo(pointType) == 1){
-                return type;
+            for (ScorePointType type : pointTypes) {
+                if (type.ordinal() - pointType.ordinal() == 1) {
+                    return type;
+                }
             }
+            return ScorePointType.EVENT_POINT;
         }
-        return ScorePointType.EVENT_POINT;
+        else return ScorePointType.SECONDARY_SCENARIO_POINT;
     }
 }

@@ -1,8 +1,25 @@
 package TournamentHandler.requests;
 
-import TournamentHandler.entities.Player;
+import TournamentHandler.entities.Participant;
+import common.ScorePoints;
 
 public class ExtraPointsRequest {
-    Player player;
-    int points;
+    private int participantId;
+    private ScorePoints scorePoints;
+
+    public int getParticipantId() {
+        return participantId;
+    }
+
+    public void setParticipantId(int participantId) {
+        this.participantId = participantId;
+    }
+
+    public ScorePoints getScorePoints() {
+        return scorePoints;
+    }
+
+    public void setScorePoints(ScorePoints scorePoints) {
+        this.scorePoints = scorePoints;
+    }
 }

@@ -3,7 +3,7 @@ package rosterBuilder.pojos;
 import java.util.Objects;
 
 public class Characteristic {
-
+    private int characteristicId;
     private final String name;
     private final String value;
 

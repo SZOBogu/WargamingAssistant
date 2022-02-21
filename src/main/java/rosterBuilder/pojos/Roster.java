@@ -3,6 +3,7 @@ package rosterBuilder.pojos;
 import java.util.ArrayList;
 
 public class Roster {
+    private int rosterId;
     private final ArrayList<Detachment> detachments;
     private Army primaryArmy;
     private int pointCap;

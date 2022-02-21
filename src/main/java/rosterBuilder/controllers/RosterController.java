@@ -2,8 +2,11 @@ package rosterBuilder.controllers;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import rosterBuilder.exceptions.RosterBuildingException;
@@ -12,6 +15,9 @@ import rosterBuilder.pojos.*;
 import rosterBuilder.requests.*;
 import rosterBuilder.rules.RosterBuildingRule;
 import rosterBuilder.rules.UnitBuildingRule;
+import rosterBuilder.services.RosterService;
+import rosterBuilder.services.UnitService;
+import rosterBuilder.utility.RuleMerger;
 import rosterBuilder.utility.RuleViolationLog;
 import rosterBuilder.utility.UnitAndProfileFinder;
 
@@ -22,113 +28,68 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/roster")
 public class RosterController {
-    private WargamingSystem system;
+//    private WargamingSystem system;
+    @Autowired
+    private RosterService rosterService;
+    @Autowired
+    private UnitService unitService;
 
-    @GetMapping("/unit/{armyIndex}/{categoryIndex}/{unitIndex}")
-    public UnitProfile getUnitProfile(@PathVariable int armyIndex, @PathVariable int categoryIndex, @PathVariable int unitIndex){
-        return system.getArmies().get(armyIndex).getArmySubcategory(categoryIndex).getUnitProfile(unitIndex);
+    @PostMapping
+    public Roster createRoster(@RequestBody CreateRosterRequest request){
+        return this.rosterService.createRoster(request);
     }
 
-    @GetMapping("/unit")
-    public ResponseEntity<String> getUnitList(@RequestBody GetUnitListRequest request) throws JsonProcessingException {
-        List<List<String>> unitNameList = new ArrayList<>();
-        ObjectMapper mapper = new ObjectMapper();
-        String unitListJson = mapper.writeValueAsString(unitNameList);
+    @GetMapping("/unit/{unitIndex}")
+    public UnitProfile getUnitProfile(@PathVariable int unitIndex){
+        return this.unitService.getUnitProfile(unitIndex);
+    }
 
-        try{
-            for(ArmySubcategory category : this.system.getArmies().get(request.getArmyIndex()).getArmySubcategories()){
-                unitNameList.add(category.getUnitProfiles().stream().map(UnitProfile::getName).collect(Collectors.toList()));
-            }
-        }
-        catch(IndexOutOfBoundsException ex){
-            return new ResponseEntity<>(unitListJson, HttpStatus.BAD_REQUEST);
-        }
-
-        unitListJson = mapper.writeValueAsString(unitNameList);
-        return new ResponseEntity<>(unitListJson, HttpStatus.OK);
+    @GetMapping(value = "/unit", produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<List<UnitProfile>> getUnitList(@RequestBody GetUnitListRequest request) throws JsonProcessingException {
+        return this.unitService.getUnitList(request);
     }
 
     @PostMapping("/unit")
     public ResponseEntity<String> saveUnit(@RequestBody SaveUnitRequest request) throws JsonProcessingException {
-        Roster roster = request.getRoster();
-        Unit unit = request.getUnit();
-        UnitProfile unitProfile = UnitAndProfileFinder.getProfile(system.getArmies().get(request.getArmyIndex()), unit);
+        String ruleViolationLog = this.rosterService.saveUnit(request);
 
-        for(UnitBuildingRule rule : unitProfile.getRules()) {
-            try {
-                rule.check(unit);
-            } catch (UnitBuildingException unitBuildingException) {
-                RuleViolationLog.appendUnitRuleViolationLog(unitBuildingException.getMessage());
-            } catch (RosterBuildingException rosterBuildingException) {
-                RuleViolationLog.appendRosterRuleViolationLog(rosterBuildingException.getMessage());
-            }
-        }
-
-        if(RuleViolationLog.getRosterRuleViolationLog().isEmpty() && RuleViolationLog.getUnitRuleViolationLog().isEmpty()){
-            roster.getDetachments().get(request.getDetachmentIndex()).addUnit(unit, request.getCategoryIndex(), roster.getUniqueEntitiesPool());
+        if(ruleViolationLog.isEmpty()){
             ObjectMapper mapper = new ObjectMapper();
-            String rosterJson = mapper.writeValueAsString(roster);
+            String rosterJson = mapper.writeValueAsString(request.getRoster());
             return new ResponseEntity<>(rosterJson, HttpStatus.OK);
         }
-
-        String ruleViolations = RuleViolationLog.getRosterRuleViolationLog() + "\n" + RuleViolationLog.getUnitRuleViolationLog();
-        RuleViolationLog.clear();
-        return new ResponseEntity<>(ruleViolations, HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(ruleViolationLog, HttpStatus.BAD_REQUEST);
     }
 
     @DeleteMapping("/unit")
     public Roster deleteUnit(@RequestBody DeleteUnitRequest request){
-        Roster roster = request.getRoster();
-        roster.getDetachments().get(request.getDetachmentIndex()).deleteUnit(request.getCategoryIndex(), request.getUnitIndex(), roster.getUniqueEntitiesPool());
-
-        return roster;
+        return this.rosterService.deleteUnit(request);
     }
 
     @GetMapping("/detachment")
     public List<Detachment> getDetachmentList(@RequestBody GetDetachmentTypeListRequest request){
-        List<Detachment> detachmentTypes = this.system.getDetachments();
-
-        return detachmentTypes;
+        return this.rosterService.getDetachmentList(request);
     }
 
     @PostMapping("/detachment")
     public Roster saveDetachment(@RequestBody SaveDetachmentRequest request){
-        Roster roster = request.getRoster();
-        roster.addDetachment(this.system.getDetachments().get(request.getDetachmentIndex()));
-        return roster;
+        return this.rosterService.saveDetachment(request);
     }
 
     @DeleteMapping("/detachment")
     public Roster deleteDetachment(@RequestBody DeleteDetachmentRequest request){
-        Roster roster = request.getRoster();
-        roster.removeDetachment(request.getDetachmentIndex());
-
-        return roster;
+        return this.rosterService.deleteDetachment(request);
     }
 
     @PostMapping("/check")
-    public ResponseEntity<String> checkRoster(@RequestBody Roster roster){
-        List<RosterBuildingRule> rules = this.system.getRules();
+    public ResponseEntity<String> checkRoster(@RequestBody CheckRosterRequest request){
+        String ruleViolationLog = this.rosterService.checkRoster(request);
 
-        if(roster.getTotalCost() > roster.getPointCap())
-            RuleViolationLog.appendRosterRuleViolationLog("Point Limit Exceeded.");
-
-        for (RosterBuildingRule rule : rules) {
-            rule.check(roster);
-        }
-
-        if(RuleViolationLog.getRosterRuleViolationLog().isEmpty()) {
+        if(ruleViolationLog.isEmpty()) {
             return new ResponseEntity<>("Roster created correctly.", HttpStatus.OK);
         }
         else {
-            String ruleViolations = RuleViolationLog.getRosterRuleViolationLog();
-            RuleViolationLog.clear();
-            return new ResponseEntity<>(ruleViolations, HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(ruleViolationLog, HttpStatus.BAD_REQUEST);
         }
-    }
-
-    @Autowired
-    public void setSystem(WargamingSystem system) {
-        this.system = system;
     }
 }

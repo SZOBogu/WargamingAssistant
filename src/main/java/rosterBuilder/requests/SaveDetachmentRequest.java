@@ -6,6 +6,7 @@ import rosterBuilder.pojos.Roster;
 public class SaveDetachmentRequest {
     private Roster roster;
     private int detachmentIndex;
+    private int armyIndex;
     private int wargameId;
 
     public Roster getRoster() {
@@ -22,6 +23,14 @@ public class SaveDetachmentRequest {
 
     public void setDetachmentIndex(int detachmentIndex) {
         this.detachmentIndex = detachmentIndex;
+    }
+
+    public int getArmyIndex() {
+        return armyIndex;
+    }
+
+    public void setArmyIndex(int armyIndex) {
+        this.armyIndex = armyIndex;
     }
 
     public int getWargameId() {

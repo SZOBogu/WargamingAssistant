@@ -1,9 +1,5 @@
 package scenarioGenerator.utility;
 
-import common.ArrayElementsWithRepsCounter;
-import scenarioGenerator.pojos.Deployment;
-import scenarioGenerator.pojos.Mission;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,39 +8,29 @@ public class ScenarioFormValidator {
     private ScenarioFormValidator(){}
 
     //TODO: make sure conditions are actually ok
-    public static boolean canBeGenerated(List<Deployment> deployments, List<List<Mission>> missions,
-                                         int deploymentReps, int missionReps, int scensToGenerate){
+    public static boolean canBeGenerated(List<Integer> deployments, List<List<Integer>> objectivePack,
+                                         int scensToGenerate){
         if(scensToGenerate > 0) {
-            List<Integer> deploymentRepList = new ArrayList<>();
-            List<List<Integer>> missionRepList = new ArrayList<>();
+            int deploymentSum = 0;
+            List<Integer> objectivePackSum = new ArrayList<>();
 
             for (int i = 0; i < deployments.size(); i++) {
-                deploymentRepList.add(deploymentReps);
+                deploymentSum += deployments.get(i);
             }
 
-            for (int i = 0; i < missions.size(); i++) {
-                missionRepList.add(new ArrayList<>());
-                for (int j = 0; j < missions.get(i).size(); j++) {
-                    missionRepList.get(i).add(missionReps);
+            for (int i = 0; i < objectivePack.size(); i++) {
+                int tempSum = 0;
+                for (int j = 0; j < objectivePack.get(i).size(); i++) {
+                    tempSum += objectivePack.get(i).get(j);
                 }
             }
 
-            return ScenarioFormValidator.canBeGenerated(deployments, missions, deploymentRepList, missionRepList, scensToGenerate);
+            if (deploymentSum >= scensToGenerate && ObjectivePackQuantityChecker.canObjectivePackBeGenerated(objectivePackSum, scensToGenerate))
+                return true;
+            else
+                return false;
+
         }
         else return false;
-    }
-    public static boolean canBeGenerated(List<Deployment> deployments, List<List<Mission>> missions,
-                                         List<Integer> deploymentReps, List<List<Integer>> missionReps,
-                                  int scensToGenerate){
-        if(scensToGenerate > 0) {
-            int missionCount;
-            int deploymentCount;
-
-            missionCount = ArrayElementsWithRepsCounter.count2D(missions, missionReps);
-            deploymentCount = ArrayElementsWithRepsCounter.count(deployments, deploymentReps);
-
-            return missionCount >= scensToGenerate && deploymentCount >= scensToGenerate;
-        }
-        return false;
     }
 }

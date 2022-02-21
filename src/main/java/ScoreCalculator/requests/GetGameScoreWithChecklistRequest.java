@@ -1,14 +1,16 @@
 package ScoreCalculator.requests;
 
+import ScoreCalculator.pojos.ScoringSystem;
 import scenarioGenerator.pojos.Scenario;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class GetGameScoreWithChecklistRequest {
-    private List<Boolean> listOfCheckedObjectivesForHomePlayer;
-    private List<Boolean> listOfCheckedObjectivesForAwayPlayer;
+    private List<List<Boolean>> listOfCheckedObjectivesForHomePlayer;
+    private List<List<Boolean>> listOfCheckedObjectivesForAwayPlayer;
     private Scenario scenario;
+    private ScoringSystem scoringSystem;
 
     public GetGameScoreWithChecklistRequest() {
         this.listOfCheckedObjectivesForAwayPlayer = new ArrayList<>();
@@ -16,19 +18,19 @@ public class GetGameScoreWithChecklistRequest {
         this.scenario = new Scenario();
     }
 
-    public List<Boolean> getListOfCheckedObjectivesForHomePlayer() {
+    public List<List<Boolean>> getListOfCheckedObjectivesForHomePlayer() {
         return listOfCheckedObjectivesForHomePlayer;
     }
 
-    public void setListOfCheckedObjectivesForHomePlayer(List<Boolean> listOfCheckedObjectivesForHomePlayer) {
+    public void setListOfCheckedObjectivesForHomePlayer(List<List<Boolean>> listOfCheckedObjectivesForHomePlayer) {
         this.listOfCheckedObjectivesForHomePlayer = listOfCheckedObjectivesForHomePlayer;
     }
 
-    public List<Boolean> getListOfCheckedObjectivesForAwayPlayer() {
+    public List<List<Boolean>> getListOfCheckedObjectivesForAwayPlayer() {
         return listOfCheckedObjectivesForAwayPlayer;
     }
 
-    public void setListOfCheckedObjectivesForAwayPlayer(List<Boolean> listOfCheckedObjectivesForAwayPlayer) {
+    public void setListOfCheckedObjectivesForAwayPlayer(List<List<Boolean>> listOfCheckedObjectivesForAwayPlayer) {
         this.listOfCheckedObjectivesForAwayPlayer = listOfCheckedObjectivesForAwayPlayer;
     }
 
@@ -38,5 +40,13 @@ public class GetGameScoreWithChecklistRequest {
 
     public void setScenario(Scenario scenario) {
         this.scenario = scenario;
+    }
+
+    public ScoringSystem getScoringSystem() {
+        return scoringSystem;
+    }
+
+    public void setScoringSystem(ScoringSystem scoringSystem) {
+        this.scoringSystem = scoringSystem;
     }
 }

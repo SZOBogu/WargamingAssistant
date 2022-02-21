@@ -6,6 +6,7 @@ import rosterBuilder.pojos.Roster;
 import java.io.Serializable;
 
 public abstract class RosterBuildingRule implements Rule, Serializable {
+    protected int rosterRuleId;
     protected Entity entity;
     protected int quantity;
 
@@ -17,6 +18,14 @@ public abstract class RosterBuildingRule implements Rule, Serializable {
     public RosterBuildingRule(Entity entity, int quantity){
         this.entity = entity;
         this.quantity = quantity;
+    }
+
+    public Entity getEntity() {
+        return entity;
+    }
+
+    public int getQuantity() {
+        return quantity;
     }
 
     public abstract void check(Roster roster);

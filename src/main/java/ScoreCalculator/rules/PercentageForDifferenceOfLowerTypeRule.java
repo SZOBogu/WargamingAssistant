@@ -1,10 +1,10 @@
-package ScoreCalculator.pojos;
+package ScoreCalculator.rules;
 
 import common.ScorePoints;
 
 import java.util.List;
 
-public class PercentageForDifferenceOfLowerTypeRule extends VictoryPointScoringRule {
+public class PercentageForDifferenceOfLowerTypeRule extends ScoringRule {
     private int rosterPointCap;
 
     @Override

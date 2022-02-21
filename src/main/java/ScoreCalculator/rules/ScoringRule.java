@@ -1,11 +1,11 @@
-package ScoreCalculator.pojos;
+package ScoreCalculator.rules;
 
 import TournamentHandler.enums.ScorePointType;
 import common.ScorePoints;
 
 import java.util.List;
 
-public abstract class VictoryPointScoringRule implements IVictoryPointScoringRule{
+public abstract class ScoringRule implements IScoringRule {
     protected int ruleValue;
     private ScorePointType inputType;
 

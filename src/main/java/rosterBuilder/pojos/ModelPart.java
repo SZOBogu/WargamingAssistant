@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ModelPart {
+    private int modelPartId;
     private String name;
     private List<Characteristic> characteristics;
     private List<SpecialRule> specialRules;

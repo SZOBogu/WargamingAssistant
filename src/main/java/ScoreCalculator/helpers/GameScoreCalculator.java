@@ -1,8 +1,7 @@
 package ScoreCalculator.helpers;
 
-import ScoreCalculator.calculatingAlgorithms.ScoringAlgorithm;
-import ScoreCalculator.pojos.IVictoryPointScoringRule;
-import ScoreCalculator.pojos.VictoryPointScoringRule;
+import ScoreCalculator.pojos.ScoringSystem;
+import ScoreCalculator.rules.ScoringRule;
 import TournamentHandler.enums.ScorePointType;
 import common.ScorePoints;
 
@@ -14,23 +13,35 @@ public class GameScoreCalculator {
     private GameScoreCalculator(){}
 
     public static List<ScorePoints> calculateGameScore(List<ScorePoints> homePlayerScore, List<ScorePoints> awayPlayerScore,
-                                                   List<VictoryPointScoringRule> rules, ScoringAlgorithm algorithm){
+                                                       ScoringSystem scoringSystem, List<ScoringRule> eventRules){
         ScorePoints homeEndScore;
         ScorePoints awayEndScore;
 
-        homePlayerScore = ScorePointAdder.addPointsTogether(homePlayerScore);
-        awayPlayerScore = ScorePointAdder.addPointsTogether(awayPlayerScore);
+        List<ScorePoints> homePostFirstRuleResultList = new ArrayList<>();
+        List<ScorePoints> awayPostFirstRuleResultList = new ArrayList<>();
+        List<ScoringRule> allRules = scoringSystem.getRuleList();
 
-        for(VictoryPointScoringRule rule : rules){
-            if(rule.getInputType() == ScorePointType.SECONDARY_SCENARIO_POINT)
-                rule.implementRule(homePlayerScore);
-                rule.implementRule(awayPlayerScore);
+        for(ScoringRule i : scoringSystem.getRuleList()){
+            for(ScoringRule j : eventRules){
+                if(ScoringRuleConflictChecker.areConflicting(i, j))
+                    allRules.remove(i);
+            }
         }
 
+        allRules.addAll(eventRules);
+
+        for(ScoringRule rule : allRules){
+            if(rule.getInputType() == ScorePointType.SECONDARY_SCENARIO_POINT) {
+                homePostFirstRuleResultList.addAll(rule.implementRule(homePlayerScore));
+                awayPostFirstRuleResultList.addAll(rule.implementRule(awayPlayerScore));
+            }
+        }
+        homePlayerScore.addAll(homePostFirstRuleResultList);
+        awayPlayerScore.addAll(awayPostFirstRuleResultList);
         homeEndScore = SumOfScorePointsOfTypeGetter.getSumOfPointsOfType(homePlayerScore, ScorePointType.PRIMARY_SCENARIO_POINT);
         awayEndScore = SumOfScorePointsOfTypeGetter.getSumOfPointsOfType(awayPlayerScore, ScorePointType.PRIMARY_SCENARIO_POINT);
 
-        List<ScorePoints> calculatedGameScore = algorithm.calculateGameScore(homeEndScore, awayEndScore);
+        List<ScorePoints> calculatedGameScore = scoringSystem.getAlgorithm().calculateGameScore(homeEndScore, awayEndScore);
 
         for(ScorePoints points: homePlayerScore){
             if(points.getType() == ScorePointType.PRIMARY_SCENARIO_POINT){
@@ -43,12 +54,35 @@ public class GameScoreCalculator {
                 points.setPoints(calculatedGameScore.get(1).getPoints());
             }
         }
+        homePostFirstRuleResultList.clear();
+        awayPostFirstRuleResultList.clear();
 
-        for(VictoryPointScoringRule rule : rules){
-            if(rule.getInputType() != ScorePointType.SECONDARY_SCENARIO_POINT)
-                rule.implementRule(homePlayerScore);
-                rule.implementRule(awayPlayerScore);
+        for(ScoringRule rule : scoringSystem.getRuleList()){
+            if(rule.getInputType() == ScorePointType.PRIMARY_SCENARIO_POINT) {
+                homePostFirstRuleResultList.addAll(rule.implementRule(homePlayerScore));
+                awayPostFirstRuleResultList.addAll(rule.implementRule(awayPlayerScore));
+            }
         }
+        homePlayerScore.addAll(homePostFirstRuleResultList);
+        awayPlayerScore.addAll(awayPostFirstRuleResultList);
+
+        List<ScorePoints> finalHomeResults = ScorePointAdder.addPointsTogether(homePlayerScore);
+        List<ScorePoints> finalAwayResults = ScorePointAdder.addPointsTogether(awayPlayerScore);
+
+        for(ScorePoints scorePoints : finalHomeResults){
+            if(scorePoints.getType() == ScorePointType.PRIMARY_SCENARIO_POINT){
+                homeEndScore = scorePoints;
+            }
+        }
+
+        for(ScorePoints scorePoints : finalAwayResults){
+            if(scorePoints.getType() == ScorePointType.PRIMARY_SCENARIO_POINT){
+                awayEndScore = scorePoints;
+            }
+        }
+
+        homeEndScore.setType(ScorePointType.GAME_POINT);
+        awayEndScore.setType(ScorePointType.GAME_POINT);
 
         return new ArrayList<>(Arrays.asList(homeEndScore, awayEndScore));
     }

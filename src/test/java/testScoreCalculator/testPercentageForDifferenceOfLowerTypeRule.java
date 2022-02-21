@@ -1,6 +1,6 @@
 package testScoreCalculator;
 
-import ScoreCalculator.pojos.PercentageForDifferenceOfLowerTypeRule;
+import ScoreCalculator.rules.PercentageForDifferenceOfLowerTypeRule;
 import TournamentHandler.enums.ScorePointType;
 import common.ScorePoints;
 import org.junit.jupiter.api.BeforeEach;

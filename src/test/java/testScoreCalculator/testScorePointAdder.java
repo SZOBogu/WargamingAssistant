@@ -49,7 +49,7 @@ public class testScorePointAdder {
         assertEquals(ScorePointType.SECONDARY_SCENARIO_POINT, pointSumList.get(0).getType());
         assertEquals(ScorePointType.PRIMARY_SCENARIO_POINT, pointSumList.get(1).getType());
         assertEquals(ScorePointType.GAME_POINT, pointSumList.get(2).getType());
-        assertEquals(ScorePointType.TEAM_POINT, pointSumList.get(3).getType());
+        assertEquals(ScorePointType.MATCH_POINT, pointSumList.get(3).getType());
         assertEquals(ScorePointType.EVENT_POINT, pointSumList.get(4).getType());
     }
 
@@ -66,7 +66,7 @@ public class testScorePointAdder {
         assertEquals(ScorePointType.SECONDARY_SCENARIO_POINT, pointSumList.get(0).getType());
         assertEquals(ScorePointType.PRIMARY_SCENARIO_POINT, pointSumList.get(1).getType());
         assertEquals(ScorePointType.GAME_POINT, pointSumList.get(2).getType());
-        assertEquals(ScorePointType.TEAM_POINT, pointSumList.get(3).getType());
+        assertEquals(ScorePointType.MATCH_POINT, pointSumList.get(3).getType());
         assertEquals(ScorePointType.EVENT_POINT, pointSumList.get(4).getType());
     }
 }

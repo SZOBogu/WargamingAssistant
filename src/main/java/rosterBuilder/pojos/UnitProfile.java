@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class UnitProfile {
+    private int unitProfileId;
     private String name;
     private List<ModelPart> modelParts;
     private List<OptionSet> options;
@@ -47,6 +48,14 @@ public class UnitProfile {
         this.additionalModelCost = additionalModelCost;
         this.unitsPerArmy = unitsPerArmy;
         this.rules = new ArrayList<>();
+    }
+
+    public int getUnitProfileId() {
+        return unitProfileId;
+    }
+
+    public void setUnitProfileId(int unitProfileId) {
+        this.unitProfileId = unitProfileId;
     }
 
     public String getName() {

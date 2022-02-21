@@ -1,6 +1,6 @@
 package testScoreCalculator;
 
-import ScoreCalculator.pojos.FloorOfPointsRuleIVictoryPoint;
+import ScoreCalculator.rules.FloorOfPointsRule;
 import TournamentHandler.enums.ScorePointType;
 import common.ScorePoints;
 import org.junit.jupiter.api.Test;
@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class testFloorOfPointsRuleVictoryPoint {
     private ScorePoints tooFewPoints = new ScorePoints();
     private ScorePoints wrongTypePoints = new ScorePoints();
-    private FloorOfPointsRuleIVictoryPoint rule = new FloorOfPointsRuleIVictoryPoint();
+    private FloorOfPointsRule rule = new FloorOfPointsRule();
 
     @Test
     void testImplementRule(){

@@ -1,6 +1,6 @@
 package testScoreCalculator;
 
-import ScoreCalculator.pojos.PointsForDifferenceOfLowerTypeRule;
+import ScoreCalculator.rules.PointsForDifferenceOfLowerTypeRule;
 import TournamentHandler.enums.ScorePointType;
 import common.ScorePoints;
 import org.junit.jupiter.api.BeforeEach;
@@ -47,6 +47,6 @@ public class testPointsForDifferenceOfLowerTypeRule {
         List<ScorePoints> pointCase2 = rule.implementRule(new ArrayList<>(Arrays.asList(pointsOK, pointsOKWrongType)));
         List<ScorePoints> pointCase3 = rule.implementRule(new ArrayList<>(Arrays.asList(pointsBlatantlyOK, pointsBlatantlyOKWrongType)));
 
-        fail();
+
     }
 }

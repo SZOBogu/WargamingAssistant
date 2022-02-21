@@ -3,12 +3,14 @@ package rosterBuilder.pojos;
 import rosterBuilder.rules.RosterBuildingRule;
 import scenarioGenerator.pojos.Deployment;
 import scenarioGenerator.pojos.MissionList;
+import scenarioGenerator.pojos.Mission;
 import scenarioGenerator.pojos.Scenario;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class WargamingSystem {
+    private int wargameId;
     private String name;
     private List<Army> armies;
     private List<Entity> allInGameEntities;
@@ -76,7 +78,7 @@ public class WargamingSystem {
         this.deployments = deployments;
     }
 
-    public List<MissionList> getMissions() {
+    public List<List<Mission>> getMissions() {
         return missions;
     }
 

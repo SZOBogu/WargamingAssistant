@@ -1,9 +1,11 @@
 package rosterBuilder.requests;
 
 import rosterBuilder.pojos.Roster;
+import rosterBuilder.pojos.Unit;
 
 public class DeleteUnitRequest {
     private Roster roster;
+    private Unit unit;
     private int detachmentIndex;
     private int categoryIndex;
     private int unitIndex;
@@ -15,6 +17,14 @@ public class DeleteUnitRequest {
 
     public void setRoster(Roster roster) {
         this.roster = roster;
+    }
+
+    public Unit getUnit() {
+        return unit;
+    }
+
+    public void setUnit(Unit unit) {
+        this.unit = unit;
     }
 
     public int getDetachmentIndex() {

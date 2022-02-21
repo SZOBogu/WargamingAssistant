@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class OptionSet {
+    protected int optionSetId;
     protected List<Option> options;
     protected String itemListName;
     protected String keyVerb;

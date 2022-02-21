@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Army {
+    private int armyId;
     private String name;
     private List<ArmySubcategory> armySubcategories;
     private ImageIcon img;

@@ -1,6 +1,6 @@
 package testScoreCalculator;
 
-import ScoreCalculator.pojos.CeilingOfPointsRuleIVictoryPoint;
+import ScoreCalculator.rules.CeilingOfPointsRule;
 import TournamentHandler.enums.ScorePointType;
 import common.ScorePoints;
 import org.junit.jupiter.api.Test;
@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class testCeilingOfPointsRuleVictoryPoint {
     private ScorePoints tooHighPoints = new ScorePoints();
     private ScorePoints wrongTypePoints = new ScorePoints();
-    private CeilingOfPointsRuleIVictoryPoint rule = new CeilingOfPointsRuleIVictoryPoint();
+    private CeilingOfPointsRule rule = new CeilingOfPointsRule();
 
     @Test
     void testImplementRule(){

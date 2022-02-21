@@ -1,5 +1,6 @@
 package ScoreCalculator.calculatingAlgorithms;
 
+import ScoreCalculator.pojos.ScoreList;
 import common.ScorePoints;
 
 import java.util.List;

@@ -1,12 +1,29 @@
 package rosterBuilder.pojos;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+@javax.persistence.Entity
+@Table(name = "unit", schema = "wargaming_assistant")
 public class Unit {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "unit_id")
+    private int unitId;
+    @Basic
+    @Column(name = "name")
     private final String name;
+    @Basic
+    @Column(name = "modelsInUnit")
     private int modelsInUnit;
+    @OneToMany(mappedBy = "unit", cascade = {CascadeType.DETACH, CascadeType.MERGE,
+            CascadeType.PERSIST, CascadeType.REFRESH},
+            fetch = FetchType.EAGER)
     private List<Entity> nonBaseEquipment;
+    @OneToMany(mappedBy = "unit", cascade = {CascadeType.DETACH, CascadeType.MERGE,
+            CascadeType.PERSIST, CascadeType.REFRESH},
+            fetch = FetchType.EAGER)
     private final List<Entity> baseEquipmentAndRules;
     private int pointCost;
 

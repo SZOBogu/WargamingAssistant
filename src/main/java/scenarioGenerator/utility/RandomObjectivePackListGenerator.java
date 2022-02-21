@@ -8,19 +8,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class RandomMissionPackListGenerator {
+public class RandomObjectivePackListGenerator {
 
-    private RandomMissionPackListGenerator(){}
+    private RandomObjectivePackListGenerator(){}
 
     public static  List<List<Mission>> generate(ScenarioRequest request, List<List<Mission>> chosenMissionPool){
-        if(request.isCanDuplicateMissions() && request.isDuplicateMissionsFreely()){
+        if(request.isDuplicateObjectivePacksFreely() && request.isDuplicateObjectivePacksFreely()){
             return generateWithAnyReps(chosenMissionPool, request.getScenariosToGenerate());
-        }
-        else if(request.isCanDuplicateMissions() && !request.isDuplicateMissionsFreely() && request.getDuplicateMissionsQuantity() > 1){
-            return generateWithReps(chosenMissionPool, request.getScenariosToGenerate(), request.getDuplicateMissionsQuantity());
-        }
-        else{
-            return generateWithoutReps(chosenMissionPool, request.getScenariosToGenerate());
         }
     }
 

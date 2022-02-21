@@ -1,10 +1,12 @@
 package TournamentHandler.controller;
 
 import TournamentHandler.entities.Game;
-import TournamentHandler.pojos.EventScore;
-import TournamentHandler.requests.EventRequest;
+import TournamentHandler.pojos.ScoreList;
+import TournamentHandler.requests.TournamentRequest;
 import TournamentHandler.requests.ExtraPointsRequest;
 import TournamentHandler.requests.RegisterRequest;
+import TournamentHandler.services.TournamentService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,41 +16,22 @@ import java.util.List;
 @RestController
 @RequestMapping(value = "/events")
 public class EventController {
-    /*
-    create
-    delete
-    register
-    check as correct
-    pair
-    post score
-    update score
-    add karniaki
-    get standings
-    pair manually
-    start round
-    end round
-    end event
-    nominate ref
-    choose scenario //do scenariogeneratora?
-     */
-
-    /*
-    druzynowki
-     */
+    @Autowired
+    private TournamentService service;
 
     @PostMapping
-    public String createEvent(@RequestBody EventRequest request){
+    public String createEvent(@RequestBody TournamentRequest request){
         return "";
     }
 
     @PostMapping("/{id}")
-    public String updateEvent(@RequestBody EventRequest request){
+    public String updateEvent(@RequestBody TournamentRequest request){
 
         return "";
     }
 
     @DeleteMapping("/{id}")
-    public String deleteEvent(@RequestBody EventRequest request){
+    public String deleteEvent(@RequestBody TournamentRequest request){
         return "";
 
     }
@@ -84,7 +67,7 @@ public class EventController {
     }
 
     @GetMapping(value = "/{id}" ,produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<EventScore> getStandings(){
+    public List<ScoreList> getStandings(){
         return new ArrayList<>();
 
     }

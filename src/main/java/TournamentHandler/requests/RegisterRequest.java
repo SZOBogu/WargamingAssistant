@@ -1,9 +1,9 @@
 package TournamentHandler.requests;
 
-import TournamentHandler.entities.Player;
+import TournamentHandler.entities.Participant;
 import rosterBuilder.pojos.Roster;
 
 public class RegisterRequest {
-    Player player;
+    Participant participant;
     Roster roster;
 }

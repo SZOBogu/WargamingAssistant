@@ -1,7 +1,6 @@
 package testScenarioGenerator;
 
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
 import org.mockito.Mockito;
 import scenarioGenerator.pojos.Deployment;
 import scenarioGenerator.pojos.Mission;

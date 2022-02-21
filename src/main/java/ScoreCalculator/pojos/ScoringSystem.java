@@ -2,13 +2,14 @@ package ScoreCalculator.pojos;
 
 import ScoreCalculator.calculatingAlgorithms.CopyPrimaryPointsAlgorithm;
 import ScoreCalculator.calculatingAlgorithms.ScoringAlgorithm;
+import ScoreCalculator.rules.ScoringRule;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ScoringSystem {
     private ScoringAlgorithm algorithm;
-    private List<IVictoryPointScoringRule> ruleList;
+    private List<ScoringRule> ruleList;
 
     public ScoringSystem() {
         this.algorithm = new CopyPrimaryPointsAlgorithm();
@@ -23,11 +24,11 @@ public class ScoringSystem {
         this.algorithm = algorithm;
     }
 
-    public List<IVictoryPointScoringRule> getRuleList() {
+    public List<ScoringRule> getRuleList() {
         return ruleList;
     }
 
-    public void setRuleList(List<IVictoryPointScoringRule> ruleList) {
+    public void setRuleList(List<ScoringRule> ruleList) {
         this.ruleList = ruleList;
     }
 }

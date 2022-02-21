@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Detachment {
+    private int detachmentId;
     private final String name;
     private Army army;
     private int detachmentNumber;

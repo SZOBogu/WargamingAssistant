@@ -2,7 +2,7 @@ package scenarioGenerator.pojos;
 
 import java.util.Objects;
 
-public class Deployment {
+public class Deployment{
     private String name;
     private String encodedImage;
 

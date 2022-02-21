@@ -5,6 +5,7 @@ import common.Rounder;
 import java.util.ArrayList;
 
 public class ArmySubcategory {
+    private int categoryId;
     private String name;
     private ArrayList<UnitProfile> unitProfiles;
     private double categoryPointCapPercentage;

@@ -1,19 +1,37 @@
 package ScoreCalculator.requests;
 
+import ScoreCalculator.pojos.ScoringSystem;
 import TournamentHandler.pojos.GamePointList;
+import common.ScorePoints;
+
+import java.util.List;
 
 public class GetGameScoreWithPlayerScoreRequest {
-    private GamePointList gamePointList;
+    private List<ScorePoints> homeScoreList;
+    private List<ScorePoints> awayScoreList;
+    private ScoringSystem scoringSystem;
 
-    public GetGameScoreWithPlayerScoreRequest() {
-        this.gamePointList = new GamePointList();
+    public List<ScorePoints> getHomeScoreList() {
+        return homeScoreList;
     }
 
-    public GamePointList getGamePointList() {
-        return gamePointList;
+    public void setHomeScoreList(List<ScorePoints> homeScoreList) {
+        this.homeScoreList = homeScoreList;
     }
 
-    public void setGamePointList(GamePointList gamePointList) {
-        this.gamePointList = gamePointList;
+    public List<ScorePoints> getAwayScoreList() {
+        return awayScoreList;
+    }
+
+    public void setAwayScoreList(List<ScorePoints> awayScoreList) {
+        this.awayScoreList = awayScoreList;
+    }
+
+    public ScoringSystem getScoringSystem() {
+        return scoringSystem;
+    }
+
+    public void setScoringSystem(ScoringSystem scoringSystem) {
+        this.scoringSystem = scoringSystem;
     }
 }

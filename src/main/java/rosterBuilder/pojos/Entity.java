@@ -3,6 +3,7 @@ package rosterBuilder.pojos;
 import java.util.Objects;
 
 public class Entity {
+    private int entityId;
     private String name;
     private String description;
     private String parameter;

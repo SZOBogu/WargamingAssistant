@@ -2,6 +2,9 @@ package rosterBuilder.requests;
 
 import rosterBuilder.pojos.Roster;
 import rosterBuilder.pojos.Unit;
+import rosterBuilder.rules.UnitBuildingRule;
+
+import java.util.List;
 
 public class SaveUnitRequest {
     private Roster roster;
@@ -10,6 +13,8 @@ public class SaveUnitRequest {
     private int detachmentIndex;
     private int categoryIndex;
     private int wargameId;
+    private int unitProfileId;
+    private List<UnitBuildingRule> unitBuildingRuleList;
 
     public Roster getRoster() {
         return roster;
@@ -57,5 +62,21 @@ public class SaveUnitRequest {
 
     public void setWargameId(int wargameId) {
         this.wargameId = wargameId;
+    }
+
+    public int getUnitProfileId() {
+        return unitProfileId;
+    }
+
+    public void setUnitProfileId(int unitProfileId) {
+        this.unitProfileId = unitProfileId;
+    }
+
+    public List<UnitBuildingRule> getUnitBuildingRuleList() {
+        return unitBuildingRuleList;
+    }
+
+    public void setUnitBuildingRuleList(List<UnitBuildingRule> unitBuildingRuleList) {
+        this.unitBuildingRuleList = unitBuildingRuleList;
     }
 }

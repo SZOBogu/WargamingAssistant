@@ -1,5 +1,8 @@
 package scenarioGenerator.controllers;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import scenarioGenerator.exceptions.ScenarioGenerationException;
 import scenarioGenerator.requests.ScenarioRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -16,19 +19,25 @@ public class ScenarioController {
     private WargamingSystem system;
     private ScenarioService scenarioService;
 
-    @GetMapping
-    public ScenarioInfoResponse getScenarioInfo(){
+    @GetMapping(value = "/{wargameId}")
+    public ScenarioInfoResponse getScenarioInfo(@PathVariable int wargameId){
         System.out.println("ScenarioController, getScenarioInfo got GET");
-        ScenarioInfoResponse scenarioInfoResponse = new ScenarioInfoResponse(system);
 
         return new ScenarioInfoResponse(system);
     }
 
-    @PostMapping
-    public List<Scenario> generateScenarios(@RequestBody ScenarioRequest request){
-        List<Scenario> scenarios = this.scenarioService.generateScenarioList(request);
-
-        return scenarios;
+    @PostMapping(value = "/{wargameId}")
+    public ResponseEntity generateScenarios(@RequestBody ScenarioRequest request, @PathVariable int wargameId){
+        try {
+            return ResponseEntity
+                    .status(HttpStatus.NOT_ACCEPTABLE)
+                    .body(this.scenarioService.generateScenarioList(request, system.getDeployments(), system.getMissions()));
+        }
+        catch(ScenarioGenerationException ex){
+            return ResponseEntity
+                    .status(HttpStatus.NOT_ACCEPTABLE)
+                    .body("Scenario Form Invalid");
+        }
     }
 
     @Autowired

@@ -49,8 +49,8 @@ public class testSumOfScorePointsOfTypeGetter {
 
     @Test
     public void testAddingWithNoOKTypes(){
-        ScorePoints addedScores = SumOfScorePointsOfTypeGetter.getSumOfPointsOfType(pointList, ScorePointType.TEAM_POINT);
+        ScorePoints addedScores = SumOfScorePointsOfTypeGetter.getSumOfPointsOfType(pointList, ScorePointType.MATCH_POINT);
         assertEquals(0, addedScores.getPoints());
-        assertEquals(ScorePointType.TEAM_POINT, addedScores.getType());
+        assertEquals(ScorePointType.MATCH_POINT, addedScores.getType());
     }
 }

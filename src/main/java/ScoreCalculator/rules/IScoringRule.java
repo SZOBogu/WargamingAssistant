@@ -1,9 +1,9 @@
-package ScoreCalculator.pojos;
+package ScoreCalculator.rules;
 
 import common.ScorePoints;
 
 import java.util.List;
 
-public interface IVictoryPointScoringRule {
+public interface IScoringRule {
     List<ScorePoints> implementRule(List<ScorePoints> points);
 }

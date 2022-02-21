@@ -1,44 +1,29 @@
 package scenarioGenerator.requests;
 
-import common.RandomArrayElementsGetter;
-
-import javax.swing.*;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class ScenarioRequest {
-    private List<Boolean> deploymentBooleanPool;
-    private List<List<Boolean>> missionBooleanPool;
+    private List<Integer> deploymentPool;
+    private List<List<Integer>> objectivePackPool;
     private int scenariosToGenerate;
 
-    private boolean canDuplicateMissions;
-    private boolean getCanDuplicateDeployments;
-
-    private boolean duplicateMissionsFreely;
+    private boolean duplicateObjectivePacksFreely;
     private boolean duplicateDeploymentsFreely;
 
-    private int duplicateDeploymentsQuantity;
-    private int duplicateMissionsQuantity;
-
-//    private List<Integer> deploymentRepList;
-//    private List<List<Integer>> missionRepList;
-
-
-    public List<Boolean> getDeploymentBooleanPool() {
-        return deploymentBooleanPool;
+    public List<Integer> getDeploymentPool() {
+        return deploymentPool;
     }
 
-    public void setDeploymentBooleanPool(List<Boolean> deploymentBooleanPool) {
-        this.deploymentBooleanPool = deploymentBooleanPool;
+    public void setDeploymentPool(List<Integer> deploymentPool) {
+        this.deploymentPool = deploymentPool;
     }
 
-    public List<List<Boolean>> getMissionBooleanPool() {
-        return missionBooleanPool;
+    public List<List<Integer>> getObjectivePackPool() {
+        return objectivePackPool;
     }
 
-    public void setMissionBooleanPool(List<List<Boolean>> missionBooleanPool) {
-        this.missionBooleanPool = missionBooleanPool;
+    public void setObjectivePackPool(List<List<Integer>>objectivePackPool) {
+        this.objectivePackPool = objectivePackPool;
     }
 
     public int getScenariosToGenerate() {
@@ -49,28 +34,12 @@ public class ScenarioRequest {
         this.scenariosToGenerate = scenariosToGenerate;
     }
 
-    public boolean isCanDuplicateMissions() {
-        return canDuplicateMissions;
+    public boolean isDuplicateObjectivePacksFreely() {
+        return duplicateObjectivePacksFreely;
     }
 
-    public void setCanDuplicateMissions(boolean canDuplicateMissions) {
-        this.canDuplicateMissions = canDuplicateMissions;
-    }
-
-    public boolean isGetCanDuplicateDeployments() {
-        return getCanDuplicateDeployments;
-    }
-
-    public void setGetCanDuplicateDeployments(boolean getCanDuplicateDeployments) {
-        this.getCanDuplicateDeployments = getCanDuplicateDeployments;
-    }
-
-    public boolean isDuplicateMissionsFreely() {
-        return duplicateMissionsFreely;
-    }
-
-    public void setDuplicateMissionsFreely(boolean duplicateMissionsFreely) {
-        this.duplicateMissionsFreely = duplicateMissionsFreely;
+    public void setDuplicateObjectivePacksFreely(boolean duplicateObjectivePacksFreely) {
+        this.duplicateObjectivePacksFreely = duplicateObjectivePacksFreely;
     }
 
     public boolean isDuplicateDeploymentsFreely() {
@@ -80,38 +49,6 @@ public class ScenarioRequest {
     public void setDuplicateDeploymentsFreely(boolean duplicateDeploymentsFreely) {
         this.duplicateDeploymentsFreely = duplicateDeploymentsFreely;
     }
-
-    public int getDuplicateDeploymentsQuantity() {
-        return duplicateDeploymentsQuantity;
-    }
-
-    public void setDuplicateDeploymentsQuantity(int duplicateDeploymentsQuantity) {
-        this.duplicateDeploymentsQuantity = duplicateDeploymentsQuantity;
-    }
-
-    public int getDuplicateMissionsQuantity() {
-        return duplicateMissionsQuantity;
-    }
-
-    public void setDuplicateMissionsQuantity(int duplicateMissionsQuantity) {
-        this.duplicateMissionsQuantity = duplicateMissionsQuantity;
-    }
-
-    //    public List<Integer> getDeploymentRepList() {
-//        return deploymentRepList;
-//    }
-//
-//    public void setDeploymentRepList(List<Integer> deploymentRepList) {
-//        this.deploymentRepList = deploymentRepList;
-//    }
-//
-//    public List<List<Integer>> getMissionRepList() {
-//        return missionRepList;
-//    }
-//
-//    public void setMissionRepList(List<List<Integer>> missionRepList) {
-//        this.missionRepList = missionRepList;
-//    }
 
 /*
 {
@@ -130,15 +67,11 @@ public class ScenarioRequest {
     @Override
     public String toString() {
         return "ScenarioRequest{" +
-                "deploymentBooleanPool=" + deploymentBooleanPool +
-                ", missionBooleanPool=" + missionBooleanPool +
+                "deploymentPool=" + deploymentPool +
+                ", objectivePackPool=" + objectivePackPool +
                 ", scenariosToGenerate=" + scenariosToGenerate +
-                ", canDuplicateMissions=" + canDuplicateMissions +
-                ", getCanDuplicateDeployments=" + getCanDuplicateDeployments +
-                ", duplicateMissionsFreely=" + duplicateMissionsFreely +
+                ", duplicateObjectivePacksFreely=" + duplicateObjectivePacksFreely +
                 ", duplicateDeploymentsFreely=" + duplicateDeploymentsFreely +
-                ", duplicateDeploymentsQuantity=" + duplicateDeploymentsQuantity +
-                ", duplicateMissionsQuantity=" + duplicateMissionsQuantity +
                 '}';
     }
 }

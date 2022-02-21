@@ -1,6 +1,7 @@
 package rosterBuilder.pojos;
 
 public class Option {
+    protected int optionId;
     protected Entity entity;
     protected int cost;
 
