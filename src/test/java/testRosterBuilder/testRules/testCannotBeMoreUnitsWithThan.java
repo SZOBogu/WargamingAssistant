@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Test;
 import rosterBuilder.exceptions.RosterBuildingException;
 import rosterBuilder.pojos.*;
 import rosterBuilder.rules.CannotBeMoreUnitsWithThan;
-import rosterBuilder.utility.RuleViolationLog;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -65,11 +64,6 @@ public class testCannotBeMoreUnitsWithThan {
 
     CannotBeMoreUnitsWithThan ruleOK = new CannotBeMoreUnitsWithThan(new SpecialRule("Any", ""), 100);
     CannotBeMoreUnitsWithThan ruleNotOK = new CannotBeMoreUnitsWithThan(new SpecialRule("Any", ""), 1);
-
-    @BeforeAll
-    static void init(){
-        RuleViolationLog.clear();
-    }
 
     @Test
     void testCheck(){

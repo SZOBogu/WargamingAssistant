@@ -7,7 +7,6 @@ import rosterBuilder.pojos.Entity;
 import rosterBuilder.pojos.SpecialRule;
 import rosterBuilder.pojos.Unit;
 import rosterBuilder.rules.MustBeTakenTogether;
-import rosterBuilder.utility.RuleViolationLog;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -23,11 +22,6 @@ public class testMustBeTakenTogether {
 
     MustBeTakenTogether ruleOK = new MustBeTakenTogether(new SpecialRule("Wizard Master", ""), new SpecialRule("Any", ""));
     MustBeTakenTogether ruleNotOK = new MustBeTakenTogether(new SpecialRule("Any", ""), new SpecialRule("Not pass", ""));
-
-    @BeforeAll
-    static void init(){
-        RuleViolationLog.clear();
-    }
 
     @Test
     void testCheck(){

@@ -1,6 +1,6 @@
 package rosterBuilder.pojos;
 
-import rosterBuilder.utility.RuleViolationLog;
+import rosterBuilder.exceptions.UnitBuildingException;
 
 import java.util.ArrayList;
 
@@ -40,7 +40,7 @@ public class PointCapOptionSet extends MultipleChoiceOptionSet{
     @Override
     public ArrayList<Entity> getEntities(ArrayList<Integer> indexes){
         if(getCost(indexes) > this.pointCap){
-            RuleViolationLog.appendUnitRuleViolationLog("Point cap on option set exceeded");
+            throw new UnitBuildingException("Point cap on option set exceeded");
         }
         return super.getEntities(indexes);
     }

@@ -2,7 +2,6 @@ package rosterBuilder.rules;
 
 import rosterBuilder.exceptions.UnitBuildingException;
 import rosterBuilder.pojos.Entity;
-import rosterBuilder.utility.RuleViolationLog;
 import rosterBuilder.pojos.Unit;
 
 public class CannotBeTakenWithLessThanModels extends UnitBuildingRule implements Rule {

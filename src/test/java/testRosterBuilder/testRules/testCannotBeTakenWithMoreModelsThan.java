@@ -1,14 +1,11 @@
 package testRosterBuilder.testRules;
 
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import rosterBuilder.exceptions.UnitBuildingException;
 import rosterBuilder.pojos.Entity;
 import rosterBuilder.pojos.SpecialRule;
 import rosterBuilder.pojos.Unit;
 import rosterBuilder.rules.CannotBeTakenWithMoreThanModels;
-import rosterBuilder.utility.RuleViolationLog;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -23,11 +20,6 @@ public class testCannotBeTakenWithMoreModelsThan {
             .build();
     CannotBeTakenWithMoreThanModels ruleOK = new CannotBeTakenWithMoreThanModels(new SpecialRule("Any", ""), 100);
     CannotBeTakenWithMoreThanModels ruleNotOK = new CannotBeTakenWithMoreThanModels(new SpecialRule("Any", ""), 1);
-
-    @BeforeAll
-    static void init(){
-        RuleViolationLog.clear();
-    }
 
     @Test
     void testCheck(){

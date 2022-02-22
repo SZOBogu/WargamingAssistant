@@ -15,7 +15,6 @@ import rosterBuilder.requests.DeleteUnitRequest;
 import rosterBuilder.requests.GetUnitListRequest;
 import rosterBuilder.requests.SaveUnitRequest;
 import rosterBuilder.rules.UnitBuildingRule;
-import rosterBuilder.utility.RuleViolationLog;
 import rosterBuilder.utility.UnitAndProfileFinder;
 
 import java.util.ArrayList;

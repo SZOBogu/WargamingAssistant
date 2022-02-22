@@ -7,7 +7,6 @@ import rosterBuilder.exceptions.UnitBuildingException;
 import rosterBuilder.pojos.*;
 import rosterBuilder.rules.CategoryPointCapExceedRule;
 import rosterBuilder.rules.RosterBuildingRule;
-import rosterBuilder.utility.RuleViolationLog;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -61,11 +60,6 @@ public class testCategoryPointCapExceedRule {
             .build();
 
     CategoryPointCapExceedRule ruleOK = new CategoryPointCapExceedRule();
-
-    @BeforeAll
-    static void init(){
-        RuleViolationLog.clear();
-    }
 
     @Test
     void testCheck(){

@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Test;
 import rosterBuilder.exceptions.UnitBuildingException;
 import rosterBuilder.pojos.*;
 import rosterBuilder.rules.CannotHaveTogether;
-import rosterBuilder.utility.RuleViolationLog;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -21,11 +20,6 @@ public class testCannotHaveTogether {
 
     CannotHaveTogether ruleOK = new CannotHaveTogether(new SpecialRule("Any", ""), new SpecialRule("Non Pass", ""));
     CannotHaveTogether ruleNotOK = new CannotHaveTogether(new SpecialRule("Any", ""), new SpecialRule("Wizard Master", ""));
-
-    @BeforeAll
-    static void init(){
-        RuleViolationLog.clear();
-    }
 
     @Test
     void testCheck(){

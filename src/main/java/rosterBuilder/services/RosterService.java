@@ -16,8 +16,8 @@ import rosterBuilder.rules.CategoryPointCapExceedRule;
 import rosterBuilder.rules.RosterBuildingRule;
 import rosterBuilder.rules.RosterPointCapExceedingRule;
 import rosterBuilder.rules.UnitBuildingRule;
+import rosterBuilder.utility.DetachmentRuleChecker;
 import rosterBuilder.utility.RuleMerger;
-import rosterBuilder.utility.RuleViolationLog;
 import rosterBuilder.utility.UnitAndProfileFinder;
 
 import java.util.ArrayList;
@@ -32,6 +32,10 @@ public class RosterService {
         try{
             Session session = sessionFactory.openSession();
             WargamingSystem system = session.get(WargamingSystem.class, request.getWargameId());
+
+            for(Detachment det : request.getRoster().getDetachments()){
+                DetachmentRuleChecker.checkDetachment(det);
+            }
 
             List<RosterBuildingRule> rules = RuleMerger.mergeRosterRules(system.getRules(), request.getEventRules());
 

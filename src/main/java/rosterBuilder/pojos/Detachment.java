@@ -8,9 +8,9 @@ public class Detachment {
     private final String name;
     private Army army;
     private int detachmentNumber;
-    private final List<List<Unit>> boughtUnitsCategorized;
-    private final List<Integer> arrayOfMandatoryChoicesInCategories;
-    private final List<Integer> arrayOfMaxChoicesPerCategory;
+    private List<List<Unit>> boughtUnitsCategorized;
+    private List<Integer> arrayOfMandatoryChoicesInCategories;
+    private List<Integer> arrayOfMaxChoicesPerCategory;
 
 
     public Detachment(){
@@ -235,6 +235,22 @@ public class Detachment {
 
     public List<Integer> getArrayOfMaxChoicesPerCategory() {
         return arrayOfMaxChoicesPerCategory;
+    }
+
+    public void setDetachmentId(int detachmentId) {
+        this.detachmentId = detachmentId;
+    }
+
+    public void setBoughtUnitsCategorized(List<List<Unit>> boughtUnitsCategorized) {
+        this.boughtUnitsCategorized = boughtUnitsCategorized;
+    }
+
+    public void setArrayOfMandatoryChoicesInCategories(List<Integer> arrayOfMandatoryChoicesInCategories) {
+        this.arrayOfMandatoryChoicesInCategories = arrayOfMandatoryChoicesInCategories;
+    }
+
+    public void setArrayOfMaxChoicesPerCategory(List<Integer> arrayOfMaxChoicesPerCategory) {
+        this.arrayOfMaxChoicesPerCategory = arrayOfMaxChoicesPerCategory;
     }
 
     @Override

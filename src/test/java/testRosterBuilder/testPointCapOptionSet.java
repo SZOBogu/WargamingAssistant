@@ -2,9 +2,8 @@ package testRosterBuilder;
 
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
+import rosterBuilder.exceptions.UnitBuildingException;
 import rosterBuilder.pojos.*;
-import rosterBuilder.utility.RuleViolationLog;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -44,10 +43,7 @@ public class testPointCapOptionSet {
     @Test
     void testGetEntities(){
         assertNotNull(optionSet.getEntities(chosenOptions));
-        assertEquals("", RuleViolationLog.getUnitRuleViolationLog());
-        assertNotNull(optionSet.getEntities(new ArrayList<>(Arrays.asList(0, 1, 2, 3, 4))));
-        assertEquals("Point cap on option set exceeded\n", RuleViolationLog.getUnitRuleViolationLog());
-        RuleViolationLog.clear();
+        assertThrows(UnitBuildingException.class, () -> optionSet.getEntities(new ArrayList<>(Arrays.asList(0, 1, 2, 3, 4))));
     }
 
     @Test

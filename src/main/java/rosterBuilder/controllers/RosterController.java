@@ -18,7 +18,6 @@ import rosterBuilder.rules.UnitBuildingRule;
 import rosterBuilder.services.RosterService;
 import rosterBuilder.services.UnitService;
 import rosterBuilder.utility.RuleMerger;
-import rosterBuilder.utility.RuleViolationLog;
 import rosterBuilder.utility.UnitAndProfileFinder;
 
 import java.util.ArrayList;

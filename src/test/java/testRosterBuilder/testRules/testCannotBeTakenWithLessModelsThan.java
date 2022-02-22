@@ -7,7 +7,6 @@ import rosterBuilder.pojos.Entity;
 import rosterBuilder.pojos.SpecialRule;
 import rosterBuilder.pojos.Unit;
 import rosterBuilder.rules.CannotBeTakenWithLessThanModels;
-import rosterBuilder.utility.RuleViolationLog;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -23,10 +22,6 @@ public class testCannotBeTakenWithLessModelsThan {
     CannotBeTakenWithLessThanModels ruleOK = new CannotBeTakenWithLessThanModels(new SpecialRule("Any", ""), 1);
     CannotBeTakenWithLessThanModels ruleNotOK = new CannotBeTakenWithLessThanModels(new SpecialRule("Any", ""), 11);
 
-    @BeforeAll
-    static void init(){
-        RuleViolationLog.clear();
-    }
 
     @Test
     void testCheck(){

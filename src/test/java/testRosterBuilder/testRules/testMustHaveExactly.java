@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Test;
 import rosterBuilder.exceptions.RosterBuildingException;
 import rosterBuilder.pojos.*;
 import rosterBuilder.rules.MustHaveExactly;
-import rosterBuilder.utility.RuleViolationLog;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -63,11 +62,6 @@ public class testMustHaveExactly {
 
     MustHaveExactly ruleOK = new MustHaveExactly(new SpecialRule("Wizard Master", ""), 1);
     MustHaveExactly ruleNotOK = new MustHaveExactly(new SpecialRule("Any", ""), 1);
-
-    @BeforeAll
-    static void init(){
-        RuleViolationLog.clear();
-    }
 
     @Test
     void testCheck(){

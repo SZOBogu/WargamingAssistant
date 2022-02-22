@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Test;
 import rosterBuilder.exceptions.UnitBuildingException;
 import rosterBuilder.pojos.*;
 import rosterBuilder.rules.MustHaveTogether;
-import rosterBuilder.utility.RuleViolationLog;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -36,11 +35,6 @@ public class testMustHaveTogether {
 
     MustHaveTogether ruleOK = new MustHaveTogether(new SpecialRule("Any", ""), new SpecialRule("Wizard Master", ""));
     MustHaveTogether ruleNotOK = new MustHaveTogether(new SpecialRule("Any", ""), new SpecialRule("Pass", ""));
-
-    @BeforeAll
-    static void init(){
-        RuleViolationLog.clear();
-    }
 
     @Test
     void testCheck(){

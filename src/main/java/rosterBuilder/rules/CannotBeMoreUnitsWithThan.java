@@ -3,7 +3,6 @@ package rosterBuilder.rules;
 import rosterBuilder.exceptions.RosterBuildingException;
 import rosterBuilder.pojos.Entity;
 import rosterBuilder.pojos.Roster;
-import rosterBuilder.utility.RuleViolationLog;
 import rosterBuilder.utility.UnitCounter;
 
 import java.io.Serializable;

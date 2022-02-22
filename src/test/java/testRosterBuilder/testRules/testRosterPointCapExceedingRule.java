@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Test;
 import rosterBuilder.exceptions.RosterBuildingException;
 import rosterBuilder.pojos.*;
 import rosterBuilder.rules.RosterPointCapExceedingRule;
-import rosterBuilder.utility.RuleViolationLog;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -63,11 +62,6 @@ public class testRosterPointCapExceedingRule {
 
     RosterPointCapExceedingRule ruleOK = new RosterPointCapExceedingRule();
 
-    @BeforeAll
-    static void init(){
-        RuleViolationLog.clear();
-    }
-
     @Test
     void testCheck(){
         roster.setPrimaryArmy(army);
@@ -82,7 +76,6 @@ public class testRosterPointCapExceedingRule {
         assertDoesNotThrow(() -> {ruleOK.check(roster);});
 
         assertEquals(10000, roster.getPointCap());
-        assertEquals("", RuleViolationLog.getRosterRuleViolationLog());
         roster.setPointCap(-1);
         assertEquals(-1, roster.getPointCap());
 

@@ -28,7 +28,6 @@ public class testStreamRunner {
         assertThat(successes, lessThanOrEqualTo(toHit.getQuantity()));
     }
 
-    //TODO:fix
     @Test
     public void testRunAll(){
         String report = runner.runAll(testArray);

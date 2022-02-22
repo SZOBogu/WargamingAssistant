@@ -6,7 +6,6 @@ import rosterBuilder.exceptions.RosterBuildingException;
 import rosterBuilder.exceptions.UnitBuildingException;
 import rosterBuilder.pojos.*;
 import rosterBuilder.rules.CannotBeMoreUnitsWithThan;
-import rosterBuilder.utility.RuleViolationLog;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -64,12 +63,6 @@ public class testCannotBeMoreModelsWithThan {
 
     CannotBeMoreUnitsWithThan ruleOK = new CannotBeMoreUnitsWithThan(new SpecialRule("Any", ""), 100);
     CannotBeMoreUnitsWithThan ruleNotOK = new CannotBeMoreUnitsWithThan(new SpecialRule("Any", ""), 1);
-
-    @BeforeAll
-    static void init(){
-        RuleViolationLog.clear();
-    }
-
 
     @Test
     void testCheck(){

@@ -47,7 +47,6 @@ public class testScenarioFormValidator {
 
     @Test
     void testCanBeGeneratedArrays() {
-        /*
         List<Integer> depRepList0 = new ArrayList<>(Arrays.asList(1, 1, 1, 1));
         List<Integer> depRepList1 = new ArrayList<>(Arrays.asList(10, 10, 10, 10));
         List<Integer> missRepList00 = new ArrayList<>(Arrays.asList(1, 1, 1, 1));
@@ -79,8 +78,7 @@ public class testScenarioFormValidator {
         request.setDeploymentPool(depRepList1);
         request.setMissionPool(missRepTotalList1);
         request.setScenariosToGenerate(10);
-        assertTrue(ScenarioFormValidator.canBeGenerated(request));
-
+        assertFalse(ScenarioFormValidator.canBeGenerated(request));
 
         request.setDeploymentPool(depRepList0);
         request.setMissionPool(missRepTotalList0);
@@ -89,17 +87,17 @@ public class testScenarioFormValidator {
 
         request.setDeploymentPool(depRepList0);
         request.setMissionPool(missRepTotalList1);
-        request.setScenariosToGenerate(2000);
-        assertFalse(ScenarioFormValidator.canBeGenerated(request));
+        request.setScenariosToGenerate(3);
+        assertTrue(ScenarioFormValidator.canBeGenerated(request));
 
         request.setDeploymentPool(depRepList1);
         request.setMissionPool(missRepTotalList0);
-        request.setScenariosToGenerate(40000);
-        assertFalse(ScenarioFormValidator.canBeGenerated(request));
+        request.setScenariosToGenerate(4);
+        assertTrue(ScenarioFormValidator.canBeGenerated(request));
 
         request.setDeploymentPool(depRepList1);
         request.setMissionPool(missRepTotalList1);
-        request.setScenariosToGenerate(500000);
+        request.setScenariosToGenerate(5);
         assertFalse(ScenarioFormValidator.canBeGenerated(request));
 
 
@@ -113,6 +111,5 @@ public class testScenarioFormValidator {
         request.setScenariosToGenerate(0);
         assertFalse(ScenarioFormValidator.canBeGenerated(request));
 
-         */
     }
 }
