@@ -2,7 +2,7 @@ package TournamentHandler.requests;
 
 import TournamentHandler.entities.Participant;
 
-public class ManualPairRequest {
+public class ManualTeamPairingRequest {
     private Participant homeParticipant;
     private Participant awayParticipant;
     private int tournamentId;

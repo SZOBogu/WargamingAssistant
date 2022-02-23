@@ -1,10 +1,16 @@
 package TournamentHandler.controller;
 
+import TournamentHandler.daos.PairingDAO;
+import TournamentHandler.daos.RegistrationDAO;
+import TournamentHandler.daos.ScoreDAO;
 import TournamentHandler.entities.Game;
 import TournamentHandler.pojos.ScoreList;
 import TournamentHandler.requests.TournamentRequest;
 import TournamentHandler.requests.ExtraPointsRequest;
 import TournamentHandler.requests.RegisterRequest;
+import TournamentHandler.services.PairingService;
+import TournamentHandler.services.RegistrationService;
+import TournamentHandler.services.ScoreService;
 import TournamentHandler.services.TournamentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -17,7 +23,13 @@ import java.util.List;
 @RequestMapping(value = "/events")
 public class EventController {
     @Autowired
-    private TournamentService service;
+    private TournamentService tournamentService;
+    @Autowired
+    private PairingService pairingService;
+    @Autowired
+    private ScoreService scoreService;
+    @Autowired
+    private RegistrationService registrationService;
 
     @PostMapping
     public String createEvent(@RequestBody TournamentRequest request){
