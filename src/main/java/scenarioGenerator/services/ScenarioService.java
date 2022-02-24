@@ -1,5 +1,8 @@
 package scenarioGenerator.services;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import scenarioGenerator.daos.IDeploymentDAO;
+import scenarioGenerator.daos.IMissionDAO;
 import scenarioGenerator.exceptions.ScenarioGenerationException;
 import scenarioGenerator.pojos.MissionList;
 import scenarioGenerator.requests.ScenarioRequest;
@@ -14,16 +17,32 @@ import java.util.List;
 
 @Service
 public class ScenarioService {
-    public List<Scenario> generateScenarioList(ScenarioRequest request, List<Deployment> deployments, List<MissionList> missionList){
+    @Autowired
+    private IDeploymentDAO deploymentDAO;
+    @Autowired
+    private IMissionDAO missionDAO;
+
+    public List<Deployment> getDeployments(int wargameId){
+        return this.deploymentDAO.getDeployments(wargameId);
+    }
+
+    public List<MissionList> getMissions(int wargameId){
+        return this.missionDAO.getMissions(wargameId);
+    }
+
+    public List<Scenario> generateScenarioList(ScenarioRequest request, int wargameId){
         List<Scenario> scenarios = new ArrayList<>();
         List<List<Mission>> missions = new ArrayList<>();
 
-        for(MissionList m : missionList){
+        List<Deployment> allGameDeployments = this.deploymentDAO.getDeployments(wargameId);
+        List<MissionList> allGameMissions = this.missionDAO.getMissions(wargameId);
+
+        for(MissionList m : allGameMissions){
             missions.add(m.getMissions());
         }
 
-        List<Deployment> chosenDeploymentPool = DeploymentPoolGetter.getDeploymentPoolList(request, deployments);
-        List<List<Mission>> chosenMissionPool = MissionPoolGetter.getObjectivePackPoolList(request, missions);
+        List<Deployment> chosenDeploymentPool = DeploymentPoolGetter.getDeploymentPoolList(request, allGameDeployments);
+        List<List<Mission>> chosenMissionPool = MissionPoolGetter.getMissionPoolList(request, missions);
 
         if(ScenarioFormValidator.canBeGenerated(request)) {
             List<Deployment> randomDeployments = RandomDeploymentListGetter.generate(request, chosenDeploymentPool);

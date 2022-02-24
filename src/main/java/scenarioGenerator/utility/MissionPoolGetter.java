@@ -10,16 +10,16 @@ public class MissionPoolGetter {
 
     private MissionPoolGetter(){}
 
-    public static List<List<Mission>> getObjectivePackPoolList(ScenarioRequest request, List<List<Mission>> allObjectivePacks){
-        List<List<Integer>> objectivePackDupeList = request.getMissionPool();
+    public static List<List<Mission>> getMissionPoolList(ScenarioRequest request, List<List<Mission>> allMissionLists){
+        List<List<Integer>> missionDupeList = request.getMissionPool();
 
-        List<List<Mission>> objectivePackPool= new ArrayList<>();
+        List<List<Mission>> missionPool= new ArrayList<>();
 
-        for(int i = 0; i < allObjectivePacks.size(); i++){
-            objectivePackPool.add(new ArrayList<>());
-            for(int j = 0; j < allObjectivePacks.get(i).size(); j++) {
-                if (objectivePackDupeList.get(i).get(j) > 0) {
-                    objectivePackPool.get(i).add(new Mission(allObjectivePacks.get(i).get(j)));
+        for(int i = 0; i < allMissionLists.size(); i++){
+            missionPool.add(new ArrayList<>());
+            for(int j = 0; j < allMissionLists.get(i).size(); j++) {
+                if (missionDupeList.get(i).get(j) > 0) {
+                    missionPool.get(i).add(new Mission(allMissionLists.get(i).get(j)));
                 }
             }
         }
@@ -31,6 +31,6 @@ public class MissionPoolGetter {
             }
         }
         */
-        return objectivePackPool;
+        return missionPool;
     }
 }

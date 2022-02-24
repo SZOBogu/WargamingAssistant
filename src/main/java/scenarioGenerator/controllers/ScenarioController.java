@@ -16,14 +16,15 @@ import java.util.List;
 @RestController
 @RequestMapping(value = "/scenario")
 public class ScenarioController {
-    private WargamingSystem system;
     private ScenarioService scenarioService;
 
     @GetMapping(value = "/{wargameId}")
     public ScenarioInfoResponse getScenarioInfo(@PathVariable int wargameId){
+        ScenarioInfoResponse response = new ScenarioInfoResponse();
+        response.setDeploymentList(this.scenarioService.getDeployments(wargameId));
+        response.setMissionList(this.scenarioService.getMissions(wargameId));
         System.out.println("ScenarioController, getScenarioInfo got GET");
-
-        return new ScenarioInfoResponse(system);
+        return response;
     }
 
     @PostMapping(value = "/{wargameId}")
@@ -31,7 +32,7 @@ public class ScenarioController {
         try {
             return ResponseEntity
                     .status(HttpStatus.NOT_ACCEPTABLE)
-                    .body(this.scenarioService.generateScenarioList(request, system.getDeployments(), system.getMissions()));
+                    .body(this.scenarioService.generateScenarioList(request, wargameId));
         }
         catch(ScenarioGenerationException ex){
             return ResponseEntity
@@ -43,10 +44,5 @@ public class ScenarioController {
     @Autowired
     public void setScenarioService(ScenarioService scenarioService) {
         this.scenarioService = scenarioService;
-    }
-
-    @Autowired
-    public void setSystem(WargamingSystem system) {
-        this.system = system;
     }
 }
