@@ -2,8 +2,7 @@ package testScenarioGenerator;
 
 import common.ScorePoints;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
-import scenarioGenerator.pojos.Objective;
+import scenarioGenerator.entities.Objective;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

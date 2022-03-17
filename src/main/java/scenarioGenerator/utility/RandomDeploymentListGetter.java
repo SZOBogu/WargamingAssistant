@@ -1,7 +1,7 @@
 package scenarioGenerator.utility;
 
 import common.RandomArrayElementsGetter;
-import scenarioGenerator.pojos.Deployment;
+import scenarioGenerator.entities.Deployment;
 import scenarioGenerator.requests.ScenarioRequest;
 
 import java.util.List;

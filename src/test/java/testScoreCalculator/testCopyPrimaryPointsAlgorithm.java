@@ -1,7 +1,7 @@
 package testScoreCalculator;
 
-import ScoreCalculator.calculatingAlgorithms.CopyPrimaryPointsAlgorithm;
-import TournamentHandler.enums.ScorePointType;
+import scoreCalculator.calculatingAlgorithms.CopyPrimaryPointsAlgorithm;
+import tournamentHandler.enums.ScorePointType;
 import common.ScorePoints;
 import org.junit.jupiter.api.Test;
 

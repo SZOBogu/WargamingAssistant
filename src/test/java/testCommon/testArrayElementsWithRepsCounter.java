@@ -2,7 +2,7 @@ package testCommon;
 
 import common.ArrayElementsWithRepsCounter;
 import org.junit.jupiter.api.Test;
-import scenarioGenerator.pojos.Mission;
+import scenarioGenerator.entities.Mission;
 
 import java.util.ArrayList;
 import java.util.Arrays;

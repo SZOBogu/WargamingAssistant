@@ -1,7 +1,6 @@
 package scenarioGenerator.daos;
 
-import scenarioGenerator.pojos.Mission;
-import scenarioGenerator.pojos.MissionList;
+import scenarioGenerator.entities.MissionList;
 
 import java.util.List;
 

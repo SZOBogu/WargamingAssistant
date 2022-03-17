@@ -1,7 +1,7 @@
 package testScoreCalculator;
 
-import ScoreCalculator.calculatingAlgorithms.DifferenceOfSumsScoringAlgorithm;
-import TournamentHandler.enums.ScorePointType;
+import scoreCalculator.calculatingAlgorithms.DifferenceOfSumsScoringAlgorithm;
+import tournamentHandler.enums.ScorePointType;
 import common.ScorePoints;
 import org.junit.jupiter.api.Test;
 

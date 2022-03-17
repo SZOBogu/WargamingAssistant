@@ -1,7 +1,7 @@
 package testScenarioGenerator;
 
 import org.junit.jupiter.api.Test;
-import scenarioGenerator.pojos.Deployment;
+import scenarioGenerator.entities.Deployment;
 
 import static org.junit.jupiter.api.Assertions.*;
 

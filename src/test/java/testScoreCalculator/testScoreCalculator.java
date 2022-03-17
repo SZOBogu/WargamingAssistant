@@ -1,11 +1,11 @@
 package testScoreCalculator;
 
-import ScoreCalculator.helpers.GameScoreCalculator;
-import ScoreCalculator.pojos.NinthAgeScoringSystemPrototype;
-import ScoreCalculator.rules.PercentageForDifferenceOfLowerTypeRule;
-import ScoreCalculator.rules.PointsForDifferenceOfLowerTypeRule;
-import ScoreCalculator.pojos.Wh40kScoringSystemPrototype;
-import TournamentHandler.enums.ScorePointType;
+import scoreCalculator.helpers.GameScoreCalculator;
+import scoreCalculator.pojos.NinthAgeScoringSystemPrototype;
+import scoreCalculator.rules.PercentageForDifferenceOfLowerTypeRule;
+import scoreCalculator.rules.PointsForDifferenceOfLowerTypeRule;
+import scoreCalculator.pojos.Wh40kScoringSystemPrototype;
+import tournamentHandler.enums.ScorePointType;
 import common.ScorePoints;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

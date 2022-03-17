@@ -1,7 +1,7 @@
 package testScoreCalculator;
 
-import ScoreCalculator.rules.CeilingOfPointsRule;
-import TournamentHandler.enums.ScorePointType;
+import scoreCalculator.rules.CeilingOfPointsRule;
+import tournamentHandler.enums.ScorePointType;
 import common.ScorePoints;
 import org.junit.jupiter.api.Test;
 

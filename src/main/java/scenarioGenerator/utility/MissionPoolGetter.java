@@ -1,6 +1,6 @@
 package scenarioGenerator.utility;
 
-import scenarioGenerator.pojos.Mission;
+import scenarioGenerator.entities.Mission;
 import scenarioGenerator.requests.ScenarioRequest;
 
 import java.util.ArrayList;

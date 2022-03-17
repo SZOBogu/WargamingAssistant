@@ -2,8 +2,8 @@ package testScenarioGenerator;
 
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
-import scenarioGenerator.pojos.Mission;
-import scenarioGenerator.pojos.MissionList;
+import scenarioGenerator.entities.Mission;
+import scenarioGenerator.entities.MissionList;
 
 
 import java.util.ArrayList;

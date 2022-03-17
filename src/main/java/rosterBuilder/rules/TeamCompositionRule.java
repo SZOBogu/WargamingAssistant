@@ -1,10 +1,7 @@
 package rosterBuilder.rules;
 
-import TournamentHandler.entities.Team;
-import TournamentHandler.exceptions.TeamCompositionException;
-import rosterBuilder.exceptions.RosterBuildingException;
+import tournamentHandler.entities.Team;
 import rosterBuilder.pojos.Army;
-import rosterBuilder.pojos.Roster;
 
 public class TeamCompositionRule implements Rule{
     private int ruleId;

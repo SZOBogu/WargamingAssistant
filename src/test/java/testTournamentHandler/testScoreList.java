@@ -1,6 +1,6 @@
 package testTournamentHandler;
 
-import TournamentHandler.pojos.ScoreList;
+import tournamentHandler.pojos.ScoreList;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

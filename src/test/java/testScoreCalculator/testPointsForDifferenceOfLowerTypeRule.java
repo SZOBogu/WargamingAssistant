@@ -1,7 +1,7 @@
 package testScoreCalculator;
 
-import ScoreCalculator.rules.PointsForDifferenceOfLowerTypeRule;
-import TournamentHandler.enums.ScorePointType;
+import scoreCalculator.rules.PointsForDifferenceOfLowerTypeRule;
+import tournamentHandler.enums.ScorePointType;
 import common.ScorePoints;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

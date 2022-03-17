@@ -4,13 +4,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import scenarioGenerator.daos.IDeploymentDAO;
 import scenarioGenerator.daos.IMissionDAO;
 import scenarioGenerator.exceptions.ScenarioGenerationException;
-import scenarioGenerator.pojos.MissionList;
+import scenarioGenerator.entities.MissionList;
 import scenarioGenerator.requests.ScenarioRequest;
 import org.springframework.stereotype.Service;
 import scenarioGenerator.utility.*;
-import scenarioGenerator.pojos.Deployment;
-import scenarioGenerator.pojos.Mission;
-import scenarioGenerator.pojos.Scenario;
+import scenarioGenerator.entities.Deployment;
+import scenarioGenerator.entities.Mission;
+import scenarioGenerator.entities.Scenario;
 
 import java.util.ArrayList;
 import java.util.List;

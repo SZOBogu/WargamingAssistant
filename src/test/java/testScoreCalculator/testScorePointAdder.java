@@ -1,7 +1,7 @@
 package testScoreCalculator;
 
-import ScoreCalculator.helpers.ScorePointAdder;
-import TournamentHandler.enums.ScorePointType;
+import scoreCalculator.helpers.ScorePointAdder;
+import tournamentHandler.enums.ScorePointType;
 import common.ScorePoints;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

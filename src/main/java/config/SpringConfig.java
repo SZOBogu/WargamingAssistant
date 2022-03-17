@@ -1,6 +1,7 @@
 package config;
 
 import org.hibernate.SessionFactory;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.core.env.Environment;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -9,9 +10,10 @@ import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.web.filter.CommonsRequestLoggingFilter;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
-import rosterBuilder.pojos.WargameSystemsInitializer;
+import rosterBuilder.helpers.WargameSystemsInitializer;
 import rosterBuilder.pojos.WargamingSystem;
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 import javax.sql.DataSource;
@@ -20,7 +22,9 @@ import java.util.List;
 import java.util.Properties;
 
 @Configuration
-public class SpringConfig {
+@EnableWebMvc
+@ComponentScan(basePackages = {"common", "config", "diceRollSimulator", "rosterBuilder", "scenarioGenerator", "scoreCalculator", "tournamentHandler", "security"})
+public class SpringConfig implements WebMvcConfigurer {
     @Autowired
     private Environment env;
 
@@ -56,25 +60,25 @@ public class SpringConfig {
     public DataSource dataSource(){
         ComboPooledDataSource dataSource = new ComboPooledDataSource();
         try {
-            dataSource.setDriverClass(env.getProperty("hibernate.connection.driver_class"));
+            dataSource.setDriverClass("com.mysql.cj.jdbc.Driver");
         }
         catch(PropertyVetoException e){
             throw new RuntimeException(e);
         }
 
-        dataSource.setJdbcUrl(env.getProperty("hibernate.connection.url"));
-        dataSource.setUser(env.getProperty("hibernate.connection.username"));
-        dataSource.setPassword(env.getProperty("hibernate.connection.password"));
+        dataSource.setJdbcUrl("jdbc:mysql://localhost/wargaming_assistant?allowPublicKeyRetrieval=true&useSSL=false");
+        dataSource.setUser("hibernate");
+        dataSource.setPassword("hibernate");
 
 //        System.out.println("hibernate.connection.url: " + env.getProperty("hibernate.connection.url"));
 //        System.out.println("hibernate.connection.username: " + env.getProperty("hibernate.connection.username"));
 //        System.out.println("hibernate.connection.password: " + env.getProperty("hibernate.connection.password"));
 
-        dataSource.setInitialPoolSize(this.getIntProperty("hibernate.hibernate.min_size"));
-        dataSource.setMinPoolSize(this.getIntProperty("hibernate.hibernate.min_size"));
-        dataSource.setMaxPoolSize(this.getIntProperty("hibernate.hibernate.max_size"));
-        dataSource.setMaxIdleTime(this.getIntProperty("hibernate.hibernate.timeout"));
-        dataSource.setMaxStatements(this.getIntProperty("hibernate.hibernate.max_statements"));
+        dataSource.setInitialPoolSize(5);
+        dataSource.setMinPoolSize(5);
+        dataSource.setMaxPoolSize(20);
+        dataSource.setMaxIdleTime(1800);
+        dataSource.setMaxStatements(5);
 
 //        System.out.println("hibernate.hibernate.init costam: " + env.getProperty("hibernate.hibernate.min_size"));
 //        System.out.println("hibernate.hibernate.min_size: " + env.getProperty("hibernate.hibernate.min_size"));
@@ -94,8 +98,8 @@ public class SpringConfig {
     private Properties getHibernateProperties(){
         Properties properties = new Properties();
 
-        properties.setProperty("hibernate.dialect", env.getProperty("hibernate.dialect"));
-        properties.setProperty("hibernate.current_session_context_class", env.getProperty("hibernate.current_session_context_class"));
+        properties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
+        properties.setProperty("hibernate.current_session_context_class", "thread");
 
         return properties;
     }
@@ -105,13 +109,13 @@ public class SpringConfig {
     public LocalSessionFactoryBean sessionFactory(){
         Properties properties = new Properties();
 
-        properties.setProperty("hibernate.dialect", env.getProperty("hibernate.dialect"));
-        properties.setProperty("hibernate.show_sql", env.getProperty("hibernate.show_sql"));
+        properties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
+        properties.setProperty("hibernate.show_sql", "true");
 
         LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
 
         sessionFactory.setDataSource(this.dataSource());
-        sessionFactory.setPackagesToScan(env.getProperty("hibernate.packagesToScan"));
+        sessionFactory.setPackagesToScan("common", "config", "diceRollSimulator", "rosterBuilder", "scenarioGenerator", "scoreCalculator", "tournamentHandler", "security");
         sessionFactory.setHibernateProperties(this.getHibernateProperties());
 
         //sessionFactory.setAnnotatedClasses(UserEntity.class, RoleEntity.class, CustomerEntity.class);

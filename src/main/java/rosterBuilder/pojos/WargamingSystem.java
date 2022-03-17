@@ -1,22 +1,37 @@
 package rosterBuilder.pojos;
 
 import rosterBuilder.rules.RosterBuildingRule;
-import scenarioGenerator.pojos.Deployment;
-import scenarioGenerator.pojos.MissionList;
-import scenarioGenerator.pojos.Mission;
-import scenarioGenerator.pojos.Scenario;
+import scenarioGenerator.entities.Deployment;
+import scenarioGenerator.entities.MissionList;
+import scenarioGenerator.entities.Scenario;
 
+import javax.persistence.CascadeType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import java.util.ArrayList;
 import java.util.List;
 
+@javax.persistence.Entity
 public class WargamingSystem {
-    private int wargameId;
+    private Long id;
     private String name;
+
     private List<Army> armies;
+
     private List<Entity> allInGameEntities;
-    private List<Deployment> deployments;
-    private List<MissionList> missions;
     private List<Detachment> detachments;
+    @OneToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE,
+            CascadeType.PERSIST, CascadeType.REFRESH})
+    @JoinColumn(name = "system_id")
+    private List<Deployment> deployments;
+    @OneToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE,
+            CascadeType.PERSIST, CascadeType.REFRESH})
+    @JoinColumn(name = "system_id")
+    private List<MissionList> missions;
+    @OneToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE,
+            CascadeType.PERSIST, CascadeType.REFRESH})
+    @JoinColumn(name = "system_id")
     private List<Scenario> scenarios;
     private int maxDetachments;
     private boolean isAllowingAlliances;

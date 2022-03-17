@@ -1,8 +1,7 @@
 package scenarioGenerator.responses;
 
-import rosterBuilder.pojos.WargamingSystem;
-import scenarioGenerator.pojos.Deployment;
-import scenarioGenerator.pojos.MissionList;
+import scenarioGenerator.entities.Deployment;
+import scenarioGenerator.entities.MissionList;
 
 import java.util.ArrayList;
 import java.util.List;

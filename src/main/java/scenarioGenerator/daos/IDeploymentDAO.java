@@ -1,6 +1,6 @@
 package scenarioGenerator.daos;
 
-import scenarioGenerator.pojos.Deployment;
+import scenarioGenerator.entities.Deployment;
 
 import java.util.List;
 

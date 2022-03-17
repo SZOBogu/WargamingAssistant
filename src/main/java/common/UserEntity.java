@@ -13,7 +13,7 @@ public class UserEntity implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private int userId;
+    private Long userId;
     @Column(name = "username")
     private String username;
     @Column(name = "password")

@@ -4,7 +4,7 @@ App contains 5 modules:
   - DiceRollSimulator - simulates dice rolls according to data submitted in form. Dice rolls are organized in streams. Can generate random results or calculate most probable outcome.
   - RosterBuilder - allows to create rosters for wargames.
   - ScoringCalculator - calculates exact score of the game according to sum of points and their type.
-  - TournamentHandler - lets you to create and sign up to events, supports automatic pairing of players. As of February 2022 in development and still in shambles.
+  - tournamentHandler - lets you to create and sign up to events, supports automatic pairing of players. As of February 2022 in development and still in shambles.
   
  Known issues:
   ScenarioGenerator:
@@ -23,6 +23,6 @@ App contains 5 modules:
   - Unnecessary implementation of "rules".
  
  To do:
-  - TournamentHandler
+  - tournamentHandler
   - Frontend (basic HTML first, ReactJS later)
   - Database (PostgreSQL)
