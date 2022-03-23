@@ -1,20 +1,41 @@
-package rosterBuilder.pojos;
+package rosterBuilder.entities;
 
 import rosterBuilder.rules.UnitBuildingRule;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+@javax.persistence.Entity
+@Table(name = "unitProfile", schema = "wargaming_assistant")
 public class UnitProfile {
-    private int unitProfileId;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private long id;
+    @Column(name = "name")
     private String name;
+
+    @OneToMany(mappedBy = "unitProfile", cascade = {CascadeType.DETACH, CascadeType.MERGE,
+            CascadeType.PERSIST, CascadeType.REFRESH},
+            fetch = FetchType.EAGER)
     private List<ModelPart> modelParts;
+
+    @OneToMany(mappedBy = "unitProfile", cascade = {CascadeType.DETACH, CascadeType.MERGE,
+            CascadeType.PERSIST, CascadeType.REFRESH},
+            fetch = FetchType.EAGER)
     private List<OptionSet> options;
+
+    @Column(name = "minModels")
     private int minModels;
+    @Column(name = "maxModels")
     private int maxModels;
+    @Column(name = "initialCost")
     private int initialCost;
+    @Column(name = "additionalModelCost")
     private int additionalModelCost;
+    @Column(name = "unitsPerArmy")
     private int unitsPerArmy;
     private List<UnitBuildingRule> rules;
 
@@ -50,12 +71,12 @@ public class UnitProfile {
         this.rules = new ArrayList<>();
     }
 
-    public int getUnitProfileId() {
-        return unitProfileId;
+    public long getId() {
+        return id;
     }
 
-    public void setUnitProfileId(int unitProfileId) {
-        this.unitProfileId = unitProfileId;
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getName() {

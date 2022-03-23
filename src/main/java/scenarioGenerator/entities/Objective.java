@@ -1,7 +1,6 @@
 package scenarioGenerator.entities;
 
 import common.ScorePoints;
-import rosterBuilder.pojos.WargamingSystem;
 
 import javax.persistence.*;
 import java.util.List;

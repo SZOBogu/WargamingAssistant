@@ -1,7 +1,7 @@
 package rosterBuilder.utility;
 
 import rosterBuilder.exceptions.RosterBuildingException;
-import rosterBuilder.pojos.Detachment;
+import rosterBuilder.entities.Detachment;
 
 public class DetachmentRuleChecker {
     private DetachmentRuleChecker() {}

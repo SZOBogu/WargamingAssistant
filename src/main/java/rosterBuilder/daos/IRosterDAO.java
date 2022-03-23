@@ -1,9 +1,9 @@
 package rosterBuilder.daos;
 
-import rosterBuilder.pojos.Detachment;
-import rosterBuilder.pojos.Roster;
-import rosterBuilder.pojos.Unit;
-import rosterBuilder.pojos.UnitProfile;
+import rosterBuilder.entities.Detachment;
+import rosterBuilder.entities.Roster;
+import rosterBuilder.entities.Unit;
+import rosterBuilder.entities.UnitProfile;
 import rosterBuilder.requests.*;
 
 import java.util.List;

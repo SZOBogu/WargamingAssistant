@@ -1,7 +1,7 @@
 package rosterBuilder.utility;
 
-import rosterBuilder.pojos.Unit;
-import rosterBuilder.pojos.UnitProfile;
+import rosterBuilder.entities.Unit;
+import rosterBuilder.entities.UnitProfile;
 
 import java.util.ArrayList;
 import java.util.List;

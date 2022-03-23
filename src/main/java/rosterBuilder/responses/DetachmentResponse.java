@@ -1,7 +1,6 @@
 package rosterBuilder.responses;
 
-import rosterBuilder.pojos.Army;
-import rosterBuilder.pojos.Unit;
+import rosterBuilder.entities.Unit;
 
 import java.util.List;
 

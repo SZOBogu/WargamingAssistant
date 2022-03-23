@@ -1,7 +1,7 @@
 package tournamentHandler.entities;
 
 import common.UserEntity;
-import rosterBuilder.pojos.Roster;
+import rosterBuilder.entities.Roster;
 
 public class Submission {
     private UserEntity userEntity;

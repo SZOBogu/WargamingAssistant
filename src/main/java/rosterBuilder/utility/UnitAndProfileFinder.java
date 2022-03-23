@@ -1,6 +1,6 @@
 package rosterBuilder.utility;
 
-import rosterBuilder.pojos.*;
+import rosterBuilder.entities.*;
 
 import java.util.List;
 

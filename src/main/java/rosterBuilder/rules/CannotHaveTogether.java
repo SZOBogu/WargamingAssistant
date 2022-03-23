@@ -1,8 +1,8 @@
 package rosterBuilder.rules;
 
 import rosterBuilder.exceptions.UnitBuildingException;
-import rosterBuilder.pojos.Entity;
-import rosterBuilder.pojos.Unit;
+import rosterBuilder.entities.Entity;
+import rosterBuilder.entities.Unit;
 
 import java.util.ArrayList;
 

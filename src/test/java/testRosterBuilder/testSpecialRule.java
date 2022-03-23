@@ -1,7 +1,7 @@
 package testRosterBuilder;
 
 import org.junit.jupiter.api.Test;
-import rosterBuilder.pojos.SpecialRule;
+import rosterBuilder.entities.SpecialRule;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;

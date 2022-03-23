@@ -1,6 +1,6 @@
 package rosterBuilder.daos;
 
-import rosterBuilder.pojos.WargamingSystem;
+import rosterBuilder.entities.WargamingSystem;
 
 public interface IWargameDAO {
     WargamingSystem getWargamingSystem(int id);

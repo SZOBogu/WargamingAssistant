@@ -3,7 +3,7 @@ package tournamentHandler.entities;
 import scoreCalculator.pojos.ScoringSystem;
 import tournamentHandler.enums.TournamentType;
 import tournamentHandler.pojos.TournamentStatute;
-import rosterBuilder.pojos.WargamingSystem;
+import rosterBuilder.entities.WargamingSystem;
 import rosterBuilder.rules.ArmyPointCapRule;
 import rosterBuilder.rules.RosterBuildingRule;
 import rosterBuilder.rules.TeamCompositionRule;

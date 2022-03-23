@@ -4,7 +4,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import rosterBuilder.pojos.WargamingSystem;
+import rosterBuilder.entities.WargamingSystem;
 
 @Repository
 public class WargameDAO implements IWargameDAO{

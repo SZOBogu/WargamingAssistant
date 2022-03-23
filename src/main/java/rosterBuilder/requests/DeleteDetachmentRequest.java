@@ -1,6 +1,6 @@
 package rosterBuilder.requests;
 
-import rosterBuilder.pojos.Roster;
+import rosterBuilder.entities.Roster;
 
 public class DeleteDetachmentRequest {
     private Roster roster;

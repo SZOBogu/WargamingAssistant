@@ -14,7 +14,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import rosterBuilder.helpers.WargameSystemsInitializer;
-import rosterBuilder.pojos.WargamingSystem;
+import rosterBuilder.entities.WargamingSystem;
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 import javax.sql.DataSource;
 import java.beans.PropertyVetoException;

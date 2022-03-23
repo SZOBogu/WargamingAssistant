@@ -2,9 +2,9 @@ package testRosterBuilder.testRules;
 
 import org.junit.jupiter.api.Test;
 import rosterBuilder.exceptions.UnitBuildingException;
-import rosterBuilder.pojos.Entity;
-import rosterBuilder.pojos.SpecialRule;
-import rosterBuilder.pojos.Unit;
+import rosterBuilder.entities.Entity;
+import rosterBuilder.entities.SpecialRule;
+import rosterBuilder.entities.Unit;
 import rosterBuilder.rules.CannotBeTakenWithMoreThanModels;
 import java.util.ArrayList;
 import java.util.Arrays;

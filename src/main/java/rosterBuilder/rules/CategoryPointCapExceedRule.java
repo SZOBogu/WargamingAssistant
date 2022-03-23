@@ -1,7 +1,7 @@
 package rosterBuilder.rules;
 
 import rosterBuilder.exceptions.RosterBuildingException;
-import rosterBuilder.pojos.Roster;
+import rosterBuilder.entities.Roster;
 import rosterBuilder.utility.RosterCostCalculator;
 
 public class CategoryPointCapExceedRule implements Rule {

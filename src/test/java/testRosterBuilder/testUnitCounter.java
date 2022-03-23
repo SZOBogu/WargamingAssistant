@@ -1,7 +1,7 @@
 package testRosterBuilder;
 
 import org.junit.jupiter.api.Test;
-import rosterBuilder.pojos.*;
+import rosterBuilder.entities.*;
 import rosterBuilder.utility.UnitCounter;
 
 import java.util.ArrayList;

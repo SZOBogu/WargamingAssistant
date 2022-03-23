@@ -1,10 +1,7 @@
 package rosterBuilder.daos;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import rosterBuilder.pojos.Roster;
-import rosterBuilder.pojos.UnitProfile;
+import rosterBuilder.entities.UnitProfile;
 import rosterBuilder.requests.GetUnitListRequest;
-import rosterBuilder.requests.SaveDetachmentRequest;
 
 import java.util.List;
 

@@ -1,6 +1,6 @@
 package rosterBuilder.utility;
 
-import rosterBuilder.pojos.Roster;
+import rosterBuilder.entities.Roster;
 
 public class RosterCostCalculator {
 

@@ -2,7 +2,7 @@ package common;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import rosterBuilder.pojos.Roster;
+import rosterBuilder.entities.Roster;
 
 import javax.persistence.*;
 import java.util.Collection;

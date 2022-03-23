@@ -1,13 +1,27 @@
-package rosterBuilder.pojos;
+package rosterBuilder.entities;
 
-import rosterBuilder.pojos.Entity;
-
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@javax.persistence.Entity
+@Table(name = "uniqueEntitiesPool", schema = "wargaming_assistant")
 public class UniqueEntitiesPool {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private long id;
+
+    @OneToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE,
+            CascadeType.PERSIST, CascadeType.REFRESH})
+    @JoinColumn(name = "entity_id")
     private List<Entity> available;
     private List<Entity> locked;
+
+    @OneToOne(targetEntity = WargamingSystem.class, mappedBy = "uniqueEntitiesPool",
+            cascade = {CascadeType.DETACH, CascadeType.MERGE,
+                    CascadeType.PERSIST, CascadeType.REFRESH})
+    private WargamingSystem wargamingSystem;
 
     public UniqueEntitiesPool(){
         this(new ArrayList<>());
@@ -16,6 +30,14 @@ public class UniqueEntitiesPool {
     public UniqueEntitiesPool(List<Entity> pool){
         this.available = pool;
         this.locked = new ArrayList<>();
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public List<Entity> getAvailable() {
@@ -32,6 +54,14 @@ public class UniqueEntitiesPool {
 
     public void setLocked(List<Entity> locked) {
         this.locked = locked;
+    }
+
+    public WargamingSystem getWargamingSystem() {
+        return wargamingSystem;
+    }
+
+    public void setWargamingSystem(WargamingSystem wargamingSystem) {
+        this.wargamingSystem = wargamingSystem;
     }
 
     public Entity get(String name){

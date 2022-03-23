@@ -1,4 +1,4 @@
-package rosterBuilder.pojos;
+package rosterBuilder.entities;
 
 public class Item extends Entity {
     public Item() {super();}

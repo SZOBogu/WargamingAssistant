@@ -1,13 +1,31 @@
-package rosterBuilder.pojos;
+package rosterBuilder.entities;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@javax.persistence.Entity
+@Table(name = "model_part", schema = "wargaming_assistant")
 public class ModelPart {
-    private int modelPartId;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private long id;
+
+    @Column(name = "name")
     private String name;
+
+    @OneToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE,
+            CascadeType.PERSIST, CascadeType.REFRESH})
+    @JoinColumn(name = "characteristic_id")
     private List<Characteristic> characteristics;
+    @OneToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE,
+            CascadeType.PERSIST, CascadeType.REFRESH})
+    @JoinColumn(name = "specialRule_id")
     private List<SpecialRule> specialRules;
+    @OneToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE,
+            CascadeType.PERSIST, CascadeType.REFRESH})
+    @JoinColumn(name = "equipment_id")
     private List<Entity> equipment;
 
     public ModelPart(){
@@ -21,32 +39,41 @@ public class ModelPart {
         this.specialRules = specialRules;
     }
 
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
     public String getName() {
-        return this.name;
-    }
-
-    public List<Characteristic> getCharacteristics() {
-        return characteristics;
-    }
-
-    public List<SpecialRule> getSpecialRules() {
-        return this.specialRules;
-    }
-
-    public List<Entity> getEquipment() {
-        return this.equipment;
+        return name;
     }
 
     public void setName(String name) {
         this.name = name;
     }
 
+    public List<Characteristic> getCharacteristics() {
+        return characteristics;
+    }
+
     public void setCharacteristics(List<Characteristic> characteristics) {
         this.characteristics = characteristics;
     }
 
+    public List<SpecialRule> getSpecialRules() {
+        return specialRules;
+    }
+
     public void setSpecialRules(List<SpecialRule> specialRules) {
         this.specialRules = specialRules;
+    }
+
+    public List<Entity> getEquipment() {
+        return equipment;
     }
 
     public void setEquipment(List<Entity> equipment) {

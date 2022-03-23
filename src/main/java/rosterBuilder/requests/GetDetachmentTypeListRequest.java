@@ -1,9 +1,5 @@
 package rosterBuilder.requests;
 
-import rosterBuilder.pojos.Detachment;
-
-import java.util.List;
-
 public class GetDetachmentTypeListRequest {
     private int wargameId;
 

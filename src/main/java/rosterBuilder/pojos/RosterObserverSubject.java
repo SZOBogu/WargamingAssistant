@@ -1,7 +1,7 @@
 package rosterBuilder.pojos;
 
 import common.Refreshable;
-import rosterBuilder.pojos.Roster;
+import rosterBuilder.entities.Roster;
 
 import java.util.ArrayList;
 

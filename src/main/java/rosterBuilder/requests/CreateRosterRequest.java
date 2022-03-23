@@ -1,7 +1,5 @@
 package rosterBuilder.requests;
 
-import rosterBuilder.pojos.Detachment;
-
 public class CreateRosterRequest {
     private int wargameId;
     private int armyId;

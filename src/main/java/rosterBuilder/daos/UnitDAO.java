@@ -4,9 +4,9 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import rosterBuilder.pojos.ArmySubcategory;
-import rosterBuilder.pojos.UnitProfile;
-import rosterBuilder.pojos.WargamingSystem;
+import rosterBuilder.entities.ArmySubcategory;
+import rosterBuilder.entities.UnitProfile;
+import rosterBuilder.entities.WargamingSystem;
 import rosterBuilder.requests.GetUnitListRequest;
 
 import java.util.ArrayList;

@@ -1,7 +1,7 @@
 package rosterBuilder.responses;
 
-import rosterBuilder.pojos.ModelPart;
-import rosterBuilder.pojos.OptionSet;
+import rosterBuilder.entities.ModelPart;
+import rosterBuilder.entities.OptionSet;
 
 import java.util.List;
 

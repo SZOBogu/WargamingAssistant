@@ -1,11 +1,26 @@
-package rosterBuilder.pojos;
+package rosterBuilder.entities;
 
+import javax.persistence.*;
 import java.util.Objects;
 
+@javax.persistence.Entity
+@Table(name = "entity", schema = "wargaming_assistant")
 public class Entity {
-    private int entityId;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private long id;
+
+    @Basic
+    @Column(name = "name")
     private String name;
+
+    @Basic
+    @Column(name = "description")
     private String description;
+
+    @Basic
+    @Column(name = "parameter")
     private String parameter;
 
     public Entity(){
@@ -21,6 +36,14 @@ public class Entity {
         this.name = name;
         this.description = description;
         this.parameter = parameter;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getName() {

@@ -1,7 +1,7 @@
 package rosterBuilder.requests;
 
-import rosterBuilder.pojos.Roster;
-import rosterBuilder.pojos.Unit;
+import rosterBuilder.entities.Roster;
+import rosterBuilder.entities.Unit;
 import rosterBuilder.rules.UnitBuildingRule;
 
 import java.util.List;

@@ -1,4 +1,4 @@
-package rosterBuilder.pojos;
+package rosterBuilder.entities;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +25,8 @@ public class Unit {
             CascadeType.PERSIST, CascadeType.REFRESH},
             fetch = FetchType.EAGER)
     private final List<Entity> baseEquipmentAndRules;
+    @Basic
+    @Column(name = "pointCost")
     private int pointCost;
 
     public Unit(){

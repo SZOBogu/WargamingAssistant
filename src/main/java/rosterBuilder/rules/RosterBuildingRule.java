@@ -1,7 +1,7 @@
 package rosterBuilder.rules;
 
-import rosterBuilder.pojos.Entity;
-import rosterBuilder.pojos.Roster;
+import rosterBuilder.entities.Entity;
+import rosterBuilder.entities.Roster;
 
 import java.io.Serializable;
 

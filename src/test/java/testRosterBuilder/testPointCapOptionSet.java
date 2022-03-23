@@ -2,8 +2,9 @@ package testRosterBuilder;
 
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
+import rosterBuilder.entities.*;
 import rosterBuilder.exceptions.UnitBuildingException;
-import rosterBuilder.pojos.*;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 

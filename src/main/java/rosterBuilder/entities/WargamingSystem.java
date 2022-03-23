@@ -1,41 +1,52 @@
-package rosterBuilder.pojos;
+package rosterBuilder.entities;
 
 import rosterBuilder.rules.RosterBuildingRule;
 import scenarioGenerator.entities.Deployment;
 import scenarioGenerator.entities.MissionList;
 import scenarioGenerator.entities.Scenario;
 
-import javax.persistence.CascadeType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @javax.persistence.Entity
+@Table(name = "wargamingSystem", schema = "wargaming_assistant")
 public class WargamingSystem {
-    private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private long id;
+
+    @Column(name = "name")
     private String name;
 
+    @OneToMany(mappedBy = "wargamingSystem", cascade = {CascadeType.ALL})
     private List<Army> armies;
-
+    @OneToMany(mappedBy = "wargamingSystem", cascade = {CascadeType.ALL})
     private List<Entity> allInGameEntities;
+    @OneToMany(mappedBy = "wargamingSystem", cascade = {CascadeType.ALL})
     private List<Detachment> detachments;
-    @OneToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE,
-            CascadeType.PERSIST, CascadeType.REFRESH})
+
+    @OneToMany(mappedBy = "wargamingSystem", cascade = {CascadeType.ALL})
     @JoinColumn(name = "system_id")
     private List<Deployment> deployments;
-    @OneToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE,
-            CascadeType.PERSIST, CascadeType.REFRESH})
+    @OneToMany(mappedBy = "wargamingSystem", cascade = {CascadeType.ALL})
     @JoinColumn(name = "system_id")
     private List<MissionList> missions;
-    @OneToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE,
-            CascadeType.PERSIST, CascadeType.REFRESH})
+    @OneToMany(mappedBy = "wargamingSystem", cascade = {CascadeType.ALL})
     @JoinColumn(name = "system_id")
     private List<Scenario> scenarios;
+
+    @Column(name = "maxDetachments")
     private int maxDetachments;
+    @Column(name = "isAllowingAlliances")
     private boolean isAllowingAlliances;
+
+    @OneToMany(mappedBy = "wargamingSystem", cascade = {CascadeType.ALL})
     private List<RosterBuildingRule> rules;
+
+    @OneToOne(targetEntity = UniqueEntitiesPool.class, mappedBy = "wargamingSystem",
+            cascade = {CascadeType.ALL})
     private UniqueEntitiesPool pool;
 
     public WargamingSystem(){

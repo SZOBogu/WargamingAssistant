@@ -1,9 +1,9 @@
 package rosterBuilder.rules;
 
 import rosterBuilder.exceptions.RosterBuildingException;
-import rosterBuilder.pojos.Entity;
+import rosterBuilder.entities.Entity;
 import rosterBuilder.utility.ModelCounter;
-import rosterBuilder.pojos.Roster;
+import rosterBuilder.entities.Roster;
 
 public class CannotHaveMoreModelsWithThan extends RosterBuildingRule implements Rule {
     public CannotHaveMoreModelsWithThan(Entity entity, int quantity){

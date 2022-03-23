@@ -1,9 +1,9 @@
 package rosterBuilder.utility;
 
-import rosterBuilder.pojos.Detachment;
-import rosterBuilder.pojos.Entity;
-import rosterBuilder.pojos.Roster;
-import rosterBuilder.pojos.Unit;
+import rosterBuilder.entities.Detachment;
+import rosterBuilder.entities.Entity;
+import rosterBuilder.entities.Roster;
+import rosterBuilder.entities.Unit;
 
 import java.util.ArrayList;
 import java.util.List;

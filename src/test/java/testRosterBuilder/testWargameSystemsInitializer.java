@@ -2,7 +2,7 @@
 //
 //import org.junit.jupiter.api.Test;
 //import rosterBuilder.helpers.WargameSystemsInitializer;
-//import rosterBuilder.pojos.WargamingSystem;
+//import rosterBuilder.entities.WargamingSystem;
 //
 //import java.util.ArrayList;
 //

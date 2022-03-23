@@ -1,12 +1,9 @@
 package testRosterBuilder.testRules;
 
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import rosterBuilder.entities.*;
 import rosterBuilder.exceptions.RosterBuildingException;
-import rosterBuilder.exceptions.UnitBuildingException;
-import rosterBuilder.pojos.*;
 import rosterBuilder.rules.CategoryPointCapExceedRule;
-import rosterBuilder.rules.RosterBuildingRule;
 
 import java.util.ArrayList;
 import java.util.Arrays;

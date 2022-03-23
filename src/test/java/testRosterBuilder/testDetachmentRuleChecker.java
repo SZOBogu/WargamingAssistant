@@ -1,13 +1,12 @@
 package testRosterBuilder;
 
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import rosterBuilder.exceptions.RosterBuildingException;
-import rosterBuilder.pojos.Detachment;
-import rosterBuilder.pojos.UniqueEntitiesPool;
-import rosterBuilder.pojos.Unit;
+import rosterBuilder.entities.Detachment;
+import rosterBuilder.entities.UniqueEntitiesPool;
+import rosterBuilder.entities.Unit;
 import rosterBuilder.utility.DetachmentRuleChecker;
 
 import java.util.ArrayList;

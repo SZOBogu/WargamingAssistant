@@ -1,4 +1,4 @@
-package rosterBuilder.pojos;
+package rosterBuilder.entities;
 
 import java.util.ArrayList;
 

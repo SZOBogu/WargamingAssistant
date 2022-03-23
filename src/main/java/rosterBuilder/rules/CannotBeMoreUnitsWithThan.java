@@ -1,11 +1,9 @@
 package rosterBuilder.rules;
 
 import rosterBuilder.exceptions.RosterBuildingException;
-import rosterBuilder.pojos.Entity;
-import rosterBuilder.pojos.Roster;
+import rosterBuilder.entities.Entity;
+import rosterBuilder.entities.Roster;
 import rosterBuilder.utility.UnitCounter;
-
-import java.io.Serializable;
 
 public class CannotBeMoreUnitsWithThan extends RosterBuildingRule implements Rule {
     public CannotBeMoreUnitsWithThan(Entity entity, int quantity){

@@ -6,7 +6,7 @@ import tournamentHandler.entities.Participant;
 import tournamentHandler.entities.Round;
 import tournamentHandler.enums.TournamentType;
 import tournamentHandler.pojos.TournamentStatute;
-import rosterBuilder.pojos.WargamingSystem;
+import rosterBuilder.entities.WargamingSystem;
 import rosterBuilder.rules.ArmyPointCapRule;
 import rosterBuilder.rules.RosterBuildingRule;
 import rosterBuilder.rules.TeamCompositionRule;

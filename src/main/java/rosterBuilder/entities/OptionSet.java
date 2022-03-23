@@ -1,13 +1,10 @@
-package rosterBuilder.pojos;
-
-import rosterBuilder.pojos.Entity;
-import rosterBuilder.pojos.Option;
+package rosterBuilder.entities;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public abstract class OptionSet {
-    protected int optionSetId;
+    protected int id;
     protected List<Option> options;
     protected String itemListName;
     protected String keyVerb;

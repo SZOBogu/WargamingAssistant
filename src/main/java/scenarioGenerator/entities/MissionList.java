@@ -1,6 +1,6 @@
 package scenarioGenerator.entities;
 
-import rosterBuilder.pojos.WargamingSystem;
+import rosterBuilder.entities.WargamingSystem;
 
 import javax.persistence.*;
 import java.util.ArrayList;

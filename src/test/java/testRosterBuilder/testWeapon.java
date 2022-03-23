@@ -1,8 +1,8 @@
 package testRosterBuilder;
 
 import org.junit.jupiter.api.Test;
-import rosterBuilder.pojos.Characteristic;
-import rosterBuilder.pojos.Weapon;
+import rosterBuilder.entities.Characteristic;
+import rosterBuilder.entities.Weapon;
 
 import java.util.ArrayList;
 import java.util.Arrays;

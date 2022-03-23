@@ -2,27 +2,19 @@ package rosterBuilder.controllers;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import rosterBuilder.exceptions.RosterBuildingException;
-import rosterBuilder.exceptions.UnitBuildingException;
-import rosterBuilder.pojos.*;
+import rosterBuilder.entities.Detachment;
+import rosterBuilder.entities.Roster;
+import rosterBuilder.entities.UnitProfile;
 import rosterBuilder.requests.*;
-import rosterBuilder.rules.RosterBuildingRule;
-import rosterBuilder.rules.UnitBuildingRule;
 import rosterBuilder.services.RosterService;
 import rosterBuilder.services.UnitService;
-import rosterBuilder.utility.RuleMerger;
-import rosterBuilder.utility.UnitAndProfileFinder;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/roster")

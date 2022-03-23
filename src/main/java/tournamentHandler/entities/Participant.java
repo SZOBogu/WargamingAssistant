@@ -1,7 +1,7 @@
 package tournamentHandler.entities;
 
 import tournamentHandler.pojos.ScoreList;
-import rosterBuilder.pojos.Roster;
+import rosterBuilder.entities.Roster;
 
 public class Participant implements Comparable{
     private int participantId;

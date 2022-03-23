@@ -1,9 +1,8 @@
 package rosterBuilder.rules;
 
 import rosterBuilder.exceptions.RosterBuildingException;
-import rosterBuilder.pojos.Army;
-import rosterBuilder.pojos.Roster;
-import rosterBuilder.utility.UnitCounter;
+import rosterBuilder.entities.Army;
+import rosterBuilder.entities.Roster;
 
 public class ArmyPointCapRule implements Rule{
     private int ruleId;

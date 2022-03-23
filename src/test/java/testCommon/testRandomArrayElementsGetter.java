@@ -3,7 +3,7 @@ package testCommon;
 import common.RandomArrayElementsGetter;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
-import rosterBuilder.pojos.Entity;
+import rosterBuilder.entities.Entity;
 
 import java.util.Arrays;
 import java.util.List;

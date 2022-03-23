@@ -1,7 +1,4 @@
-package rosterBuilder.pojos;
-
-import rosterBuilder.pojos.Entity;
-import rosterBuilder.pojos.Option;
+package rosterBuilder.entities;
 
 public class QuantityDependentOption extends Option {
     private int modelQuantity;
@@ -21,7 +18,7 @@ public class QuantityDependentOption extends Option {
 
     @Override
     public int getCost(){
-        return this.modelQuantity * this.cost;
+        return this.modelQuantity * super.getCost();
     }
 
     public void setModelQuantity(int modelQuantity) {

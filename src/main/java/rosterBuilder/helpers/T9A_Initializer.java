@@ -1,7 +1,7 @@
 package rosterBuilder.helpers;
 
 import rosterBuilder.pojos.IWargameInitializer;
-import rosterBuilder.pojos.WargamingSystem;
+import rosterBuilder.entities.WargamingSystem;
 
 public class T9A_Initializer implements IWargameInitializer {
 

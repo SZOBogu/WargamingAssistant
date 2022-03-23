@@ -1,9 +1,8 @@
 package testRosterBuilder.testRules;
 
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import rosterBuilder.entities.*;
 import rosterBuilder.exceptions.UnitBuildingException;
-import rosterBuilder.pojos.*;
 import rosterBuilder.rules.MustHaveTogether;
 
 import java.util.ArrayList;

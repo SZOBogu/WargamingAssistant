@@ -1,8 +1,8 @@
 package testRosterBuilder;
 
 import org.junit.jupiter.api.Test;
+import rosterBuilder.entities.*;
 import rosterBuilder.utility.UnitAndProfileFinder;
-import rosterBuilder.pojos.*;
 
 import javax.swing.*;
 import java.util.ArrayList;

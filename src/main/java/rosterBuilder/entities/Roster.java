@@ -1,12 +1,34 @@
-package rosterBuilder.pojos;
+package rosterBuilder.entities;
 
+import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.List;
 
+@javax.persistence.Entity
+@Table(name = "roster", schema = "wargaming_assistant")
 public class Roster {
-    private int rosterId;
-    private final ArrayList<Detachment> detachments;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private long id;
+
+    @OneToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE,
+            CascadeType.PERSIST, CascadeType.REFRESH})
+    @JoinColumn(name = "detachment_id")
+    private List<Detachment> detachments;
+
+    @ManyToOne(cascade={CascadeType.DETACH, CascadeType.MERGE,
+            CascadeType.PERSIST, CascadeType.REFRESH})
+    @JoinColumn(name="primaryArmy_id")
     private Army primaryArmy;
+
+    @Column(name = "pointCap")
     private int pointCap;
+
+    @OneToOne(targetEntity = UniqueEntitiesPool.class, mappedBy = "roster",
+            cascade = {CascadeType.DETACH, CascadeType.MERGE,
+                    CascadeType.PERSIST, CascadeType.REFRESH},
+            fetch = FetchType.EAGER)
     private UniqueEntitiesPool uniqueEntitiesPool;
 
     public Roster(){
@@ -22,8 +44,8 @@ public class Roster {
 
     public void removeDetachment(int index){
        Detachment detachment = this.detachments.get(index);
-       for(int i = 0; i < detachment.getBoughtUnitsCategorized().size(); i++){      //po detkach
-           for (int j = 0; j < detachment.getBoughtUnitsCategorized().get(i).size(); j++) {  //po kategoriach
+       for(int i = 0; i < detachment.getDetachmentSlots().size(); i++){      //po detkach
+           for (int j = 0; j < detachment.getDetachmentSlots().get(i).getUnits().size(); j++) {  //po kategoriach
                detachment.deleteUnit(i, j, uniqueEntitiesPool);
            }
        }
@@ -34,24 +56,20 @@ public class Roster {
         return this.detachments.size();
     }
 
-    public ArrayList<Detachment> getDetachments() {
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public List<Detachment> getDetachments() {
         return detachments;
     }
 
-    public int getPointCap() {
-        return pointCap;
-    }
-
-    public void setPointCap(int pointCap) {
-        this.pointCap = pointCap;
-    }
-
-    public int getTotalCost() {
-       int totalCost = 0;
-        for (Detachment detachment : this.detachments) {
-            totalCost += detachment.getCost();
-        }
-       return totalCost;
+    public void setDetachments(List<Detachment> detachments) {
+        this.detachments = detachments;
     }
 
     public Army getPrimaryArmy() {
@@ -62,8 +80,12 @@ public class Roster {
         this.primaryArmy = primaryArmy;
     }
 
-    public Army getArmy(int index){
-        return this.detachments.get(index).getArmy();
+    public int getPointCap() {
+        return pointCap;
+    }
+
+    public void setPointCap(int pointCap) {
+        this.pointCap = pointCap;
     }
 
     public UniqueEntitiesPool getUniqueEntitiesPool() {

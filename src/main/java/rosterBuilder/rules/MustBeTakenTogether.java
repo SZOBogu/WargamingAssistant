@@ -1,8 +1,8 @@
 package rosterBuilder.rules;
 
 import rosterBuilder.exceptions.UnitBuildingException;
-import rosterBuilder.pojos.Entity;
-import rosterBuilder.pojos.Unit;
+import rosterBuilder.entities.Entity;
+import rosterBuilder.entities.Unit;
 
 public class MustBeTakenTogether extends UnitBuildingRule implements Rule {
     public MustBeTakenTogether(Entity entity1, Entity entity2){

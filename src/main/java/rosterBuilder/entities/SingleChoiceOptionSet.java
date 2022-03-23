@@ -1,6 +1,5 @@
-package rosterBuilder.pojos;
+package rosterBuilder.entities;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class SingleChoiceOptionSet extends OptionSet {
